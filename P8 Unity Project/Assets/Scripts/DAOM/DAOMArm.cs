@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class DAOMArm : MonoBehaviour
 {
     public static DAOMArm ActiveInstance { get; private set; }
-    public XRDirectInteractor Interactor => interactor;
+    public DynamicXRDirectInteractorAnimator Interactor => interactor;
     public Transform DaomIKTarget => daomIKTarget.transform;
 
     [HideInInspector] GameObject playerRoot;
@@ -40,7 +40,7 @@ public class DAOMArm : MonoBehaviour
     [SerializeField] [Tooltip("Only used when NOT mirrored.")] float wallDistanceOffset = 0.3f;
 
     [Header("Interactor")]
-    [SerializeField] XRDirectInteractor interactor;
+    [SerializeField] DynamicXRDirectInteractorAnimator interactor;
 
     [Header("Audio")]
     [SerializeField] AudioClip boomSound;
