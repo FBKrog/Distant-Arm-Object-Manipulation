@@ -1060,7 +1060,7 @@ MonoBehaviour:
   handRotationOffset: {x: 90, y: 0, z: 0}
   wallExtention: {fileID: 5111885630561904109}
   wallDistanceOffset: 0.29
-  interactor: {fileID: 8603934950933611920}
+  interactor: {fileID: 0}
   boomSound: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
   boomVolume: 0.5
   rocketSound: {fileID: 8300000, guid: 7f2a71db2fb51714e9fd4efee991fa77, type: 3}
@@ -1161,7 +1161,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1817303667217125829}
   - component: {fileID: 7671849618432635134}
-  - component: {fileID: 8603934950933611920}
   - component: {fileID: 4702170159403195726}
   m_Layer: 0
   m_Name: Interactor
@@ -1207,7 +1206,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.16
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8603934950933611920
+--- !u!114 &4702170159403195726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1216,13 +1215,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5031724963309320750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
+  m_Script: {fileID: 11500000, guid: 50a8f01b300ac0248bfe77895cc1ebfb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicHandAnimation
   m_InteractionManager: {fileID: 0}
   m_InteractionLayers:
     m_Bits: 4294967295
-  m_Handedness: 0
+  m_Handedness: 2
   m_AttachTransform: {fileID: 7044653118718526196}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -1250,7 +1249,7 @@ MonoBehaviour:
       m_Name: Select
       m_Type: 1
       m_ExpectedControlType: 
-      m_Id: c28a34a4-991b-4a16-b8fd-d2541ab26cb4
+      m_Id: 163ef3d2-1146-4e4d-a852-902a3f07d358
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1259,12 +1258,12 @@ MonoBehaviour:
       m_Name: Select Value
       m_Type: 0
       m_ExpectedControlType: Axis
-      m_Id: 7dfba375-3b30-4003-abe6-40b78a6fd581
+      m_Id: 84b7c42b-6291-4845-9713-ebca014e5c0d
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferencePerformed: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     m_InputActionReferenceValue: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualPerformed: 0
@@ -1280,7 +1279,7 @@ MonoBehaviour:
       m_Name: Activate
       m_Type: 1
       m_ExpectedControlType: 
-      m_Id: f8bfbb1f-d403-4724-a41d-443b787696e6
+      m_Id: 7b5e6bf7-a71c-4ac9-b745-4616f374c49f
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1289,7 +1288,7 @@ MonoBehaviour:
       m_Name: Activate Value
       m_Type: 0
       m_ExpectedControlType: Axis
-      m_Id: b25e5673-603e-4962-a22a-288d265156e5
+      m_Id: 2ed2b7a3-8cf4-4a81-a2ab-66631bb8ce04
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1346,34 +1345,50 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_PhysicsTriggerInteraction: 1
---- !u!114 &4702170159403195726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5031724963309320750}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a8f01b300ac0248bfe77895cc1ebfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicHandAnimation
   handData:
     thumb:
-      joints: []
-      jointValues: []
+      phalanges:
+      - {fileID: 8497065398493960653}
+      - {fileID: 5388208015342488192}
+      phalanxValues:
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
     index:
-      joints: []
-      jointValues: []
+      phalanges:
+      - {fileID: 6450999210366020874}
+      - {fileID: 5332159069047463716}
+      - {fileID: 5017140177255680839}
+      phalanxValues:
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
     middle:
-      joints: []
-      jointValues: []
+      phalanges:
+      - {fileID: 5559926076854004657}
+      - {fileID: 6342511601239709152}
+      - {fileID: 8396102451467729172}
+      phalanxValues:
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
     ring:
-      joints: []
-      jointValues: []
+      phalanges:
+      - {fileID: 7558331675149419926}
+      - {fileID: 4150425403130726074}
+      - {fileID: 5102723702867256026}
+      phalanxValues:
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
     pinky:
-      joints: []
-      jointValues: []
+      phalanges:
+      - {fileID: 8957033952414329595}
+      - {fileID: 8929661035506710994}
+      - {fileID: 7031150816889722659}
+      phalanxValues:
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
+      - {x: 0, y: 0, z: 0}
 --- !u!1 &5111885630561904109
 GameObject:
   m_ObjectHideFlags: 0
