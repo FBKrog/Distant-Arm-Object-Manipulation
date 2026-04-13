@@ -191,18 +191,20 @@ Shader "Felix/Cel Opaque"
                 return step(_SpecularCutoff, specular);
             }
 
-            half3 MyLightingSpecular(half3 lightColor, half3 lightDir, half3 normal, half3 viewDir, half smoothness)
+            half3 MyLightingSpecular(half3 lightColor, half3 lightDir, half3 normal, half3 viewDir, half smoothness, half shadowValue)
             {
                 float3 halfVec = SafeNormalize(float3(lightDir) + float3(viewDir));
                 half NdotH = half(saturate(dot(normal, halfVec)));
                 half modifier = pow(float(NdotH), float(smoothness)); // Half produces banding, need full precision
+                // Remove specular when this is in shadow
+                modifier *= shadowValue;
                 // NOTE: In order to fix internal compiler error on mobile platforms, this needs to be float3
                 float3 specularReflection = float3(1.0 ,1.0 ,1.0) * SpecularCelStep(modifier);
                 return lightColor * specularReflection;
             }
 
             // Modified
-            half3 MyBlinnPhong(Light light, InputData inputData)
+            half3 MyBlinnPhong(Light light, InputData inputData, half shadowValue)
             {
                 // Original
                 //half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
@@ -213,7 +215,7 @@ Shader "Felix/Cel Opaque"
                 half3 lightSpecularColor = half3(0, 0, 0);
                 
 #ifndef _USESPECULAR_OFF
-                lightSpecularColor += MyLightingSpecular(attenuatedLightColor, light.direction, inputData.normalWS, inputData.viewDirectionWS, 36);
+                lightSpecularColor += MyLightingSpecular(attenuatedLightColor, light.direction, inputData.normalWS, inputData.viewDirectionWS, 36, shadowValue);
 #endif
 
                 return lightSpecularColor;
@@ -257,7 +259,7 @@ Shader "Felix/Cel Opaque"
                 Light mainLight = GetMainLight();
                 half shadowValue = MainLightRealtimeShadow(d.shadowCoord);
                 lighting += MyMainLightingFunction(inputData.normalWS, mainLight, shadowValue);
-                lighting += MyBlinnPhong(mainLight, inputData);
+                lighting += MyBlinnPhong(mainLight, inputData, shadowValue);
                 
                 // Get additional lights
                 #if defined(_ADDITIONAL_LIGHTS)
@@ -269,7 +271,7 @@ Shader "Felix/Cel Opaque"
                     Light additionalLight = GetAdditionalLight(lightIndex, inputData.positionWS, half4(1,1,1,1));
                     shadowValue = AdditionalLightRealtimeShadow(lightIndex, inputData.positionWS);
                     lighting += MyAdditionalLightingFunction(inputData.normalWS, additionalLight);
-                    lighting += MyBlinnPhong(additionalLight, inputData);
+                    lighting += MyBlinnPhong(additionalLight, inputData, shadowValue);
                 }
                 #endif
                 
@@ -279,7 +281,7 @@ Shader "Felix/Cel Opaque"
                     Light additionalLight = GetAdditionalLight(lightIndex, inputData.positionWS, half4(1,1,1,1));
                     shadowValue = AdditionalLightRealtimeShadow(lightIndex, inputData.positionWS);
                     lighting += MyAdditionalLightingFunction(inputData.normalWS, additionalLight);
-                    lighting += MyBlinnPhong(additionalLight, inputData);
+                    lighting += MyBlinnPhong(additionalLight, inputData, shadowValue);
                 LIGHT_LOOP_END
                 
                 #endif
