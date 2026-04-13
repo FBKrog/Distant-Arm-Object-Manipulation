@@ -263,7 +263,7 @@ public class LaunchArm : MonoBehaviour
 
             var boomRotation = Quaternion.LookRotation(-camera.transform.position, Vector3.up);
             Instantiate(boomEffect, launchPoint.transform.position, rotation);
-            
+            print(hit.normal);
             daomArm = Instantiate(daomArmPrefab, launchPoint.transform.position, rotation);
             daomArm.GetComponent<DAOMArm>().Initialize(armRoot, armXRTarget, hit.point, this.hitInteractable, selectedInteractable);
             OnSetInteractorHandedness(interactor);

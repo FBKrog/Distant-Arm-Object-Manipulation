@@ -6601,7 +6601,7 @@ MonoBehaviour:
   headBodyPositionOffset: {x: 0, y: -1.56, z: 0}
   bodyRotationSpeed: 4
   bodyRotationMaxAngle: 60
-  headInfluence: 0.4
+  headInfluence: 0.8
   head:
     xrTarget: {fileID: 8424142011389712124}
     ikTarget: {fileID: 5800523683166511947}

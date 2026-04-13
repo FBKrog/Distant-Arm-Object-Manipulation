@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -57,8 +56,6 @@ public class DAOMArm : MonoBehaviour
     Quaternion lowerArmStartRot;
     Quaternion tipStartRot;
 
-    int dumbfix = 0;
-
     IXRSelectInteractable selectedInteractable;
     IXRSelectInteractable hitInteractable;
     [Header("Debug")]
@@ -66,6 +63,8 @@ public class DAOMArm : MonoBehaviour
     [SerializeField]bool isAttachedToSurface = false;
     public bool IsAttachedToSurface => isAttachedToSurface;
     bool recalling = false;
+    bool isLanding = false;
+    bool mayAttach = false;
 
     public bool Recalling => recalling;
 
@@ -175,8 +174,6 @@ public class DAOMArm : MonoBehaviour
         thruster.SetActive(true);
         wallExtention.SetActive(false);
         GetComponent<LimbStretch>().enabled = false; // Disable limb stretch during recall to prevent weird positioning of the arm.
-
-        dumbfix = 0;
         
         animator.enabled = false;
 
@@ -191,7 +188,7 @@ public class DAOMArm : MonoBehaviour
 
         targetRot = LookDirection(goPoint.transform.position);
         
-        StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
+        //StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
 
         StartCoroutine(RotateToTargetRotation(upperArm.transform, upperArmStartRot, rotationDuration, true));
         
@@ -203,20 +200,19 @@ public class DAOMArm : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the GameObject smoothly to the specified POSITION while storing the given surface normal in a variable for later use. This function has become extremely cursed and I am sorry, but it works for now so here we are. The local parameter is used ONLY for the lower arm extension.
+    /// Moves the GameObject smoothly to the specified POSITION. The local parameter is used ONLY for the lower arm extension.
     /// </summary>
     IEnumerator TravelToPoint(Transform transform, Vector3 point, bool local = false)
     {
         var startRot = local ? transform.localPosition : transform.position;
-        var t = 0f;
         if (local)
         {
+            var t = 0f;
             var elapsedTime = 0f;
             while (true)
             {
-                print(transform.localPosition);
                 elapsedTime += Time.deltaTime;
-                if(recalling)
+                if (recalling)
                 {
                     t = Mathf.Clamp01(elapsedTime / retractionTime); // Cool little retraction for the arm when recalling
                     transform.localPosition = Vector3.Lerp(startRot, point, t);
@@ -233,31 +229,28 @@ public class DAOMArm : MonoBehaviour
                 yield return null;
             }
         }
-        else 
-        { 
-            if(isTraveling) yield break;
+        else
+        {
+            if (isTraveling) yield break;
             isTraveling = true;
 
-            var totalDistance = Vector3.Distance(startRot, point);
+            var totalDistance = Vector3.Distance(startRot, point) - wallDistanceOffset;
+            var newPoint = point - wallDistanceOffset * (point - startRot).normalized; // Move the target point back a bit so the arm doesn't clip into the wall.
             var traveledDistance = 0f;
 
-            while (traveledDistance < totalDistance)
+            while (true)
             {
                 var distanceDelta = travelSpeed * Time.deltaTime;
-                
-                if(local)
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, point, distanceDelta/10);
-                else
-                    transform.position = Vector3.MoveTowards(transform.position, point, distanceDelta);
-
                 traveledDistance += distanceDelta;
-                var d = traveledDistance / totalDistance;
+                var d = Mathf.Clamp01(traveledDistance / totalDistance);
+
+                transform.position = Vector3.Lerp(startRot, newPoint, d);
 
                 if (d >= rotationStartTime)
                 {
-                    PrepareSurfaceLanding(point);
+                    StartCoroutine(PrepareSurfaceLanding(point));
                 }
-                if (traveledDistance >= (totalDistance - wallDistanceOffset))
+                if (d >= 1 && mayAttach)
                 {
                     wallExtention.SetActive(true);
                     ArmAttaching();
@@ -269,55 +262,62 @@ public class DAOMArm : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the GameObject smoothly to the specified GAMEOBJECT'S POSITION while storing the given surface normal in a variable for later use.
+    /// Moves the GameObject smoothly to the specified GAMEOBJECT'S POSITION.
     /// </summary>
     IEnumerator TravelToGameObject(GameObject goPoint)
     {
         if (isTraveling) yield break;
         isTraveling = true;
-        
-        float totalDistance = Vector3.Distance(transform.position, goPoint.transform.position);
-        float traveledDistance = 0f;
+        var startPos = transform.position;
+        var totalDistance = Vector3.Distance(startPos, goPoint.transform.position);
+        var traveledDistance = 0f;
 
-        while (traveledDistance < totalDistance)
+        while (true)
         {
-            float distanceDelta = travelSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, goPoint.transform.position, distanceDelta);
+            var distanceDelta = travelSpeed * Time.deltaTime;
             traveledDistance += distanceDelta;
-            float d = traveledDistance / totalDistance;
+            var d = Mathf.Clamp01(traveledDistance / totalDistance);
+
+            transform.position = Vector3.Lerp(startPos, goPoint.transform.position, d);
 
             if (d >= rotationStartTime)
             {
-                PrepareSurfaceLanding(goPoint.transform.position);
+                StartCoroutine(PrepareSurfaceLanding(goPoint.transform.position));
             }
-            if (traveledDistance >= totalDistance)
+            if (d >= 1 && mayAttach)
             {
                 ArmAttaching();
+                break;
             }
             yield return null;
         }
     }
 
     /// <summary>
-    /// Prepares the lower arm for landing on a surface by initiating its rotation to the appropriate orientation.
+    /// Prepares the arm for landing on a surface by initiating its rotation to the appropriate orientation.
     /// </summary>
-    void PrepareSurfaceLanding(Vector3 point)
+    IEnumerator PrepareSurfaceLanding(Vector3 point)
     {
-        if (dumbfix < 1)
+        if (!isLanding)
         {
+            isLanding = true;
             thruster.SetActive(false);
             var rotation = Quaternion.LookRotation(-transform.forward);
             StartCoroutine(RotateToTargetRotation(transform, rotation, rotationDuration));
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
-            dumbfix++;
+            yield return new WaitForSeconds(rotationDuration);
+            mayAttach = true;
         }
+        yield return null;
     }
 
     /// <summary>
-    /// Attaches the arm to a surface and initiates alignment to the surface normal.
+    /// Attaches the arm to a surface and rotates it to the appropriate orientation.
     /// </summary>
     void ArmAttaching()
     {
+        mayAttach = false;
+        isLanding = false;
         isTraveling = false;
         isAttachedToSurface = true;
         animator.enabled = true;
@@ -326,6 +326,7 @@ public class DAOMArm : MonoBehaviour
         AudioManager.StopSound(rocketAudioSource);
 
         targetRot = LookDirection(playerCamera.transform.position);
+        var targetRotY = Quaternion.Euler(0, targetRot.eulerAngles.y, 0);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
@@ -343,11 +344,12 @@ public class DAOMArm : MonoBehaviour
             LaunchArm.OnArmRecalled();
             return;
         }
-        StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
+        StartCoroutine(RotateToTargetRotation(transform, targetRotY, rotationDuration));
+        StartCoroutine(RotateToTargetRotation(wallExtention.transform, targetRot, rotationDuration));
     }
 
     /// <summary>
-    /// Calculates the rotation required to face the specified target position from the current transform position.
+    /// Calculates the rotation required to face the specified target position from this transform's position.
     /// </summary>
     Quaternion LookDirection(Vector3 target)
     {
@@ -391,8 +393,7 @@ public class DAOMArm : MonoBehaviour
     }
 
     /// <summary>
-    /// Translates the position of the DAOM hand target to match the relative position of the player hand, optionally
-    /// mirroring it across the body.
+    /// Translates the position of the DAOM hand target to match the relative position of the player hand.
     /// </summary>
     void TransformToPlayerHand()
     {
