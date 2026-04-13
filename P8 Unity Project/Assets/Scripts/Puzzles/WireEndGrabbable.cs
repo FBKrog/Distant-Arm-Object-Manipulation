@@ -29,21 +29,22 @@ public class WireEndGrabbable : MonoBehaviour
 
     void Awake()
     {
-        rb   = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         grab = GetComponent<XRGrabInteractable>();
 
         // Start wall-mounted.
         rb.isKinematic = true;
 
-        // VelocityTracking does not touch isKinematic, so we stay in full control.
-        grab.movementType  = XRBaseInteractable.MovementType.VelocityTracking;
+        // trackPosition/trackRotation are false so XRI never moves the object —
+        // movement type is irrelevant, but Instantaneous is the clearest intent.
+        grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
         // We handle all movement ourselves — disable XRI's built-in tracking.
         grab.trackPosition = false;
         grab.trackRotation = false;
         grab.throwOnDetach = false;
 
         grab.selectEntered.AddListener(OnGrabbed);
-        grab.selectExited .AddListener(OnReleased);
+        grab.selectExited.AddListener(OnReleased);
     }
 
     void OnGrabbed(SelectEnterEventArgs args)
@@ -56,7 +57,7 @@ public class WireEndGrabbable : MonoBehaviour
     {
         heldBy = null;
         // Zero velocity before going non-kinematic to prevent a launch on release.
-        rb.linearVelocity  = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         // Go non-kinematic so the cable hangs naturally from the StartAnchor.
         rb.isKinematic = false;
