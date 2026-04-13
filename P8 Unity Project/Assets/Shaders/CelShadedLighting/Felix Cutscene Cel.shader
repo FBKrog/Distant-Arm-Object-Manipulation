@@ -22,6 +22,7 @@ Shader "Felix/Cel Cutscene"
         [Header(Shadows)]
         _ShadowSoftCutoff("Soft Shadow Cutoff", Range(0.0, 1.0)) = 0.7
         _ShadowCutoff("Hard Shadow Cutoff", Range(0.0, 1.0)) = 0.4
+        _ShadowColor("Shadow Color", Color) = (0.05098039, 0.05098039, 0.2941177, 1)
     }
     
     SubShader
@@ -74,6 +75,11 @@ Shader "Felix/Cel Cutscene"
             #pragma multi_compile_instancing
             
             // #include "Packages/com.unity.render-pipelines.universal/Shaders/LitGBufferPass.hlsl"
+
+            // To get light rendering layers
+            #pragma multi_compile _ _LIGHT_LAYERS
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+            #pragma instancing_options renderinglayer
             
             // Included as per https://docs.unity3d.com/6000.3/Documentation/Manual/urp/use-built-in-shader-methods-additional-lights-fplus.html
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -127,7 +133,6 @@ Shader "Felix/Cel Cutscene"
             struct CustomLightingData
             {
                 half3 litColor;
-                half3 shadowColor;
                 float4 shadowCoord;
             };
 
@@ -152,6 +157,7 @@ Shader "Felix/Cel Cutscene"
 #ifndef _USEEMISSION_OFF
                 float4 _EmissionMap_ST;
 #endif
+                half4 _ShadowColor;
                 float _ShadowCutoff;
                 float _ShadowSoftCutoff;
                 float _ShadowBlur;
@@ -284,7 +290,7 @@ Shader "Felix/Cel Cutscene"
                 
                 #endif
 
-                return lerp(d.shadowColor, d.litColor, lighting);
+                return lerp(_ShadowColor, d.litColor, lighting);
             }
             
             half4 frag(Varyings input) : SV_Target0
@@ -349,8 +355,6 @@ Shader "Felix/Cel Cutscene"
                 // Sampled color from base map
                 half3 sampledTex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv).rgb;
                 d.litColor = sampledTex * _BaseColor.rgb;
-                // Gets ambient lighting for shadow colour
-                d.shadowColor = half3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w);
 
                 half3 lighting = MyLightLoop(d, inputData);
                          

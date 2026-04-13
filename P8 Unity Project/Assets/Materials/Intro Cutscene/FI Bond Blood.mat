@@ -38,13 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Current_Fill: 0.79978895
+    - _Current_Fill: 0.7999989
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Blood_Color: {r: 0.58431375, g: 0.5529412, b: 0.16862746, a: 1}
+    - _Blood_Color: {r: 0.6886792, g: 0.1817461, b: 0.09420614, a: 1}
     - _Color: {r: 1, g: 0.9411765, b: 0, a: 1}
-    - _Main_Color: {r: 1, g: 0.9411765, b: 0, a: 1}
+    - _Main_Color: {r: 1, g: 0.57254905, b: 0, a: 1}
     - _StartEnd_Height: {r: 5.2, g: -1.8, b: 0, a: 0}
     - _Voronoi_Stretch: {r: 4, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

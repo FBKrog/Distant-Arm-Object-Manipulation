@@ -236,22 +236,6 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Amount
-    path: Amount
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_Uint
-    realType: UInt32
-    defaultValue:
-      m_Type:
-        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 4
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   - name: Delay
     path: Delay
     tooltip: 
@@ -264,6 +248,22 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 2
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Amount
+    path: Amount
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Uint
+    realType: UInt32
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 4
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -315,22 +315,6 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Colour Change
-    path: Colour Change
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_Gradient
-    realType: Gradient
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.26274511218070986,"g":0.34117648005485537,"b":0.3529411852359772,"a":1.0},"time":0.0},{"color":{"r":0.7547169923782349,"g":0.022168099880218507,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   - name: Size
     path: Size
     tooltip: 
@@ -343,6 +327,22 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 0.1
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Colour Change
+    path: Colour Change
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Gradient
+    realType: Gradient
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":0.6777430176734924,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":0.7547169923782349,"g":0.022168099880218507,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614549}
   m_ExposedName: Speed
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 1
   m_Category: Velocity and Speed
   m_Min:
     m_Type:
@@ -2292,7 +2292,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-7414666169757199834,"guid":"305cca21a04463445b90d49a00a171e5","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":-7695152187008983426,"guid":"a31a2d3d7f5214c488612edebd3d617e","type":3}}'
     m_Space: -1
   m_Property:
     name: mesh
@@ -3267,7 +3267,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614695}
   m_ExposedName: Size
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 3
   m_Category: Mesh
   m_Min:
     m_Type:
@@ -4035,7 +4035,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614735}
   m_ExposedName: Delay
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 4
   m_Category: Bursts
   m_Min:
     m_Type:
@@ -4382,7 +4382,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 90
+      m_SerializableObject: 270
     m_Space: -1
   m_Property:
     name: a
@@ -5202,7 +5202,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -5257,7 +5257,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.26274511218070986,"g":0.34117648005485537,"b":0.3529411852359772,"a":1.0},"time":0.0},{"color":{"r":0.7547169923782349,"g":0.022168099880218507,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":0.6777430176734924,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":0.7547169923782349,"g":0.022168099880218507,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: -1
   m_Property:
     name: o
@@ -5554,7 +5554,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614882}
   m_ExposedName: Amount
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 6
   m_Category: Bursts
   m_Min:
     m_Type:
