@@ -6666,8 +6666,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 512
-  groundOffset: -0.1
-  modelDistance: 1.55
+  offsetMultiplier: 0.4
+  modelDistance: 1.53
   scaleMultiplier: 1.15
 --- !u!1 &8551727849898706087
 GameObject:

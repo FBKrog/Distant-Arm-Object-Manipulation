@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FeetToGround : MonoBehaviour
@@ -7,10 +8,16 @@ public class FeetToGround : MonoBehaviour
     [SerializeField] GameObject[] feet;
     [SerializeField] GameObject[] legs;
     [SerializeField] LayerMask ground;
-    [SerializeField] float groundOffset;
+    [SerializeField] float offsetMultiplier;
     [SerializeField] float modelDistance = 1.6f;
     [SerializeField] float scaleMultiplier = 1.15f;
     float distanceToGround;
+    Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void LateUpdate()
     {
@@ -26,7 +33,7 @@ public class FeetToGround : MonoBehaviour
             {
                 distanceToGround = hit.distance;
                 var offset = Vector3.Distance(feetGrounds[i].transform.position, feet[i].transform.position);
-                var hitPointOffset = hit.point.y + offset;
+                var hitPointOffset = hit.point.y + offset * offsetMultiplier;
                 var feetPos = feet[i].transform.position;
                 feetPos.y = hitPointOffset;
                 feet[i].transform.position = feetPos;
@@ -36,10 +43,18 @@ public class FeetToGround : MonoBehaviour
 
     public void ScaleLegs()
     {
+        StartCoroutine(Scale());
+    }
+
+    IEnumerator Scale()
+    {
+        animator.enabled = false;
         var scale = (distanceToGround - modelDistance) * scaleMultiplier;
         foreach (var leg in legs)
         {
             leg.transform.localScale = new Vector3(scale + 1, scale + 1, scale + 1);
         }
+        yield return new WaitForSeconds(0.5f);
+        animator.enabled = true;
     }
 }
