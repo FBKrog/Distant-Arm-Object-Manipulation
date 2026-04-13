@@ -27,7 +27,7 @@ public class LaunchArm : MonoBehaviour
     GameObject daomArm;
 
     [Header("Interactor")]
-    [SerializeField] XRDirectInteractor interactor;
+    [SerializeField] DynamicXRDirectInteractorAnimator interactor;
 
     [Header("Input")]
     [SerializeField] InputActionReference launchInput;
@@ -47,8 +47,8 @@ public class LaunchArm : MonoBehaviour
     IXRSelectInteractable daomInteractable;
     IXRSelectInteractable hitInteractable;
 
-    public static Action<XRDirectInteractor> SetInteractorHandedness;
-    public static void OnSetInteractorHandedness(XRDirectInteractor interactor) => SetInteractorHandedness?.Invoke(interactor);
+    public static Action<DynamicXRDirectInteractorAnimator> SetInteractorHandedness;
+    public static void OnSetInteractorHandedness(DynamicXRDirectInteractorAnimator interactor) => SetInteractorHandedness?.Invoke(interactor);
 
     public static Action ArmLaunched;
     public static void OnArmLaunched() => ArmLaunched?.Invoke();
