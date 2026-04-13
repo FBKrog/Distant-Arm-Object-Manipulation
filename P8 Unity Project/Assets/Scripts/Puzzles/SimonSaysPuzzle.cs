@@ -34,6 +34,8 @@ public class SimonSaysPuzzle : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float overlayAlpha = 0.4f;
 
     [Header("Timing")]
+    [Tooltip("Seconds to wait after BeginPuzzle() before the sequence starts lighting up.")]
+    [SerializeField] private float startDelay = 0f;
     [Tooltip("Seconds each button stays lit during the sequence preview.")]
     [SerializeField] private float sequenceShowDuration = 0.8f;
     [Tooltip("Gap between sequence button flashes.")]
@@ -92,13 +94,16 @@ public class SimonSaysPuzzle : MonoBehaviour
         }
 
         if (activeCoroutine != null) StopCoroutine(activeCoroutine);
-        activeCoroutine = StartCoroutine(ShowSequenceCoroutine());
+        activeCoroutine = StartCoroutine(ShowSequenceCoroutine(startDelay));
     }
 
     // ── State machine coroutines ───────────────────────────────────────────────
 
-    private IEnumerator ShowSequenceCoroutine()
+    private IEnumerator ShowSequenceCoroutine(float delay = 0f)
     {
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
         state = PuzzleState.ShowingSequence;
 
         SetAllButtonsInteractable(false);
