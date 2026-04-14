@@ -29,6 +29,8 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
     [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
     public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
+    [SerializeField] private Vector3 daomPositionOffset = new(-0.1f, -0.02f, 0); // compensate for DAOM attach transform offset
+    [SerializeField] private Vector3 daomRotationOffset = new(0, 180, 135); // compensate for DAOM attach transform rotation
 
     [Header("Lever Geometry")]
     [Tooltip("Empty child at the grip end of the lever arm. If null, uses the lever pivot.")]
@@ -309,7 +311,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         _dbgFrame = 0;
 
         transform.position = leverFixedPosition;
-
+        
         Debug.Log($"[LeverGrab:{name}] StartGrab — technique={technique}  currentAngle={currentAngle:F1}°  leverPos={leverFixedPosition:F3}");
     }
 
@@ -422,7 +424,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
                 return goGoExtend?.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 return DAOMArm.ActiveInstance?.DaomIKTarget != null
-                    ? DAOMArm.ActiveInstance.DaomIKTarget.position
+                    ? DAOMArm.ActiveInstance.DaomIKTarget.position 
                     : Vector3.zero;
             default:
                 return Vector3.zero;
@@ -444,7 +446,10 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Daom:
                 var daomTarget = DAOMArm.ActiveInstance?.DaomIKTarget;
                 if (daomTarget != null)
-                    daomTarget.position = position;
+                {
+                    daomTarget.position = position + daomPositionOffset; // compensate for attach transform offset;
+                    daomTarget.rotation = leverHandlePoint.rotation * Quaternion.Euler(daomRotationOffset);
+                }
                 break;
         }
     }

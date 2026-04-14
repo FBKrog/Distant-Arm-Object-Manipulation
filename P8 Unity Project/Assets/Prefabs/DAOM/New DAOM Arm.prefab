@@ -779,7 +779,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 6733319993217512963}
   m_AABB:
     m_Center: {x: 0.000000015017577, y: 0.0012821232, z: 2.0372681e-10}
-    m_Extent: {x: 0.00030187523, y: 0.0012822007, z: 0.00030186502}
+    m_Extent: {x: 0.01, y: 0.01, z: 0.01}
   m_DirtyAABB: 0
 --- !u!1 &3309648797917059630
 GameObject:
@@ -1389,6 +1389,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
+  defaultPose: {fileID: 11400000, guid: b6ad0daf5d7a21f448de15287edd677a, type: 2}
 --- !u!1 &5111885630561904109
 GameObject:
   m_ObjectHideFlags: 0

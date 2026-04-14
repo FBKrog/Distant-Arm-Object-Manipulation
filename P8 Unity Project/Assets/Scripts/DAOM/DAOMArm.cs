@@ -145,11 +145,16 @@ public class DAOMArm : MonoBehaviour
             interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        if(hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
+        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable") // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
             this.hitInteractable = hitInteractable;
             rotationStartTime = 1; // Don't start rotating until the object is grabbed.
         }
+        else
+        {
+            this.hitInteractable = null;
+        }
+
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
 
@@ -179,12 +184,17 @@ public class DAOMArm : MonoBehaviour
 
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         
-        if(hitInteractable != null)
+        if(hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable")
         {
             selectedInteractable = hitInteractable;
         }
-        
-        LaunchArm.OnGrabbedGameObject(selectedInteractable);
+        else
+        {
+            selectedInteractable = null;
+        }
+
+        if(selectedInteractable != null)
+            LaunchArm.OnGrabbedGameObject(selectedInteractable);
 
         targetRot = LookDirection(goPoint.transform.position);
         

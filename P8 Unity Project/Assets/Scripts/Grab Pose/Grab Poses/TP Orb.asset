@@ -10,52 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e690bc0d3dbe28744973d35acec069b8, type: 3}
-  m_Name: WireEndAnchor
-  m_EditorClassIdentifier: Assembly-CSharp::GrabPose
-  grabPoint: {fileID: 0}
+  m_Name: TP Orb
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPoseScriptableObject
   rotationOffset: {x: 77.294754, y: 291.30878, z: 290.83234}
-  positionOffset: {x: -0.0007, y: -0.0075, z: -0.0017}
+  positionOffset: {x: 0.0257, y: -0.0126, z: 0.0166}
   handData:
     thumb:
       phalanges:
       - {fileID: 0}
       - {fileID: 0}
       phalanxValues:
-      - {x: 27.47381, y: 321.58466, z: 256.83685}
-      - {x: 296.00256, y: 356.9307, z: 354.44122}
+      - {x: 347.97546, y: 324.6295, z: 292.33136}
+      - {x: 343.05032, y: 359.06543, z: 355.97314}
     index:
       phalanges:
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
       phalanxValues:
-      - {x: 342.23596, y: 356.6477, z: 288.92303}
-      - {x: 0.01101138, y: -0.00032233982, z: 317.9201}
-      - {x: 0.03435351, y: -0.0011480455, z: 315.7436}
+      - {x: 340.08685, y: 357.5083, z: 314.60217}
+      - {x: 0.105783075, y: 359.94675, z: 329.94547}
+      - {x: 0.37199628, y: 13.228718, z: 336.49902}
     middle:
       phalanges:
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
       phalanxValues:
-      - {x: 355.27457, y: 358.4107, z: 289.16418}
-      - {x: -0.005213602, y: 0.0036376868, z: 315.47662}
-      - {x: 359.97787, y: 0.021703055, z: 319.19098}
+      - {x: 353.14276, y: 359.22845, z: 317.06738}
+      - {x: 0.08551137, y: 359.95078, z: 327.41275}
+      - {x: 359.02866, y: 358.1114, z: 334.26407}
     ring:
       phalanges:
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
       phalanxValues:
-      - {x: 9.714733, y: 0.19504102, z: 293.02884}
-      - {x: 359.98294, y: 0.022048984, z: 312.7057}
-      - {x: 359.95044, y: 0.033061218, z: 318.69232}
+      - {x: 7.576596, y: 0.9633811, z: 321.13135}
+      - {x: 0.068236604, y: 359.96683, z: 321.3465}
+      - {x: 349.0624, y: 336.73538, z: 336.30328}
     pinky:
       phalanges:
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
       phalanxValues:
-      - {x: 22.973421, y: 1.7147079, z: 286.86792}
-      - {x: 359.89484, y: 0.042736765, z: 321.8203}
-      - {x: 359.93042, y: 0.060627483, z: 318.16885}
+      - {x: 20.867222, y: 2.5379987, z: 307.82404}
+      - {x: 359.98416, y: -0.00010422542, z: 313.19446}
+      - {x: 0.44431895, y: 313.65768, z: 347.1529}

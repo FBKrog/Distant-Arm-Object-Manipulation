@@ -250,9 +250,13 @@ public class LaunchArm : MonoBehaviour
             aiming = false;
             interactor.keepSelectedTargetValid = true;
             
-            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null)
+            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable")
             {
                 this.hitInteractable = hitInteractable;
+            }
+            else
+            {
+                this.hitInteractable = null;
             }
 
             armGameObject.SetActive(false);

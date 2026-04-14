@@ -32,6 +32,7 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
     [Tooltip("XRDirectInteractor on GoGo's virtual hand.")]
     public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
+    [SerializeField] private Vector3 daomPositionOffset = new(-0.035f, -0.07f, 0); // compensate for DAOM attach transform offset
 
     [Header("Spin Axis")]
     [Tooltip("Local-space spin axis of the valve. Blue disc in Scene view should align with the valve face.")]
@@ -465,7 +466,10 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Daom:
                 var daomArmInst = DAOMArm.ActiveInstance;
                 if (daomArmInst != null && daomArmInst.DaomIKTarget != null)
-                    daomArmInst.DaomIKTarget.position = position;
+                {
+                    daomArmInst.DaomIKTarget.position = position + activeGrabPoint.TransformDirection(daomPositionOffset); // compensate for attach transform offset;
+                    daomArmInst.DaomIKTarget.rotation = activeGrabPoint.rotation;
+                }
                 break;
         }
     }

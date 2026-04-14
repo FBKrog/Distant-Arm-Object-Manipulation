@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Battery
   - TPOrb
+  - Unrecallable
   layers:
   - Default
   - TransparentFX

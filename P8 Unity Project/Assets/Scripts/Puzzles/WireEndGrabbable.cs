@@ -39,8 +39,8 @@ public class WireEndGrabbable : MonoBehaviour
         // movement type is irrelevant, but Instantaneous is the clearest intent.
         grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
         // We handle all movement ourselves — disable XRI's built-in tracking.
-        grab.trackPosition = false;
-        grab.trackRotation = false;
+        // grab.trackPosition = false; We want this to be true
+        // grab.trackRotation = false; We want this to be true
         grab.throwOnDetach = false;
 
         grab.selectEntered.AddListener(OnGrabbed);

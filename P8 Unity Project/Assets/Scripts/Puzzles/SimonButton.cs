@@ -24,6 +24,8 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
     public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
+    [SerializeField] private Vector3 daomPositionOffset = new(0, 0, 0); // compensate for DAOM attach transform offset
+    [SerializeField] private Vector3 daomRotationOffset = new(0, 0, 0); // rotate DAOM hand to match button orientation
 
     [Header("Grab Points")]
     [Tooltip("Child Transforms on the button surface. On grab, the nearest one is selected and the virtual hand snaps to it each frame (arc-lock).")]
@@ -447,7 +449,10 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Daom:
                 var daomInst = DAOMArm.ActiveInstance;
                 if (daomInst?.DaomIKTarget != null)
-                    daomInst.DaomIKTarget.position = position;
+                {
+                    daomInst.DaomIKTarget.position = position + activeGrabPoint.TransformDirection(daomPositionOffset);
+                    daomInst.DaomIKTarget.rotation = Quaternion.Euler(activeGrabPoint.TransformDirection(daomRotationOffset));
+                }
                 break;
         }
     }

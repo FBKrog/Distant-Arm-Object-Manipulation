@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -6,6 +7,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
     [Header("Hand Data")]
     [SerializeField] protected HandData handData;
+    [SerializeField] GrabPoseScriptableObject defaultPose;
     protected GrabPose currentGrabPose;
 
     protected override void Awake()
@@ -24,8 +26,15 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         if (args != null)
         {
             base.OnSelectEntered(args);
-            if (args.interactableObject.transform.TryGetComponent(out currentGrabPose))
+            if (args.interactableObject.transform.TryGetComponent(out GrabPose grabPose))
             {
+                currentGrabPose = grabPose;
+                if (grabPose.data == null)
+                {
+                    Debug.LogWarning("GrabPose component found, but data is not assigned. Hand pose will reset.");
+                    BendPhalanges(defaultPose.handData);
+                    return;
+                }
                 BendPhalanges(currentGrabPose.data.handData);
                 attachTransform.localPosition = currentGrabPose.data.positionOffset;
                 attachTransform.localRotation = Quaternion.Euler(currentGrabPose.data.rotationOffset);
@@ -35,17 +44,18 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         else
         {
             Debug.LogWarning("Selected object does not have a GrabPose component. Hand pose will reset.");
-            BendPhalanges(handData);
+            BendPhalanges(defaultPose.handData);
         }
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if(args != null)
+        print("hello?");
+        if (args != null)
             base.OnSelectExited(args);
         // Reset hand pose to initial values when releasing the object
-        BendPhalanges(handData);
-        currentGrabPose = null;
+        BendPhalanges(defaultPose.handData);
+        //currentGrabPose = null;
     }
 
     protected virtual void SetPhalanxValues()
@@ -83,4 +93,31 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     {
         return phalanx.localRotation.eulerAngles;
     }
+#if UNITY_EDITOR
+    public void SetGrabPose()
+    {
+        print("Setting grab pose values...");
+        SetPhalanxValues();
+        StartCoroutine(SetGrabPoseVariables());
+    }
+
+    IEnumerator SetGrabPoseVariables()
+    {
+        if (currentGrabPose.data != null)
+        {
+            Debug.LogWarning($"Current grab pose ({currentGrabPose.gameObject.name}) already has a GrabPoseScriptableObject.");
+            yield break;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f); // ensure the for loop in SetPhalanxValues has completed and values are updated
+            var so = ScriptableObject.CreateInstance<GrabPoseScriptableObject>();
+            so.handData = handData;
+            so.rotationOffset = attachTransform.localRotation.eulerAngles;
+            so.positionOffset = attachTransform.localPosition;
+            currentGrabPose.data = so;
+            print($"Pose values set for + {currentGrabPose.gameObject.name}");
+        }
+    }
+#endif
 }
