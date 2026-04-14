@@ -336,7 +336,10 @@ public class DAOMArm : MonoBehaviour
         AudioManager.StopSound(rocketAudioSource);
 
         targetRot = LookDirection(playerCamera.transform.position);
-        var targetRotY = Quaternion.Euler(0, targetRot.eulerAngles.y, 0);
+        var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90, 
+                                     Mathf.Round(targetRot.eulerAngles.y / 90) * 90, 
+                                     Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
+        var roundedTargetRotY = Quaternion.Euler(0, roundedRot.y, 0);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
@@ -354,8 +357,8 @@ public class DAOMArm : MonoBehaviour
             LaunchArm.OnArmRecalled();
             return;
         }
-        StartCoroutine(RotateToTargetRotation(transform, targetRotY, rotationDuration));
-        StartCoroutine(RotateToTargetRotation(wallExtention.transform, targetRot, rotationDuration));
+        StartCoroutine(RotateToTargetRotation(transform, roundedTargetRotY, rotationDuration));
+        StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
     }
 
     /// <summary>
