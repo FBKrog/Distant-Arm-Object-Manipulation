@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -35,9 +36,10 @@ public class DAOMArm : MonoBehaviour
     [SerializeField] [Tooltip("The time it takes the arm to rotate into place relative to the surface's normal.")] float rotationDuration = 0.5f;
     [SerializeField] Vector3 handRotationOffset = new(90,0,0);
 
-    [Header("Other")]
+    [Header("Wall Offset")]
     [SerializeField] GameObject wallExtention;
-    [SerializeField] [Tooltip("Only used when NOT mirrored.")] float wallDistanceOffset = 0.3f;
+    [SerializeField] GameObject wallAttachPoint;
+    [SerializeField] float wallDistanceOffset = 0.3f;
 
     [Header("Interactor")]
     [SerializeField] DynamicXRDirectInteractorAnimator interactor;
@@ -49,6 +51,8 @@ public class DAOMArm : MonoBehaviour
     [SerializeField] [Range(0, 1)] float rocketVolume = 0.5f;
     AudioSource rocketAudioSource;
 
+    Vector3 hitPoint;
+    bool surfaceIsGround;
     Quaternion targetRot;
     GameObject playerCamera;
 
@@ -121,7 +125,7 @@ public class DAOMArm : MonoBehaviour
     /// <summary>
     /// Initializes a bunch of variables sent by the player, setting the root, IK and more. It then begins movement toward the specified point.
     /// </summary>
-    public void Initialize(GameObject root, GameObject IKTarget, Vector3 point, IXRSelectInteractable hitInteractable = null, IXRSelectInteractable interactable = null)
+    public void Initialize(GameObject root, GameObject IKTarget, Vector3 point, IXRSelectInteractable hitInteractable = null, IXRSelectInteractable interactable = null, bool surfaceIsGround = false)
     {
         animator.enabled = false;
         GetComponent<LimbStretch>().enabled = false; // Disable limb stretch during recall to prevent weird positioning of the arm.
@@ -133,8 +137,9 @@ public class DAOMArm : MonoBehaviour
 
         playerRoot = root;
         playerXRTarget = IKTarget;
+        hitPoint = point;
+        this.surfaceIsGround = surfaceIsGround;
 
-        
         upperArmStartRot = upperArm.transform.localRotation;
         lowerArmStartRot = lowerArm.transform.localRotation;
         tipStartRot = tip.transform.localRotation;
@@ -198,7 +203,7 @@ public class DAOMArm : MonoBehaviour
 
         targetRot = LookDirection(goPoint.transform.position);
         
-        //StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
+        StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
 
         StartCoroutine(RotateToTargetRotation(upperArm.transform, upperArmStartRot, rotationDuration, true));
         
@@ -246,6 +251,10 @@ public class DAOMArm : MonoBehaviour
 
             var totalDistance = Vector3.Distance(startRot, point) - wallDistanceOffset;
             var newPoint = point - wallDistanceOffset * (point - startRot).normalized; // Move the target point back a bit so the arm doesn't clip into the wall.
+
+            //var totalDistance = Vector3.Distance(startRot, point);
+            //var newPoint = point - (point - startRot).normalized; // Move the target point back a bit so the arm doesn't clip into the wall.
+
             var traveledDistance = 0f;
 
             while (true)
@@ -312,9 +321,27 @@ public class DAOMArm : MonoBehaviour
         {
             isLanding = true;
             thruster.SetActive(false);
-            var rotation = Quaternion.LookRotation(-transform.forward);
-            StartCoroutine(RotateToTargetRotation(transform, rotation, rotationDuration));
+            
+            targetRot = Quaternion.LookRotation(-transform.forward);
+            StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
+            
+            yield return new WaitForSeconds(rotationDuration);
+            targetRot = LookDirection(playerCamera.transform.position);
+            var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90,
+                                         Mathf.Round(targetRot.eulerAngles.y / 90) * 90,
+                                         Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
+            var roundedTargetRotY = Quaternion.Euler(0, roundedRot.y, 0);
+            StartCoroutine(RotateToTargetRotation(transform, roundedTargetRotY, rotationDuration));
+            if(surfaceIsGround)
+            {
+                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(new Vector3(-90,0,0)), rotationDuration));
+            }
+            else
+            {
+                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
+            }
+
             yield return new WaitForSeconds(rotationDuration);
             mayAttach = true;
         }
@@ -335,12 +362,6 @@ public class DAOMArm : MonoBehaviour
 
         AudioManager.StopSound(rocketAudioSource);
 
-        targetRot = LookDirection(playerCamera.transform.position);
-        var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90, 
-                                     Mathf.Round(targetRot.eulerAngles.y / 90) * 90, 
-                                     Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
-        var roundedTargetRotY = Quaternion.Euler(0, roundedRot.y, 0);
-
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
         {
@@ -357,8 +378,30 @@ public class DAOMArm : MonoBehaviour
             LaunchArm.OnArmRecalled();
             return;
         }
-        StartCoroutine(RotateToTargetRotation(transform, roundedTargetRotY, rotationDuration));
-        StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
+
+        // The wall extension offset makes the raycast stop a bit before the actual wall and since we round to the nearest 90 degrees for rotation, it looks like the arm didn't hit the right spot
+        // This needs some adjusment if the surface is the ground.
+        if(surfaceIsGround)
+        {
+            var newPoint = hitPoint + transform.up * wallDistanceOffset;
+            transform.position = newPoint;
+        }
+        else
+        {
+            var newPoint = hitPoint + transform.forward * wallDistanceOffset;
+            transform.position = newPoint;
+        }
+
+        // To fix this, we calculate the distance from the wall ATTACH POINT to the arm and use that distance to offset the base position of the arm so it looks like it's reaching the original hit point while still rotating to the rounded rotation.
+        //float wallOffset = Vector3.Distance(wallAttachPoint.transform.position, transform.position);
+
+        // Adjust the base position so the transform reaches the original hit point
+        //Vector3 newPosition = hitPoint - transform.forward * wallOffset;
+
+        //newPosition += transform.forward * (wallDistanceOffset * 2);
+
+        //transform.position = newPosition;
+        //StartCoroutine(TravelToPoint(transform, adjustedPosition));
     }
 
     /// <summary>

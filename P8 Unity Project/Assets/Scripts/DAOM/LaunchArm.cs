@@ -38,6 +38,7 @@ public class LaunchArm : MonoBehaviour
     [SerializeField] bool canLaunch = true;
 
     [Header("Line Renderer")]
+    [SerializeField] GameObject aimOffset;
     [SerializeField] Material validTarget;
     [SerializeField] Material invalidTarget;
     //[SerializeField] GameObject holoArm;
@@ -267,9 +268,9 @@ public class LaunchArm : MonoBehaviour
 
             var boomRotation = Quaternion.LookRotation(-camera.transform.position, Vector3.up);
             Instantiate(boomEffect, launchPoint.transform.position, rotation);
-            print(hit.normal);
             daomArm = Instantiate(daomArmPrefab, launchPoint.transform.position, rotation);
-            daomArm.GetComponent<DAOMArm>().Initialize(armRoot, armXRTarget, hit.point, this.hitInteractable, selectedInteractable);
+            bool surfaceIsGround = hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"); // This is used to determine extra rotation for the arm when it hits the ground to make it look better.
+            daomArm.GetComponent<DAOMArm>().Initialize(armRoot, armXRTarget, hit.point, this.hitInteractable, selectedInteractable, surfaceIsGround);
             OnSetInteractorHandedness(interactor);
             interactor.enabled = false;
             OnArmLaunched();
@@ -302,13 +303,15 @@ public class LaunchArm : MonoBehaviour
             if(aiming && daomArm == null)
             {
                 lineRenderer.enabled = true;
-                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.positionCount = 2;
+                var startPos = aimOffset.transform.position;
+                lineRenderer.SetPosition(0, startPos);
                 if(ValidLayer())
                 {
                     lineRenderer.SetPosition(1, hit.point);
                     return;
                 }
-                lineRenderer.SetPosition(1, transform.forward * rayLength);
+                lineRenderer.SetPosition(1, startPos + transform.forward * rayLength);
                 return;
             }
             lineRenderer.enabled = false;

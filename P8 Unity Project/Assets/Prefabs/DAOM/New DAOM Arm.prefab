@@ -1050,7 +1050,7 @@ MonoBehaviour:
   tip: {fileID: 7438943762157963578}
   daomIKTarget: {fileID: 2733040260177249838}
   thruster: {fileID: 2955273350883374444}
-  travelSpeed: 7
+  travelSpeed: 3
   lowerArmExtention: {x: 0, y: 0.0021331396, z: 0}
   lowerArmRetraction: {x: 0, y: -0.0005, z: 0}
   retractionTime: 0.2
@@ -1059,6 +1059,7 @@ MonoBehaviour:
   rotationDuration: 0.2
   handRotationOffset: {x: 90, y: 0, z: 0}
   wallExtention: {fileID: 5111885630561904109}
+  wallAttachPoint: {fileID: 7231196953441779213}
   wallDistanceOffset: 0.29
   interactor: {fileID: 4702170159403195726}
   boomSound: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
@@ -1420,6 +1421,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2454512888185250829}
+  - {fileID: 5431058699015442354}
   m_Father: {fileID: 4961757009799693073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5588566729710730360
@@ -1794,6 +1796,37 @@ Transform:
   m_Children:
   - {fileID: 5332159069047463716}
   m_Father: {fileID: 1684692744158564793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7231196953441779213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5431058699015442354}
+  m_Layer: 0
+  m_Name: Wall Attach Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5431058699015442354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231196953441779213}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.28999996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7891246914589675473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7438943762157963578
 GameObject:
