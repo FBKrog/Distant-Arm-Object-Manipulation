@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class DoorTest : MonoBehaviour
+{
+    [SerializeField] AudioClip audioClip;
+    
+    public void DoorSound()
+    {
+        AudioManager.PlaySound(audioClip,transform, 1);
+    }
+}
