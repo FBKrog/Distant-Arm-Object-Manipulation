@@ -11,6 +11,7 @@ TagManager:
   - Battery
   - TPOrb
   - Unrecallable
+  - Immovable
   layers:
   - Default
   - TransparentFX
