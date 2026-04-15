@@ -21,10 +21,10 @@ This is a **Unity VR game** (PC VR, Windows/OpenXR) where the player manipulates
 
 ---
 
-## Scene Hierarchy (main: MainGameplay)
+## Scene Hierarchy (main: Gameplay)
 
 ```
-NewKylePlayer is the VR player
+Player_Robot is the VR player
 ```
 
 Other scenes: `NikoScene` (DAOM arm), `JakobScene` (environment), `Felix Scene Intro/Shader` (VFX/cel-shading), `Beck's VFX Test Area`.

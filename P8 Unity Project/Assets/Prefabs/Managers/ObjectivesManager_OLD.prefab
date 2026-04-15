@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4155103511497936179
+--- !u!1 &3583745872898953471
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,113 +8,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2399485307500871039}
-  - component: {fileID: 7143218743850561371}
+  - component: {fileID: 4365385541941933710}
+  - component: {fileID: 6255957948215574358}
   m_Layer: 0
-  m_Name: TutorialManager DAOM
+  m_Name: TutorialManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2399485307500871039
+--- !u!4 &4365385541941933710
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4155103511497936179}
+  m_GameObject: {fileID: 3583745872898953471}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4170788173571011524}
+  m_Father: {fileID: 5477172130026036050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7143218743850561371
+--- !u!114 &6255957948215574358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4155103511497936179}
+  m_GameObject: {fileID: 3583745872898953471}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05fbdcbb681bdeb4fb26b3678d019e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
-  playTutorialOnStart: 0
+  playTutorialOnStart: 1
   vrCamera: {fileID: 0}
   steps:
   - subtitleText: Aim your arm by holding the right hand trigger button. Release
       the trigger to extend arm.
-    stepId: 
     displayDuration: 0
     completesObjective: 
   - subtitleText: Grab the Orb of Teleportation by holding the right hand select
       button.
-    stepId: 
     displayDuration: 0
     completesObjective: 
   - subtitleText: Retract your arm with the orb in hand by pressing the trigger button.
-    stepId: 
     displayDuration: 0
     completesObjective: 
   - subtitleText: Place the orb in the empty slot on your left hand.
-    stepId: 
     displayDuration: 0
     completesObjective: 
   - subtitleText: You can now teleport by tilting the left thumbstick forward.
-    stepId: 
     displayDuration: 4
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the next area through the door and look for the plate.
+  - subtitleText: Teleport through the door to the pressure plate ahead.
     stepId: TeleportStep
     displayDuration: 0
-    completesObjective: 
-  - subtitleText: Teleport on top of the pressure plate.
-    stepId: LeverPlateStep
+    completesObjective:
+  - subtitleText: Step on the pressure plate to start the puzzle.
+    stepId: PlateStep
     displayDuration: 0
-    completesObjective: 
-  - subtitleText: Detatch the orb from your left hand and place it on the pedestal
-      to start the 1st puzzle.
+    completesObjective:
+  - subtitleText: Remove the Orb from your hand and place it on the pedestal.
     stepId: OrbPedestalStep
     displayDuration: 0
-    completesObjective: 
-  - subtitleText: Grab and pull down the lever by shooting your arm on the surface
-      of the wall and using the select button when your hand is on the handle..
-    stepId: LeverStep
+    completesObjective: PuzzleIntroObjective
+  - subtitleText: Objective complete! Continue through the level.
     displayDuration: 0
-    completesObjective: 
-  - subtitleText: You have now completed the first objective.
-    stepId: 
-    displayDuration: 3
-    completesObjective: 
-  - subtitleText: Regrab the orb from the pedestal and teleport to the next room.
-    stepId: RegrabOrbStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: When starting an objective you always have to teleport to the plate
-      underneath the pedestal.
-    stepId: FusePlateStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: When standing on the plate, you need to grab the orb off your left
-      hand and place it on the pedestal to start the objective.
-    stepId: FuseOrbStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: The fusebox needs 3 fuses to function. Grab the missing fuse and
-      place it in the empty slot.
-    stepId: FuseStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: You have now completed the tutorial, regrab the orb and go back
-      through the door and into the main factory to complete the remaining objectives.
-    stepId: 
-    displayDuration: 8
-    completesObjective: Tutorial
+    completesObjective:
   maxPanelWidth: 1.2
   panelPadding: 5
   followDistance: 1.5
@@ -126,8 +90,8 @@ MonoBehaviour:
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 6
   subtitleFont: {fileID: 0}
-  objectivesManager: {fileID: 1034715964346803313}
---- !u!1 &5950508674144004181
+  objectivesManager: {fileID: 4389983794361988867}
+--- !u!1 &3678329856720572727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,41 +99,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4170788173571011524}
-  - component: {fileID: 1034715964346803313}
-  - component: {fileID: 5721923283312269138}
-  - component: {fileID: 1407943549580462494}
-  - component: {fileID: 7906474305058889055}
+  - component: {fileID: 5477172130026036050}
+  - component: {fileID: 4389983794361988867}
+  - component: {fileID: 2516088930629610249}
   m_Layer: 0
-  m_Name: ObjectivesManager
+  m_Name: ObjectivesManager_OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4170788173571011524
+--- !u!4 &5477172130026036050
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
+  m_GameObject: {fileID: 3678329856720572727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2399485307500871039}
+  - {fileID: 4365385541941933710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1034715964346803313
+--- !u!114 &4389983794361988867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
+  m_GameObject: {fileID: 3678329856720572727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54aaabab8b3ef96458d8ec2789eb4648, type: 3}
@@ -179,8 +141,8 @@ MonoBehaviour:
   - objectiveName: OrbObjective
     description: Pick up and place the TP Orb
     isCompleted: 0
-  - objectiveName: TutorialObjective
-    description: Everything in the tutorial.
+  - objectiveName: PuzzleIntroObjective
+    description: Teleport to the next area and place the orb on the pedestal.
     isCompleted: 0
   onObjectiveCompleted:
     m_PersistentCalls:
@@ -197,66 +159,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1407943549580462494}
-        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
-        m_MethodName: ActivateIfName
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   onAllObjectivesCompleted:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5721923283312269138
+--- !u!114 &2516088930629610249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
+  m_GameObject: {fileID: 3678329856720572727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 341caea7503f4c3459a22f3667226d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbTutorialObjective
-  tutorialManager: {fileID: 7143218743850561371}
+  tutorialManager: {fileID: 6255957948215574358}
   homerRaycast: {fileID: 0}
-  launchArm: {fileID: 0}
-  goGoExtend: {fileID: 0}
   orbConnect: {fileID: 0}
   orbGrabInteractable: {fileID: 0}
-  vrCamera: {fileID: 0}
   autoStart: 1
---- !u!114 &1407943549580462494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3539bb40fa1e1049a4fc66a03044ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
-  activateOnObjective: OrbObjective
-  tutorialManager: {fileID: 7143218743850561371}
---- !u!114 &7906474305058889055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3539bb40fa1e1049a4fc66a03044ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
-  activateOnObjective: TutorialObjective
-  tutorialManager: {fileID: 7143218743850561371}
+
