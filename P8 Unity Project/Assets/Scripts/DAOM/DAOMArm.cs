@@ -319,7 +319,11 @@ public class DAOMArm : MonoBehaviour
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
             
             yield return new WaitForSeconds(rotationDuration);
-            targetRot = LookDirection(playerCamera.transform.position);
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, -transform.forward, out hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
+                targetRot = Quaternion.LookRotation(hit.normal);
+            else
+                targetRot = LookDirection(playerCamera.transform.position);
             var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90,
                                          Mathf.Round(targetRot.eulerAngles.y / 90) * 90,
                                          Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
@@ -327,7 +331,7 @@ public class DAOMArm : MonoBehaviour
             StartCoroutine(RotateToTargetRotation(transform, roundedTargetRotY, rotationDuration));
             if(surfaceIsGround)
             {
-                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(new Vector3(-90,0,0)), rotationDuration));
+                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(new Vector3(-90, roundedRot.y, 0)), rotationDuration));
             }
             else
             {

@@ -710,8 +710,8 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-  defaultPose: {fileID: 0}
-  leftHand: 0
+  defaultPose: {fileID: 11400000, guid: b6ad0daf5d7a21f448de15287edd677a, type: 2}
+  leftHand: 1
 --- !u!1 &1328899966735882065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,6 +3748,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af77b18c0664bbc4db7c6c24ffcda82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HOMERRaycast
+  aimAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4764844d-19bf-4ccf-b4e1-a192557dfbb3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   triggerAction:
     m_UseReference: 0
     m_Action:
