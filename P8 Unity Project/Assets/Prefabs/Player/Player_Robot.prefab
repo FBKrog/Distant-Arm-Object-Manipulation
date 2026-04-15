@@ -3751,7 +3751,7 @@ MonoBehaviour:
   aimAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Aim
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 4764844d-19bf-4ccf-b4e1-a192557dfbb3
@@ -3806,9 +3806,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaunchArm
   camera: {fileID: 7781280962212410777}
   rayLength: 100
-  surfaceLayer:
+  hitableLayer:
     serializedVersion: 2
     m_Bits: 769
+  unhitableLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   boomEffect: {fileID: 838383737247469290, guid: ada0bdb65a03c644889c45f35aef6a60, type: 3}
   armRoot: {fileID: 1163203054149219590}
   armXRTarget: {fileID: 5075559601168966818}
@@ -3821,8 +3824,8 @@ MonoBehaviour:
   aiming: 0
   canLaunch: 1
   aimOffset: {fileID: 1929745318263289077}
-  validTarget: {fileID: 2100000, guid: c93c57e1960cc64478a75e6e4b6e6b71, type: 2}
-  invalidTarget: {fileID: 2100000, guid: bca7deac9b1d403439f556239d508fa4, type: 2}
+  validColor: {r: 1, g: 0.79383534, b: 0, a: 0}
+  invalidColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 0}
 --- !u!120 &1426168404551252384
 LineRenderer:
   serializedVersion: 3
@@ -3832,9 +3835,9 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5075559601168966818}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -3849,7 +3852,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bca7deac9b1d403439f556239d508fa4, type: 2}
+  - {fileID: 2100000, guid: e4bd0942885ae3b44a85c69ae1cd68ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

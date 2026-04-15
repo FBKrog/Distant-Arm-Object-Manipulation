@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class LaunchArm : MonoBehaviour
 {
@@ -11,8 +10,9 @@ public class LaunchArm : MonoBehaviour
     [SerializeField] new GameObject camera;
     
     [Header("Raycast")]
-    [SerializeField] float rayLength = 100f;
-    [SerializeField] LayerMask surfaceLayer;
+    [SerializeField] float rayLength = 50f;
+    [SerializeField] LayerMask hitableLayer;
+    [SerializeField] LayerMask unhitableLayer;
     RaycastHit hit;
 
     [Header("Firing Arm")]
@@ -39,8 +39,8 @@ public class LaunchArm : MonoBehaviour
 
     [Header("Line Renderer")]
     [SerializeField] GameObject aimOffset;
-    [SerializeField] Material validTarget;
-    [SerializeField] Material invalidTarget;
+    [SerializeField] Color validColor;
+    [SerializeField] Color invalidColor;
     LineRenderer lineRenderer;
 
     IXRSelectInteractable selectedInteractable;
@@ -193,7 +193,7 @@ public class LaunchArm : MonoBehaviour
         hitInteractable = null;
     }
 
-    void LateUpdate()
+    void Update()
     {
         DrawLineRenderer();
         SetLineMaterial(ValidLayer());
@@ -205,27 +205,39 @@ public class LaunchArm : MonoBehaviour
     bool ValidLayer()
     {
         if (!aiming) return false;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, rayLength, ~surfaceLayer))
+
+        if(Physics.Raycast(aimOffset.transform.position, aimOffset.transform.forward, out hit, rayLength, unhitableLayer))
         {
-            print("Not surface layer");
             return false;
         }
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, rayLength, surfaceLayer);
-        Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
-        if(hits.Length == 0) return false;
-        foreach (var h in hits)
+
+        if (Physics.Raycast(aimOffset.transform.position, aimOffset.transform.forward, out hit, rayLength, hitableLayer))
         {
-            if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
-                h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
+            if (selectedInteractable != null && !hit.collider.transform.IsChildOf(selectedInteractable.transform) &&
+                hit.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
                 return false;
-
-            if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
-                continue;
-
-            hit = h;
+            if (selectedInteractable != null && hit.collider.transform.IsChildOf(selectedInteractable.transform))
+                return false;
             return true;
         }
         return false;
+
+        //RaycastHit[] hits = Physics.RaycastAll(aimOffset.transform.position, aimOffset.transform.forward, rayLength, hitableLayer);
+        //Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+        //if (hits.Length == 0) return false;
+        //foreach (var h in hits)
+        //{
+        //    if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
+        //        h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
+        //        return false;
+
+        //    if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
+        //        continue;
+
+        //    hit = h;
+        //    return true;
+        //}
+        //return false;
     }
 
     /// <summary>
@@ -304,7 +316,6 @@ public class LaunchArm : MonoBehaviour
             if(aiming && daomArm == null)
             {
                 lineRenderer.enabled = true;
-                lineRenderer.positionCount = 2;
                 var startPos = aimOffset.transform.position;
                 lineRenderer.SetPosition(0, startPos);
                 if(ValidLayer())
@@ -312,7 +323,7 @@ public class LaunchArm : MonoBehaviour
                     lineRenderer.SetPosition(1, hit.point);
                     return;
                 }
-                lineRenderer.SetPosition(1, startPos + transform.forward * rayLength);
+                lineRenderer.SetPosition(1, startPos + aimOffset.transform.forward * rayLength);
                 return;
             }
             lineRenderer.enabled = false;
@@ -328,7 +339,7 @@ public class LaunchArm : MonoBehaviour
     {
         if(valid == lasttValid && lineRenderer) return;
         lasttValid = valid;
-        lineRenderer.material = valid ? validTarget : invalidTarget;
+        lineRenderer.material.color = valid ? validColor : invalidColor;
     }
 
 #if UNITY_EDITOR
@@ -337,11 +348,11 @@ public class LaunchArm : MonoBehaviour
         if(ValidLayer())
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, transform.forward * rayLength);
+            Gizmos.DrawRay(aimOffset.transform.position, aimOffset.transform.forward * rayLength);
             return;
         }
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * rayLength);
+        Gizmos.DrawRay(aimOffset.transform.position, aimOffset.transform.forward * rayLength);
     }
 #endif
 }
