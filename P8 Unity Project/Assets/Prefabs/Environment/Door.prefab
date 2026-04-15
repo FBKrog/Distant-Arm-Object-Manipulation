@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6461916147906208451}
   - component: {fileID: 3082946890360220694}
-  - component: {fileID: 281535179522241157}
+  - component: {fileID: 2167442370587707796}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -67,7 +67,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &281535179522241157
+--- !u!114 &2167442370587707796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,10 +76,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 714654386122993102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c712d75bfed3749a305b0c1cce2b3a, type: 3}
+  m_Script: {fileID: 11500000, guid: fdb0214345754bf448d163b761c073fe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTest
-  audioClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
+  triggers: []
+  _animator: {fileID: 3082946890360220694}
+  _doorOpenClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
+  _audioVolume: 1
+  OnDoorOpened:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &970786064475753773
 GameObject:
   m_ObjectHideFlags: 0
