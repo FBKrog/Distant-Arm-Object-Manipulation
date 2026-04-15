@@ -48,10 +48,10 @@ public class HOMERManipulator : MonoBehaviour
     public float minHandDistance = 0.05f;
 
     // ── Stored constants ──────────────────────────────────────────────────
-    private float      scaleFactor;           // set on ExtendStarted, reused through grab
+    private float scaleFactor;           // set on ExtendStarted, reused through grab
     private Quaternion rotationOffset;        // set on GrabStarted (object relative to hand)
     private Quaternion handViewRotOffset;     // hand model's natural rotation offset from controller
-    private Vector3    prevHandPos;           // tracked every frame while extended
+    private Vector3 prevHandPos;           // tracked every frame while extended
 
     // ── Unity lifecycle ───────────────────────────────────────────────────
     void OnEnable()
@@ -59,8 +59,8 @@ public class HOMERManipulator : MonoBehaviour
         if (homer != null)
         {
             homer.ExtendStarted += OnExtendBegin;
-            homer.GrabStarted   += OnGrabBegin;
-            homer.GrabEnded     += OnGrabEnd;
+            homer.GrabStarted += OnGrabBegin;
+            homer.GrabEnded += OnGrabEnd;
         }
     }
 
@@ -69,8 +69,8 @@ public class HOMERManipulator : MonoBehaviour
         if (homer != null)
         {
             homer.ExtendStarted -= OnExtendBegin;
-            homer.GrabStarted   -= OnGrabBegin;
-            homer.GrabEnded     -= OnGrabEnd;
+            homer.GrabStarted -= OnGrabBegin;
+            homer.GrabEnded -= OnGrabEnd;
         }
     }
 
@@ -79,18 +79,18 @@ public class HOMERManipulator : MonoBehaviour
         if (homer == null || !homer.IsHandExtended) return;
 
         // Compute the scaled delta once — shared by virtual hand and grabbed object.
-        Vector3 handPos     = homer.PhysicalHand.position;
-        Vector3 handDelta   = handPos - prevHandPos;
+        Vector3 handPos = homer.PhysicalHand.position;
+        Vector3 handDelta = handPos - prevHandPos;
         prevHandPos = handPos;
 
-        float velocity    = handDelta.magnitude / Time.deltaTime;
-        float t           = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
-        float speedScale  = Mathf.Lerp(minSpeedScale, 1f, t);
+        float velocity = handDelta.magnitude / Time.deltaTime;
+        float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
+        float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
         Vector3 scaledDelta = handDelta * scaleFactor * speedScale;
 
         // Move the virtual hand.
         homer.VirtualHand.position += scaledDelta;
-        homer.VirtualHand.rotation  = homer.PhysicalHand.rotation * handViewRotOffset;
+        homer.VirtualHand.rotation = homer.PhysicalHand.rotation * handViewRotOffset;
 
         // Move the grabbed object by the same delta (not clamped to hand position).
         // This lets snap zones set the object's position without us overriding it.
@@ -99,7 +99,7 @@ public class HOMERManipulator : MonoBehaviour
             && homer.GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
             homer.GrabbedObject.transform.position += scaledDelta;
-            homer.GrabbedObject.transform.rotation  = homer.PhysicalHand.rotation * rotationOffset;
+            homer.GrabbedObject.transform.rotation = homer.PhysicalHand.rotation * rotationOffset;
         }
     }
 
@@ -112,13 +112,13 @@ public class HOMERManipulator : MonoBehaviour
     /// </summary>
     private void OnExtendBegin()
     {
-        Vector3 torsoPosition  = GetTorsoPosition();
-        Vector3 handPosition   = homer.PhysicalHand.position;
+        Vector3 torsoPosition = GetTorsoPosition();
+        Vector3 handPosition = homer.PhysicalHand.position;
         Vector3 virtualHandPos = homer.VirtualHand.position;   // surface hit point
 
-        Vector3 handVector   = handPosition - torsoPosition;
-        float   handDistance = Mathf.Max(handVector.magnitude, minHandDistance);
-        float   virtualDist  = (virtualHandPos - torsoPosition).magnitude;
+        Vector3 handVector = handPosition - torsoPosition;
+        float handDistance = Mathf.Max(handVector.magnitude, minHandDistance);
+        float virtualDist = (virtualHandPos - torsoPosition).magnitude;
 
         scaleFactor = virtualDist / handDistance;
         prevHandPos = handPosition;

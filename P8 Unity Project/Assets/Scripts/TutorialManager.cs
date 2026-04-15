@@ -65,6 +65,7 @@ public class TutorialManager : MonoBehaviour
     private int             _currentStepIndex = -1;
     private bool            _tutorialActive;
     private Coroutine       _autoAdvanceCoroutine;
+    private Coroutine       _tempHintCoroutine;
     private Vector3         _followVelocity;
 
     // -------------------------------------------------------------------------
@@ -286,6 +287,19 @@ public class TutorialManager : MonoBehaviour
             _autoAdvanceCoroutine = StartCoroutine(AutoAdvance(step.displayDuration));
     }
 
+    /// <summary>
+    /// Shows a subtitle that auto-hides after <paramref name="duration"/> seconds.
+    /// No-ops while the tutorial is active so hint text cannot stomp tutorial steps.
+    /// </summary>
+    public void ShowTemporaryHint(string text, float duration = 5f)
+    {
+        if (_tutorialActive) return;
+        if (_tempHintCoroutine != null)
+            StopCoroutine(_tempHintCoroutine);
+        ShowSubtitle(text);
+        _tempHintCoroutine = StartCoroutine(HideAfterDelay(duration));
+    }
+
     public void ShowSubtitle(string text)
     {
         if (_panelRoot == null) return;
@@ -314,5 +328,12 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         AdvanceToNextStep();
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        HideSubtitle();
+        _tempHintCoroutine = null;
     }
 }

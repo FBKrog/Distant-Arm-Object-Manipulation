@@ -12,8 +12,8 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 /// </summary>
 public class OrbPedestal : MonoBehaviour
 {
-    [SerializeField] private float            snapRadius    = 0.15f;
-    [SerializeField] private string           orbTag        = "TPOrb";
+    [SerializeField] private float snapRadius = 0.15f;
+    [SerializeField] private string orbTag = "TPOrb";
     [SerializeField] private HandTPOrbConnect handTPConnect; // optional; assign in Inspector
     public UnityEvent OrbPlaced;
 
@@ -28,7 +28,7 @@ public class OrbPedestal : MonoBehaviour
             XRGrabInteractable grab = col.GetComponentInParent<XRGrabInteractable>();
             if (grab == null) continue;
 
-            bool heldByXRI  = grab.isSelected;
+            bool heldByXRI = grab.isSelected;
             bool heldByHand = handTPConnect != null && handTPConnect.SnappedOrb == grab;
 
             if (heldByXRI || heldByHand)

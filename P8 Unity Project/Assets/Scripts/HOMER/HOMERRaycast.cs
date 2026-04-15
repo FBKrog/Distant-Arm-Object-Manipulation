@@ -7,8 +7,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 /// HOMER technique — input, ray-casting, extension, and grab/release phase.
 /// Attach to the Arm GameObject that has a child Transform tagged "Hand".
 ///
-/// Trigger press   → begin aiming (ray-cast line appears)
-/// Trigger release → fire ray; if hit, hand extends to surface
+/// Aim button hold  → begin aiming (ray-cast line appears)
+/// Aim button hold + Trigger press → fire ray; if hit, hand extends to surface
+/// Aim button release (while aiming) → cancel aim
 /// Select press    → grab XRGrabInteractable at hand position (if any)
 /// Select release  → drop object; hand stays extended
 /// Trigger press   → retract hand back to controller
@@ -16,7 +17,8 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class HOMERRaycast : MonoBehaviour
 {
     [Header("Input")]
-    public InputActionProperty triggerAction;
+    public InputActionProperty aimAction;       // A button — hold to aim
+    public InputActionProperty triggerAction;   // trigger — fire while aiming, retract while extended
     public InputActionProperty selectAction;    // grip / XRI Select
 
     [Header("Ray-cast")]
@@ -98,27 +100,30 @@ public class HOMERRaycast : MonoBehaviour
 
     void OnEnable()
     {
+        aimAction.action?.Enable();
         triggerAction.action?.Enable();
         selectAction.action?.Enable();
     }
 
     void OnDisable()
     {
+        aimAction.action?.Disable();
         triggerAction.action?.Disable();
         selectAction.action?.Disable();
     }
 
     void Update()
     {
+        bool aimPressed      = aimAction.action.WasPressedThisFrame();
+        bool aimReleased     = aimAction.action.WasReleasedThisFrame();
         bool triggerPressed  = triggerAction.action.WasPressedThisFrame();
-        bool triggerReleased = triggerAction.action.WasReleasedThisFrame();
         bool selectPressed   = selectAction.action.WasPressedThisFrame();
         bool selectReleased  = selectAction.action.WasReleasedThisFrame();
 
         switch (state)
         {
             case State.Idle:
-                if (triggerPressed)
+                if (aimPressed)
                 {
                     state        = State.Aiming;
                     line.enabled = true;
@@ -126,7 +131,12 @@ public class HOMERRaycast : MonoBehaviour
                 break;
 
             case State.Aiming:
-                if (triggerReleased)
+                if (aimReleased)
+                {
+                    CancelAim();
+                    break;
+                }
+                if (triggerPressed)
                 {
                     if (TryRaycast(out Vector3 hitPoint, out XRGrabInteractable grabbable))
                     {
