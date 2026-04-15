@@ -20,8 +20,10 @@ public class ConveyerBelt : MonoBehaviour
         if(isActive && other != null && !other.CompareTag("Immovable"))
         {
             var rb = other.attachedRigidbody;
-            var moveDir = transform.forward * speed;
-            var clampedMoveDir = Vector3.ClampMagnitude(rb.linearVelocity + moveDir, speed);
+            var moveDir = transform.forward * Mathf.Abs(speed);
+            if(speed < 0)
+                moveDir = -transform.forward * Mathf.Abs(speed);
+            var clampedMoveDir = Vector3.ClampMagnitude(rb.linearVelocity + moveDir, Mathf.Abs(speed));
             rb.linearVelocity = new Vector3(clampedMoveDir.x, rb.linearVelocity.y, clampedMoveDir.z);
         }
     }
