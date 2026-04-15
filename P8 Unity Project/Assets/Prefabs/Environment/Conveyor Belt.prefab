@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 6801860890955397060}
   - component: {fileID: 9122477971401120432}
   m_Layer: 0
-  m_Name: Conveyer Belt
+  m_Name: Conveyor Belt
   m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

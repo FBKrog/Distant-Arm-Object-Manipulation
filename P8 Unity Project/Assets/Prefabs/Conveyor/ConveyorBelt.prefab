@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2586393315594384081}
   m_Layer: 0
   m_Name: UVScroller
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d854cb5155c146b499e532767ba49ff0, type: 2}
+  - {fileID: 2100000, guid: 8495a5fa24da320448ca5d8fe1bc6003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3315978796950293870}
   m_Layer: 0
   m_Name: Roller.006
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,11 +117,11 @@ Transform:
   m_GameObject: {fileID: 966397142467290412}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: -0.3000002, y: 0.6999998, z: -0.00000023841858}
+  m_LocalPosition: {x: -0.3000002, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &391794394429928745
 MeshFilter:
@@ -191,9 +191,10 @@ GameObject:
   - component: {fileID: 7779409123298421549}
   - component: {fileID: 380940506282795285}
   - component: {fileID: 2179126280128034023}
+  - component: {fileID: 7494650449617930711}
   m_Layer: 0
   m_Name: Panel1
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,6 +271,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7494650449617930711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098276780273173535}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0025000006, y: 0.019999996, z: 0.0014999993}
+  m_Center: {x: 0.000000001164153, y: -0.000000057276335, z: -0.00016346146}
 --- !u!1 &2439467101641938823
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +305,7 @@ GameObject:
   - component: {fileID: 4339711660526610683}
   m_Layer: 0
   m_Name: Roller.001
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +323,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3415800741183603817
 MeshFilter:
@@ -373,7 +395,7 @@ GameObject:
   - component: {fileID: 6053788448097366761}
   m_Layer: 0
   m_Name: Roller.002
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +413,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5330219923679146261
 MeshFilter:
@@ -461,9 +483,10 @@ GameObject:
   - component: {fileID: 4931188250588992816}
   - component: {fileID: 7781189818018996201}
   - component: {fileID: 357898504436420912}
+  - component: {fileID: 7864874472737151644}
   m_Layer: 0
   m_Name: Panel2
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,6 +563,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7864874472737151644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901423067020190588}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0025000013, y: 0.019999994, z: 0.001500001}
+  m_Center: {x: 8.7311475e-10, y: -0.000000057741996, z: 0.00016345261}
 --- !u!1 &3409717590727726529
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +597,7 @@ GameObject:
   - component: {fileID: 112804096029553808}
   m_Layer: 0
   m_Name: Roller
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,11 +611,11 @@ Transform:
   m_GameObject: {fileID: 3409717590727726529}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: 0.90000004, y: 0.6999998, z: 0.00000023841858}
+  m_LocalPosition: {x: 0.90000004, y: 0.6999998, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8084807611278689909
 MeshFilter:
@@ -641,9 +685,10 @@ GameObject:
   - component: {fileID: 948121910908309108}
   - component: {fileID: 49607232316215808}
   - component: {fileID: 1884521023999955772}
+  - component: {fileID: 4931183545523233033}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -720,6 +765,58 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4931183545523233033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611932794396523553}
+  m_Material: {fileID: 13400000, guid: 37399a14a636add47992e7d3ac4cc7bb, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000001, y: 0.020000003, z: 0.008109809}
+  m_Center: {x: 4.1633363e-17, y: 0.0000000013969839, z: 0.0040549035}
+--- !u!1 &4910965470054556959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5642648602135933319}
+  m_Layer: 0
+  m_Name: Direction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5642648602135933319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910965470054556959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.256, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 914245850461574837}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &5073860834751905213
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +830,7 @@ GameObject:
   - component: {fileID: 514800162028996072}
   m_Layer: 0
   m_Name: Roller.008
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,11 +844,11 @@ Transform:
   m_GameObject: {fileID: 5073860834751905213}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: -0.7000001, y: 0.6999998, z: -0.00000047683716}
+  m_LocalPosition: {x: -0.7000001, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1148061546239812913
 MeshFilter:
@@ -819,9 +916,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 914245850461574837}
+  - component: {fileID: 6463684686827216959}
+  - component: {fileID: 7424241201704581354}
   m_Layer: 0
   m_Name: ConveyorBelt
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -843,19 +942,47 @@ Transform:
   - {fileID: 8472568473742568862}
   - {fileID: 7779409123298421549}
   - {fileID: 4931188250588992816}
-  - {fileID: 7774097682813104890}
-  - {fileID: 8474664528219130923}
-  - {fileID: 7008187399876567404}
-  - {fileID: 6565796540348131098}
-  - {fileID: 3456218899634534802}
-  - {fileID: 656111409753832788}
-  - {fileID: 307462212172759617}
-  - {fileID: 4245749358794443970}
-  - {fileID: 8333600827092676374}
-  - {fileID: 5334281895689257906}
+  - {fileID: 3263435046524516512}
   - {fileID: 1899752236221169012}
+  - {fileID: 5642648602135933319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6463684686827216959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448006851289548591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636951a8731bf2c45bb5603a62acc821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConveyorBelt
+  direction: {fileID: 5642648602135933319}
+  speed: 1
+  isActive: 1
+--- !u!65 &7424241201704581354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448006851289548591}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 0.14999998, z: 1.6}
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &6178587295647787855
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +996,7 @@ GameObject:
   - component: {fileID: 6853893525738414835}
   m_Layer: 0
   m_Name: Roller.005
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,11 +1010,11 @@ Transform:
   m_GameObject: {fileID: 6178587295647787855}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: -0.10000014, y: 0.6999998, z: -0.00000023841858}
+  m_LocalPosition: {x: -0.10000014, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8424856469582061075
 MeshFilter:
@@ -959,7 +1086,7 @@ GameObject:
   - component: {fileID: 7898525491697159547}
   m_Layer: 0
   m_Name: Roller.007
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,11 +1100,11 @@ Transform:
   m_GameObject: {fileID: 6382030972697555997}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: -0.5000001, y: 0.6999998, z: -0.00000047683716}
+  m_LocalPosition: {x: -0.5000001, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6104339913030181656
 MeshFilter:
@@ -1036,6 +1163,47 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7328309431239188804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3263435046524516512}
+  m_Layer: 0
+  m_Name: Rollers
+  m_TagString: Immovable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3263435046524516512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328309431239188804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7774097682813104890}
+  - {fileID: 8474664528219130923}
+  - {fileID: 7008187399876567404}
+  - {fileID: 6565796540348131098}
+  - {fileID: 3456218899634534802}
+  - {fileID: 656111409753832788}
+  - {fileID: 307462212172759617}
+  - {fileID: 4245749358794443970}
+  - {fileID: 8333600827092676374}
+  - {fileID: 5334281895689257906}
+  m_Father: {fileID: 914245850461574837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7401217309879443572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1217,7 @@ GameObject:
   - component: {fileID: 5675565192442727949}
   m_Layer: 0
   m_Name: Roller.003
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1067,7 +1235,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4876531147634161340
 MeshFilter:
@@ -1139,7 +1307,7 @@ GameObject:
   - component: {fileID: 7973598349742645633}
   m_Layer: 0
   m_Name: Roller.009
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1153,11 +1321,11 @@ Transform:
   m_GameObject: {fileID: 7946299275212967042}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: -0.9000003, y: 0.6999998, z: -0.00000047683716}
+  m_LocalPosition: {x: -0.9000003, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7866792883754057737
 MeshFilter:
@@ -1229,7 +1397,7 @@ GameObject:
   - component: {fileID: 7420703518335551060}
   m_Layer: 0
   m_Name: Pipes
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1319,7 +1487,7 @@ GameObject:
   - component: {fileID: 5207689393289536730}
   m_Layer: 0
   m_Name: Roller.004
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1333,11 +1501,11 @@ Transform:
   m_GameObject: {fileID: 9209618593738982211}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000001728035, y: -0.00000017280347, z: 0.7071067, w: 0.7071068}
-  m_LocalPosition: {x: 0.099999905, y: 0.6999998, z: -0.00000023841858}
+  m_LocalPosition: {x: 0.099999905, y: 0.6999998, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914245850461574837}
+  m_Father: {fileID: 3263435046524516512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &353056719788440563
 MeshFilter:
