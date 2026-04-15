@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2482855958010379561
 Transform:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 2204645794841760188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.00009059906, y: 0, z: 0.0025}
+  m_LocalPosition: {x: -0.00009059906, y: 0, z: 0.00412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -157,10 +157,10 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 0.7028302, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
-  m_Range: 6
+  m_Intensity: 0.75
+  m_Range: 10
   m_SpotAngle: 175
-  m_InnerSpotAngle: 45
+  m_InnerSpotAngle: 0
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 1
@@ -257,7 +257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3647230819952271064
 Transform:
   m_ObjectHideFlags: 0
@@ -820,7 +820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3520429349452269157
 Transform:
   m_ObjectHideFlags: 0
@@ -847,10 +847,10 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 0.7028302, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1
-  m_Range: 25
-  m_SpotAngle: 125
-  m_InnerSpotAngle: 0
+  m_Intensity: 0.2
+  m_Range: 10
+  m_SpotAngle: 175
+  m_InnerSpotAngle: 145
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
