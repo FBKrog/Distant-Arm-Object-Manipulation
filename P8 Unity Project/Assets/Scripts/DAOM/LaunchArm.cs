@@ -41,7 +41,6 @@ public class LaunchArm : MonoBehaviour
     [SerializeField] GameObject aimOffset;
     [SerializeField] Material validTarget;
     [SerializeField] Material invalidTarget;
-    //[SerializeField] GameObject holoArm;
     LineRenderer lineRenderer;
 
     IXRSelectInteractable selectedInteractable;
@@ -66,7 +65,6 @@ public class LaunchArm : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        //holoArm.SetActive(false);
         if (camera == null)
         {
             camera = Camera.main.gameObject;
@@ -199,7 +197,6 @@ public class LaunchArm : MonoBehaviour
     {
         DrawLineRenderer();
         SetLineMaterial(ValidLayer());
-        //SetHolographicArm(ValidLayer());
     }
 
     /// <summary>
@@ -208,7 +205,11 @@ public class LaunchArm : MonoBehaviour
     bool ValidLayer()
     {
         if (!aiming) return false;
-
+        if(Physics.Raycast(transform.position, transform.forward, out hit, rayLength, ~surfaceLayer))
+        {
+            print("Not surface layer");
+            return false;
+        }
         RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, rayLength, surfaceLayer);
         Array.Sort(hits, (a,b) => a.distance.CompareTo(b.distance));
         if(hits.Length == 0) return false;
@@ -329,13 +330,6 @@ public class LaunchArm : MonoBehaviour
         lasttValid = valid;
         lineRenderer.material = valid ? validTarget : invalidTarget;
     }
-
-    //void SetHolographicArm(bool valid)
-    //{
-    //    holoArm.SetActive(valid);
-    //    holoArm.transform.position = hit.point;
-    //    holoArm.transform.rotation = Quaternion.LookRotation(hit.normal);
-    //}
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

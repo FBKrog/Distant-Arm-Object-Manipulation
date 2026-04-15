@@ -193,10 +193,6 @@ public class DAOMArm : MonoBehaviour
         {
             selectedInteractable = hitInteractable;
         }
-        else
-        {
-            selectedInteractable = null;
-        }
 
         if(selectedInteractable != null)
             LaunchArm.OnGrabbedGameObject(selectedInteractable);
@@ -204,13 +200,9 @@ public class DAOMArm : MonoBehaviour
         targetRot = LookDirection(goPoint.transform.position);
         
         StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
-
         StartCoroutine(RotateToTargetRotation(upperArm.transform, upperArmStartRot, rotationDuration, true));
-        
         StartCoroutine(RotateToTargetRotation(lowerArm.transform, lowerArmStartRot, rotationDuration, true));
-        
         StartCoroutine(RotateToTargetRotation(tip.transform, tipStartRot, rotationDuration, true));
-
         StartCoroutine(TravelToGameObject(goPoint));
     }
 
@@ -363,7 +355,7 @@ public class DAOMArm : MonoBehaviour
         AudioManager.StopSound(rocketAudioSource);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
-        if (hitInteractable != null && !recalling)
+        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable" && !recalling)
         {
             LaunchArm.OnEarlyRecall();
             interactor.interactionManager.SelectEnter(interactor, hitInteractable);
@@ -391,17 +383,6 @@ public class DAOMArm : MonoBehaviour
             var newPoint = hitPoint + transform.forward * wallDistanceOffset;
             transform.position = newPoint;
         }
-
-        // To fix this, we calculate the distance from the wall ATTACH POINT to the arm and use that distance to offset the base position of the arm so it looks like it's reaching the original hit point while still rotating to the rounded rotation.
-        //float wallOffset = Vector3.Distance(wallAttachPoint.transform.position, transform.position);
-
-        // Adjust the base position so the transform reaches the original hit point
-        //Vector3 newPosition = hitPoint - transform.forward * wallOffset;
-
-        //newPosition += transform.forward * (wallDistanceOffset * 2);
-
-        //transform.position = newPosition;
-        //StartCoroutine(TravelToPoint(transform, adjustedPosition));
     }
 
     /// <summary>

@@ -711,6 +711,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
   defaultPose: {fileID: 0}
+  leftHand: 0
 --- !u!1 &1328899966735882065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5621,6 +5622,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
   defaultPose: {fileID: 11400000, guid: b6ad0daf5d7a21f448de15287edd677a, type: 2}
+  leftHand: 0
 --- !u!1 &7781280962212410777
 GameObject:
   m_ObjectHideFlags: 0

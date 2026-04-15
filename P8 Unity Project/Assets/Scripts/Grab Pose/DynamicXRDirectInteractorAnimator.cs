@@ -6,9 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
     [Header("Hand Data")]
-    [SerializeField] protected HandData handData;
+    [SerializeField] HandData handData;
     [SerializeField] GrabPoseScriptableObject defaultPose;
-    protected GrabPose currentGrabPose;
+    [SerializeField] bool leftHand = false;
+    GrabPose currentGrabPose;
 
     protected override void Awake()
     {
@@ -17,7 +18,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
             Debug.LogError("Hand data is not assigned or empty.");
             return;
         }
-        SetPhalanxValues();
+        BendPhalanges(defaultPose.handData);
         base.Awake();
     }
 
@@ -36,9 +37,18 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
                     return;
                 }
                 BendPhalanges(currentGrabPose.data.handData);
-                attachTransform.localPosition = currentGrabPose.data.positionOffset;
-                attachTransform.localRotation = Quaternion.Euler(currentGrabPose.data.rotationOffset);
-                print(currentGrabPose.gameObject.name);
+                if(leftHand)
+                {
+                    var newRot = new Vector3(currentGrabPose.data.rotationOffset.x, -currentGrabPose.data.rotationOffset.y, -currentGrabPose.data.rotationOffset.z);
+                    var newPos = new Vector3(-currentGrabPose.data.positionOffset.x, currentGrabPose.data.positionOffset.y, currentGrabPose.data.positionOffset.z);
+                    attachTransform.localRotation = Quaternion.Euler(newRot);
+                    attachTransform.localPosition = newPos;
+                }
+                else
+                {
+                    attachTransform.localPosition = currentGrabPose.data.positionOffset;
+                    attachTransform.localRotation = Quaternion.Euler(currentGrabPose.data.rotationOffset);
+                }
             }
         }
         else
@@ -50,25 +60,10 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        print("hello?");
         if (args != null)
             base.OnSelectExited(args);
         // Reset hand pose to initial values when releasing the object
         BendPhalanges(defaultPose.handData);
-        //currentGrabPose = null;
-    }
-
-    protected virtual void SetPhalanxValues()
-    {
-        for (int i = 0; i < handData.thumb.phalanges.Length; i++)
-            handData.thumb.phalanxValues[i] = GetPhalanxRotation(handData.thumb.phalanges[i]);
-        for (int i = 0; i < handData.index.phalanges.Length; i++)
-        {
-            handData.index.phalanxValues[i] = GetPhalanxRotation(handData.index.phalanges[i]);
-            handData.middle.phalanxValues[i] = GetPhalanxRotation(handData.middle.phalanges[i]);
-            handData.ring.phalanxValues[i] = GetPhalanxRotation(handData.ring.phalanges[i]);
-            handData.pinky.phalanxValues[i] = GetPhalanxRotation(handData.pinky.phalanges[i]);
-        }
     }
 
     public void BendPhalanges(HandData newPose)
@@ -86,19 +81,37 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
     void BendPhalanx(Transform phalanx, Vector3 value)
     {
-        phalanx.localRotation = Quaternion.Euler(value.x, value.y, value.z);
+        if(leftHand)
+            phalanx.localRotation = Quaternion.Euler(value.x, -value.y, -value.z);
+        else
+            phalanx.localRotation = Quaternion.Euler(value.x, value.y, value.z);
     }
 
     Vector3 GetPhalanxRotation(Transform phalanx)
     {
         return phalanx.localRotation.eulerAngles;
     }
+
+
 #if UNITY_EDITOR
     public void SetGrabPose()
     {
         print("Setting grab pose values...");
         SetPhalanxValues();
         StartCoroutine(SetGrabPoseVariables());
+    }
+    
+    void SetPhalanxValues()
+    {
+        for (int i = 0; i < handData.thumb.phalanges.Length; i++)
+            handData.thumb.phalanxValues[i] = GetPhalanxRotation(handData.thumb.phalanges[i]);
+        for (int i = 0; i < handData.index.phalanges.Length; i++)
+        {
+            handData.index.phalanxValues[i] = GetPhalanxRotation(handData.index.phalanges[i]);
+            handData.middle.phalanxValues[i] = GetPhalanxRotation(handData.middle.phalanges[i]);
+            handData.ring.phalanxValues[i] = GetPhalanxRotation(handData.ring.phalanges[i]);
+            handData.pinky.phalanxValues[i] = GetPhalanxRotation(handData.pinky.phalanges[i]);
+        }
     }
 
     IEnumerator SetGrabPoseVariables()
