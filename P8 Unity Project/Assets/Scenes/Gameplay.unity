@@ -16848,16 +16848,52 @@ PrefabInstance:
       value: ObjectivesManager
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: fontSize
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: vrCamera
       value: 
       objectReference: {fileID: 312488523}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: viewOffsetY
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: panelPadding
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: maxPanelWidth
-      value: 2
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: rotationSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: followDistance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: followSmoothing
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: backgroundColor.a
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: backgroundColor.b
+      value: 0.15475257
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: backgroundColor.g
+      value: 0.1612063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0.16981131
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
@@ -147205,10 +147241,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312488524}
     - target: {fileID: 95282812336641681, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 95282812336641681, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 80986852}
@@ -147225,10 +147257,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312488524}
     - target: {fileID: 1083095866957758327, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1083095866957758327, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 80986852}
@@ -147240,10 +147268,6 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 312488524}
-    - target: {fileID: 1441009058710894740, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
     - target: {fileID: 1441009058710894740, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -147301,10 +147325,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312488524}
     - target: {fileID: 5501963668913016869, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501963668913016869, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 80986852}
@@ -147316,10 +147336,6 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 312488524}
-    - target: {fileID: 5547786405593561203, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
     - target: {fileID: 5547786405593561203, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -147333,10 +147349,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312488524}
     - target: {fileID: 7425375592726123612, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7425375592726123612, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 80986852}
@@ -147348,10 +147360,6 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 312488524}
-    - target: {fileID: 7456133486184754926, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
     - target: {fileID: 7456133486184754926, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -147364,10 +147372,6 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 312488524}
-    - target: {fileID: 8335814073900025364, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-      propertyPath: pressDistance
-      value: 0.14
-      objectReference: {fileID: 0}
     - target: {fileID: 8335814073900025364, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
       propertyPath: goGoInteractor
       value: 
