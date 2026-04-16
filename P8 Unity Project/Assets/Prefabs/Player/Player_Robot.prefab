@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 7952391474054447207}
   - component: {fileID: 576059475463922452}
   m_Layer: 0
-  m_Name: TPOrbSnapPoint
+  m_Name: OrbSnapPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 1044435794507807626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.096, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -418,10 +418,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6e973009144882a80609b359cb373a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandTPOrbConnect
-  teleportationActivator: {fileID: 0}
-  snapRadius: 0.035
+  teleportationActivator: {fileID: 2433337784334613943}
+  snapRadius: 0.075
   orbTag: TPOrb
-  homerRaycast: {fileID: 0}
+  homerRaycast: {fileID: 557079038240348362}
 --- !u!1 &1153907711258021117
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,15 +949,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697720545019289749}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7058041, z: -0, w: 0.7084071}
-  m_LocalPosition: {x: 1.809, y: 2.0502, z: 2.398}
+  m_LocalRotation: {x: 0, y: 0.033852894, z: 0, w: 0.9994268}
+  m_LocalPosition: {x: -0.099, y: -0.065, z: -0.048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6720425617549829508}
   - {fileID: 3219582219217440780}
   m_Father: {fileID: 858536150763513443}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.88, z: 0}
 --- !u!1 &1706730779282844667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2696366760969545369
 Transform:
   m_ObjectHideFlags: 0
@@ -1530,9 +1530,9 @@ MonoBehaviour:
   onTeleportedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5959980827498965332}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: AdvanceIfStepId
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1540,6 +1540,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: TeleportStep
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
+        m_MethodName: AdvanceIfStepId
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: RegrabOrbStep
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1962038813587023793
@@ -1723,7 +1735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1828885790331568431
 Transform:
   m_ObjectHideFlags: 0
@@ -4983,7 +4995,7 @@ Transform:
   m_GameObject: {fileID: 6435633756080211514}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.45522, y: -1.5413799, z: 4.53587}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5004,7 +5016,7 @@ MonoBehaviour:
   legsPrefab: {fileID: 919132149155446097, guid: 766a2d319a3d4cf44b233c751e9f54e9, type: 3}
   legsMaterial: {fileID: 2100000, guid: 72657669ecf0d8b4b9f08a7a01af00c4, type: 2}
   modelScale: 0.3
-  positionOffset: {x: 0, y: 0.5, z: 0}
+  positionOffset: {x: 0, y: 0.6, z: 0}
 --- !u!1 &6756719883533907955
 GameObject:
   m_ObjectHideFlags: 0
@@ -5906,7 +5918,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6198,8 +6210,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    m_InputActionReferenceValue: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualPerformed: 0
     m_ManualValue: 0

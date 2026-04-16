@@ -90,7 +90,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 0, z: 4}
-  m_Center: {x: 24, y: 0, z: -5}
+  m_Center: {x: 24, y: 0.01, z: -5}
 --- !u!114 &2167442370587707796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
   triggers:
-  - {fileID: 4645387943292406514}
+  - {fileID: 0}
   _animator: {fileID: 3082946890360220694}
   _doorOpenClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
   _doorCloseClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
