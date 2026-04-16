@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3277256821485448977}
   - component: {fileID: 9096152073351295742}
   - component: {fileID: 8627678314436867958}
-  - component: {fileID: 3371871853199835696}
+  - component: {fileID: 4611351126630207678}
   - component: {fileID: 5535393808001161148}
   m_Layer: 0
   m_Name: Backboard_SimonSaysPuzzle
@@ -123,9 +123,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973959469504098000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 2.015, y: 1.949, z: 18.792}
-  m_LocalScale: {x: 0.18984862, y: 0.18984862, z: 0.18984859}
+  m_LocalScale: {x: 0.1421692, y: 0.1421692, z: 0.14216918}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 605578868750264258}
@@ -172,7 +172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8540c6a2cdfc67f488df3a6cd9d049ad, type: 2}
+  - {fileID: 2100000, guid: 056d8bf5f05328842b4f7778cba46399, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -244,9 +244,9 @@ MonoBehaviour:
   correctColor: {r: 0, g: 0.6830188, b: 0, a: 1}
   wrongColor: {r: 0.9245283, g: 0, b: 0, a: 1}
   overlayAlpha: 0.4
-  startDelay: 1.5
+  startDelay: 4.5
   sequenceShowDuration: 1
-  sequenceGapDuration: 0.3
+  sequenceGapDuration: 0.25
   wrongFlashDuration: 0.5
   OnPuzzleCompleted:
     m_PersistentCalls:
@@ -263,6 +263,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4611351126630207678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973959469504098000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac52c5bf1bc854a449c1e294bd4468f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimonSaysDoorLinker
+  triggers:
+  - {fileID: 5535393808001161148}
+  panel: {fileID: 4151681470991467685}
+  slideAxis: {x: 0, y: -1, z: 0}
+  slideDistance: 1.5
+  slideDuration: 1.5
+  _slideClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
+  _audioVolume: 0.3
+  OnPanelSlid:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimonSaysPuzzle, Assembly-CSharp
         m_MethodName: BeginPuzzle
@@ -275,38 +298,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3371871853199835696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973959469504098000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdb0214345754bf448d163b761c073fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
-  triggers:
-  - {fileID: 5535393808001161148}
-  leftPanel: {fileID: 4151681470991467685}
-  rightPanel: {fileID: 0}
-  slideDistance: 8
-  slideDuration: 3
-  slideAxis: {x: 0, y: -1, z: 0}
-  movingObjects:
-  - {fileID: 605578868750264258}
-  - {fileID: 4953834830604295943}
-  - {fileID: 2336731425702779386}
-  - {fileID: 2258704110273597430}
-  - {fileID: 1006340244182851251}
-  - {fileID: 5299437785643069626}
-  - {fileID: 5370936153542749414}
-  - {fileID: 965761334472646531}
-  - {fileID: 5416152179624387620}
-  OnDoorOpened:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &5535393808001161148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +327,7 @@ GameObject:
   - component: {fileID: 5944250188786016170}
   - component: {fileID: 5691298651323600151}
   m_Layer: 0
-  m_Name: Button_7
+  m_Name: Button_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,8 +342,8 @@ Transform:
   m_GameObject: {fileID: 1381682707406421461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: 0.98, z: -2.9614005}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: 2.09, y: 0.41, z: -2.5013}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7343718444502990235}
@@ -451,10 +442,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 7343718444502990235}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 6100697109749731613}
   buttonLight: {fileID: 0}
@@ -633,7 +626,7 @@ GameObject:
   - component: {fileID: 1618332197751713036}
   - component: {fileID: 3048676342415436605}
   m_Layer: 0
-  m_Name: Button_9
+  m_Name: Button_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,8 +641,8 @@ Transform:
   m_GameObject: {fileID: 1427219496809015721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: 0.98, z: 2.951193}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: 2.09, y: 0.41, z: 2.4911}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4829100227064706188}
@@ -748,10 +741,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 4829100227064706188}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 8477689159423958731}
   buttonLight: {fileID: 0}
@@ -961,7 +956,7 @@ GameObject:
   - component: {fileID: 7163012309458441593}
   - component: {fileID: 419323981376942370}
   m_Layer: 0
-  m_Name: Button_3
+  m_Name: Button_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -976,8 +971,8 @@ Transform:
   m_GameObject: {fileID: 2620869527193100763}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.04, y: 0.98, z: 2.951193}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -2.61, y: 0.41, z: 2.4911}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8662927033724028793}
@@ -1076,10 +1071,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 8662927033724028793}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 7727783094947185436}
   buttonLight: {fileID: 0}
@@ -1289,7 +1286,7 @@ GameObject:
   - component: {fileID: 8359420858292360197}
   - component: {fileID: 7702973823598506417}
   m_Layer: 0
-  m_Name: Button_8
+  m_Name: Button_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,8 +1301,8 @@ Transform:
   m_GameObject: {fileID: 3026343185190348514}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: 0.98, z: 0.040990468}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: 2.09, y: 0.41, z: 0.033817}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5864012605981736641}
@@ -1404,10 +1401,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 5864012605981736641}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 5191425510973955066}
   buttonLight: {fileID: 0}
@@ -1617,7 +1616,7 @@ GameObject:
   - component: {fileID: 5525951304778338064}
   - component: {fileID: 3444745692488569226}
   m_Layer: 0
-  m_Name: Button_1
+  m_Name: Button_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,8 +1631,8 @@ Transform:
   m_GameObject: {fileID: 5020710888578872244}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.04, y: 0.98, z: -2.9614005}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -2.61, y: 0.41, z: -2.5013}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1229660105850529840}
@@ -1654,10 +1653,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 1229660105850529840}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 3418032749377313072}
   buttonLight: {fileID: 0}
@@ -1914,7 +1915,7 @@ GameObject:
   - component: {fileID: 2431622502856104092}
   - component: {fileID: 8334772925118170199}
   m_Layer: 0
-  m_Name: Button_6
+  m_Name: Button_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1929,8 +1930,8 @@ Transform:
   m_GameObject: {fileID: 6211695959868585293}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 0.98, z: 2.951193}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -0.23, y: 0.41, z: 2.4911}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8931988573084662685}
@@ -2029,10 +2030,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 8931988573084662685}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 5822167432402245805}
   buttonLight: {fileID: 0}
@@ -2240,7 +2243,7 @@ GameObject:
   - component: {fileID: 6426879540438014848}
   - component: {fileID: 3706395966593325759}
   m_Layer: 0
-  m_Name: Button_5
+  m_Name: Button_Handplacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2255,8 +2258,8 @@ Transform:
   m_GameObject: {fileID: 7263253817425288314}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 0.98, z: 0.040990468}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -0.23, y: 0.41, z: 0.033817}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4151681470991467685}
@@ -2294,7 +2297,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8540c6a2cdfc67f488df3a6cd9d049ad, type: 2}
+  - {fileID: 2100000, guid: b066954d17ed37d498e9eaad15715d26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2382,7 +2385,7 @@ GameObject:
   - component: {fileID: 153796005228813980}
   - component: {fileID: 2739345621515155955}
   m_Layer: 0
-  m_Name: Button_2
+  m_Name: Button_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2397,8 +2400,8 @@ Transform:
   m_GameObject: {fileID: 7263359426301654958}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.04, y: 0.98, z: 0.040990468}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -2.61, y: 0.41, z: 0.033817}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 525409451623133479}
@@ -2427,10 +2430,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 525409451623133479}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 2031852683690299486}
   buttonLight: {fileID: 0}
@@ -2679,7 +2684,7 @@ GameObject:
   - component: {fileID: 2817603236967271967}
   - component: {fileID: 1739142001448118712}
   m_Layer: 0
-  m_Name: Button_4
+  m_Name: Button_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2694,8 +2699,8 @@ Transform:
   m_GameObject: {fileID: 7473990941740536901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 0.98, z: -2.8823934}
-  m_LocalScale: {x: 2.633678, y: 2.633678, z: 2.6336777}
+  m_LocalPosition: {x: -0.23, y: 0.41, z: -2.4346}
+  m_LocalScale: {x: 2.2238, y: 2.2238, z: 2.2237997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4484694787980190576}
@@ -2794,10 +2799,12 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
+  daomPositionOffset: {x: 0, y: 0, z: 0}
+  daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
   - {fileID: 4484694787980190576}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.25
+  pressDistance: 0.14
   snapBackDuration: 0.25
   buttonRenderer: {fileID: 9129739313399698583}
   buttonLight: {fileID: 0}
