@@ -15,6 +15,7 @@ public class HandTPOrbConnect : MonoBehaviour
     [SerializeField] private TeleportationActivator teleportationActivator;
     [SerializeField] private float snapRadius = 0.12f;
     [SerializeField] private string orbTag = "TPOrb";
+    [SerializeField] private HOMERRaycast homerRaycast; // optional — assign if HOMER is active
 
     public event System.Action OrbSnapped;
 
@@ -50,7 +51,9 @@ public class HandTPOrbConnect : MonoBehaviour
                 continue;
 
             XRGrabInteractable grab = col.GetComponentInParent<XRGrabInteractable>();
-            if (grab != null && grab.isSelected)
+            bool isHeld = (grab != null && grab.isSelected)
+                       || (grab != null && homerRaycast != null && homerRaycast.GrabbedObject == col.gameObject);
+            if (isHeld)
             {
                 StartCoroutine(SnapOrb(grab));
                 break;

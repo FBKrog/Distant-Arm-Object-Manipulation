@@ -33,6 +33,7 @@ public class DoorTrigger : MonoBehaviour
     /// </summary>
     public void Activate()
     {
+        Debug.Log($"[DoorTrigger] '{gameObject.name}' — DoorTrigger Activated");
         if (IsActivated) return;
         IsActivated = true;
         Activated?.Invoke();

@@ -41,14 +41,14 @@ public class CameraPresencePlate : MonoBehaviour
     // Private state
     // -------------------------------------------------------------------------
 
-    private Camera      _camera;
+    private Camera _camera;
     private BoxCollider _col;
-    private bool        _isActivated;
+    private bool _isActivated;
 
     // Cached collider data so Update() is allocation-free.
     private Vector3 _localCenter;
-    private float   _halfX;
-    private float   _halfZ;
+    private float _halfX;
+    private float _halfZ;
 
     // -------------------------------------------------------------------------
     // Unity lifecycle
@@ -58,8 +58,8 @@ public class CameraPresencePlate : MonoBehaviour
     {
         _col = GetComponent<BoxCollider>();
         _localCenter = _col.center;
-        _halfX       = _col.size.x * 0.5f;
-        _halfZ       = _col.size.z * 0.5f;
+        _halfX = _col.size.x * 0.5f;
+        _halfZ = _col.size.z * 0.5f;
     }
 
     private void Start()
@@ -133,9 +133,9 @@ public class CameraPresencePlate : MonoBehaviour
         if (col == null) return;
 
         Vector3 lc = col.center;
-        float   hx = col.size.x * 0.5f;
-        float   hy = col.size.y * 0.5f;
-        float   hz = col.size.z * 0.5f;
+        float hx = col.size.x * 0.5f;
+        float hy = col.size.y * 0.5f;
+        float hz = col.size.z * 0.5f;
 
         // Apply TRS so gizmos rotate/scale with the object.
         Gizmos.matrix = transform.localToWorldMatrix;
@@ -153,14 +153,14 @@ public class CameraPresencePlate : MonoBehaviour
 
         // 2. Detection volume above the plate (cyan).
         // maxHeightAbovePlate is in world metres; convert to local Y units via Y scale.
-        float scaleY    = transform.lossyScale.y > 0.0001f ? transform.lossyScale.y : 1f;
+        float scaleY = transform.lossyScale.y > 0.0001f ? transform.lossyScale.y : 1f;
         float localMinH = minHeightAbovePlate / scaleY;
         float localMaxH = maxHeightAbovePlate / scaleY;
         float detHeight = localMaxH - localMinH;
         float detCenterY = lc.y + hy + localMinH + detHeight * 0.5f;
 
         Vector3 detCenter = new Vector3(lc.x, detCenterY, lc.z);
-        Vector3 detSize   = new Vector3(hx * 2f, detHeight, hz * 2f);
+        Vector3 detSize = new Vector3(hx * 2f, detHeight, hz * 2f);
 
         Gizmos.color = new Color(0f, 0.8f, 1f, 0.12f);
         Gizmos.DrawCube(detCenter, detSize);
