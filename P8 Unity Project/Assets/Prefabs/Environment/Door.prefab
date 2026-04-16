@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6461916147906208451}
   - component: {fileID: 3082946890360220694}
+  - component: {fileID: 2255683460344387138}
   - component: {fileID: 2167442370587707796}
+  - component: {fileID: 858827848241804638}
+  - component: {fileID: 4645387943292406514}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -67,6 +70,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &2255683460344387138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714654386122993102}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0, z: 4}
+  m_Center: {x: 24, y: 0, z: -5}
 --- !u!114 &2167442370587707796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,13 +103,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb0214345754bf448d163b761c073fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
-  triggers: []
+  triggers:
+  - {fileID: 4645387943292406514}
   _animator: {fileID: 3082946890360220694}
   _doorOpenClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
+  _doorCloseClip: {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
   _audioVolume: 1
   OnDoorOpened:
     m_PersistentCalls:
       m_Calls: []
+  OnDoorClosed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &858827848241804638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714654386122993102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb15685cde101b4fa0015ae16d3960d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraPresencePlate
+  overrideCamera: {fileID: 0}
+  minHeightAbovePlate: 0
+  maxHeightAbovePlate: 4
+  OnPlateActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2167442370587707796}
+        m_TargetAssemblyTypeName: DoorLinker, Assembly-CSharp
+        m_MethodName: TryOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlateDeactivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2167442370587707796}
+        m_TargetAssemblyTypeName: DoorLinker, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  logStateChanges: 0
+--- !u!114 &4645387943292406514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714654386122993102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+  activateOnObjective: OrbObjective
 --- !u!1 &970786064475753773
 GameObject:
   m_ObjectHideFlags: 0
