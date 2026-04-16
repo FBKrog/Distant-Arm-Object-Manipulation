@@ -21,11 +21,13 @@ public class ConveyorProduction : MonoBehaviour
     void OnEnable()
     {
         ConveyorProductionManager.OnProductionStateChanged += HandleProductionStateChange;
+        ConveyorProductionManager.OnAllProductionRateChanged += (newRate) => spawnInterval = newRate;
     }
 
     void OnDisable()
     {
         ConveyorProductionManager.OnProductionStateChanged -= HandleProductionStateChange;
+        ConveyorProductionManager.OnAllProductionRateChanged -= (newRate) => spawnInterval = newRate;
     }
 
     void HandleProductionStateChange(int id, bool state)
@@ -62,8 +64,7 @@ public class ConveyorProduction : MonoBehaviour
         {
             foreach (var part in robotPartPrefabs)
             {
-                var newPart = Instantiate(part, spawnPoint.transform.position, Quaternion.identity);
-                newPart.transform.parent = spawnPoint.transform;
+                var newPart = Instantiate(part, spawnPoint.transform.position, Quaternion.identity, transform);
                 yield return new WaitForSeconds(spawnInterval);
             }
             yield return null;

@@ -37,7 +37,7 @@ public class ConveyorRobotAssembler : MonoBehaviour
     void AssembleRobot()
     {
         // Instantiate the robot at the assembler's position
-        Instantiate(robotPrefab, transform.position, Quaternion.identity);
+        Instantiate(robotPrefab, transform.position, Quaternion.identity, transform);
         // Clear one of each acquired part for the next assembly
         foreach (var part in Enum.GetValues(typeof(RobotPart.Parts)).Cast<RobotPart.Parts>())
             acquiredParts.Remove(part);
