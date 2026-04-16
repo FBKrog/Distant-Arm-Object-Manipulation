@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5363601972529326540}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GrabPoint_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 7237611138261093180}
   - component: {fileID: 3643777886094951002}
   - component: {fileID: 6973496308431297981}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Valve
   m_TagString: Unrecallable
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 689799428125141526}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GrabPoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8677536125701861920}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GrabPoint_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5533270551741373720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: '[Interactor] Dynamic Attach'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3998919903965803741}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GrabPoint_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
