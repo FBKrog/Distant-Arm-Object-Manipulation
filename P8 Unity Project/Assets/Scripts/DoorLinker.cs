@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +33,7 @@ public class DoorLinker : MonoBehaviour
 
     private bool _isUnlocked = false;
     private bool _isOpen = false;
+    private Coroutine _closeCoroutine;
 
     // -------------------------------------------------------------------------
 
@@ -88,10 +90,17 @@ public class DoorLinker : MonoBehaviour
     {
         if (!_isUnlocked || _isOpen) return;
 
+        // Cancel any in-flight close so it doesn't fire after we re-open
+        if (_closeCoroutine != null)
+        {
+            StopCoroutine(_closeCoroutine);
+            _closeCoroutine = null;
+        }
+
         _isOpen = true;
 
         if (_animator != null)
-            _animator.SetTrigger("DoorOpen");
+            _animator.SetBool("DoorOpen", true);
 
         if (_doorOpenClip != null)
             AudioManager.PlaySound(_doorOpenClip, transform, _audioVolume);
@@ -110,11 +119,30 @@ public class DoorLinker : MonoBehaviour
         _isOpen = false;
 
         if (_animator != null)
-            _animator.SetTrigger("DoorClose");
+            _closeCoroutine = StartCoroutine(TriggerCloseWhenReady());
 
         if (_doorCloseClip != null)
             AudioManager.PlaySound(_doorCloseClip, transform, _audioVolume);
 
         OnDoorClosed.Invoke();
+    }
+
+    // Waits for the door to finish opening (DoorOpenIdle state) before triggering
+    // DoorClose. This handles the case where the player exits while the open
+    // animation is still playing.
+    private IEnumerator TriggerCloseWhenReady()
+    {
+        float timeout = 10f;
+        float elapsed = 0f;
+        while (elapsed < timeout)
+        {
+            var info = _animator.GetCurrentAnimatorStateInfo(0);
+            if (info.IsName("DoorOpenIdle") && !_animator.IsInTransition(0))
+                break;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        _animator.SetBool("DoorOpen", false);
+        _closeCoroutine = null;
     }
 }
