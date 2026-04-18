@@ -15,7 +15,7 @@ public class ConveyorRobotAssembler : MonoBehaviour
             var part = robotPart.part;
             acquiredParts.Add(part);
 
-            AudioManager.PlaySound(SfxType.Assembly, transform.position, AudioManager.instance.sfxs[(int)SfxType.Assembly].volume);
+            AudioManager.PlaySound(SfxType.Assembly, transform);
 
             if (AreAllPartsAcquired())
             {
@@ -38,6 +38,6 @@ public class ConveyorRobotAssembler : MonoBehaviour
         // Clear one of each acquired part for the next assembly
         foreach (var part in Enum.GetValues(typeof(Parts)).Cast<Parts>())
             acquiredParts.Remove(part);
-        AudioManager.PlaySound(SfxType.AssemblyComplete, transform.position, AudioManager.instance.sfxs[(int)SfxType.AssemblyComplete].volume);
+        AudioManager.PlaySound(SfxType.AssemblyComplete, transform);
     }
 }

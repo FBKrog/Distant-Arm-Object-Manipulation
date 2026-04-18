@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 using Random = UnityEngine.Random;
 
 // For new SFX types, add a new entry to the SfxType enum and then assign audio clips to the new SFX type in the AudioManager inspector.
@@ -11,13 +12,17 @@ public enum SfxType
     Explosion,
     Fire,
     ArmAttach,
+    TPHumming,
     Grab,
     Release,
+    Orb,
     ButtonPress,
     PuzzleComplete,
     DoorOpen,
     DoorClose,
     Plug,
+    SimonCorrect,
+    SimonWrong,
     SlidePanel,
     ProductionAmbience,
     ConveyorBelt,
@@ -73,7 +78,7 @@ public class AudioManager : MonoBehaviour
     }
 #endif
 
-    public static void PlaySound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false)
+    public static void PlaySound(SfxType sfx, Transform tf, bool parented = false)
     {
         var sfxType = instance.sfxs[(int)sfx];
         if (sfxType.clips == null || sfxType.clips.Length == 0)
@@ -82,10 +87,10 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        var clipToPlay = sfxType.clips[0];
+        var clip = sfxType.clips[0];
         if (sfxType.clips.Length > 1)
         {
-            clipToPlay = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
+            clip = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
         }
 
         // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
@@ -95,31 +100,35 @@ public class AudioManager : MonoBehaviour
             instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
         }
 
-        var clipLength = clipToPlay.length;
         var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
         
         if (audioSource == null || audioSource.gameObject == null)
         {
             audioSource = instance.AddAudioSource();
-            print($"Created new audio source for {clipToPlay.name}.");
+            print($"Created new audio source for {clip.name}.");
         }
-
-        audioSource.transform.position = location;
         
+        audioSource.transform.position = tf.position;
         if (parented)
         {
-            audioSource.transform.parent.position = location;
+            audioSource.transform.parent = tf;
         }
-        audioSource.clip = clipToPlay;
-        audioSource.volume = volume;
+        else if (audioSource.transform.parent != instance.transform)
+        {
+            audioSource.transform.parent = tf;
+        }
+
+        audioSource.clip = clip;
+        audioSource.volume = instance.sfxs[(int)sfx].volume;
         audioSource.Play();
-        
-        instance.StartCoroutine(instance.StopSound(audioSource, clipLength + 0.1f)); // Add a small buffer to ensure the clip has finished playing before relisting the audio source.
+#if UNITY_EDITOR
+        audioSource.name = $"AudioSource_{sfx}_{clip.name}";
+#endif
+        //instance.StartCoroutine(instance.StopAudio(audioSource, clipLength + 0.1f)); // Add a small buffer to ensure the clip has finished playing before relisting the audio source.
     }
 
-    IEnumerator StopSound(AudioSource source, float delay = 0)
+    IEnumerator StopSound(AudioSource source)
     {
-        yield return new WaitForSeconds(delay);
         if (source == null) yield return null;
         source.transform.parent = transform;
         
@@ -128,7 +137,7 @@ public class AudioManager : MonoBehaviour
         source.Stop();
     }
 
-    public static AudioSource PlayLoopSound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false)
+    public static AudioSource PlayLoopSound(SfxType sfx, Transform tf, bool parented = false)
     {
         var sfxType = instance.sfxs[(int)sfx];
         if (sfxType.clips == null || sfxType.clips.Length == 0)
@@ -137,6 +146,7 @@ public class AudioManager : MonoBehaviour
             return null;
         }
         var clip = sfxType.clips[0];
+
         // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
         if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
         {
@@ -152,17 +162,23 @@ public class AudioManager : MonoBehaviour
             print($"Created new audio source for {clip.name}.");
         }
 
-        audioSource.transform.position = location;
-
+        audioSource.transform.position = tf.position;
         if (parented)
         {
-            audioSource.transform.parent.position = location;
+            audioSource.transform.parent = tf;
         }
+        else if (audioSource.transform.parent != instance.transform)
+        {
+            audioSource.transform.parent = tf;
+        }
+
         audioSource.clip = clip;
-        audioSource.volume = volume;
+        audioSource.volume = instance.sfxs[(int)sfx].volume;
         audioSource.loop = true;
         audioSource.Play();
-
+#if UNITY_EDITOR
+        audioSource.name = $"AudioSource_{sfx}_{clip.name}";
+#endif
         return audioSource;
     }
 
@@ -170,7 +186,6 @@ public class AudioManager : MonoBehaviour
     {
         if (source != null && source.isPlaying)
         {
-            source.transform.parent = instance.transform;
             instance.StartCoroutine(instance.StopSound(source));
         }
     }

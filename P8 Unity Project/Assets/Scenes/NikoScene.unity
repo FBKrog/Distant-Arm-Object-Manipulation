@@ -968,46 +968,72 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: bbafd529adb511d4fa5c1859d4f523d3, type: 3}
     volume: 0.5
+  - title: TPHumming
+    clips:
+    - {fileID: 8300000, guid: 9218e5995093bf34eb20d2b6f534040a, type: 3}
+    volume: 0.5
   - title: Grab
     clips:
     - {fileID: 8300000, guid: cd512b861ac24a640b5ff94774c60ffa, type: 3}
     volume: 0.5
   - title: Release
-    clips:
-    - {fileID: 8300000, guid: c3cd0900c7f7870418e956345231d98a, type: 3}
+    clips: []
     volume: 0.5
+  - title: Orb
+    clips:
+    - {fileID: 8300000, guid: bf8ee6f2d1391f24e97e3bdcdef1ec1f, type: 3}
+    volume: 0
   - title: ButtonPress
     clips: []
-    volume: 0
+    volume: 0.5
   - title: PuzzleComplete
     clips: []
-    volume: 0
+    volume: 0.5
   - title: DoorOpen
     clips:
     - {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
     volume: 0.5
   - title: DoorClose
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
     volume: 0
   - title: Plug
     clips:
-    - {fileID: 8300000, guid: aba060f8493629d49af41d45e20741a6, type: 3}
+    - {fileID: 8300000, guid: 9e56d0922ac5442409c3f79c49f10636, type: 3}
+    volume: 0.5
+  - title: SimonCorrect
+    clips:
+    - {fileID: 8300000, guid: 9e56d0922ac5442409c3f79c49f10636, type: 3}
+    volume: 0.5
+  - title: SimonWrong
+    clips:
+    - {fileID: 8300000, guid: 0d9c4bac447dce34092556c64eff2e13, type: 3}
     volume: 0
   - title: SlidePanel
     clips: []
     volume: 0
   - title: ProductionAmbience
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: 7f9080f43fe7f524ea4efd2f1344c4bf, type: 3}
+    volume: 0.2
   - title: ConveyorBelt
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: 8fe034be0e3a34f4995de6fb64729cc0, type: 3}
+    volume: 1
   - title: Assembly
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: 711604b0d78a3ff469a94fdbbafe3fa4, type: 3}
+    - {fileID: 8300000, guid: b66fec3e57ac9f1438cb4a8faf7717b2, type: 3}
+    - {fileID: 8300000, guid: 6944629cb756aba4a88cb4e6b4e3f30f, type: 3}
+    - {fileID: 8300000, guid: 786f99b503f2eff4ba55db369ebe2725, type: 3}
+    - {fileID: 8300000, guid: 85bac48154c7260428787567baa698a7, type: 3}
+    - {fileID: 8300000, guid: eb78a17bd57d06a4fa2e7f9faaacd24d, type: 3}
+    - {fileID: 8300000, guid: 4db9fe9bcb5845347ad5edd42ca46f16, type: 3}
+    volume: 0.5
   - title: AssemblyComplete
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: cd1bac49efa47ba4c9883f7fa0d41142, type: 3}
+    volume: 0.5
 --- !u!1 &584702618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5020710888578872244, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
@@ -1026,7 +1052,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: 01f3bd4123c27354b9250944db62b733, type: 2}
---- !u!43 &590041442
+--- !u!1 &597938752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597938753}
+  m_Layer: 5
+  m_Name: Handle Slide Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &597938753
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597938752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1354637956}
+  m_Father: {fileID: 430705757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!43 &604934564
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1204,42 +1266,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!1 &597938752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 597938753}
-  m_Layer: 5
-  m_Name: Handle Slide Area
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &597938753
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597938752}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1354637956}
-  m_Father: {fileID: 430705757}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &606141258
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,7 +3544,7 @@ PrefabInstance:
     - target: {fileID: 6642304411728432686, guid: e90e85e7b47b1fb49b4edfe0ff29b98d, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 590041442}
+      objectReference: {fileID: 604934564}
     - target: {fileID: 6735547680038525497, guid: e90e85e7b47b1fb49b4edfe0ff29b98d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3802,6 +3828,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 150527641183470532, guid: 4fd87281dced8f64b9585bd0f860f35a, type: 3}
       insertIndex: 6
       addedObject: {fileID: 2073393897}
+    - targetCorrespondingSourceObject: {fileID: 150527641183470532, guid: 4fd87281dced8f64b9585bd0f860f35a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2073393905}
   m_SourcePrefab: {fileID: 100100000, guid: 4fd87281dced8f64b9585bd0f860f35a, type: 3}
 --- !u!1 &1781102217 stripped
 GameObject:
@@ -4380,6 +4409,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: c322f7481ba4e9e4792734676b1a768e, type: 2}
+--- !u!114 &2073393905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073393889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfxType: 5
+  sfxOnImpact: 0
 --- !u!1001 &2087415888
 PrefabInstance:
   m_ObjectHideFlags: 0

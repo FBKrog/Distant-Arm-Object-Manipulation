@@ -6,6 +6,6 @@ public class DoorTest : MonoBehaviour
     
     public void DoorSound()
     {
-        AudioManager.PlaySound(SfxType.DoorOpen, transform.position, 1);
+        AudioManager.PlaySound(SfxType.DoorOpen, transform);
     }
 }

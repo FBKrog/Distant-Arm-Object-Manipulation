@@ -29,7 +29,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         {
             base.OnSelectEntered(args);
 
-            AudioManager.PlaySound(SfxType.Grab, transform.position, AudioManager.instance.sfxs[(int)SfxType.Grab].volume);
+            AudioManager.PlaySound(SfxType.Grab, transform);
 
             if (args.interactableObject.transform.TryGetComponent(out GrabPose grabPose))
             {
@@ -67,7 +67,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         if (args != null)
         {
             base.OnSelectExited(args);
-            AudioManager.PlaySound(SfxType.Release, transform.position, AudioManager.instance.sfxs[(int)SfxType.Release].volume);
+            AudioManager.PlaySound(SfxType.Release, transform);
         }
         // Reset hand pose to initial values when releasing the object
         BendPhalanges(defaultPose.handData);

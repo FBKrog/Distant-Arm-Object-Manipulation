@@ -88,7 +88,7 @@ public class SimonSaysDoorLinker : MonoBehaviour
     {
         _hasSlid = true;
 
-        AudioManager.PlaySound(SfxType.SlidePanel, transform.position, AudioManager.instance.sfxs[(int)SfxType.SlidePanel].volume);
+        AudioManager.PlaySound(SfxType.SlidePanel, transform);
 
         StartCoroutine(SlidePanelCoroutine());
     }

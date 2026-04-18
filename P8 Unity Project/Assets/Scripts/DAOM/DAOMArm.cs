@@ -157,8 +157,8 @@ public class DAOMArm : MonoBehaviour
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
 
-        AudioManager.PlaySound(SfxType.Explosion, transform.position, AudioManager.instance.sfxs[(int)SfxType.Explosion].volume); 
-        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform.position, AudioManager.instance.sfxs[(int)SfxType.Fire].volume, true); 
+        AudioManager.PlaySound(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
     }
 
     /// <summary>
@@ -172,8 +172,8 @@ public class DAOMArm : MonoBehaviour
         
         recalling = true;
         
-        AudioManager.PlaySound(SfxType.Explosion, transform.position, AudioManager.instance.sfxs[(int)SfxType.Explosion].volume); 
-        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform.position, AudioManager.instance.sfxs[(int)SfxType.Fire].volume, true); 
+        AudioManager.PlaySound(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
 
         thruster.SetActive(true);
         wallExtention.SetActive(false);
@@ -351,7 +351,7 @@ public class DAOMArm : MonoBehaviour
         GetComponent<LimbStretch>().enabled = true;
 
         AudioManager.StopLoopSound(fireAudioSource);
-        AudioManager.PlaySound(SfxType.ArmAttach, transform.position, AudioManager.instance.sfxs[(int)SfxType.ArmAttach].volume);
+        AudioManager.PlaySound(SfxType.ArmAttach, transform);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable" && !recalling)

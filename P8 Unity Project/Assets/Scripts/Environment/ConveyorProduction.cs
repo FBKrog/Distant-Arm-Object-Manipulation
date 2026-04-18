@@ -36,7 +36,7 @@ public class ConveyorProduction : MonoBehaviour
         {
             StartProduction();
 
-            productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform.position, AudioManager.instance.sfxs[(int)SfxType.ProductionAmbience].volume);
+            productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform);
             print($"Production #{productionID} enabled.");
         }
         else

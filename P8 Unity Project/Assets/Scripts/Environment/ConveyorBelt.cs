@@ -31,7 +31,7 @@ public class ConveyorBelt : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(isActive && other != null && !other.CompareTag("Immovable"))
+        if(isActive && other != null && !other.CompareTag("Immovable") && other.attachedRigidbody != null)
         {
             var rb = other.attachedRigidbody;
             var moveDir = direction.forward * Mathf.Abs(speed);
