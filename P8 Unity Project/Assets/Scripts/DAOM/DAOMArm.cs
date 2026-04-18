@@ -43,12 +43,7 @@ public class DAOMArm : MonoBehaviour
     [Header("Interactor")]
     [SerializeField] DynamicXRDirectInteractorAnimator interactor;
 
-    [Header("Audio")]
-    [SerializeField] AudioClip boomSound;
-    [SerializeField] [Range(0, 1)] float boomVolume = 0.5f;
-    [SerializeField] AudioClip rocketSound;
-    [SerializeField] [Range(0, 1)] float rocketVolume = 0.5f;
-    AudioSource rocketAudioSource;
+    AudioSource fireAudioSource;
 
     Vector3 hitPoint;
     bool surfaceIsGround;
@@ -162,8 +157,8 @@ public class DAOMArm : MonoBehaviour
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
 
-        AudioManager.PlaySound(boomSound, transform, boomVolume);
-        rocketAudioSource = AudioManager.PlayLoopSound(rocketSound, transform, rocketVolume, true);
+        AudioManager.PlaySound(SfxType.Explosion, transform.position, AudioManager.instance.sfxs[(int)SfxType.Explosion].volume); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform.position, AudioManager.instance.sfxs[(int)SfxType.Fire].volume, true); 
     }
 
     /// <summary>
@@ -177,8 +172,8 @@ public class DAOMArm : MonoBehaviour
         
         recalling = true;
         
-        AudioManager.PlaySound(boomSound, transform, boomVolume);
-        rocketAudioSource = AudioManager.PlayLoopSound(rocketSound, transform, rocketVolume, true);
+        AudioManager.PlaySound(SfxType.Explosion, transform.position, AudioManager.instance.sfxs[(int)SfxType.Explosion].volume); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform.position, AudioManager.instance.sfxs[(int)SfxType.Fire].volume, true); 
 
         thruster.SetActive(true);
         wallExtention.SetActive(false);
@@ -355,7 +350,8 @@ public class DAOMArm : MonoBehaviour
         animator.enabled = true;
         GetComponent<LimbStretch>().enabled = true;
 
-        AudioManager.StopSound(rocketAudioSource);
+        AudioManager.StopSound(fireAudioSource);
+        AudioManager.PlaySound(SfxType.ArmAttach, transform.position, AudioManager.instance.sfxs[(int)SfxType.ArmAttach].volume);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable" && !recalling)

@@ -1062,10 +1062,10 @@ MonoBehaviour:
   wallAttachPoint: {fileID: 7231196953441779213}
   wallDistanceOffset: 0.29
   interactor: {fileID: 4702170159403195726}
-  boomSound: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+  boomSound: {fileID: 8300000, guid: 4f8d03e8c3e386941b7daec33325c9d0, type: 3}
   boomVolume: 0.5
-  rocketSound: {fileID: 8300000, guid: 7f2a71db2fb51714e9fd4efee991fa77, type: 3}
-  rocketVolume: 0.5
+  rocketSound: {fileID: 8300000, guid: 994e7c7739176fd4a915ab6e4a87862e, type: 3}
+  rocketVolume: 0.05
   isTraveling: 0
   isAttachedToSurface: 0
 --- !u!114 &98826685525456784

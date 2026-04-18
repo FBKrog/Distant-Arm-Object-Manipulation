@@ -3,33 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+public enum SfxType
+{
+    Explosion,
+    Fire,
+    ArmAttach,
+    Grab,
+    Release,
+    ButtonPress,
+    PuzzleComplete,
+    DoorOpen,
+    DoorClose,
+    Plug,
+    SlidePanel,
+    ProductionAmbience,
+    ConveyorBelt,
+    Assembly,
+    AssemblyComplete,
+}
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSourcePrefab;
-    [SerializeField] int maxAudioSourcesCount = 30;
+    [SerializeField] int maxAudioSourcesCount = 100;
     [SerializeField] List<AudioSource> availableAudioSources = new();
+    [Header("Audio Clips")]
+    public Sfx[] sfxs;
 
-    public static event Action<AudioClip, Transform, float, bool> OnPlayAudio;
-    public static event Func<AudioClip, Transform, float, bool, AudioSource> OnPlayLoopAudio;
-    public static event Action<AudioSource> OnStopLoopAudio;
 
-    /// <summary>
-    /// Plays a specified audio clip at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
-    /// </summary>
-    public static void PlaySound(AudioClip clip, Transform location, float volume, bool parented = false) => OnPlayAudio?.Invoke(clip, location, volume, parented);
+    //public static event Action<SfxType, Vector3, float, bool> OnPlayAudio;
+    //public static event Func<SfxType, Vector3, float, bool, AudioSource> OnPlayLoopAudio;
+    //public static event Action<AudioSource> OnStopLoopAudio;
 
-    /// <summary>
-    /// Plays a specified audio clip in a loop at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
-    /// </summary>
-    public static AudioSource PlayLoopSound(AudioClip clip, Transform location, float volume, bool parented = false) => OnPlayLoopAudio?.Invoke(clip, location, volume, parented);
+    ///// <summary>
+    ///// Plays a specified audio clip at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
+    ///// </summary>
+    //public static void PlaySound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false) => OnPlayAudio?.Invoke(sfx, location, volume, parented);
+
+    ///// <summary>
+    ///// Plays a specified audio clip in a loop at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
+    ///// </summary>
+    //public static AudioSource PlayLoopSound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false) => OnPlayLoopAudio?.Invoke(sfx, location, volume, parented);
     
-    /// <summary>
-    /// Stops playback of the specified audio source if it is currently playing.
-    /// </summary>
-    public static void StopSound(AudioSource source) => OnStopLoopAudio?.Invoke(source);
+    ///// <summary>
+    ///// Stops playback of the specified audio source if it is currently playing.
+    ///// </summary>
+    //public static void StopSound(AudioSource source) => OnStopLoopAudio?.Invoke(source);
     
-    static AudioManager instance;
+    public static AudioManager instance;
 
     void Awake()
     {
@@ -52,58 +75,82 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        OnPlayAudio += PlayAudio;
-        OnPlayLoopAudio += PlayLoopAudio;
-        OnStopLoopAudio += StopLoopAudio;
-    }
+    //void OnEnable()
+    //{
+    //    OnPlayAudio += PlayAudio;
+    //    OnPlayLoopAudio += PlayLoopAudio;
+    //    OnStopLoopAudio += StopLoopAudio;
+    //}
 
-    void OnDisable()
-    {
-        OnPlayAudio -= PlayAudio;
-        OnPlayLoopAudio -= PlayLoopAudio;
-        OnStopLoopAudio -= StopLoopAudio;
-    }
+    //void OnDisable()
+    //{
+    //    OnPlayAudio -= PlayAudio;
+    //    OnPlayLoopAudio -= PlayLoopAudio;
+    //    OnStopLoopAudio -= StopLoopAudio;
+    //}
 
-    void PlayAudio(AudioClip clip, Transform location, float volume, bool parented)
+#if UNITY_EDITOR
+    void OnValidate()
     {
-        if(clip == null)
+        // Assign SFX names in the inspector based on the SfxType enum.
+        string[] sfxNames = Enum.GetNames(typeof(SfxType));
+        Array.Resize(ref sfxs, sfxNames.Length);
+        for (int i = 0; i < sfxNames.Length; i++)
         {
-            Debug.LogWarning("Attempted to play a null audio clip.");
+            if (sfxs[i] == null)
+            {
+                sfxs[i] = new Sfx();
+            }
+            sfxs[i].title = sfxNames[i];
+        }
+    }
+#endif
+
+    public static void PlaySound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false)
+    {
+        var sfxType = instance.sfxs[(int)sfx];
+        if (sfxType.clips == null || sfxType.clips.Length == 0)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has no audio clips assigned.");
             return;
         }
 
-        // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
-        if (availableAudioSources.Any(item => item == null || item.gameObject == null))
+        var clipToPlay = sfxType.clips[0];
+        if (sfxType.clips.Length > 1)
         {
-            print("Cleaning up null audio sources from the pool.");
-            availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+            clipToPlay = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
         }
 
-        var clipLength = clip.length;
-        var audioSource = availableAudioSources.Find(source => !source.isPlaying);
+        // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
+        if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
+        {
+            print("Cleaning up null audio sources from the pool.");
+            instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+        }
+
+        var clipLength = clipToPlay.length;
+        var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
         
         if (audioSource == null || audioSource.gameObject == null)
         {
-            audioSource = AddAudioSource();
-            print($"Created new audio source for {clip.name}.");
+            audioSource = instance.AddAudioSource();
+            print($"Created new audio source for {clipToPlay.name}.");
         }
 
-        audioSource.transform.position = location.position;
+        audioSource.transform.position = location;
         
         if (parented)
         {
-            audioSource.transform.parent = location;
+            audioSource.transform.parent.position = location;
         }
-        audioSource.clip = clip;
+        audioSource.clip = clipToPlay;
         audioSource.volume = volume;
         audioSource.Play();
         
-        StartCoroutine(StopAudio(audioSource, clipLength + 0.1f)); // Add a small buffer to ensure the clip has finished playing before relisting the audio source.
+        instance.StartCoroutine(instance.StopSound(audioSource, clipLength + 0.1f)); // Add a small buffer to ensure the clip has finished playing before relisting the audio source.
     }
 
-    IEnumerator StopAudio(AudioSource source, float delay = 0)
+    IEnumerator StopSound(AudioSource source, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
         if (source == null) yield return null;
@@ -114,34 +161,35 @@ public class AudioManager : MonoBehaviour
         source.Stop();
     }
 
-    AudioSource PlayLoopAudio(AudioClip clip, Transform location, float volume, bool parented)
+    public static AudioSource PlayLoopSound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false)
     {
-        if (clip == null)
+        var sfxType = instance.sfxs[(int)sfx];
+        if (sfxType.clips == null || sfxType.clips.Length == 0)
         {
-            Debug.LogWarning("Attempted to play a null audio clip.");
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has no audio clips assigned.");
             return null;
         }
-
+        var clip = sfxType.clips[0];
         // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
-        if (availableAudioSources.Any(item => item == null || item.gameObject == null))
+        if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
         {
             print("Cleaning up null audio sources from the pool.");
-            availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+            instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
         }
 
-        var audioSource = availableAudioSources.Find(source => !source.isPlaying);
+        var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
         
         if (audioSource == null || audioSource.gameObject == null)
         {
-            audioSource = AddAudioSource();
+            audioSource = instance.AddAudioSource();
             print($"Created new audio source for {clip.name}.");
         }
 
-        audioSource.transform.position = location.position;
+        audioSource.transform.position = location;
 
         if (parented)
         {
-            audioSource.transform.parent = location;
+            audioSource.transform.parent.position = location;
         }
         audioSource.clip = clip;
         audioSource.volume = volume;
@@ -151,12 +199,12 @@ public class AudioManager : MonoBehaviour
         return audioSource;
     }
 
-    void StopLoopAudio(AudioSource source)
+    public static void StopLoopSound(AudioSource source)
     {
         if (source != null && source.isPlaying)
         {
-            source.transform.parent = transform;
-            StartCoroutine(StopAudio(source));
+            source.transform.parent = instance.transform;
+            instance.StartCoroutine(instance.StopSound(source));
         }
     }
 
@@ -171,4 +219,14 @@ public class AudioManager : MonoBehaviour
         availableAudioSources.Add(audioSource);
         return audioSource;
     }
+}
+
+[Serializable]
+public class Sfx
+{
+#if UNITY_EDITOR
+    [HideInInspector] public string title;
+#endif
+    public AudioClip[] clips;
+    [Range(0, 1)] public float volume;
 }

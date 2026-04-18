@@ -25,10 +25,6 @@ public class SimonSaysDoorLinker : MonoBehaviour
     [Tooltip("Duration of the slide animation in seconds.")]
     [SerializeField] private float slideDuration = 0.8f;
 
-    [Header("Audio")]
-    [SerializeField] private AudioClip _slideClip;
-    [SerializeField] private float _audioVolume = 1f;
-
     [Header("Events")]
     public UnityEvent OnPanelSlid;
 
@@ -92,8 +88,7 @@ public class SimonSaysDoorLinker : MonoBehaviour
     {
         _hasSlid = true;
 
-        if (_slideClip != null)
-            AudioManager.PlaySound(_slideClip, transform, _audioVolume);
+        AudioManager.PlaySound(SfxType.SlidePanel, transform.position, AudioManager.instance.sfxs[(int)SfxType.SlidePanel].volume);
 
         StartCoroutine(SlidePanelCoroutine());
     }

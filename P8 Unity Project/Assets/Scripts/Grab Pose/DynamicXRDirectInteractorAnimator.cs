@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System;
 
 public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
@@ -10,6 +11,12 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     [SerializeField] GrabPoseScriptableObject defaultPose;
     [SerializeField] bool leftHand = false;
     GrabPose currentGrabPose;
+
+    [Header("Audio")]
+    [SerializeField] Sfx[] sfx;
+    [SerializeField] AudioClip grabSfx;
+    [SerializeField] float grabSfxVolume = 1f;
+    [SerializeField] AudioClip releaseSfx;
 
     protected override void Awake()
     {
@@ -27,6 +34,9 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         if (args != null)
         {
             base.OnSelectEntered(args);
+
+            AudioManager.PlaySound(SfxType.Grab, transform.position, AudioManager.instance.sfxs[(int)SfxType.Grab].volume);
+
             if (args.interactableObject.transform.TryGetComponent(out GrabPose grabPose))
             {
                 currentGrabPose = grabPose;
@@ -61,7 +71,10 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         if (args != null)
+        {
             base.OnSelectExited(args);
+            AudioManager.PlaySound(SfxType.Release, transform.position, AudioManager.instance.sfxs[(int)SfxType.Release].volume);
+        }
         // Reset hand pose to initial values when releasing the object
         BendPhalanges(defaultPose.handData);
     }

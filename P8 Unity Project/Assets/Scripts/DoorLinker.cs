@@ -21,11 +21,6 @@ public class DoorLinker : MonoBehaviour
     [Header("Animation & Audio")]
     [Tooltip("Animator on the door. Will receive the 'DoorOpen' / 'DoorClose' triggers.")]
     [SerializeField] private Animator _animator;
-    [Tooltip("Audio clip to play when the door opens.")]
-    [SerializeField] private AudioClip _doorOpenClip;
-    [Tooltip("Audio clip to play when the door closes.")]
-    [SerializeField] private AudioClip _doorCloseClip;
-    [SerializeField] private float _audioVolume = 1f;
 
     [Header("Events")]
     public UnityEvent OnDoorOpened;
@@ -102,8 +97,7 @@ public class DoorLinker : MonoBehaviour
         if (_animator != null)
             _animator.SetBool("DoorOpen", true);
 
-        if (_doorOpenClip != null)
-            AudioManager.PlaySound(_doorOpenClip, transform, _audioVolume);
+        AudioManager.PlaySound(SfxType.DoorOpen, transform.position, AudioManager.instance.sfxs[(int)SfxType.DoorOpen].volume);
 
         OnDoorOpened.Invoke();
     }
@@ -121,8 +115,7 @@ public class DoorLinker : MonoBehaviour
         if (_animator != null)
             _closeCoroutine = StartCoroutine(TriggerCloseWhenReady());
 
-        if (_doorCloseClip != null)
-            AudioManager.PlaySound(_doorCloseClip, transform, _audioVolume);
+        AudioManager.PlaySound(SfxType.DoorClose, transform.position, AudioManager.instance.sfxs[(int)SfxType.DoorClose].volume);
 
         OnDoorClosed.Invoke();
     }

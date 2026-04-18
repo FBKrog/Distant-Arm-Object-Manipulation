@@ -15,7 +15,7 @@ public class ConveyorBelt : MonoBehaviour
     void OnDisable()
     {
         ConveyorProductionManager.OnAllConveyorBeltsStateChanged -= (state) => isActive = state;
-        ConveyorProductionManager.OnAllConveyorBeltsSpeedChanged += (newSpeed) => speed = newSpeed;
+        ConveyorProductionManager.OnAllConveyorBeltsSpeedChanged -= (newSpeed) => speed = newSpeed;
     }
 
     void Update()

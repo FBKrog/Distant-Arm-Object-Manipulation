@@ -8,10 +8,8 @@ public class ConveyorProduction : MonoBehaviour
     public bool isActive = false;
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] GameObject[] robotPartPrefabs;
-    
-    [Header("Audio")]
-    [SerializeField] AudioClip productionSound;
-    AudioSource currentLoopSound;
+
+    AudioSource productionAudioSource;
 
     void Awake()
     {
@@ -38,14 +36,14 @@ public class ConveyorProduction : MonoBehaviour
         {
             StartProduction();
 
-            currentLoopSound = AudioManager.PlayLoopSound(productionSound, transform, 1);
+            productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform.position, AudioManager.instance.sfxs[(int)SfxType.ProductionAmbience].volume);
             print($"Production #{productionID} enabled.");
         }
         else
         {
             StopAllCoroutines();
 
-            AudioManager.StopSound(currentLoopSound);
+            AudioManager.StopLoopSound(productionAudioSource);
             print($"Production #{productionID} disabled.");
         }
     }
