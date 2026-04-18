@@ -350,7 +350,7 @@ public class DAOMArm : MonoBehaviour
         animator.enabled = true;
         GetComponent<LimbStretch>().enabled = true;
 
-        AudioManager.StopSound(fireAudioSource);
+        AudioManager.StopLoopSound(fireAudioSource);
         AudioManager.PlaySound(SfxType.ArmAttach, transform.position, AudioManager.instance.sfxs[(int)SfxType.ArmAttach].volume);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.

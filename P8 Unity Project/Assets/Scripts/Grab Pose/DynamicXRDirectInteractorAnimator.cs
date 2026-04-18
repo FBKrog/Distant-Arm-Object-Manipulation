@@ -12,12 +12,6 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     [SerializeField] bool leftHand = false;
     GrabPose currentGrabPose;
 
-    [Header("Audio")]
-    [SerializeField] Sfx[] sfx;
-    [SerializeField] AudioClip grabSfx;
-    [SerializeField] float grabSfxVolume = 1f;
-    [SerializeField] AudioClip releaseSfx;
-
     protected override void Awake()
     {
         if (handData == null)

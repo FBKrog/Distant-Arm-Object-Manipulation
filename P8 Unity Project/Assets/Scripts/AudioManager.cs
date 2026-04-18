@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+// For new SFX types, add a new entry to the SfxType enum and then assign audio clips to the new SFX type in the AudioManager inspector.
 public enum SfxType
 {
     Explosion,
@@ -31,26 +32,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<AudioSource> availableAudioSources = new();
     [Header("Audio Clips")]
     public Sfx[] sfxs;
-
-
-    //public static event Action<SfxType, Vector3, float, bool> OnPlayAudio;
-    //public static event Func<SfxType, Vector3, float, bool, AudioSource> OnPlayLoopAudio;
-    //public static event Action<AudioSource> OnStopLoopAudio;
-
-    ///// <summary>
-    ///// Plays a specified audio clip at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
-    ///// </summary>
-    //public static void PlaySound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false) => OnPlayAudio?.Invoke(sfx, location, volume, parented);
-
-    ///// <summary>
-    ///// Plays a specified audio clip in a loop at a given location with a specified volume. Optionally, the audio source can be parented to the location if the audio source needs to follow it.
-    ///// </summary>
-    //public static AudioSource PlayLoopSound(SfxType sfx, Vector3 location, float volume = 1f, bool parented = false) => OnPlayLoopAudio?.Invoke(sfx, location, volume, parented);
-    
-    ///// <summary>
-    ///// Stops playback of the specified audio source if it is currently playing.
-    ///// </summary>
-    //public static void StopSound(AudioSource source) => OnStopLoopAudio?.Invoke(source);
     
     public static AudioManager instance;
 
@@ -74,20 +55,6 @@ public class AudioManager : MonoBehaviour
             availableAudioSources.Add(audioSource);
         }
     }
-
-    //void OnEnable()
-    //{
-    //    OnPlayAudio += PlayAudio;
-    //    OnPlayLoopAudio += PlayLoopAudio;
-    //    OnStopLoopAudio += StopLoopAudio;
-    //}
-
-    //void OnDisable()
-    //{
-    //    OnPlayAudio -= PlayAudio;
-    //    OnPlayLoopAudio -= PlayLoopAudio;
-    //    OnStopLoopAudio -= StopLoopAudio;
-    //}
 
 #if UNITY_EDITOR
     void OnValidate()
