@@ -72,7 +72,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8540c6a2cdfc67f488df3a6cd9d049ad, type: 2}
+  - {fileID: 2100000, guid: b94645a4779a3ed47825d97935aa151c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,7 +267,8 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   goGoInteractor: {fileID: 0}
-  allowedTechnique: 0
+  daomPositionOffset: {x: -0.1, y: -0.02, z: 0}
+  daomRotationOffset: {x: 0, y: 180, z: 135}
   leverHandlePoint: {fileID: 6044137656340020379}
   hingeAxisLocal: {x: 0, y: 1, z: 0}
   activationAngle: -75
@@ -391,7 +392,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d817e0273f46fc045be113b292df6d2a, type: 2}
+  - {fileID: 2100000, guid: 30fe196d803bb7148b44f25bf2ef208f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
