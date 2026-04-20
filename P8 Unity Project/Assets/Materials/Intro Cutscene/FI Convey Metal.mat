@@ -7,13 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FI Conveyer Belt
+  m_Name: FI Convey Metal
   m_Shader: {fileID: 4800000, guid: b50cbe1da89da2840bd6442d4bbbe9ff, type: 3}
   m_Parent: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _USEEMISSION_OFF
-  - _USESPECULAR_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,8 +26,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _UseSpecular: 0
+    - _UseSpecular: 1
     m_Colors:
-    - _BaseColor: {r: 0.2509804, g: 0.4, b: 0.65882355, a: 1}
+    - _BaseColor: {r: 0.6949537, g: 0.9037421, b: 0.9150943, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

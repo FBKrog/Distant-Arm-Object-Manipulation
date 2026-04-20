@@ -103,6 +103,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7800366522007600050, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: ring.base
+      objectReference: {fileID: 0}
+    - target: {fileID: -7415285601213445385, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: thumb.tip
+      objectReference: {fileID: 0}
+    - target: {fileID: -6310756747771404092, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: hand.thumb
+      objectReference: {fileID: 0}
+    - target: {fileID: -6138658870569338995, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: index.mid
+      objectReference: {fileID: 0}
+    - target: {fileID: -5030152674139131275, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: ring.tip
+      objectReference: {fileID: 0}
+    - target: {fileID: -3381810112335060850, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: middle.tip
+      objectReference: {fileID: 0}
     - target: {fileID: -3054988607887058027, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
       propertyPath: m_LocalScale.x
       value: 400
@@ -159,6 +183,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2341377311162908069, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: forearm
+      objectReference: {fileID: 0}
+    - target: {fileID: -1371634617890153096, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: midde.mid
+      objectReference: {fileID: 0}
+    - target: {fileID: -970174833484665692, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: hand.index
+      objectReference: {fileID: 0}
+    - target: {fileID: -6399889800996313, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: hand.ring
+      objectReference: {fileID: 0}
     - target: {fileID: 718232782502040016, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -166,6 +206,30 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
       propertyPath: m_Name
       value: NewDAOMArm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194578189567759821, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: hand.middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307015018988574666, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: little.mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322906796332518706, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: little.base
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323400052439225762, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: index.tip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276670287129332551, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: thumb.base
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522137787479408380, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: wrist
       objectReference: {fileID: 0}
     - target: {fileID: 5587753750995799451, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,6 +242,26 @@ PrefabInstance:
     - target: {fileID: 5587753750995799451, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849379903523173186, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: little.tip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249323713953326964, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: hand.little
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787252796812685646, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: ring.mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730782243642062673, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: middle.base
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183547034804788238, guid: a31a2d3d7f5214c488612edebd3d617e, type: 3}
+      propertyPath: m_Name
+      value: index.base
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
