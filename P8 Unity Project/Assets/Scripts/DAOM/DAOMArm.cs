@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [DefaultExecutionOrder(100)]
+[RequireComponent(typeof(LimbStretch))]
 public class DAOMArm : MonoBehaviour
 {
     public static DAOMArm ActiveInstance { get; private set; }
@@ -144,7 +145,7 @@ public class DAOMArm : MonoBehaviour
             interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable") // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
+        if (hitInteractable != null && hitInteractable.transform.gameObject.CompareTag("Unrecallable")) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
             this.hitInteractable = hitInteractable;
             rotationStartTime = 1; // Don't start rotating until the object is grabbed.
@@ -183,7 +184,7 @@ public class DAOMArm : MonoBehaviour
 
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         
-        if(hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable")
+        if(hitInteractable != null && hitInteractable.transform.gameObject.CompareTag("Unrecallable"))
         {
             selectedInteractable = hitInteractable;
         }
@@ -253,7 +254,7 @@ public class DAOMArm : MonoBehaviour
 
                 if (d >= rotationStartTime)
                 {
-                    StartCoroutine(PrepareSurfaceLanding(point));
+                    StartCoroutine(PrepareSurfaceLanding());
                 }
                 if (d >= 1 && mayAttach)
                 {
@@ -287,7 +288,7 @@ public class DAOMArm : MonoBehaviour
 
             if (d >= rotationStartTime)
             {
-                StartCoroutine(PrepareSurfaceLanding(goPoint.transform.position));
+                StartCoroutine(PrepareSurfaceLanding());
             }
             if (d >= 1 && mayAttach)
             {
@@ -301,7 +302,7 @@ public class DAOMArm : MonoBehaviour
     /// <summary>
     /// Prepares the arm for landing on a surface by initiating its rotation to the appropriate orientation.
     /// </summary>
-    IEnumerator PrepareSurfaceLanding(Vector3 point)
+    IEnumerator PrepareSurfaceLanding()
     {
         if (!isLanding)
         {
@@ -313,8 +314,7 @@ public class DAOMArm : MonoBehaviour
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
             
             yield return new WaitForSeconds(rotationDuration);
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, -transform.forward, out hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
+            if(Physics.Raycast(transform.position, -transform.forward, out var hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
                 targetRot = Quaternion.LookRotation(hit.normal);
             else
                 targetRot = LookDirection(playerCamera.transform.position);
@@ -354,7 +354,7 @@ public class DAOMArm : MonoBehaviour
         AudioManager.PlaySound(SfxType.ArmAttach, transform);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
-        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable" && !recalling)
+        if (hitInteractable != null && !hitInteractable.transform.gameObject.CompareTag("Unrecallable") && !recalling)
         {
             LaunchArm.OnEarlyRecall();
             interactor.interactionManager.SelectEnter(interactor, hitInteractable);

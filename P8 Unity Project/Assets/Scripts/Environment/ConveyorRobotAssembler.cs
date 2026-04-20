@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class ConveyorRobotAssembler : MonoBehaviour
 {
     [SerializeField] GameObject robotPrefab;
+    [SerializeField] GameObject spawnPoint;
+    [SerializeField] GameObject robotsParent;
     [SerializeField] List<Parts> acquiredParts = new();
 
     void OnTriggerEnter(Collider other)
@@ -34,7 +36,7 @@ public class ConveyorRobotAssembler : MonoBehaviour
     void AssembleRobot()
     {
         // Instantiate the robot at the assembler's position
-        Instantiate(robotPrefab, transform.position, Quaternion.identity, transform);
+        Instantiate(robotPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, robotsParent.transform);
         // Clear one of each acquired part for the next assembly
         foreach (var part in Enum.GetValues(typeof(Parts)).Cast<Parts>())
             acquiredParts.Remove(part);

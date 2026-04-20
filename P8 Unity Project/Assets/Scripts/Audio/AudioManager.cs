@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 using Random = UnityEngine.Random;
 
 // For new SFX types, add a new entry to the SfxType enum and then assign audio clips to the new SFX type in the AudioManager inspector.
@@ -32,6 +31,7 @@ public enum SfxType
 
 public class AudioManager : MonoBehaviour
 {
+    private static WaitForSeconds waitForSeconds0_1 = new(0.1f);
     [SerializeField] AudioSource audioSourcePrefab;
     [SerializeField] int maxAudioSourcesCount = 100;
     [SerializeField] List<AudioSource> availableAudioSources = new();
@@ -124,7 +124,6 @@ public class AudioManager : MonoBehaviour
 #if UNITY_EDITOR
         audioSource.name = $"AudioSource_{sfx}_{clip.name}";
 #endif
-        //instance.StartCoroutine(instance.StopAudio(audioSource, clipLength + 0.1f)); // Add a small buffer to ensure the clip has finished playing before relisting the audio source.
     }
 
     IEnumerator StopSound(AudioSource source)
@@ -133,7 +132,7 @@ public class AudioManager : MonoBehaviour
         source.transform.parent = transform;
         
         source.volume = 0.0001f; // Avoid clipping sounds when stopping.
-        yield return new WaitForSeconds(0.1f);
+        yield return waitForSeconds0_1;
         source.loop = false;
         source.Stop();
     }

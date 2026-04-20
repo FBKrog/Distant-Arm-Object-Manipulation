@@ -30,7 +30,9 @@ Transform:
   m_LocalPosition: {x: -26.25, y: 1.951, z: 2.726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4216889561002405515}
+  - {fileID: 4226825764042895307}
   m_Father: {fileID: 3049178235229610043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &734714378869558976
@@ -46,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorRobotAssembler
   robotPrefab: {fileID: 498208067834640206, guid: 0c954f78d429cd544a4dd66c2a0e7299, type: 3}
+  spawnPoint: {fileID: 5725342653715319993}
+  robotsParent: {fileID: 6845596982670114994}
   acquiredParts: 
 --- !u!65 &8424265054999833900
 BoxCollider:
@@ -210,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625397bbd887bc345b036a600fe8ac69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorProductionManager
+  beltMaterial: {fileID: 2100000, guid: 8495a5fa24da320448ca5d8fe1bc6003, type: 2}
+  productionRateSlider: {fileID: 0}
+  conveyorBeltsSpeedSlider: {fileID: 0}
+  speedDivider: 4.75
 --- !u!1 &3433979648819681814
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +460,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5725342653715319993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4216889561002405515}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4216889561002405515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725342653715319993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.759, z: 3.357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205521743001981347}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &6027574771439423193
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorProduction
   spawnPoint: {fileID: 8018018276310872555}
+  productionID: 2
+  isActive: 0
   spawnInterval: 2
   robotPartPrefabs:
   - {fileID: 6178059000308654990, guid: 54bd5ab7679e25542b940187013a4608, type: 3}
@@ -566,8 +607,6 @@ MonoBehaviour:
   - {fileID: 2210865662669608045, guid: 7086e835eb0e9d449b3a1b3d063c008c, type: 3}
   - {fileID: 4903688912751333956, guid: 80c07c6c1a7fe6b44a5ba7cb180cfb35, type: 3}
   - {fileID: 7490278131110730371, guid: 507a34cd9d2196e4fae44bee20db46c6, type: 3}
-  productionID: 2
-  isActive: 0
 --- !u!1 &6160006416900379239
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +712,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorProduction
   spawnPoint: {fileID: 3433979648819681814}
+  productionID: 1
+  isActive: 0
   spawnInterval: 2
   robotPartPrefabs:
   - {fileID: 6178059000308654990, guid: 54bd5ab7679e25542b940187013a4608, type: 3}
@@ -682,8 +723,37 @@ MonoBehaviour:
   - {fileID: 2210865662669608045, guid: 7086e835eb0e9d449b3a1b3d063c008c, type: 3}
   - {fileID: 4903688912751333956, guid: 80c07c6c1a7fe6b44a5ba7cb180cfb35, type: 3}
   - {fileID: 7490278131110730371, guid: 507a34cd9d2196e4fae44bee20db46c6, type: 3}
-  productionID: 1
-  isActive: 0
+--- !u!1 &6845596982670114994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4226825764042895307}
+  m_Layer: 0
+  m_Name: Robots Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4226825764042895307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845596982670114994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205521743001981347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8018018276310872555
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorProduction
   spawnPoint: {fileID: 4417799429229154490}
+  productionID: 0
+  isActive: 0
   spawnInterval: 2
   robotPartPrefabs:
   - {fileID: 6178059000308654990, guid: 54bd5ab7679e25542b940187013a4608, type: 3}
@@ -901,8 +973,6 @@ MonoBehaviour:
   - {fileID: 2210865662669608045, guid: 7086e835eb0e9d449b3a1b3d063c008c, type: 3}
   - {fileID: 4903688912751333956, guid: 80c07c6c1a7fe6b44a5ba7cb180cfb35, type: 3}
   - {fileID: 7490278131110730371, guid: 507a34cd9d2196e4fae44bee20db46c6, type: 3}
-  productionID: 0
-  isActive: 0
 --- !u!1001 &7945957489068500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -955,9 +1025,37 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.12025144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.z
+      value: 0.008109812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000000010516111
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.009002976
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0040549007
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (06)
+      value: =ConveyorBelt (06)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1025,7 +1123,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1091,7 +1191,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (01)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1157,7 +1259,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1223,7 +1327,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (03)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1289,7 +1395,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (26)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1351,9 +1459,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28037512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 3.181117e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.01044353
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (22)
+      value: =ConveyorBelt (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1421,7 +1549,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (21)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1487,7 +1617,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1553,7 +1685,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (17)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1619,7 +1753,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (27)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1679,7 +1815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2098276780273173535, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2901423067020190588, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_IsActive
@@ -1689,7 +1825,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (29)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.915
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.095
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.49999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779409123298421549, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1751,9 +1921,37 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.11932952
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.z
+      value: 0.008109812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000000010760566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.009183001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0040549007
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (04)
+      value: =ConveyorBelt (04)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1821,7 +2019,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (24)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1887,7 +2087,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (02)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1957,7 +2159,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (31)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2027,7 +2231,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (33)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2097,7 +2303,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (30)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2163,7 +2371,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (23)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2229,7 +2439,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (25)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2295,7 +2507,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (19)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2365,7 +2579,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (38)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2435,7 +2651,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (37)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2501,7 +2719,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (15)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2567,7 +2787,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (09)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2633,7 +2855,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (18)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2703,7 +2927,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (40)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2773,7 +2999,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (28)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2839,7 +3067,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (07)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2871,19 +3101,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2891,7 +3121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 914245850461574837, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2905,9 +3135,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.19953471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 2.65638e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.010128436
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (34)
+      value: =ConveyorBelt (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2971,9 +3221,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.12110455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.z
+      value: 0.008109812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000001154444
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.00976027
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0040549007
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (05)
+      value: =ConveyorBelt (05)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.z
+      value: 1.38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3041,7 +3323,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (14)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3107,7 +3391,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3173,9 +3459,37 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.y
+      value: 0.08040659
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.z
+      value: 0.008109812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000000011762954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.y
+      value: 0.009921192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931183545523233033, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0040549007
+      objectReference: {fileID: 0}
     - target: {fileID: 5448006851289548591, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_Name
-      value: ConveyorBelt (39)
+      value: =ConveyorBelt (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+      propertyPath: m_Size.x
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3243,7 +3557,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (20)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3309,7 +3625,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3379,7 +3697,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (32)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3445,7 +3765,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (16)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3515,7 +3837,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (35)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3581,7 +3905,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (08)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3651,7 +3977,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt (36)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6463684686827216959, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
+    - {fileID: 7424241201704581354, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
