@@ -397,7 +397,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069745311657217835}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   tip: {fileID: 7438943762157963578}
   daomIKTarget: {fileID: 2733040260177249838}
   thruster: {fileID: 2955273350883374444}
-  travelSpeed: 3
+  travelSpeed: 7.5
   lowerArmExtention: {x: 0, y: 0.0021331396, z: 0}
   lowerArmRetraction: {x: 0, y: -0.0005, z: 0}
   retractionTime: 0.2
@@ -1062,10 +1062,6 @@ MonoBehaviour:
   wallAttachPoint: {fileID: 7231196953441779213}
   wallDistanceOffset: 0.29
   interactor: {fileID: 4702170159403195726}
-  boomSound: {fileID: 8300000, guid: 4f8d03e8c3e386941b7daec33325c9d0, type: 3}
-  boomVolume: 0.5
-  rocketSound: {fileID: 8300000, guid: 994e7c7739176fd4a915ab6e4a87862e, type: 3}
-  rocketVolume: 0.05
   isTraveling: 0
   isAttachedToSurface: 0
 --- !u!114 &98826685525456784
@@ -1465,7 +1461,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5588566729710730360}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
