@@ -134,6 +134,7 @@ public class AudioManager : MonoBehaviour
         
         source.volume = 0.0001f; // Avoid clipping sounds when stopping.
         yield return new WaitForSeconds(0.1f);
+        source.loop = false;
         source.Stop();
     }
 
