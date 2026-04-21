@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 8455751632269102813}
   - component: {fileID: 1239613381208476428}
   - component: {fileID: 6791869549770645229}
+  - component: {fileID: 3865031208980814939}
   m_Layer: 0
   m_Name: Outer
   m_TagString: Untagged
@@ -180,6 +181,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3865031208980814939
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271683278046698268}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4310030198444546032, guid: c5d4e7460f903a843a555e4cd94e0e4f, type: 3}
 --- !u!1 &7821709038990472344
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +339,7 @@ GameObject:
   - component: {fileID: 3509723757077931505}
   - component: {fileID: 2522555312176780621}
   - component: {fileID: 7270751214085147253}
+  - component: {fileID: 5950900063159751144}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -395,3 +419,25 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5950900063159751144
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036131410229307242}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2186430941476567602, guid: c5d4e7460f903a843a555e4cd94e0e4f, type: 3}

@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 453895112645414635}
   - component: {fileID: 560447522950747548}
   - component: {fileID: 7092368622773112415}
+  - component: {fileID: 8290615809520691612}
   m_Layer: 0
   m_Name: Walls.002
   m_TagString: Untagged
@@ -307,6 +308,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8290615809520691612
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134449446205662106}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5269816056853106933, guid: 64ac78cdd58f7b343a68cab4f1fe6854, type: 3}
 --- !u!1 &5368356140642045517
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +521,7 @@ GameObject:
   - component: {fileID: 2732562949005328604}
   - component: {fileID: 5100647375133178187}
   - component: {fileID: 2513771742361079604}
+  - component: {fileID: 4862739753079792720}
   m_Layer: 0
   m_Name: Outer.002
   m_TagString: Untagged
@@ -577,3 +601,25 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4862739753079792720
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061459230453013804}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 330702849003090912, guid: 64ac78cdd58f7b343a68cab4f1fe6854, type: 3}

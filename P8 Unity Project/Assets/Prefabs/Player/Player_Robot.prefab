@@ -574,7 +574,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.16
+  m_Radius: 0.11
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7301566363545957074
 MonoBehaviour:
@@ -1530,18 +1530,6 @@ MonoBehaviour:
   onTeleportedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
-        m_MethodName: AdvanceIfStepId
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: TeleportStep
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
         m_MethodName: AdvanceIfStepId
@@ -5512,7 +5500,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.16
+  m_Radius: 0.11
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7716455207520570192
 MonoBehaviour:
@@ -5727,14 +5715,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7781280962212410777}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.25024584, y: 0.0051243003, z: 0.0013245045, w: 0.9681679}
+  m_LocalPosition: {x: -0.00003051764, y: 0.000017881393, z: -0.00050163275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8424142011389712124}
   m_Father: {fileID: 8302956280079164589}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -28.985, y: 0.607, z: 0}
 --- !u!20 &1872071629843698529
 Camera:
   m_ObjectHideFlags: 0
@@ -6167,7 +6155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayers:
-    m_Bits: 2147483648
+    m_Bits: 2097152
   m_Handedness: 1
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 0
