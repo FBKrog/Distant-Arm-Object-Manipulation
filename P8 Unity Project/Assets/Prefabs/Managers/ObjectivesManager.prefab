@@ -1,5 +1,195 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &674290638065339267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815460456919414840}
+  - component: {fileID: 6557113022658846402}
+  m_Layer: 0
+  m_Name: TutorialManager GoGo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815460456919414840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674290638065339267}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4170788173571011524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6557113022658846402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674290638065339267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fbdcbb681bdeb4fb26b3678d019e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
+  playTutorialOnStart: 0
+  vrCamera: {fileID: 0}
+  steps:
+  - subtitleText: You can use the Go-Go interaction technique to extend your arm
+      to interact with distant objects.
+    stepId: 
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
+      outward and use the [SELECT] button to grab it.
+    stepId: 
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
+      teleportation.
+    stepId: 
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
+      destination.
+    stepId: TeleportStep
+    displayDuration: 0
+    completesObjective: OrbObjective
+  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
+      to begin the tutorial puzzle.
+    stepId: HallwayStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
+      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
+      the lever to turn on the light in the factory.
+    stepId: FuseColliderStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
+      the orb and teleport further into the factory to complete the remaining tasks.
+    stepId: 
+    displayDuration: 6
+    completesObjective: Tutorial
+  maxPanelWidth: 0.8
+  panelPadding: 3
+  followDistance: 0.8
+  viewOffsetX: 0
+  viewOffsetY: -0.5
+  followSmoothing: 0.35
+  rotationSpeed: 6
+  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
+  textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
+  fontSize: 3.5
+  subtitleFont: {fileID: 0}
+  objectivesManager: {fileID: 1034715964346803313}
+--- !u!1 &1206466485640629815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4648632467607329093}
+  - component: {fileID: 7682397682567780143}
+  m_Layer: 0
+  m_Name: TutorialManager HOMER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4648632467607329093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206466485640629815}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4170788173571011524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7682397682567780143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206466485640629815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fbdcbb681bdeb4fb26b3678d019e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
+  playTutorialOnStart: 0
+  vrCamera: {fileID: 0}
+  steps:
+  - subtitleText: You can use the Scaled HOMER interaction technique to relocate
+      your arm to interact with distant objects.
+    stepId: 
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
+      to aim, the [TRIGGER] button to shoot, and the [SELECT] button to grab.
+    stepId: 
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
+      teleportation.
+    stepId: 
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
+      destination.
+    stepId: TeleportStep
+    displayDuration: 0
+    completesObjective: OrbObjective
+  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
+      to begin the tutorial puzzle.
+    stepId: HallwayStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
+      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
+      the lever to turn on the light in the factory.
+    stepId: FuseColliderStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
+      the orb and teleport further into the factory to complete the remaining tasks.
+    stepId: 
+    displayDuration: 6
+    completesObjective: Tutorial
+  maxPanelWidth: 0.8
+  panelPadding: 3
+  followDistance: 0.8
+  viewOffsetX: 0
+  viewOffsetY: -0.5
+  followSmoothing: 0.35
+  rotationSpeed: 6
+  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
+  textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
+  fontSize: 3.5
+  subtitleFont: {fileID: 0}
+  objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &4155103511497936179
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,84 +237,53 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: Aim your arm by holding the right hand trigger button. Release
-      the trigger to extend arm.
+  - subtitleText: You can use the DAOM interaction technique to attach your arm to
+      any surface for remote control or to shoot at an object to retract it directly.
+    stepId: 
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
+      to aim, the [TRIGGER] button to shoot and retract, and the [SELECT] button
+      to grab it.
     stepId: 
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Grab the Orb of Teleportation by holding the right hand select
-      button.
+  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
+      teleportation.
     stepId: 
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Retract your arm with the orb in hand by pressing the trigger button.
-    stepId: 
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: Place the orb in the empty slot on your left hand.
-    stepId: 
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: You can now teleport by tilting the left thumbstick forward.
-    stepId: 
-    displayDuration: 4
-    completesObjective: OrbObjective
-  - subtitleText: Teleport to the next area through the door and look for the plate.
+  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
+      destination.
     stepId: TeleportStep
     displayDuration: 0
-    completesObjective: 
-  - subtitleText: Teleport on top of the pressure plate.
-    stepId: LeverPlateStep
+    completesObjective: OrbObjective
+  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
+      to begin the tutorial puzzle.
+    stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Detatch the orb from your left hand and place it on the pedestal
-      to start the 1st puzzle.
-    stepId: OrbPedestalStep
+  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
+      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
+      the lever to turn on the light in the factory.
+    stepId: FuseColliderStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Grab and pull down the lever by shooting your arm on the surface
-      of the wall and using the select button when your hand is on the handle..
-    stepId: LeverStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: You have now completed the first objective.
+  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
+      the orb and teleport further into the factory to complete the remaining tasks.
     stepId: 
-    displayDuration: 3
-    completesObjective: 
-  - subtitleText: Regrab the orb from the pedestal and teleport to the next room.
-    stepId: RegrabOrbStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: When starting an objective you always have to teleport to the plate
-      underneath the pedestal.
-    stepId: FusePlateStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: When standing on the plate, you need to grab the orb off your left
-      hand and place it on the pedestal to start the objective.
-    stepId: FuseOrbStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: The fusebox needs 3 fuses to function. Grab the missing fuse and
-      place it in the empty slot.
-    stepId: FuseStep
-    displayDuration: 0
-    completesObjective: 
-  - subtitleText: You have now completed the tutorial, regrab the orb and go back
-      through the door and into the main factory to complete the remaining objectives.
-    stepId: 
-    displayDuration: 8
+    displayDuration: 6
     completesObjective: Tutorial
-  maxPanelWidth: 1.2
-  panelPadding: 5
-  followDistance: 1.5
+  maxPanelWidth: 0.8
+  panelPadding: 3
+  followDistance: 0.8
   viewOffsetX: 0
-  viewOffsetY: -0.22
-  followSmoothing: 0.3
-  rotationSpeed: 5
-  backgroundColor: {r: 0.2603773, g: 0.24394456, b: 0.22942679, a: 0.4745098}
+  viewOffsetY: -0.5
+  followSmoothing: 0.35
+  rotationSpeed: 6
+  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
-  fontSize: 6
+  fontSize: 3.5
   subtitleFont: {fileID: 0}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &5950508674144004181
@@ -139,7 +298,6 @@ GameObject:
   - component: {fileID: 1034715964346803313}
   - component: {fileID: 5721923283312269138}
   - component: {fileID: 1407943549580462494}
-  - component: {fileID: 7906474305058889055}
   m_Layer: 0
   m_Name: ObjectivesManager
   m_TagString: Untagged
@@ -161,6 +319,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2399485307500871039}
+  - {fileID: 815460456919414840}
+  - {fileID: 4648632467607329093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1034715964346803313
@@ -185,9 +345,9 @@ MonoBehaviour:
   onObjectiveCompleted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DoorTrigger, Assembly-CSharp
-        m_MethodName: ActivateIfObjectiveCompleted
+      - m_Target: {fileID: 1407943549580462494}
+        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
+        m_MethodName: ActivateIfName
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -197,9 +357,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1407943549580462494}
-        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
-        m_MethodName: ActivateIfName
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DoorTrigger, Assembly-CSharp
+        m_MethodName: ActivateIfObjectiveCompleted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -225,12 +385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbTutorialObjective
   tutorialManager: {fileID: 7143218743850561371}
-  homerRaycast: {fileID: 0}
   launchArm: {fileID: 0}
-  goGoExtend: {fileID: 0}
   orbConnect: {fileID: 0}
   orbGrabInteractable: {fileID: 0}
-  vrCamera: {fileID: 0}
   autoStart: 1
 --- !u!114 &1407943549580462494
 MonoBehaviour:
@@ -245,18 +402,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
   activateOnObjective: OrbObjective
-  tutorialManager: {fileID: 7143218743850561371}
---- !u!114 &7906474305058889055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950508674144004181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3539bb40fa1e1049a4fc66a03044ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
-  activateOnObjective: TutorialObjective
   tutorialManager: {fileID: 7143218743850561371}
