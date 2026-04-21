@@ -60,10 +60,14 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: bbafd529adb511d4fa5c1859d4f523d3, type: 3}
     volume: 0.5
-  - title: TPHumming
+  - title: TeleportAiming
     clips:
     - {fileID: 8300000, guid: 9218e5995093bf34eb20d2b6f534040a, type: 3}
-    volume: 0.5
+    volume: 0.2
+  - title: Teleport
+    clips:
+    - {fileID: 8300000, guid: 6f00864788b79094a8f4a6862dc64768, type: 3}
+    volume: 0.2
   - title: Grab
     clips:
     - {fileID: 8300000, guid: cd512b861ac24a640b5ff94774c60ffa, type: 3}
@@ -71,15 +75,9 @@ MonoBehaviour:
   - title: Release
     clips: []
     volume: 0.5
-  - title: Orb
+  - title: OrbPlaced
     clips:
     - {fileID: 8300000, guid: bf8ee6f2d1391f24e97e3bdcdef1ec1f, type: 3}
-    volume: 0
-  - title: ButtonPress
-    clips: []
-    volume: 0.5
-  - title: PuzzleComplete
-    clips: []
     volume: 0.5
   - title: DoorOpen
     clips:
@@ -88,8 +86,12 @@ MonoBehaviour:
   - title: DoorClose
     clips:
     - {fileID: 8300000, guid: 0c18dee12a3fc934d8fb7ca04a24ebde, type: 3}
-    volume: 0
-  - title: Plug
+    volume: 0.5
+  - title: WirePlug
+    clips:
+    - {fileID: 8300000, guid: aba060f8493629d49af41d45e20741a6, type: 3}
+    volume: 0.5
+  - title: SimonButtonPress
     clips:
     - {fileID: 8300000, guid: 9e56d0922ac5442409c3f79c49f10636, type: 3}
     volume: 0.5
@@ -100,10 +102,14 @@ MonoBehaviour:
   - title: SimonWrong
     clips:
     - {fileID: 8300000, guid: 0d9c4bac447dce34092556c64eff2e13, type: 3}
-    volume: 0
+    volume: 0.5
+  - title: SimonComplete
+    clips:
+    - {fileID: 8300000, guid: 21e1babb52b976b4aaaab49258c592b0, type: 3}
+    volume: 0.5
   - title: SlidePanel
     clips: []
-    volume: 0
+    volume: 0.5
   - title: ProductionAmbience
     clips:
     - {fileID: 8300000, guid: 7f9080f43fe7f524ea4efd2f1344c4bf, type: 3}
@@ -111,11 +117,9 @@ MonoBehaviour:
   - title: ConveyorBelt
     clips:
     - {fileID: 8300000, guid: 8fe034be0e3a34f4995de6fb64729cc0, type: 3}
-    volume: 1
+    volume: 0.5
   - title: Assembly
     clips:
-    - {fileID: 8300000, guid: 711604b0d78a3ff469a94fdbbafe3fa4, type: 3}
-    - {fileID: 8300000, guid: b66fec3e57ac9f1438cb4a8faf7717b2, type: 3}
     - {fileID: 8300000, guid: 6944629cb756aba4a88cb4e6b4e3f30f, type: 3}
     - {fileID: 8300000, guid: 786f99b503f2eff4ba55db369ebe2725, type: 3}
     - {fileID: 8300000, guid: 85bac48154c7260428787567baa698a7, type: 3}
@@ -125,4 +129,27 @@ MonoBehaviour:
   - title: AssemblyComplete
     clips:
     - {fileID: 8300000, guid: cd1bac49efa47ba4c9883f7fa0d41142, type: 3}
+    volume: 0.5
+  - title: FuseInsert
+    clips:
+    - {fileID: 8300000, guid: 357a411dd65c80544a8246a1ec33abb9, type: 3}
+    volume: 0.5
+  - title: ValveActivated
+    clips:
+    - {fileID: 8300000, guid: 8111123ba9f97574cb8106d59e40111e, type: 3}
+    volume: 0.5
+  - title: ValveTurn
+    clips: []
+    volume: 0.5
+  - title: WireComplete
+    clips:
+    - {fileID: 8300000, guid: e5b8fdc5841f22946bf3483f5af029de, type: 3}
+    volume: 0.5
+  - title: LeverActivate
+    clips: []
+    volume: 0
+  - title: FactoryMachine
+    clips:
+    - {fileID: 8300000, guid: 711604b0d78a3ff469a94fdbbafe3fa4, type: 3}
+    - {fileID: 8300000, guid: b66fec3e57ac9f1438cb4a8faf7717b2, type: 3}
     volume: 0.5

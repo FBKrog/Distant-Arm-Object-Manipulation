@@ -35,7 +35,7 @@ public class PlugController : MonoBehaviour
     private IEnumerator SnapWire()
     {
         isConected = true; // guard against re-entry immediately
-
+        AudioManager.PlaySound(SfxType.WirePlug, transform);
         var grab = endAnchor.GetComponent<XRGrabInteractable>();
 
         // Force-release from the player's hand

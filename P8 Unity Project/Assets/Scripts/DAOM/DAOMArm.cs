@@ -315,7 +315,7 @@ public class DAOMArm : MonoBehaviour
             
             yield return new WaitForSeconds(rotationDuration);
             if(Physics.Raycast(transform.position, -transform.forward, out var hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
-                targetRot = Quaternion.LookRotation(hit.normal);
+                targetRot = Quaternion.LookRotation(hit.normal - playerCamera.transform.forward);
             else
                 targetRot = LookDirection(playerCamera.transform.position);
             var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90,

@@ -3881,12 +3881,12 @@ MonoBehaviour:
   launchPoint: {fileID: 7253741170936662748}
   interactor: {fileID: 7716455207520570192}
   launchInput: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  aimInput: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  aimInput: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   aiming: 0
   canLaunch: 1
   aimOffset: {fileID: 1929745318263289077}
-  validColor: {r: 1, g: 0.79383534, b: 0, a: 0}
-  invalidColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 0}
+  validColor: {r: 6.2745094, g: 0.29017332, b: 0, a: 1}
+  invalidColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!120 &1426168404551252384
 LineRenderer:
   serializedVersion: 3

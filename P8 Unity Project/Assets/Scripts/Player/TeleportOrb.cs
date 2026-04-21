@@ -9,5 +9,5 @@ using UnityEngine;
 public class TeleportOrb : MonoBehaviour
 {
     /// <summary>Called by OrbPedestal when the orb is snapped onto the pedestal.</summary>
-    public void OnPlacedOnPad() { }
+    public void OnPlacedOnPad() { AudioManager.PlaySound(SfxType.OrbPlaced, transform); }
 }

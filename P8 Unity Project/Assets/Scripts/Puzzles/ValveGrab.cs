@@ -242,6 +242,7 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
     {
         Debug.Log($"[ValveGrab:{name}] Activate — cumulativeRotation={cumulativeRotation:F1}°  firing OnValveActivated");
         isActivated = true;
+        AudioManager.PlaySound(SfxType.ValveActivated, transform);
         ForceRelease();
         if (valveGrabbable != null)
             valveGrabbable.enabled = false;

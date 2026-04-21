@@ -39,8 +39,8 @@ public class LaunchArm : MonoBehaviour
 
     [Header("Line Renderer")]
     [SerializeField] GameObject aimOffset;
-    [SerializeField] Color validColor;
-    [SerializeField] Color invalidColor;
+    [SerializeField] [ColorUsage(true, true)] Color validColor;
+    [SerializeField] [ColorUsage(true, true)] Color invalidColor;
     LineRenderer lineRenderer;
 
     IXRSelectInteractable selectedInteractable;
@@ -340,6 +340,7 @@ public class LaunchArm : MonoBehaviour
         if(valid == lasttValid && lineRenderer) return;
         lasttValid = valid;
         lineRenderer.material.color = valid ? validColor : invalidColor;
+        lineRenderer.material.SetColor("_EmissionColor", valid ? validColor : invalidColor);
     }
 
 #if UNITY_EDITOR

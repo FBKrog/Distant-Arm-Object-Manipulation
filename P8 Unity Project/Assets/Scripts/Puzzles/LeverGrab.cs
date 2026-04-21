@@ -382,6 +382,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         Debug.Log($"[LeverGrab:{name}] SnapAndActivate — START  currentAngle={currentAngle:F1}°  snapToAngle={snapToAngle:F1}°");
 
         isActivated = true;
+        AudioManager.PlaySound(SfxType.LeverActivate, transform);
         ForceRelease();
 
         float startAngle = currentAngle;

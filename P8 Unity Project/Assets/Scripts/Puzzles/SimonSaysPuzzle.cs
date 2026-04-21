@@ -169,7 +169,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     private void OnButtonPressed(int buttonIndex)
     {
         if (state != PuzzleState.WaitingForInput) return;
-
+        AudioManager.PlaySound(SfxType.SimonButtonPress, transform);
         int expectedIndex = sequence[currentStep];
 
         if (buttonIndex == expectedIndex)
@@ -177,6 +177,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             // Correct press — overlay this button with the correct colour.
             buttons[buttonIndex].LockPressed();
             buttons[buttonIndex].SetOverlay(correctColor, overlayAlpha, true);
+            AudioManager.PlaySound(SfxType.SimonCorrect, transform);
             currentStep++;
 
             if (currentStep >= sequence.Length)
@@ -185,6 +186,7 @@ public class SimonSaysPuzzle : MonoBehaviour
                 SetAllButtonsOverlay(correctColor, overlayAlpha, true);
                 UnsubscribeFromAllButtons();
                 state = PuzzleState.Completed;
+                AudioManager.PlaySound(SfxType.SimonComplete, transform);
                 Debug.Log($"[SimonSaysPuzzle:{name}] Puzzle completed — firing OnPuzzleCompleted.");
                 OnPuzzleCompleted.Invoke();
             }
@@ -194,6 +196,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             // Wrong order.
             UnsubscribeFromAllButtons();
             if (activeCoroutine != null) StopCoroutine(activeCoroutine);
+            AudioManager.PlaySound(SfxType.SimonWrong, transform);
             activeCoroutine = StartCoroutine(WrongInputCoroutine());
         }
     }

@@ -53,6 +53,7 @@ public class FactoryMachine : MonoBehaviour
         if (state && !isSparking)
         {
             spark.Play();
+            AudioManager.PlaySound(SfxType.FactoryMachine, transform);
             isSparking = true;
         }
         else if (!state && isSparking)

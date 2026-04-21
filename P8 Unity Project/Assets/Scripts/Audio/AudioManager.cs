@@ -11,22 +11,29 @@ public enum SfxType
     Explosion,
     Fire,
     ArmAttach,
-    TPHumming,
+    TeleportAiming,
+    Teleport,
     Grab,
     Release,
-    Orb,
-    ButtonPress,
-    PuzzleComplete,
+    OrbPlaced,
     DoorOpen,
     DoorClose,
-    Plug,
+    WirePlug,
+    SimonButtonPress,
     SimonCorrect,
     SimonWrong,
+    SimonComplete,
     SlidePanel,
     ProductionAmbience,
     ConveyorBelt,
     Assembly,
     AssemblyComplete,
+    FuseInsert,
+    ValveActivated,
+    ValveTurn,
+    WireComplete,
+    LeverActivate,
+    FactoryMachine
 }
 
 public class AudioManager : MonoBehaviour
@@ -92,11 +99,16 @@ public class AudioManager : MonoBehaviour
         {
             clip = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
         }
+        if(clip == null)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has a null audio clip assigned.");
+            return;
+        }
 
         // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
         if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
         {
-            print("Cleaning up null audio sources from the pool.");
+            Debug.LogWarning("Cleaning up null audio sources from the pool.");
             instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
         }
 
@@ -152,6 +164,11 @@ public class AudioManager : MonoBehaviour
         {
             print("Cleaning up null audio sources from the pool.");
             instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+        }
+        if (clip == null)
+        {
+            Debug.LogWarning($"Attempted to play looping SFX of type {sfx} which has a null audio clip assigned.");
+            return null;
         }
 
         var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
