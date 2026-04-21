@@ -221,23 +221,6 @@ public class LaunchArm : MonoBehaviour
             return true;
         }
         return false;
-
-        //RaycastHit[] hits = Physics.RaycastAll(aimOffset.transform.position, aimOffset.transform.forward, rayLength, hitableLayer);
-        //Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-        //if (hits.Length == 0) return false;
-        //foreach (var h in hits)
-        //{
-        //    if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
-        //        h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
-        //        return false;
-
-        //    if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
-        //        continue;
-
-        //    hit = h;
-        //    return true;
-        //}
-        //return false;
     }
 
     /// <summary>
@@ -262,10 +245,10 @@ public class LaunchArm : MonoBehaviour
             // Preconditions met, launch the arm and set canLaunch to false until the arm is recalled.
             canLaunch = false;
             aiming = false;
-            interactor.keepSelectedTargetValid = true;
             
             if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable")
             {
+                print("Launched detected an interactable: " + hitInteractable.gameObject.name);
                 this.hitInteractable = hitInteractable;
             }
             else

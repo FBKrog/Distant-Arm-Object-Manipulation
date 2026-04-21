@@ -145,8 +145,9 @@ public class DAOMArm : MonoBehaviour
             interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        if (hitInteractable != null && hitInteractable.transform.gameObject.CompareTag("Unrecallable")) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
+        if (hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
+            print("Hit interactable: " + hitInteractable.transform.name);
             this.hitInteractable = hitInteractable;
             rotationStartTime = 1; // Don't start rotating until the object is grabbed.
         }
@@ -184,7 +185,7 @@ public class DAOMArm : MonoBehaviour
 
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         
-        if(hitInteractable != null && hitInteractable.transform.gameObject.CompareTag("Unrecallable"))
+        if(hitInteractable != null)
         {
             selectedInteractable = hitInteractable;
         }
@@ -307,8 +308,13 @@ public class DAOMArm : MonoBehaviour
         if (!isLanding)
         {
             isLanding = true;
-            thruster.SetActive(false);
+            if(hitInteractable != null)
+            {
+                mayAttach = true;
+                yield return null;
+            }
             
+            thruster.SetActive(false);
             targetRot = Quaternion.LookRotation(-transform.forward);
             StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
@@ -331,7 +337,7 @@ public class DAOMArm : MonoBehaviour
             {
                 StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
             }
-
+            
             yield return new WaitForSeconds(rotationDuration);
             mayAttach = true;
         }
@@ -354,7 +360,7 @@ public class DAOMArm : MonoBehaviour
         AudioManager.PlaySound(SfxType.ArmAttach, transform);
 
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
-        if (hitInteractable != null && !hitInteractable.transform.gameObject.CompareTag("Unrecallable") && !recalling)
+        if (hitInteractable != null && !recalling)
         {
             LaunchArm.OnEarlyRecall();
             interactor.interactionManager.SelectEnter(interactor, hitInteractable);
