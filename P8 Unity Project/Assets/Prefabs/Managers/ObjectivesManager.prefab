@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &815460456919414840
 Transform:
   m_ObjectHideFlags: 0
@@ -47,13 +47,13 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the Go-Go interaction technique to extend your arm
-      to interact with distant objects.
+  - subtitleText: You can use the <b>Go-Go interaction technique</b> to extend your
+      arm to interact with distant objects.
     stepId: 
     displayDuration: 5
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
-      outward and use the [SELECT] button to grab it.
+      outward and use the <b>[SELECT]</b> button to grab it.
     stepId: 
     displayDuration: 0
     completesObjective: 
@@ -62,8 +62,8 @@ MonoBehaviour:
     stepId: 
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
-      destination.
+  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
+      to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
@@ -111,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4648632467607329093
 Transform:
   m_ObjectHideFlags: 0
@@ -142,13 +142,14 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the Scaled HOMER interaction technique to relocate
+  - subtitleText: You can use the <b>Scaled HOMER interaction technique</b> to relocate
       your arm to interact with distant objects.
     stepId: 
     displayDuration: 5
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
-      to aim, the [TRIGGER] button to shoot, and the [SELECT] button to grab.
+  - subtitleText: To retrieve the blue orb on the table, you must use the <b>[A]</b>
+      button to aim, the <b>[TRIGGER]</b> button to shoot, and the <b>[SELECT]</b>
+      button to grab.
     stepId: 
     displayDuration: 0
     completesObjective: 
@@ -157,8 +158,8 @@ MonoBehaviour:
     stepId: 
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
-      destination.
+  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
+      to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
@@ -237,14 +238,15 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the DAOM interaction technique to attach your arm to
-      any surface for remote control or to shoot at an object to retract it directly.
+  - subtitleText: You can use the <b>DAOM interaction technique</b> to attach your
+      arm to any surface for remote control or to shoot at an object to retract it
+      directly.
     stepId: 
     displayDuration: 5
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
-      to aim, the [TRIGGER] button to shoot and retract, and the [SELECT] button
-      to grab it.
+      to aim, the <b>[TRIGGER]</b> button to shoot and retract, and the <b>[SELECT]</b>
+      button to grab it.
     stepId: 
     displayDuration: 0
     completesObjective: 
@@ -253,8 +255,8 @@ MonoBehaviour:
     stepId: 
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the [LEFT THUMBSTICK] forward to teleport to a desired
-      destination.
+  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
+      to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective

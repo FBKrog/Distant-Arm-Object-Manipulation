@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     [System.Serializable]
     public class TutorialStep
     {
-        public string subtitleText;
+        [TextArea(5,20)] public string subtitleText;
         [Tooltip("Optional short ID for use with TutorialObjective.AdvanceIfStepId().")]
         public string stepId;
         [Tooltip("Seconds to display before auto-advancing. 0 = manual advance only.")]
