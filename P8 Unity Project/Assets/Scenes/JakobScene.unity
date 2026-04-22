@@ -102508,26 +102508,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4720564693901936325, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.993947
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720564693901936325, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.10973285
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720564693901936325, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.005265014
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720564693901936325, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.00058126333
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720564693901936325, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -12.6
-      objectReference: {fileID: 0}
     - target: {fileID: 8453859537980425749, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_Name
       value: Player_Robot

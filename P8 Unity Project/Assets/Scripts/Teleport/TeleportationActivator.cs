@@ -23,7 +23,6 @@ public class TeleportationActivator : MonoBehaviour
     void Start()
     {
         teleportInteractor.gameObject.SetActive(false);
-        AudioManager.StopLoopSound(teleportAimingAudioSource);
         teleportActivatorAction.action.performed += Action_performed;
     }
 
@@ -70,5 +69,6 @@ public class TeleportationActivator : MonoBehaviour
         }
         teleportInteractor.gameObject.SetActive(false);
         onAfterTeleport?.Invoke();
+        AudioManager.StopLoopSound(teleportAimingAudioSource);
     }
 }
