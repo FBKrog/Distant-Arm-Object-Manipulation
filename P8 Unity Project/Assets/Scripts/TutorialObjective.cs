@@ -28,6 +28,8 @@ public class TutorialObjective : MonoBehaviour
         }
     }
 
+    public void SetTutorialManager(TutorialManager tm) => tutorialManager = tm;
+
     /// <summary>Activate immediately (skip name filter).</summary>
     public void Activate()
     {

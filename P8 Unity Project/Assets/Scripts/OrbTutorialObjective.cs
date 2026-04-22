@@ -31,6 +31,8 @@ public class OrbTutorialObjective : MonoBehaviour
         if (autoStart) StartObjective();
     }
 
+    public void SetTutorialManager(TutorialManager tm) => tutorialManager = tm;
+
     public void StartObjective()
     {
         if (_step >= 0) return;
