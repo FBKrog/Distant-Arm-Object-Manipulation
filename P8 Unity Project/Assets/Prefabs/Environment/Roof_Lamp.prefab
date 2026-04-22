@@ -911,6 +911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LampCones
       objectReference: {fileID: 0}
+    - target: {fileID: 2973127869748681620, guid: 271eba95cfe348648b4ead97b34d3257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4591444519162870003, guid: 271eba95cfe348648b4ead97b34d3257, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
