@@ -47,6 +47,8 @@ public class LaunchArm : MonoBehaviour
     IXRSelectInteractable daomInteractable;
     IXRSelectInteractable hitInteractable;
 
+    public bool IsAiming => aiming;
+
     public static Action<DynamicXRDirectInteractorAnimator> SetInteractorHandedness;
     public static void OnSetInteractorHandedness(DynamicXRDirectInteractorAnimator interactor) => SetInteractorHandedness?.Invoke(interactor);
 

@@ -34,6 +34,7 @@ public class HOMERRaycast : MonoBehaviour
     public float    lineWidth = 0.02f;
 
     // ── Public API (read by HOMERManipulator) ────────────────────────────
+    public bool       IsAiming       => state == State.Aiming;
     public bool       IsGrabbing     => state == State.Grabbed;
     /// <summary>True while the hand is extended (moving freely or holding an object).</summary>
     public bool       IsHandExtended => state == State.Extended || state == State.Grabbed;
