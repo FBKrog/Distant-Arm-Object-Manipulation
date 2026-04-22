@@ -68,7 +68,7 @@ public class WireController : MonoBehaviour
     public float segmentsRadius = 1.5f;
     public float currentDistanceToStartAnchor;
     [Tooltip("Sets the maximum distance from the start anchor point to the end anchor point, based on the number of segments and the separation between them.")]
-    public float maxDistanceToStarAnchor;
+    public float maxDistanceToStartAnchor;
 
 
 
@@ -81,7 +81,7 @@ public class WireController : MonoBehaviour
 
     [Header("REFERENCES")]
     public TubeRenderer ropeMesh;
-    public Transform starAnchorTemp;
+    public Transform startAnchorTemp;
     public Transform firstSegment;
     public Transform endAnchorTemp;
     public Transform plugTemp;
@@ -125,7 +125,7 @@ public class WireController : MonoBehaviour
 
         //Get distance between lastSegment and selected position.
         int lastSegment = segments.Count - 1;
-        float distance = Vector3.Distance(segments[lastSegment].position, selectPosition);
+        float distance = Vector3.Distance(segments[lastSegment].position, mousePossHelper.position);
 
         //If the last segment has not reached the selected position another one is created.
         if (distance >= maxDistanceWithSelectedPos + segmentsSeparation && limit <= limitMax)
@@ -162,11 +162,11 @@ public class WireController : MonoBehaviour
         SetMaxDistance();
     }
 
-    public void AddStar()
+    public void AddStart()
     {
 
 
-        if(starAnchorTemp == null)
+        if(startAnchorTemp == null)
         {
             #region unpack prefab
             //When the first segment is created, the prefab is unpacked, to avoid an error that causes references to be lost in play mode.
@@ -174,15 +174,15 @@ public class WireController : MonoBehaviour
                 PrefabUtility.UnpackPrefabInstance(this.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
             #endregion
 
-            starAnchorTemp = Instantiate(startAnchorPoint, selectPosition, Quaternion.identity, transform);
+            startAnchorTemp = Instantiate(startAnchorPoint, mousePossHelper.position, Quaternion.identity, transform);
         }
 
         //If you do not use physics, the components are removed to the start anchor point, to improve performance.
         if (!usePhysics)
         {
-            DestroyImmediate(starAnchorTemp.GetComponent<ConfigurableJoint>());
-            DestroyImmediate(starAnchorTemp.GetComponent<Collider>());
-            DestroyImmediate(starAnchorTemp.GetComponent<Rigidbody>());
+            DestroyImmediate(startAnchorTemp.GetComponent<ConfigurableJoint>());
+            DestroyImmediate(startAnchorTemp.GetComponent<Collider>());
+            DestroyImmediate(startAnchorTemp.GetComponent<Rigidbody>());
         }
     }
 
@@ -196,12 +196,12 @@ public class WireController : MonoBehaviour
 
             if (usePhysics)
             {
-                firstSegment = Instantiate(segment, starAnchorTemp.position, starAnchorTemp.rotation, transform);
-                firstSegment.GetComponent<ConfigurableJoint>().connectedBody = starAnchorTemp.GetComponent<Rigidbody>();
+                firstSegment = Instantiate(segment, startAnchorTemp.position, startAnchorTemp.rotation, transform);
+                firstSegment.GetComponent<ConfigurableJoint>().connectedBody = startAnchorTemp.GetComponent<Rigidbody>();
             }
             else
             {
-                firstSegment = Instantiate(segmentNoPhysics, starAnchorTemp.position, starAnchorTemp.rotation, transform);
+                firstSegment = Instantiate(segmentNoPhysics, startAnchorTemp.position, startAnchorTemp.rotation, transform);
             }
 
             segments.Add(firstSegment);
@@ -213,7 +213,7 @@ public class WireController : MonoBehaviour
 
         //The last current segment is rotated in the direction of selected position.
         int lastSegment = segments.Count - 1;
-        segments[lastSegment].LookAt(selectPosition);
+        segments[lastSegment].LookAt(mousePossHelper.position);
 
         //Segment is added based on the distance to the selected position.
         GetSegmentsDistance();
@@ -256,7 +256,7 @@ public class WireController : MonoBehaviour
     public void AddPlug()
     {
         //Instances the plug in the selected position.
-        plugTemp = Instantiate(plugObjt, selectPosition, plugObjt.transform.rotation, transform);
+        plugTemp = Instantiate(plugObjt, mousePossHelper.position, plugObjt.transform.rotation, transform);
         PlugController plugScritp = plugTemp.GetComponent<PlugController>();
 
         plugScritp.endAnchor = endAnchorTemp;
@@ -267,7 +267,7 @@ public class WireController : MonoBehaviour
 
     public void SetMaxDistance()
     {
-        maxDistanceToStarAnchor = segments.Count * segmentsSeparation;
+        maxDistanceToStartAnchor = segments.Count * segmentsSeparation;
     }
 
     public void ChangeRadius()
@@ -297,8 +297,8 @@ public class WireController : MonoBehaviour
             DestroyImmediate(firstSegment.gameObject);
 
         //Destroy the start anchor point.
-        if (starAnchorTemp != null)
-            DestroyImmediate(starAnchorTemp.gameObject);
+        if (startAnchorTemp != null)
+            DestroyImmediate(startAnchorTemp.gameObject);
 
         //Destroy the end anchor point.
         if (endAnchorTemp != null)
@@ -412,9 +412,9 @@ public class WireController : MonoBehaviour
 
     public void DistanceBetweenStartAndEnd()
     {
-        currentDistanceToStartAnchor = Vector3.Distance(endAnchorTemp.position, starAnchorTemp.position);
+        currentDistanceToStartAnchor = Vector3.Distance(endAnchorTemp.position, startAnchorTemp.position);
 
-        if (currentDistanceToStartAnchor > maxDistanceToStarAnchor)
+        if (currentDistanceToStartAnchor > maxDistanceToStartAnchor)
         {
             /// <summary>
             /// Call a function when the distance between the start anchor point and the End anchor point exceeds the maximum.

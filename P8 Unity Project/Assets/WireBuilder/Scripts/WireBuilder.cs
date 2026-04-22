@@ -15,7 +15,7 @@ public class WireBuilder : Editor
         WireController wireController = (WireController)target;
         if (GUILayout.Button("Set Start"))
         {
-            wireController.AddStar();
+            wireController.AddStart();
         }
         if (GUILayout.Button("Add Segment"))
         {

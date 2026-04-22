@@ -34,7 +34,6 @@ public class FactoryMachine : MonoBehaviour
             if(currentDistance - distanceOffset < sparkDistanceThreshold)
                 ToggleSpark(true);
             currentDistance = Mathf.Clamp(distance - distanceOffset, 0, distance);
-            print(currentDistance);
             var targetPos = Vector3.Lerp(initialPos, currentPart.transform.position, 1 - (currentDistance / distance));
             ikTarget.transform.position = Vector3.Lerp(ikTarget.transform.position, targetPos, Time.deltaTime * speed);
             ikTarget.transform.rotation = Quaternion.Lerp(ikTarget.transform.rotation, LookDirection(currentPart.transform.position) * Quaternion.Euler(lookOffset), Time.deltaTime * speed);
@@ -78,7 +77,6 @@ public class FactoryMachine : MonoBehaviour
         if(other.TryGetComponent<RobotPart>(out var robotPart))
         {
             currentPart = robotPart.gameObject;
-            print("PART IN RANGE");
         }
     }
 

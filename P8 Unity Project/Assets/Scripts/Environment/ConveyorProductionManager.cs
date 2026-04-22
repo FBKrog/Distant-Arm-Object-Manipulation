@@ -1,31 +1,66 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ConveyorProductionManager : MonoBehaviour
 {
-    [Header("Production Settings")]
-    [SerializeField] Material beltMaterial;
-    [SerializeField] Slider productionRateSlider;
-    [SerializeField] Slider conveyorBeltsSpeedSlider;
-    [SerializeField] float speedDivider = 1f;
-    bool beltsAreActive = true;
+    [Header("Conveyor Belt")]
+    [SerializeField] Material beltMaterialA;
+    [SerializeField] Material beltMaterialB;
+    [SerializeField] [Tooltip("Speed of the conveyor belts (make sure it matches the speed assigned to the belts)")] float conveyorBeltSpeed = 1f;
+    [SerializeField] [Tooltip("Multiplier for the change in belt material offset")] float speedMultiplier = 1f;
+    [SerializeField] bool productionStartsActive = false;
+    bool beltsActive = false;
 
     public static event Action<int, bool> OnProductionStateChanged;
     public static event Action<bool> OnAllConveyorBeltsStateChanged;
-    public static event Action<float> OnAllProductionRateChanged;
+    public static event Action<float> OnAllProductionIntervalChanged;
     public static event Action<float> OnAllConveyorBeltsSpeedChanged;
+    public static event Action OnBeginIncreaseProductionRate;
 
     public static void ProductionStateChange(int productionID, bool isActive) => OnProductionStateChanged?.Invoke(productionID, isActive);
     public static void AllConveyorBeltsStateChange(bool isActive) => OnAllConveyorBeltsStateChanged?.Invoke(isActive);
-    public static void AllProductionRateChange(float newSpeed) => OnAllProductionRateChanged?.Invoke(newSpeed);
+    public static void AllProductionIntervalChange(float newInterval) => OnAllProductionIntervalChanged?.Invoke(newInterval);
     public static void AllConveyorBeltsSpeedChange(float newSpeed) => OnAllConveyorBeltsSpeedChanged?.Invoke(newSpeed);
+    public static void BeginIncreaseProductionRate() => OnBeginIncreaseProductionRate?.Invoke();
 
-    void Awake()
+    void Start()
     {
-        beltsAreActive = true;
-        AllConveyorBeltsStateChange(beltsAreActive);
-        print($"Conveyor belts running:{beltsAreActive}");
+        AllConveyorBeltsStateChange(productionStartsActive);
+        ProductionStateChange(1, productionStartsActive);
+        ProductionStateChange(2, productionStartsActive);
+        ProductionStateChange(3, productionStartsActive);
+    }
+
+    void OnEnable()
+    {
+        OnBeginIncreaseProductionRate += HandleBeginIncreaseProductionRate;
+        OnAllConveyorBeltsStateChanged += (state) => beltsActive = state;
+    }
+
+    void OnDisable()
+    {
+        OnBeginIncreaseProductionRate -= HandleBeginIncreaseProductionRate;
+        OnAllConveyorBeltsStateChanged -= (state) => beltsActive = state;
+    }
+
+    void HandleBeginIncreaseProductionRate()
+    {
+        StartCoroutine(IncreaseProductionRate());
+    }
+
+    IEnumerator IncreaseProductionRate()
+    {
+        float newSpeed = 0.2f;
+        float newProductionInterval = -0.1f;
+        while (true)
+        {
+            AllConveyorBeltsSpeedChange(newSpeed);
+            AllProductionIntervalChange(newProductionInterval);
+            conveyorBeltSpeed += newSpeed;
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public void EnableProduction(int productionID)
@@ -38,19 +73,12 @@ public class ConveyorProductionManager : MonoBehaviour
         ProductionStateChange(productionID, false);
     }
 
-    public void ChangeAllProductionRate()
-    {
-        AllProductionRateChange(productionRateSlider.value);
-    }
-
-    public void ChangeAllConveyorBeltsSpeed()
-    {
-        AllConveyorBeltsSpeedChange(conveyorBeltsSpeedSlider.value);
-    }
-
     void Update()
     {
-        if(beltsAreActive)
-            beltMaterial.mainTextureOffset += new Vector2(-conveyorBeltsSpeedSlider.value / speedDivider * Time.deltaTime, 0);
+        if(beltsActive)
+        {
+            beltMaterialA.mainTextureOffset += new Vector2(-conveyorBeltSpeed * speedMultiplier * Time.deltaTime, 0);
+            beltMaterialB.mainTextureOffset += new Vector2(conveyorBeltSpeed * speedMultiplier * Time.deltaTime, 0);
+        }
     }
 }

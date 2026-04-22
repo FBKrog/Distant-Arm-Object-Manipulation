@@ -10,6 +10,12 @@ public class ConveyorRobotAssembler : MonoBehaviour
     [SerializeField] GameObject robotsParent;
     [SerializeField] List<Parts> acquiredParts = new();
 
+    void Awake()
+    {
+        if(spawnPoint == null)
+            spawnPoint = gameObject;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<RobotPart>(out var robotPart))

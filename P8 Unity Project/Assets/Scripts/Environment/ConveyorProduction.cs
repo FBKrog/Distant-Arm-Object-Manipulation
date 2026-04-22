@@ -5,7 +5,7 @@ public class ConveyorProduction : MonoBehaviour
 {
     [SerializeField] GameObject spawnPoint;
     public int productionID = 0;
-    public bool isActive = false;
+    [HideInInspector] public bool isActive = false;
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] GameObject[] robotPartPrefabs;
 
@@ -14,18 +14,20 @@ public class ConveyorProduction : MonoBehaviour
     void Awake()
     {
         isActive = false;
+        if (spawnPoint == null)
+            spawnPoint = gameObject;
     }
 
     void OnEnable()
     {
         ConveyorProductionManager.OnProductionStateChanged += HandleProductionStateChange;
-        ConveyorProductionManager.OnAllProductionRateChanged += (newRate) => spawnInterval = newRate;
+        ConveyorProductionManager.OnAllProductionIntervalChanged += (newInterval) => spawnInterval += newInterval;
     }
 
     void OnDisable()
     {
         ConveyorProductionManager.OnProductionStateChanged -= HandleProductionStateChange;
-        ConveyorProductionManager.OnAllProductionRateChanged -= (newRate) => spawnInterval = newRate;
+        ConveyorProductionManager.OnAllProductionIntervalChanged -= (newInterval) => spawnInterval += newInterval;
     }
 
     void HandleProductionStateChange(int id, bool state)
