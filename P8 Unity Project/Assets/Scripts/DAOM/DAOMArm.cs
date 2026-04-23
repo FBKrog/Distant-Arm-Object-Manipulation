@@ -193,8 +193,9 @@ public class DAOMArm : MonoBehaviour
         if(hitInteractable != null)
         {
             selectedInteractable = hitInteractable;
-            LaunchArm.OnGrabbedGameObject(selectedInteractable);
         }
+        if(selectedInteractable != null ) 
+            LaunchArm.OnGrabbedGameObject(selectedInteractable);
 
         targetRot = LookDirection(goPoint.transform.position);
         
