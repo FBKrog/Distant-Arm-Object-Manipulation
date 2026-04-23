@@ -49,8 +49,9 @@ GameObject:
   - component: {fileID: 7237611138261093180}
   - component: {fileID: 3643777886094951002}
   - component: {fileID: 6973496308431297981}
+  - component: {fileID: 5542346020665713619}
   m_Layer: 12
-  m_Name: Valve
+  m_Name: Valve_01
   m_TagString: Unrecallable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,6 +365,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5542346020665713619}
+        m_TargetAssemblyTypeName: EmissionStateIndicator, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3643777886094951002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +413,22 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!114 &5542346020665713619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586446888101757631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+  targetRenderer: {fileID: 5923003810528227088}
+  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 2, b: 0, a: 2}
+  transitionDuration: 0.5
 --- !u!1 &4070650159643509183
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,5 +925,10 @@ PrefabInstance:
 --- !u!4 &123823857894935728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2840341467498444482, guid: 20c02e961ed4f8c45b76bd90578e06ca, type: 3}
+  m_PrefabInstance: {fileID: 2800397432121571954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5923003810528227088 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8426162562849330530, guid: 20c02e961ed4f8c45b76bd90578e06ca, type: 3}
   m_PrefabInstance: {fileID: 2800397432121571954}
   m_PrefabAsset: {fileID: 0}

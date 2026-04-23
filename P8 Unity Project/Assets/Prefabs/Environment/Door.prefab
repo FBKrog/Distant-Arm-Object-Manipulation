@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 858827848241804638}
   - component: {fileID: 4645387943292406514}
   - component: {fileID: 1850700843525958584}
+  - component: {fileID: 581958016824748128}
+  - component: {fileID: 1084673879402187500}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -256,6 +258,49 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &581958016824748128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714654386122993102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+  targetRenderer: {fileID: 4010933081987933990}
+  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 2, b: 0, a: 2}
+--- !u!114 &1084673879402187500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714654386122993102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fc5bef0af28b947b3664022af6d48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AllTriggersCompleted
+  triggers: []
+  OnAllTriggersCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 581958016824748128}
+        m_TargetAssemblyTypeName: EmissionStateIndicator, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &970786064475753773
 GameObject:
   m_ObjectHideFlags: 0

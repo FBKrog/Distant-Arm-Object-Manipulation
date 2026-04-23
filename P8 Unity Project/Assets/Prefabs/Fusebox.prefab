@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 1979842041494357428}
   - component: {fileID: 2280566115376567817}
   m_Layer: 0
-  m_Name: Lamp
+  m_Name: Light_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,13 +296,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313639884196392581}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.39999998, y: 1.5418257, z: -0.16671392}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: -0.00010615301, y: 11.462141, z: -2.46834}
+  m_LocalScale: {x: 25.442171, y: 25.442162, z: 25.442162}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1617529104894767807}
-  m_Father: {fileID: 9171821893505277550}
+  m_Father: {fileID: 2005125475246185805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1979842041494357428
 MeshFilter:
@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 7102381103460326625}
   - component: {fileID: 7549851305246879908}
   - component: {fileID: 8245177548374063742}
+  - component: {fileID: 4082881849251327158}
   m_Layer: 0
   m_Name: Socket_03
   m_TagString: Untagged
@@ -1057,6 +1058,7 @@ Transform:
   m_Children:
   - {fileID: 1742282839143449395}
   - {fileID: 6382570646207732757}
+  - {fileID: 3156797699547575062}
   m_Father: {fileID: 9171821893505277550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6678834318619041769
@@ -1131,14 +1133,26 @@ MonoBehaviour:
   socketPlus: {fileID: 1742282839143449395}
   socketMinus: {fileID: 6382570646207732757}
   batteryTag: Battery
-  plusChildName: FusePlus
-  minusChildName: FuseMinus
+  plusChildName: Plus
+  minusChildName: Minus
   snapRadius: 0.065
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8245177548374063742}
         m_TargetAssemblyTypeName: DoorTrigger, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4082881849251327158}
+        m_TargetAssemblyTypeName: EmissionStateIndicator, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -1162,6 +1176,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
   activateOnObjective: 
+--- !u!114 &4082881849251327158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404781445828573409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+  targetRenderer: {fileID: 8918978797969470844}
+  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 2, b: 0, a: 2}
+  transitionDuration: 0.5
 --- !u!1 &2439411496363894596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,7 +1474,7 @@ GameObject:
   - component: {fileID: 6464160723239705231}
   - component: {fileID: 988305658716286305}
   m_Layer: 0
-  m_Name: Lamp.002
+  m_Name: Light_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1458,13 +1488,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3235273668351490437}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.5, y: 1.5418257, z: -0.16671392}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0.029230747, y: 11.462141, z: -2.4683394}
+  m_LocalScale: {x: 25.442171, y: 25.442162, z: 25.442162}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6769406109735325127}
-  m_Father: {fileID: 9171821893505277550}
+  m_Father: {fileID: 3743185537563229163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6464160723239705231
 MeshFilter:
@@ -2677,7 +2707,7 @@ GameObject:
   - component: {fileID: 8427997406687328626}
   - component: {fileID: 21530302554860116}
   m_Layer: 0
-  m_Name: Lamp.001
+  m_Name: Light_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2691,13 +2721,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530145964398947548}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.3, y: 1.5418257, z: -0.16671392}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: -0.014178251, y: 11.462141, z: -2.4683392}
+  m_LocalScale: {x: 25.442171, y: 25.442162, z: 25.442162}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7521676506413689212}
-  m_Father: {fileID: 9171821893505277550}
+  m_Father: {fileID: 283272726815810435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8427997406687328626
 MeshFilter:
@@ -2880,9 +2910,6 @@ Transform:
   - {fileID: 283272726815810435}
   - {fileID: 2005125475246185805}
   - {fileID: 3743185537563229163}
-  - {fileID: 4683893716427695974}
-  - {fileID: 5140241385203327031}
-  - {fileID: 3156797699547575062}
   - {fileID: 2741680822110428764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2942,7 +2969,7 @@ GameObject:
   - component: {fileID: 7007547303719557695}
   - component: {fileID: 8918978797969470844}
   m_Layer: 0
-  m_Name: LampCap.001
+  m_Name: LampCap_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2996,7 +3023,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f1bc8afb1557e9458e780085299c9dc, type: 2}
+  - {fileID: 2100000, guid: 35e29e2c09e622145af1d6a08bc8b525, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3033,6 +3060,7 @@ GameObject:
   - component: {fileID: 1066100313080312055}
   - component: {fileID: 6452005048958968278}
   - component: {fileID: 7938989742946663761}
+  - component: {fileID: 6197872109597740640}
   m_Layer: 0
   m_Name: Socket_02
   m_TagString: Untagged
@@ -3055,6 +3083,7 @@ Transform:
   m_Children:
   - {fileID: 7625182284769434173}
   - {fileID: 762099487049609071}
+  - {fileID: 4683893716427695974}
   m_Father: {fileID: 9171821893505277550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5246191851572626210
@@ -3129,14 +3158,26 @@ MonoBehaviour:
   socketPlus: {fileID: 7625182284769434173}
   socketMinus: {fileID: 762099487049609071}
   batteryTag: Battery
-  plusChildName: FusePlus
-  minusChildName: FuseMinus
+  plusChildName: Plus
+  minusChildName: Minus
   snapRadius: 0.065
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7938989742946663761}
         m_TargetAssemblyTypeName: DoorTrigger, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6197872109597740640}
+        m_TargetAssemblyTypeName: EmissionStateIndicator, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -3160,6 +3201,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
   activateOnObjective: 
+--- !u!114 &6197872109597740640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324088192753875504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+  targetRenderer: {fileID: 1064458665782244009}
+  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 2, b: 0, a: 2}
+  transitionDuration: 0.5
 --- !u!1 &6561844638261454644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,7 +3350,7 @@ GameObject:
   - component: {fileID: 5992729346752945028}
   - component: {fileID: 1064458665782244009}
   m_Layer: 0
-  m_Name: LampCap.002
+  m_Name: LampCap_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3384,6 +3441,7 @@ GameObject:
   - component: {fileID: 8673567496113382045}
   - component: {fileID: 8969647093307044953}
   - component: {fileID: 6313659475001412281}
+  - component: {fileID: 1450446968089996320}
   m_Layer: 0
   m_Name: Socket_01
   m_TagString: Untagged
@@ -3406,6 +3464,7 @@ Transform:
   m_Children:
   - {fileID: 968895635821600423}
   - {fileID: 3334082919948078601}
+  - {fileID: 5140241385203327031}
   m_Father: {fileID: 9171821893505277550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6832158398786072453
@@ -3480,14 +3539,26 @@ MonoBehaviour:
   socketPlus: {fileID: 968895635821600423}
   socketMinus: {fileID: 3334082919948078601}
   batteryTag: Battery
-  plusChildName: FusePlus
-  minusChildName: FuseMinus
+  plusChildName: Plus
+  minusChildName: Minus
   snapRadius: 0.065
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6313659475001412281}
         m_TargetAssemblyTypeName: DoorTrigger, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1450446968089996320}
+        m_TargetAssemblyTypeName: EmissionStateIndicator, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -3511,6 +3582,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
   activateOnObjective: 
+--- !u!114 &1450446968089996320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556157811887325467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+  targetRenderer: {fileID: 7334954782767583439}
+  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 2, b: 0, a: 2}
+  transitionDuration: 0.5
 --- !u!1 &7566264368396751587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4524,7 +4611,7 @@ GameObject:
   - component: {fileID: 1481897346969457847}
   - component: {fileID: 7334954782767583439}
   m_Layer: 0
-  m_Name: LampCap
+  m_Name: LampCap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4578,7 +4665,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f1bc8afb1557e9458e780085299c9dc, type: 2}
+  - {fileID: 2100000, guid: 35e29e2c09e622145af1d6a08bc8b525, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
