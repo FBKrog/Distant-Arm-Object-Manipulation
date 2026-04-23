@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FI Conveyer Belt
+  m_Name: FI P Rocket Arm
   m_Shader: {fileID: 4800000, guid: b50cbe1da89da2840bd6442d4bbbe9ff, type: 3}
-  m_Parent: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
+  m_Parent: {fileID: 2100000, guid: d0a2776997cb018469c23fe9b44c0b41, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _USEEMISSION_OFF
@@ -26,7 +26,6 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats: []
-    m_Colors:
-    - _BaseColor: {r: 0.2509804, g: 0.4, b: 0.65882355, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

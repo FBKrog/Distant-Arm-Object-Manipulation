@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FI Conveyer Belt
+  m_Name: FI Fake Pile
   m_Shader: {fileID: 4800000, guid: b50cbe1da89da2840bd6442d4bbbe9ff, type: 3}
   m_Parent: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -27,6 +27,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _BaseColor: {r: 0.2509804, g: 0.4, b: 0.65882355, a: 1}
+    - _BaseColor: {r: 0.13389997, g: 0.23678358, b: 0.4811321, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
