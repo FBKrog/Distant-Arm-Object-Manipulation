@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3865031208980814939}
   m_Layer: 0
   m_Name: Outer
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 58
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 5950900063159751144}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 58

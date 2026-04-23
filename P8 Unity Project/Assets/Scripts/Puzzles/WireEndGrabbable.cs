@@ -27,6 +27,8 @@ public class WireEndGrabbable : MonoBehaviour
     private XRGrabInteractable grab;
     private IXRSelectInteractor heldBy;
 
+    public int id; // set in Inspector to match with the corresponding PlugController's id
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

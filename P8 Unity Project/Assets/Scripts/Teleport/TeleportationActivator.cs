@@ -26,6 +26,12 @@ public class TeleportationActivator : MonoBehaviour
         teleportActivatorAction.action.performed += Action_performed;
     }
 
+    void OnDisable()
+    {
+        if(teleportAimingAudioSource != null)
+            AudioManager.StopLoopSound(teleportAimingAudioSource);
+    }
+
     private void Action_performed(InputAction.CallbackContext obj)
     {
         if (!orbConnected) return;

@@ -13,6 +13,8 @@ public class PlugController : MonoBehaviour
     public UnityEvent OnWirePlugged;
     public Transform plugPosition;
 
+    public int id; // set in Inspector to match with the corresponding WireEndGrabbable's id
+
     [HideInInspector]
     public Transform endAnchor;
     [HideInInspector]
@@ -29,6 +31,7 @@ public class PlugController : MonoBehaviour
     {
         if (isConected) return;
         if (endAnchor == null || other.gameObject != endAnchor.gameObject) return;
+        if (other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && wireEnd.id != id) return;
         StartCoroutine(SnapWire());
     }
 

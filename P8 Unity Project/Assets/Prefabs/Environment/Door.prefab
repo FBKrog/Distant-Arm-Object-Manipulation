@@ -92,8 +92,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9400368, y: 3.759244, z: 3.9540024}
-  m_Center: {x: 24.00995, y: 1.609016, z: -4.9985065}
+  m_Size: {x: 3.9400387, y: 0, z: 3.9540024}
+  m_Center: {x: 24.00995, y: -0.2706061, z: -4.9985065}
 --- !u!114 &2167442370587707796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
   targetRenderer: {fileID: 4010933081987933990}
-  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
-  activeColor: {r: 0, g: 2, b: 0, a: 2}
+  inactiveColor: {r: 21.361254, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 21.361254, b: 0, a: 2}
 --- !u!114 &1084673879402187500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &7790987466418282009
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &2237323040220676744
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &4739995743554905006
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -631,7 +631,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &179849375595442671
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &2739976723356408495
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &3072219364025674515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &716742596215103962
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -991,7 +991,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &8997301131538292277
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1081,7 +1081,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &7659828431808921870
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 4229309236029982789}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1373,7 +1373,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6461916147906208451}
-  m_LocalEulerAnglesHint: {x: 0.0000024911772, y: -0.0000002577694, z: -5.9075375}
+  m_LocalEulerAnglesHint: {x: 0.0000014097288, y: -0.0000020700422, z: -55.744568}
 --- !u!33 &4948215717445212053
 MeshFilter:
   m_ObjectHideFlags: 0

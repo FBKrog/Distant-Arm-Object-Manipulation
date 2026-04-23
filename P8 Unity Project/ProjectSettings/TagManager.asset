@@ -12,6 +12,7 @@ TagManager:
   - TPOrb
   - Unrecallable
   - Immovable
+  - Environment
   layers:
   - Default
   - TransparentFX

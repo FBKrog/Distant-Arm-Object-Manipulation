@@ -131,7 +131,7 @@ public class LaunchArm : MonoBehaviour
     /// <param name="gameObject"></param>
     void AddGrabbedGameObject(IXRSelectInteractable gameObject)
     {
-        if (gameObject == null)
+        if(gameObject == null)
         {
             daomInteractable = null;
             return;
@@ -175,8 +175,8 @@ public class LaunchArm : MonoBehaviour
             Destroy(daomArm);
             daomArm = null;
             canLaunch = true;
-            ForceGrabInteractable();
             armGameObject.SetActive(true);
+            ForceGrabInteractable();
         }
     }
 

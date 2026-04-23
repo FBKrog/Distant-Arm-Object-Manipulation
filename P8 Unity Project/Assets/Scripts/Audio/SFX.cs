@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class SFX : MonoBehaviour
 {
-    [SerializeField] SfxType sfxType;
+    [SerializeField] SfxType sfx;
     [SerializeField] bool sfxOnImpact = false;
 
     /// <summary>
@@ -11,14 +11,14 @@ public class SFX : MonoBehaviour
     /// </summary>
     public void PlaySound()
     {
-        AudioManager.PlaySound(sfxType, transform);
+        AudioManager.PlaySound(sfx, transform);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (sfxOnImpact)
         {
-            AudioManager.PlaySound(sfxType, transform);
+            AudioManager.PlaySound(sfx, transform);
         }
     }
 }

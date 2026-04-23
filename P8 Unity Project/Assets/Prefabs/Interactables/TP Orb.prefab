@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4522680835828536658}
   - component: {fileID: 4590109417476927335}
   - component: {fileID: 210349396939825436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TP Orb
   m_TagString: TPOrb
   m_Icon: {fileID: 0}

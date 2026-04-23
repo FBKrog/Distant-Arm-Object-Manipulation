@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7168642864165465071}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Minus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8886185687607583398}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Plus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,9 +126,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
       propertyPath: m_Name
       value: Fuse
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
       propertyPath: m_TagString
@@ -158,6 +166,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3572d255cb429944784b928ec383ea02, type: 2}
+    - target: {fileID: 7715626668051313982, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -180,9 +196,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5668037655323854389}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7229933409702603711}
   m_SourcePrefab: {fileID: 100100000, guid: be2cbf2ad2d4ca743b05fe65ca1cc8bd, type: 3}
 --- !u!1 &2618964406699765909 stripped
 GameObject:
@@ -369,19 +382,6 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5668037655323854389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618964406699765909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11289ecdef2740f49b4f0b8686fda16a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabPose
-  data: {fileID: 11400000, guid: e461ec182e446b849ab0c27e1509809b, type: 2}
---- !u!114 &7229933409702603711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

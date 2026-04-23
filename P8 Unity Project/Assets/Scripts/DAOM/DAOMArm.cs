@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -75,6 +76,8 @@ public class DAOMArm : MonoBehaviour
     void OnDestroy()
     {
         if (ActiveInstance == this) ActiveInstance = null;
+        if(fireAudioSource != null)
+            AudioManager.StopLoopSound(fireAudioSource);
     }
 
     void OnEnable()
@@ -107,6 +110,7 @@ public class DAOMArm : MonoBehaviour
     void OnGrab(SelectEnterEventArgs args)
     {
         selectedInteractable = args.interactableObject;
+        LaunchArm.OnGrabbedGameObject(selectedInteractable);
     }
 
     /// <summary>
@@ -115,6 +119,7 @@ public class DAOMArm : MonoBehaviour
     void OnRelease(SelectExitEventArgs args)
     {
         selectedInteractable = null;
+        LaunchArm.OnGrabbedGameObject(null);
     }
 
     /// <summary>
@@ -147,7 +152,6 @@ public class DAOMArm : MonoBehaviour
         }
         if (hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
-            print("Hit interactable: " + hitInteractable.transform.name);
             this.hitInteractable = hitInteractable;
             rotationStartTime = 1; // Don't start rotating until the object is grabbed.
         }
@@ -171,7 +175,8 @@ public class DAOMArm : MonoBehaviour
         if (isTraveling) return;
         if (!isAttachedToSurface) return;
         if (recalling) return;
-        
+
+        isAttachedToSurface = false;
         recalling = true;
         
         AudioManager.PlaySound(SfxType.Explosion, transform); 
@@ -188,10 +193,8 @@ public class DAOMArm : MonoBehaviour
         if(hitInteractable != null)
         {
             selectedInteractable = hitInteractable;
-        }
-
-        if(selectedInteractable != null)
             LaunchArm.OnGrabbedGameObject(selectedInteractable);
+        }
 
         targetRot = LookDirection(goPoint.transform.position);
         
@@ -308,7 +311,7 @@ public class DAOMArm : MonoBehaviour
         if (!isLanding)
         {
             isLanding = true;
-            if(hitInteractable != null)
+            if(hitInteractable != null && !recalling)
             {
                 mayAttach = true;
                 yield return null;
@@ -358,7 +361,7 @@ public class DAOMArm : MonoBehaviour
 
         AudioManager.StopLoopSound(fireAudioSource);
         AudioManager.PlaySound(SfxType.ArmAttach, transform);
-
+        
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
         {
@@ -367,9 +370,6 @@ public class DAOMArm : MonoBehaviour
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
             return;
         }
-
-        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
-
         if (recalling)
         {
             LaunchArm.OnArmRecalled();
