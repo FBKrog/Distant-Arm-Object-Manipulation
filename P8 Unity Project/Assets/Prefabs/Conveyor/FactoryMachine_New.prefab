@@ -755,8 +755,6 @@ GameObject:
   - component: {fileID: 4750805643450719992}
   - component: {fileID: 3515096664224404114}
   - component: {fileID: 7284672374910005864}
-  - component: {fileID: 3074584847191428197}
-  - component: {fileID: 6326484002697763021}
   m_Layer: 12
   m_Name: FactoryMachine_New
   m_TagString: Untagged
@@ -777,6 +775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 8283263835678363525}
   - {fileID: 8883142450797598443}
   - {fileID: 2758682549589395853}
   - {fileID: 3888940351465684886}
@@ -842,45 +841,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 1240052190327205460}
     m_Active: 1
   m_Effectors: []
---- !u!114 &3074584847191428197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6534916316646978104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99be640f169786d47b5dd37449759d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  spark: {fileID: 4811005485111590107}
-  ikTarget: {fileID: 6710791819648846348}
-  speed: 6
-  distanceOffset: 1.45
-  sparkDistanceThreshold: -0.2
-  lookOffset: {x: 180, y: 0, z: 0}
---- !u!65 &6326484002697763021
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6534916316646978104}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7269831, y: 1.5541732, z: 2.0396194}
-  m_Center: {x: -2.1238823, y: 1.3711768, z: 0.09324932}
 --- !u!1 &6710791819648846348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1194,78 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8717018339954450392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8283263835678363525}
+  - component: {fileID: 3049376601945664337}
+  - component: {fileID: 158659541204222427}
+  m_Layer: 13
+  m_Name: FactoryMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8283263835678363525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717018339954450392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6275254454010712587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3049376601945664337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717018339954450392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99be640f169786d47b5dd37449759d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spark: {fileID: 4811005485111590107}
+  ikTarget: {fileID: 6710791819648846348}
+  speed: 6
+  distanceOffset: 1.45
+  sparkDistanceThreshold: -0.2
+  lookOffset: {x: 180, y: 0, z: 0}
+--- !u!65 &158659541204222427
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717018339954450392}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7269831, y: 1.5541732, z: 2.0396194}
+  m_Center: {x: -2.1238823, y: 1.3711768, z: 0.09324932}
 --- !u!1001 &1338309203374442836
 PrefabInstance:
   m_ObjectHideFlags: 0

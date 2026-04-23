@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 784140187580251963}
   - component: {fileID: 294050360931362999}
   - component: {fileID: 5268324605999057583}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: RightArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2757,7 +2757,7 @@ GameObject:
   - component: {fileID: 7715499685247812817}
   - component: {fileID: 4818391149651651447}
   - component: {fileID: 4864310665731209066}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: LeftArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

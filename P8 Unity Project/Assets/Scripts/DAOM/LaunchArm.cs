@@ -213,13 +213,19 @@ public class LaunchArm : MonoBehaviour
             return false;
         }
 
-        if (Physics.Raycast(aimOffset.transform.position, aimOffset.transform.forward, out hit, rayLength, hitableLayer))
+        RaycastHit[] hits = Physics.RaycastAll(aimOffset.transform.position, aimOffset.transform.forward, rayLength, hitableLayer);
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+        if (hits.Length == 0) return false;
+        foreach (var h in hits)
         {
-            if (selectedInteractable != null && !hit.collider.transform.IsChildOf(selectedInteractable.transform) &&
-                hit.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
+            if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
+                h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
                 return false;
-            if (selectedInteractable != null && hit.collider.transform.IsChildOf(selectedInteractable.transform))
-                return false;
+
+            if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
+                continue;
+
+            hit = h;
             return true;
         }
         return false;

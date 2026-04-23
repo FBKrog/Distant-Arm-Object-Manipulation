@@ -110,7 +110,6 @@ public class DAOMArm : MonoBehaviour
     void OnGrab(SelectEnterEventArgs args)
     {
         selectedInteractable = args.interactableObject;
-        LaunchArm.OnGrabbedGameObject(selectedInteractable);
     }
 
     /// <summary>
@@ -119,7 +118,6 @@ public class DAOMArm : MonoBehaviour
     void OnRelease(SelectExitEventArgs args)
     {
         selectedInteractable = null;
-        LaunchArm.OnGrabbedGameObject(null);
     }
 
     /// <summary>
@@ -369,6 +367,7 @@ public class DAOMArm : MonoBehaviour
             LaunchArm.OnEarlyRecall();
             interactor.interactionManager.SelectEnter(interactor, hitInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
+            LaunchArm.GrabbedGameObject(hitInteractable);
             return;
         }
         if (recalling)
@@ -377,9 +376,11 @@ public class DAOMArm : MonoBehaviour
             return;
         }
 
+        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
+
         // The wall extension offset makes the raycast stop a bit before the actual wall and since we round to the nearest 90 degrees for rotation, it looks like the arm didn't hit the right spot
         // This needs some adjusment if the surface is the ground.
-        if(surfaceIsGround)
+        if (surfaceIsGround)
         {
             var newPoint = hitPoint + transform.up * wallDistanceOffset;
             transform.position = newPoint;
