@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 784140187580251963}
   - component: {fileID: 294050360931362999}
   - component: {fileID: 5268324605999057583}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RightArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2757,7 +2757,7 @@ GameObject:
   - component: {fileID: 7715499685247812817}
   - component: {fileID: 4818391149651651447}
   - component: {fileID: 4864310665731209066}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LeftArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7037,7 +7037,6 @@ GameObject:
   - component: {fileID: 1921885856233886258}
   - component: {fileID: 2146653522726256288}
   - component: {fileID: 2366211656873923677}
-  - component: {fileID: 4415201180523390685}
   m_Layer: 2
   m_Name: XR Teleport Interactor
   m_TagString: Untagged
@@ -7710,26 +7709,6 @@ MonoBehaviour:
     m_Duration: 0.1
     m_Frequency: 0
   m_AllowHoverHapticsWhileSelecting: 1
---- !u!114 &4415201180523390685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8356184360965153476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01127c4a9d1030c4fb243b4360d8fae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  fingerTip: {fileID: 4012295812867235500}
-  shoulder: {fileID: 2519612409459855428}
-  armCollider: {fileID: 4818391149651651447}
-  radius: 0.1
-  scriptsToToggle:
-  - {fileID: 2433337784334613943}
-  - {fileID: 7154185529500257786}
-  objectsToToggle: []
 --- !u!1 &8362688261176717791
 GameObject:
   m_ObjectHideFlags: 0
