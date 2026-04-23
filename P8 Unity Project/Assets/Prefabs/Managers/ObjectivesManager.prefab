@@ -50,7 +50,7 @@ MonoBehaviour:
   - subtitleText: You can use the <b>Go-Go interaction technique</b> to extend your
       arm to interact with distant objects.
     stepId: 
-    displayDuration: 5
+    displayDuration: 15
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
       outward and use the <b>[SELECT]</b> button to grab it.
@@ -87,7 +87,7 @@ MonoBehaviour:
   panelPadding: 3
   followDistance: 0.8
   viewOffsetX: 0
-  viewOffsetY: -0.5
+  viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
   backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
@@ -145,7 +145,7 @@ MonoBehaviour:
   - subtitleText: You can use the <b>Scaled HOMER interaction technique</b> to relocate
       your arm to interact with distant objects.
     stepId: 
-    displayDuration: 5
+    displayDuration: 15
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must use the <b>[A]</b>
       button to aim, the <b>[TRIGGER]</b> button to shoot, and the <b>[SELECT]</b>
@@ -183,7 +183,7 @@ MonoBehaviour:
   panelPadding: 3
   followDistance: 0.8
   viewOffsetX: 0
-  viewOffsetY: -0.5
+  viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
   backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
@@ -242,7 +242,7 @@ MonoBehaviour:
       arm to any surface for remote control or to shoot at an object to retract it
       directly.
     stepId: 
-    displayDuration: 5
+    displayDuration: 15
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
       to aim, the <b>[TRIGGER]</b> button to shoot and retract, and the <b>[SELECT]</b>
@@ -280,7 +280,7 @@ MonoBehaviour:
   panelPadding: 3
   followDistance: 0.8
   viewOffsetX: 0
-  viewOffsetY: -0.5
+  viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
   backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
