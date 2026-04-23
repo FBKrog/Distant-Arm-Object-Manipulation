@@ -426,9 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
   targetRenderer: {fileID: 5923003810528227088}
-  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
-  activeColor: {r: 0, g: 2, b: 0, a: 2}
-  transitionDuration: 0.5
+  inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
 --- !u!1 &4070650159643509183
 GameObject:
   m_ObjectHideFlags: 0

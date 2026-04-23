@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1310174346309439100}
   - component: {fileID: 3446545974446911455}
   - component: {fileID: 8888165361250046772}
+  - component: {fileID: 6973271818320145532}
   m_Layer: 0
   m_Name: WireStand_Tube (2)
   m_TagString: Untagged
@@ -90,6 +91,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6973271818320145532
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868407429401331479}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3237064147268127946, guid: de865b6f7bc6ea643898394e9da0f7a5, type: 3}
 --- !u!1 &2067589088913737209
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +394,7 @@ GameObject:
   - component: {fileID: 8844706992167357056}
   - component: {fileID: 6942207369729752455}
   - component: {fileID: 5392959977528885206}
+  - component: {fileID: 3288510733665445428}
   m_Layer: 0
   m_Name: WireStand_Tube (1)
   m_TagString: Untagged
@@ -450,6 +474,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3288510733665445428
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595539594436546807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3237064147268127946, guid: de865b6f7bc6ea643898394e9da0f7a5, type: 3}
 --- !u!1 &5531232900890500417
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +597,7 @@ GameObject:
   - component: {fileID: 5394627318544243628}
   - component: {fileID: 3985268796795630525}
   - component: {fileID: 3535268006696163827}
+  - component: {fileID: 8996662220807324685}
   m_Layer: 0
   m_Name: WireStand_Tube
   m_TagString: Untagged
@@ -630,6 +677,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8996662220807324685
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604157836575913123}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3237064147268127946, guid: de865b6f7bc6ea643898394e9da0f7a5, type: 3}
 --- !u!1 &6635267316964293198
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +1022,7 @@ GameObject:
   - component: {fileID: 9065876618637930109}
   - component: {fileID: 6550851544399139125}
   - component: {fileID: 7972166856413791531}
+  - component: {fileID: 3272596355745383838}
   m_Layer: 0
   m_Name: Cube.013
   m_TagString: Untagged
@@ -1032,3 +1102,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3272596355745383838
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032000121660808994}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000005, y: 0.2999999, z: 1.6000003}
+  m_Center: {x: 0.0000019073486, y: 0.14999995, z: 0.0000019073486}

@@ -836,7 +836,7 @@ Transform:
   m_GameObject: {fileID: 1706369691980685399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.57, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   batteryTag: Battery
   plusChildName: Plus
   minusChildName: Minus
-  snapRadius: 0.065
+  snapRadius: 0.08
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -1189,9 +1189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
   targetRenderer: {fileID: 8918978797969470844}
-  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
-  activeColor: {r: 0, g: 2, b: 0, a: 2}
-  transitionDuration: 0.5
+  inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
 --- !u!1 &2439411496363894596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3159,7 @@ MonoBehaviour:
   batteryTag: Battery
   plusChildName: Plus
   minusChildName: Minus
-  snapRadius: 0.065
+  snapRadius: 0.08
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -3214,9 +3213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
   targetRenderer: {fileID: 1064458665782244009}
-  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
-  activeColor: {r: 0, g: 2, b: 0, a: 2}
-  transitionDuration: 0.5
+  inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
 --- !u!1 &6561844638261454644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,7 +3240,7 @@ Transform:
   m_GameObject: {fileID: 6561844638261454644}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5699999, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 0.9998776, y: 0.9998773, z: 0.9998776}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3541,7 +3539,7 @@ MonoBehaviour:
   batteryTag: Battery
   plusChildName: Plus
   minusChildName: Minus
-  snapRadius: 0.065
+  snapRadius: 0.08
   OnBatteryPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -3595,9 +3593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
   targetRenderer: {fileID: 7334954782767583439}
-  inactiveColor: {r: 2, g: 0, b: 0, a: 2}
-  activeColor: {r: 0, g: 2, b: 0, a: 2}
-  transitionDuration: 0.5
+  inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
+  activeColor: {r: 0, g: 23.968622, b: 0, a: 2}
 --- !u!1 &7566264368396751587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4053,7 +4050,7 @@ Transform:
   m_GameObject: {fileID: 7986007736230863086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0900085, y: -1.5699999, z: -0.000009098832}
+  m_LocalPosition: {x: 0.0900085, y: -1.3000013, z: -0.000009098832}
   m_LocalScale: {x: 0.9998776, y: 0.9998773, z: 0.9998776}
   m_ConstrainProportionsScale: 0
   m_Children: []
