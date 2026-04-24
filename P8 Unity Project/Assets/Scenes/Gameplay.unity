@@ -41654,17 +41654,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6766022950439118273, guid: 4546657bda5dc774e86ad6d3c439f24c, type: 3}
   m_PrefabInstance: {fileID: 396208946}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &397038414 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7301566363545957074, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-  m_PrefabInstance: {fileID: 1507278011}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a8f01b300ac0248bfe77895cc1ebfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicXRDirectInteractorAnimator
 --- !u!1001 &397438822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147051,10 +147040,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1774507165}
     m_Modifications:
-    - target: {fileID: 576059475463922452, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: leftHandInteractor
-      value: 
-      objectReference: {fileID: 397038414}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21
@@ -147094,14 +147079,6 @@ PrefabInstance:
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7952391474054447207, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0648
-      objectReference: {fileID: 0}
-    - target: {fileID: 7952391474054447207, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0199
       objectReference: {fileID: 0}
     - target: {fileID: 8453859537980425749, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_Name

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Filtering;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -11,7 +12,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 /// and enables teleportation via TeleportationActivator.
 /// Grabbing the orb off the snap point disables teleportation again.
 /// </summary>
-public class HandTPOrbConnect : MonoBehaviour
+public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 {
     [SerializeField] private TeleportationActivator teleportationActivator;
     [SerializeField] private float snapRadius = 0.12f;
@@ -19,6 +20,17 @@ public class HandTPOrbConnect : MonoBehaviour
     [SerializeField] private HOMERRaycast homerRaycast; // optional — assign if HOMER is active
     [Tooltip("The left controller's XRDirectInteractor. Blocked from re-grabbing the orb while it is snapped to this hand.")]
     [SerializeField] private XRBaseInteractor leftHandInteractor;
+
+    // IXRSelectFilter — active only while the orb is snapped to this hand.
+    // Blocks the left hand interactor at the XRI level so selectEntered never fires
+    // and no grab audio plays when the left hand tries to pick the orb off itself.
+    public bool canProcess => _snappedOrb != null;
+    public bool Process(IXRSelectInteractor interactor, IXRSelectInteractable interactable)
+    {
+        if (leftHandInteractor != null && interactor as XRBaseInteractor == leftHandInteractor)
+            return false;
+        return true;
+    }
 
     public event System.Action OrbSnapped;
 
@@ -90,6 +102,11 @@ public class HandTPOrbConnect : MonoBehaviour
         if (teleportationActivator != null)
             teleportationActivator.orbConnected = true;
 
+        // Register this script as a select filter on the orb.
+        // canProcess returns true only while _snappedOrb != null, so the filter
+        // is effectively inactive before snap and after unsnap.
+        orb.selectFilters.Add(this);
+
         OrbSnapped?.Invoke();
 
         // Listen for re-grab so we can detach
@@ -104,6 +121,7 @@ public class HandTPOrbConnect : MonoBehaviour
     {
         if (_snappedOrb == null) return;
         _snappedOrb.selectEntered.RemoveListener(OnOrbRegrabbed);
+        _snappedOrb.selectFilters.Remove(this);
         _snappedOrb = null;
         if (teleportationActivator != null)
             teleportationActivator.orbConnected = false;
@@ -114,14 +132,8 @@ public class HandTPOrbConnect : MonoBehaviour
         if (_snappedOrb == null)
             return;
 
-        // Reject left-hand grabs — the orb must stay on the snap point while teleport is active.
-        if (leftHandInteractor != null && args.interactorObject as XRBaseInteractor == leftHandInteractor)
-        {
-            _snappedOrb.interactionManager.SelectExit(args.interactorObject, _snappedOrb);
-            return;
-        }
-
         _snappedOrb.selectEntered.RemoveListener(OnOrbRegrabbed);
+        _snappedOrb.selectFilters.Remove(this);
 
         Rigidbody rb = _snappedOrb.GetComponent<Rigidbody>();
         if (rb != null)
