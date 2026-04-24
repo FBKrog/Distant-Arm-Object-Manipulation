@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class LaunchArm : MonoBehaviour
 {
@@ -189,10 +190,12 @@ public class LaunchArm : MonoBehaviour
         if (daomInteractable != null)
         {
             selectedInteractable = daomInteractable;
-            interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
+            interactor.interactionManager.SelectEnter(interactor, daomInteractable);
+            interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
         daomInteractable = null;
         hitInteractable = null;
+        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     void Update()
