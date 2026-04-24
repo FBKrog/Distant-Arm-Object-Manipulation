@@ -71,6 +71,7 @@ public class TechniqueSelectButton : MonoBehaviour
             _grabbable.trackPosition = false;
             _grabbable.trackRotation = false;
             _grabbable.throwOnDetach = false;
+            _grabbable.movementType  = XRBaseInteractable.MovementType.Instantaneous;
             _grabbable.selectEntered.AddListener(OnSelectEntered);
             _grabbable.selectExited.AddListener(OnSelectExited);
         }
@@ -184,6 +185,7 @@ public class TechniqueSelectButton : MonoBehaviour
 
         _isActive      = false;
         _currentTravel = 0f;
+        transform.localPosition = _restLocalPos;
 
         if (techniqueRoot != null)
             techniqueRoot.SetActive(false);
