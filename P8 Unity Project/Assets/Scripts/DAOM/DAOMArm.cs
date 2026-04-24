@@ -117,6 +117,7 @@ public class DAOMArm : MonoBehaviour
     /// </summary>
     void OnRelease(SelectExitEventArgs args)
     {
+        print("GAV SLIP");
         selectedInteractable = null;
     }
 
@@ -151,7 +152,6 @@ public class DAOMArm : MonoBehaviour
         if (hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
             this.hitInteractable = hitInteractable;
-            rotationStartTime = 1; // Don't start rotating until the object is grabbed.
         }
 
         StartCoroutine(TravelToPoint(transform, point));

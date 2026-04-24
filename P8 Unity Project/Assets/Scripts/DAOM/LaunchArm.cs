@@ -28,7 +28,7 @@ public class LaunchArm : MonoBehaviour
     GameObject daomArm;
 
     [Header("Interactor")]
-    [SerializeField] DynamicXRDirectInteractorAnimator interactor;
+    [SerializeField] XRDirectInteractor interactor;
 
     [Header("Input")]
     [SerializeField] InputActionReference launchInput;
@@ -50,8 +50,8 @@ public class LaunchArm : MonoBehaviour
 
     public bool IsAiming => aiming;
 
-    public static Action<DynamicXRDirectInteractorAnimator> SetInteractorHandedness;
-    public static void OnSetInteractorHandedness(DynamicXRDirectInteractorAnimator interactor) => SetInteractorHandedness?.Invoke(interactor);
+    public static Action<XRDirectInteractor> SetInteractorHandedness;
+    public static void OnSetInteractorHandedness(XRDirectInteractor interactor) => SetInteractorHandedness?.Invoke(interactor);
 
     public static Action ArmLaunched;
     public static void OnArmLaunched() => ArmLaunched?.Invoke();
@@ -191,11 +191,10 @@ public class LaunchArm : MonoBehaviour
         {
             selectedInteractable = daomInteractable;
             interactor.interactionManager.SelectEnter(interactor, daomInteractable);
-            interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
+            print("daom interactable: " + daomInteractable.transform.name);
         }
         daomInteractable = null;
         hitInteractable = null;
-        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     void Update()
@@ -249,7 +248,7 @@ public class LaunchArm : MonoBehaviour
             {
                 if(!daomArm.GetComponent<DAOMArm>().Recalling)
                 {
-                    Debug.Log("Arm is recalling, cannot launch!");
+                    // Arm is still flying towards the target, recalling, or attached to the surface.
                 }
                 return;
             }
@@ -259,7 +258,6 @@ public class LaunchArm : MonoBehaviour
             
             if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable")
             {
-                print("Launched detected an interactable: " + hitInteractable.gameObject.name);
                 this.hitInteractable = hitInteractable;
             }
             else
@@ -293,7 +291,7 @@ public class LaunchArm : MonoBehaviour
         {
             if (!daomArm.GetComponent<DAOMArm>().IsAttachedToSurface)
             {
-                Debug.Log("Arm is not attached to surface, cannot reset!");
+                // Arm is still flying towards the target or is being recalled.
                 return;
             }
             daomArm.GetComponent<DAOMArm>().RecallArm(launchPoint);
