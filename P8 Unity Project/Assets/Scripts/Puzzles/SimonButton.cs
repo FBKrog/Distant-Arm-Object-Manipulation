@@ -68,7 +68,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
 
     private Transform activeGrabPoint;     // nearest grab point selected at StartGrab
 
-    private MaterialPropertyBlock _mpb;
+    private Material _buttonMaterial;
     private static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
     private static readonly int BaseColorID     = Shader.PropertyToID("_BaseColor");
     private Color _originalBaseColor;
@@ -80,9 +80,18 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
         buttonRb = GetComponent<Rigidbody>();
         buttonGrabbable = GetComponent<XRGrabInteractable>();
 
-        // Cache base colour before any property-block overrides are applied.
+        // Fall back to the first renderer in children if not assigned in the Inspector.
+        if (buttonRenderer == null)
+            buttonRenderer = GetComponentInChildren<Renderer>();
+
         if (buttonRenderer != null)
-            _originalBaseColor = buttonRenderer.sharedMaterial.GetColor(BaseColorID);
+        {
+            // Create a per-instance material — required for SRP Batcher compatibility.
+            // MaterialPropertyBlock is ignored by the SRP Batcher on Felix/Cel shaders.
+            _buttonMaterial = buttonRenderer.material;
+            _buttonMaterial.DisableKeyword("_USEEMISSION_OFF");
+            _originalBaseColor = _buttonMaterial.GetColor(BaseColorID);
+        }
 
         // Cache rest state before anything can move the button.
         _restLocalPos        = transform.localPosition;
@@ -106,7 +115,6 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             buttonGrabbable.selectExited.AddListener(OnSelectExited);
         }
 
-        _mpb = new MaterialPropertyBlock();
     }
 
     void OnEnable()
@@ -134,6 +142,9 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             buttonGrabbable.selectEntered.RemoveListener(OnSelectEntered);
             buttonGrabbable.selectExited.RemoveListener(OnSelectExited);
         }
+
+        if (_buttonMaterial != null)
+            Destroy(_buttonMaterial);
     }
 
     // ── LateUpdate (order 200) ─────────────────────────────────────────────────
@@ -192,16 +203,12 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// <summary>Sets emission color on buttonRenderer and optional buttonLight (used for sequence display flash).</summary>
     public void SetLightState(Color color, bool on)
     {
-        if (buttonRenderer != null)
-        {
-            buttonRenderer.GetPropertyBlock(_mpb);
-            _mpb.SetColor(EmissionColorID, on ? color : Color.black);
-            buttonRenderer.SetPropertyBlock(_mpb);
-        }
+        if (_buttonMaterial != null)
+            _buttonMaterial.SetColor(EmissionColorID, on ? color : Color.black);
 
         if (buttonLight != null)
         {
-            buttonLight.color = color;
+            buttonLight.color   = color;
             buttonLight.enabled = on;
         }
     }
@@ -213,16 +220,12 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// </summary>
     public void SetOverlay(Color color, float alpha, bool on)
     {
-        if (buttonRenderer != null)
-        {
-            buttonRenderer.GetPropertyBlock(_mpb);
-            _mpb.SetColor(BaseColorID, on ? Color.Lerp(_originalBaseColor, color, alpha) : _originalBaseColor);
-            buttonRenderer.SetPropertyBlock(_mpb);
-        }
+        if (_buttonMaterial != null)
+            _buttonMaterial.SetColor(BaseColorID, on ? Color.Lerp(_originalBaseColor, color, alpha) : _originalBaseColor);
 
         if (buttonLight != null)
         {
-            buttonLight.color  = color;
+            buttonLight.color   = color;
             buttonLight.enabled = on;
         }
     }

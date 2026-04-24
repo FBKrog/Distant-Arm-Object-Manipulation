@@ -85,6 +85,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     /// Starts the puzzle. Wire to an Inspector event or call from a trigger.
     /// Safe to call only when state == Idle.
     /// </summary>
+    [ContextMenu("Fire Puzzle Start")]
     public void BeginPuzzle()
     {
         if (state != PuzzleState.Idle)
