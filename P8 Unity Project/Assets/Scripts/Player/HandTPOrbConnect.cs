@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
 /// Attach to a child transform of Left Arm named "OrbSnapPoint".
@@ -16,6 +17,8 @@ public class HandTPOrbConnect : MonoBehaviour
     [SerializeField] private float snapRadius = 0.12f;
     [SerializeField] private string orbTag = "TPOrb";
     [SerializeField] private HOMERRaycast homerRaycast; // optional — assign if HOMER is active
+    [Tooltip("The left controller's XRDirectInteractor. Blocked from re-grabbing the orb while it is snapped to this hand.")]
+    [SerializeField] private XRBaseInteractor leftHandInteractor;
 
     public event System.Action OrbSnapped;
 
@@ -110,6 +113,13 @@ public class HandTPOrbConnect : MonoBehaviour
     {
         if (_snappedOrb == null)
             return;
+
+        // Reject left-hand grabs — the orb must stay on the snap point while teleport is active.
+        if (leftHandInteractor != null && args.interactorObject as XRBaseInteractor == leftHandInteractor)
+        {
+            _snappedOrb.interactionManager.SelectExit(args.interactorObject, _snappedOrb);
+            return;
+        }
 
         _snappedOrb.selectEntered.RemoveListener(OnOrbRegrabbed);
 

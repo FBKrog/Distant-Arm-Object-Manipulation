@@ -757,6 +757,7 @@ MonoBehaviour:
   snapRadius: 0.075
   orbTag: TPOrb
   homerRaycast: {fileID: 557079038240348362}
+  leftHandInteractor: {fileID: 7301566363545957074}
 --- !u!1 &1153907711258021117
 GameObject:
   m_ObjectHideFlags: 0
