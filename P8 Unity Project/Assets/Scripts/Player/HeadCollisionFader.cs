@@ -25,6 +25,13 @@ public class HeadCollisionFader : MonoBehaviour
             StartFade(1f);
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (fadeCanvas.alpha == 0f) return;
+        if (other == null)
+            fadeCanvas.alpha = 0f;
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Environment") || other.CompareTag("Immovable"))

@@ -153,10 +153,6 @@ public class DAOMArm : MonoBehaviour
             this.hitInteractable = hitInteractable;
             rotationStartTime = 1; // Don't start rotating until the object is grabbed.
         }
-        else
-        {
-            this.hitInteractable = null;
-        }
 
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
@@ -192,8 +188,7 @@ public class DAOMArm : MonoBehaviour
         {
             selectedInteractable = hitInteractable;
         }
-        if(selectedInteractable != null ) 
-            LaunchArm.OnGrabbedGameObject(selectedInteractable);
+        LaunchArm.OnGrabbedGameObject(selectedInteractable);
 
         targetRot = LookDirection(goPoint.transform.position);
         
@@ -367,7 +362,6 @@ public class DAOMArm : MonoBehaviour
             LaunchArm.OnEarlyRecall();
             interactor.interactionManager.SelectEnter(interactor, hitInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
-            LaunchArm.GrabbedGameObject(hitInteractable);
             return;
         }
         if (recalling)
