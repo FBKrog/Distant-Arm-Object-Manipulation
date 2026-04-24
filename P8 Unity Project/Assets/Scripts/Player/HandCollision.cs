@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HandCollision : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class HandCollision : MonoBehaviour
     [SerializeField] MonoBehaviour[] scriptsToToggle;
     [SerializeField] GameObject[] objectsToToggle;
 
+    HashSet<Collider> currentCollisions = new();
+    
     void Start()
     {
         if(armCollider == null)
@@ -22,6 +24,7 @@ public class HandCollision : MonoBehaviour
     void Update()
     {
         SetCollider();
+        CleanupCollisions();
     }
 
     void SetCollider()
@@ -44,17 +47,30 @@ public class HandCollision : MonoBehaviour
         armCollider.radius = radius;
     }
 
+    void CleanupCollisions()
+    { 
+        currentCollisions.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy); 
+        if (currentCollisions.Count == 0) 
+            SetScripts(true); 
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Environment") || other.CompareTag("Immovable"))
+        {
+            currentCollisions.Add(other);
             SetScripts(false);
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Environment") || other.CompareTag("Immovable"))
+        {
+            if(currentCollisions.Contains(other))
+                currentCollisions.Remove(other);
             SetScripts(true);
+        }
     }
 
     void SetScripts(bool state)

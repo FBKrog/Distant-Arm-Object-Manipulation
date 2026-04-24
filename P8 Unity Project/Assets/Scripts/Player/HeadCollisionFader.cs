@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HeadCollisionFader : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class HeadCollisionFader : MonoBehaviour
     [SerializeField] float fadeDuration = 0.2f;
 
     Coroutine currentFade;
+    HashSet<Collider> currentCollisions = new();
+    bool clearScreen;
 
     void Awake()
     {
@@ -17,25 +20,39 @@ public class HeadCollisionFader : MonoBehaviour
             return;
         }
         fadeCanvas.alpha = 0f;
+        clearScreen = true;
+    }
+
+    void Update()
+    {
+        if (currentCollisions.Count > 0)
+            CleanupCollisions();
+    }
+
+    void CleanupCollisions()
+    {
+        currentCollisions.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
+        if (currentCollisions.Count == 0 && !clearScreen)
+            StartFade(0f);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Environment") || other.CompareTag("Immovable"))
+        {
+            currentCollisions.Add(other);
             StartFade(1f);
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (fadeCanvas.alpha == 0f) return;
-        if (other == null)
-            fadeCanvas.alpha = 0f;
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Environment") || other.CompareTag("Immovable"))
+        {
+            if(currentCollisions.Contains(other))
+                currentCollisions.Remove(other);
             StartFade(0f);
+        }
     }
 
     void StartFade(float targetAlpha)
@@ -57,7 +74,10 @@ public class HeadCollisionFader : MonoBehaviour
             fadeCanvas.alpha = Mathf.Lerp(start, target, time / fadeDuration);
             yield return null;
         }
-
+        if(target == 0f)
+            clearScreen = true;
+        else
+            clearScreen = false;
         fadeCanvas.alpha = target;
     }
 }
