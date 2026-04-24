@@ -1054,7 +1054,7 @@ MonoBehaviour:
   lowerArmExtention: {x: 0, y: 0.0021331396, z: 0}
   lowerArmRetraction: {x: 0, y: -0.0005, z: 0}
   retractionTime: 0.2
-  followStrength: 0.6
+  followStrength: 1
   rotationStartTime: 0.8
   rotationDuration: 0.15
   handRotationOffset: {x: 90, y: 0, z: 0}
@@ -1201,7 +1201,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.11
+  m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4702170159403195726
 MonoBehaviour:
