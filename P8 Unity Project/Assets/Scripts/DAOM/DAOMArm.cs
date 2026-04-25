@@ -117,7 +117,6 @@ public class DAOMArm : MonoBehaviour
     /// </summary>
     void OnRelease(SelectExitEventArgs args)
     {
-        print("GAV SLIP");
         selectedInteractable = null;
     }
 
@@ -146,7 +145,7 @@ public class DAOMArm : MonoBehaviour
         if (interactor != null && interactable != null) // If we already hold an interactable, keep holding it.
         {
             selectedInteractable = interactable;
-            interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
+            interactor.StartManualInteraction(selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
         if (hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
@@ -360,7 +359,7 @@ public class DAOMArm : MonoBehaviour
         if (hitInteractable != null && !recalling)
         {
             LaunchArm.OnEarlyRecall();
-            interactor.interactionManager.SelectEnter(interactor, hitInteractable);
+            interactor.StartManualInteraction(hitInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
             return;
         }

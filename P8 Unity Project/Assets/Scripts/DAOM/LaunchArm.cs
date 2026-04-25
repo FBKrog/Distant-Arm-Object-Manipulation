@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -47,7 +48,7 @@ public class LaunchArm : MonoBehaviour
     IXRSelectInteractable selectedInteractable;
     IXRSelectInteractable daomInteractable;
     IXRSelectInteractable hitInteractable;
-
+    WaitForEndOfFrame waitForEndOfFrame = new();
     public bool IsAiming => aiming;
 
     public static Action<XRDirectInteractor> SetInteractorHandedness;
@@ -175,9 +176,9 @@ public class LaunchArm : MonoBehaviour
         {
             Destroy(daomArm);
             daomArm = null;
-            canLaunch = true;
             armGameObject.SetActive(true);
             ForceGrabInteractable();
+            canLaunch = true;
         }
     }
 
@@ -186,13 +187,26 @@ public class LaunchArm : MonoBehaviour
     /// </summary>
     void ForceGrabInteractable()
     {
-        interactor.enabled = true;
+        interactor.allowSelect = true;
         if (daomInteractable != null)
         {
-            selectedInteractable = daomInteractable;
-            interactor.interactionManager.SelectEnter(interactor, daomInteractable);
-            print("daom interactable: " + daomInteractable.transform.name);
+            StartCoroutine(GrabNextFrame());
         }
+        StartCoroutine(ClearInteractables());
+    }
+
+    IEnumerator GrabNextFrame() 
+    {
+        // Wait for next frame to grab in order for VR to follow along.
+        yield return waitForEndOfFrame; 
+        selectedInteractable = daomInteractable;
+        interactor.StartManualInteraction(daomInteractable);
+    }
+
+    IEnumerator ClearInteractables()
+    {
+        // Wait for next frame to clear interactables so it has been used.
+        yield return waitForEndOfFrame;
         daomInteractable = null;
         hitInteractable = null;
     }
@@ -277,7 +291,7 @@ public class LaunchArm : MonoBehaviour
             bool surfaceIsGround = hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"); // This is used to determine extra rotation for the arm when it hits the ground to make it look better.
             daomArm.GetComponent<DAOMArm>().Initialize(armRoot, armXRTarget, hit.point, this.hitInteractable, selectedInteractable, surfaceIsGround);
             OnSetInteractorHandedness(interactor);
-            interactor.enabled = false;
+            interactor.allowSelect = false;
             OnArmLaunched();
         }
     }

@@ -39,14 +39,12 @@ public class ConveyorProduction : MonoBehaviour
             StartProduction();
 
             productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform);
-            print($"Production #{productionID} enabled.");
         }
         else
         {
             StopAllCoroutines();
 
             AudioManager.StopLoopSound(productionAudioSource);
-            print($"Production #{productionID} disabled.");
         }
     }
 
