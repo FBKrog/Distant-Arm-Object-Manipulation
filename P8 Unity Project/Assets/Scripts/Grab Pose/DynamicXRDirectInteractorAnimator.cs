@@ -2,14 +2,18 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.InputSystem;
+using System;
 
 public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
     [Header("Hand Data")]
     [SerializeField] HandData handData;
     [SerializeField] GrabPoseScriptableObject defaultPose;
+    [SerializeField] GrabPoseScriptableObject grabPose;
     [SerializeField] bool leftHand = false;
     GrabPose currentGrabPose;
+    bool isGrabbing = false;
 
     protected override void Awake()
     {
@@ -22,11 +26,39 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         base.Awake();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        selectInput.inputActionReferenceValue.action.performed += OnSelectPressed;
+        selectInput.inputActionReferenceValue.action.canceled += OnSelectReleased;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        selectInput.inputActionReferenceValue.action.performed -= OnSelectPressed;
+        selectInput.inputActionReferenceValue.action.canceled -= OnSelectReleased;
+    }
+
+    void OnSelectPressed(InputAction.CallbackContext context)
+    {
+        if (hasHover || hasSelection) return;
+        else
+            BendPhalanges(grabPose.handData);
+    }
+
+    void OnSelectReleased(InputAction.CallbackContext context)
+    {
+        // Reset hand pose to initial values when releasing the object
+        BendPhalanges(defaultPose.handData);
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         if (args != null)
         {
             base.OnSelectEntered(args);
+            isGrabbing = true;
 
             AudioManager.PlaySound(SfxType.Grab, transform);
 
@@ -56,8 +88,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         }
         else
         {
-            Debug.LogWarning("Selected object does not have a GrabPose component. Hand pose will reset.");
-            BendPhalanges(defaultPose.handData);
+            BendPhalanges(grabPose.handData);
         }
     }
 
@@ -68,8 +99,6 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
             base.OnSelectExited(args);
             AudioManager.PlaySound(SfxType.Release, transform);
         }
-        // Reset hand pose to initial values when releasing the object
-        BendPhalanges(defaultPose.handData);
     }
 
     public void BendPhalanges(HandData newPose)

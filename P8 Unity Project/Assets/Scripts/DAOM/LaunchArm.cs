@@ -197,15 +197,15 @@ public class LaunchArm : MonoBehaviour
 
     IEnumerator GrabNextFrame() 
     {
-        // Wait for next frame to grab in order for VR to follow along.
+        // Wait for end of frame to grab in order for VR to follow along.
         yield return waitForEndOfFrame; 
         selectedInteractable = daomInteractable;
-        interactor.StartManualInteraction(daomInteractable);
+        selectedInteractable.transform.position = interactor.attachTransform.position;
+        interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
     }
 
     IEnumerator ClearInteractables()
     {
-        // Wait for next frame to clear interactables so it has been used.
         yield return waitForEndOfFrame;
         daomInteractable = null;
         hitInteractable = null;

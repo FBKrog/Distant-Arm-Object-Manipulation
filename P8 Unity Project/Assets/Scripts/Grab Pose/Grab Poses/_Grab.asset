@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e690bc0d3dbe28744973d35acec069b8, type: 3}
+  m_Name: _Grab
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPoseScriptableObject
+  rotationOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
+  handData:
+    thumb:
+      phalanges:
+      - {fileID: 0}
+      - {fileID: 0}
+      phalanxValues:
+      - {x: 323.41113, y: 342.22488, z: 302.82733}
+      - {x: 317.5923, y: 354.1569, z: 356.70224}
+    index:
+      phalanges:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      phalanxValues:
+      - {x: 340.01712, y: 357.5411, z: 283.4456}
+      - {x: 0.01104463, y: -0.0003552636, z: 282.26828}
+      - {x: 0.034434833, y: -0.0011005562, z: 263.45947}
+    middle:
+      phalanges:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      phalanxValues:
+      - {x: 353.09393, y: 359.24457, z: 283.4379}
+      - {x: 0.028809505, y: -0.001445088, z: 271.59702}
+      - {x: 0.0044754213, y: -0.000008508347, z: 270.6056}
+    ring:
+      phalanges:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      phalanxValues:
+      - {x: 7.545771, y: 0.9562376, z: 288.30807}
+      - {x: 0.044828415, y: -0.0017929269, z: 274.41562}
+      - {x: 0.0074684666, y: -0.0004769987, z: 284.5594}
+    pinky:
+      phalanges:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      phalanxValues:
+      - {x: 20.867193, y: 2.5379443, z: 281.69116}
+      - {x: 359.98416, y: -0.00013365518, z: 298.39194}
+      - {x: 0.009801907, y: -0.00044284793, z: 260.61554}
