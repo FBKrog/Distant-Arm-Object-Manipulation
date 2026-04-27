@@ -169707,8 +169707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625397bbd887bc345b036a600fe8ac69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorProductionManager
-  beltMaterialA: {fileID: 2100000, guid: 8495a5fa24da320448ca5d8fe1bc6003, type: 2}
-  beltMaterialB: {fileID: 2100000, guid: 8215d224f2087a44d9ce7e986270cdeb, type: 2}
+  beltMaterial: {fileID: 2100000, guid: 8495a5fa24da320448ca5d8fe1bc6003, type: 2}
   conveyorBeltSpeed: 1
   speedMultiplier: 0.2
   productionStartsActive: 0
@@ -183920,7 +183919,7 @@ GameObject:
   - component: {fileID: 1178895061}
   m_Layer: 6
   m_Name: EndAnchor(Clone)
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295444,7 +295443,7 @@ GameObject:
   - component: {fileID: 1989776769}
   m_Layer: 6
   m_Name: EndAnchor(Clone)
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296838,7 +296837,7 @@ PrefabInstance:
     - target: {fileID: 2586393315594384081, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8215d224f2087a44d9ce7e986270cdeb, type: 2}
+      objectReference: {fileID: 2100000, guid: 8495a5fa24da320448ca5d8fe1bc6003, type: 2}
     - target: {fileID: 2619010633681592357, guid: b93f62bb259ec44469e74673a5e77823, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 125
@@ -311305,7 +311304,7 @@ GameObject:
   - component: {fileID: 2115605180}
   m_Layer: 6
   m_Name: EndAnchor(Clone)
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
