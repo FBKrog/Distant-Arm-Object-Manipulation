@@ -25,11 +25,11 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     [Header("Colors")]
     [Tooltip("Emission colour flashed on each button during the sequence preview.")]
-    [SerializeField] private Color sequenceColor = Color.cyan;
+    [SerializeField] [ColorUsage(true,true)] private Color sequenceColor = Color.cyan;
     [Tooltip("Overlay colour blended on top of the base material for a correct press / puzzle complete.")]
-    [SerializeField] private Color correctColor = Color.green;
+    [SerializeField] [ColorUsage(true,true)] private Color correctColor = Color.green;
     [Tooltip("Overlay colour blended on top of the base material on a wrong press.")]
-    [SerializeField] private Color wrongColor = Color.red;
+    [SerializeField] [ColorUsage(true,true)] private Color wrongColor = Color.red;
     [Tooltip("How strongly the correct/wrong overlay blends over the base material (0 = invisible, 1 = solid).")]
     [SerializeField][Range(0f, 1f)] private float overlayAlpha = 0.4f;
 

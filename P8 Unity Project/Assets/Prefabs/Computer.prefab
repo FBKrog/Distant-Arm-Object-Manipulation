@@ -1535,9 +1535,9 @@ MonoBehaviour:
   - {fileID: 8839191556203641714}
   - {fileID: 1495405166654068497}
   sequence: 010000000400000006000000
-  sequenceColor: {r: 1, g: 0.767591, b: 0.18553454, a: 1}
-  correctColor: {r: 0.23607886, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  sequenceColor: {r: 15.999998, g: 10.482758, b: 0, a: 1}
+  correctColor: {r: 0, g: 12.66077, b: 0.7466415, a: 1}
+  wrongColor: {r: 16, g: 0, b: 0, a: 1}
   overlayAlpha: 0.4
   startDelay: 4
   sequenceShowDuration: 1
@@ -4504,9 +4504,9 @@ MonoBehaviour:
   - {fileID: 6570322696105657500}
   - {fileID: 4743697105861832073}
   sequence: 010000000400000006000000
-  sequenceColor: {r: 1, g: 0.767591, b: 0.18553454, a: 1}
-  correctColor: {r: 0.23607886, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  sequenceColor: {r: 15.999998, g: 10.482758, b: 0, a: 1}
+  correctColor: {r: 0, g: 12.66077, b: 0.7466415, a: 1}
+  wrongColor: {r: 16, g: 0, b: 0, a: 1}
   overlayAlpha: 0.4
   startDelay: 4
   sequenceShowDuration: 1
@@ -5122,9 +5122,9 @@ MonoBehaviour:
   - {fileID: 1918350488156624395}
   - {fileID: 6021122955647761670}
   sequence: 010000000400000006000000
-  sequenceColor: {r: 1, g: 0.767591, b: 0.18553454, a: 1}
-  correctColor: {r: 0.23607886, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  sequenceColor: {r: 15.999998, g: 10.482758, b: 0, a: 1}
+  correctColor: {r: 0, g: 12.66077, b: 0.7466415, a: 1}
+  wrongColor: {r: 16, g: 0, b: 0, a: 1}
   overlayAlpha: 0.4
   startDelay: 4
   sequenceShowDuration: 1
