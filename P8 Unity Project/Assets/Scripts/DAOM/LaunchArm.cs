@@ -198,7 +198,9 @@ public class LaunchArm : MonoBehaviour
     IEnumerator GrabInteractable() 
     {
         selectedInteractable = daomInteractable;
-        selectedInteractable.transform.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        var interactableRb = selectedInteractable.transform.GetComponent<Rigidbody>();
+        interactableRb.linearVelocity = Vector3.zero;
+        interactableRb.angularVelocity = Vector3.zero;
         selectedInteractable.transform.position = interactor.attachTransform.position;
         yield return waitForEndOfFrame;
         interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
