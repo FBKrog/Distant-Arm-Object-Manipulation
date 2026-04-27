@@ -23140,8 +23140,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 0, z: 2}
-  m_Center: {x: 9, y: -0.2, z: 2}
+  m_Size: {x: 2.0416522, y: 0, z: 1.1634593}
+  m_Center: {x: 9.038218, y: -0.2, z: 1.5817295}
 --- !u!114 &68787864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102775,8 +102775,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 0.01, z: 3}
-  m_Center: {x: 0.52, y: -0.2, z: 0}
+  m_Size: {x: 1.7060615, y: 0.00999999, z: 1.6047893}
+  m_Center: {x: 2.087361, y: -0.2, z: -0.9725066}
 --- !u!1 &461654517
 GameObject:
   m_ObjectHideFlags: 0
@@ -122622,8 +122622,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 0, z: 4}
-  m_Center: {x: -5, y: -0.2, z: -11}
+  m_Size: {x: 1.1823046, y: 0, z: 1.6748291}
+  m_Center: {x: -6.663843, y: -0.2, z: -9.837415}
 --- !u!114 &534962553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212122,8 +212122,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 0, z: 4}
-  m_Center: {x: -2, y: 2.74, z: -5}
+  m_Size: {x: 1.6823035, y: 0, z: 1.4414145}
+  m_Center: {x: -1.999716, y: 2.74, z: -3.7207074}
 --- !u!114 &1084323682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314995,8 +314995,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.3132117, y: 0.01, z: 2.0311985}
-  m_Center: {x: -0.26094806, y: -1.38, z: 0.015599191}
+  m_Size: {x: 1.3936086, y: 0.00999999, z: 2.0850782}
+  m_Center: {x: -0.7207497, y: -1.38, z: -0.011340618}
 --- !u!114 &1651237482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328517,6 +328517,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728380822}
     - targetCorrespondingSourceObject: {fileID: 2373247994752276172, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -328526,7 +328529,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4553998519283674596, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
   m_PrefabInstance: {fileID: 1728380816}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1728380820}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
@@ -328537,7 +328540,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7937118166268866310, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
   m_PrefabInstance: {fileID: 1728380816}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1728380820}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
@@ -328548,6 +328551,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7183982718326918510, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
   m_PrefabInstance: {fileID: 1728380816}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1728380820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+  m_PrefabInstance: {fileID: 1728380816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1728380821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+  m_PrefabInstance: {fileID: 1728380816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728380820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d505674d62af0f48b9f581693d546ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeverGrab
+--- !u!114 &1728380822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728380820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fc5bef0af28b947b3664022af6d48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AllTriggersCompleted
+  triggers:
+  - {fileID: 205280266}
+  - {fileID: 1550882119}
+  - {fileID: 1147929076}
+  OnAllTriggersCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728380821}
+        m_TargetAssemblyTypeName: LeverGrab, Assembly-CSharp
+        m_MethodName: CanLeverBeGrabbed
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1730436890
 GameObject:
   m_ObjectHideFlags: 0
@@ -357683,6 +357733,10 @@ PrefabInstance:
     - target: {fileID: 6826975740160535799, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722966536075452799, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7229933409702603711, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
