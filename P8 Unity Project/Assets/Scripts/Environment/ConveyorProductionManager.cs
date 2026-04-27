@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ConveyorProductionManager : MonoBehaviour
 {
@@ -61,6 +60,15 @@ public class ConveyorProductionManager : MonoBehaviour
             conveyorBeltSpeed += newSpeed;
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void EnableEverything(float delay)
+    {
+        AllConveyorBeltsStateChange(true);
+        ProductionStateChange(1, true);
+        ProductionStateChange(2, true);
+        ProductionStateChange(3, true);
+        Invoke("HandleBeginIncreaseProductionRate", delay);
     }
 
     public void EnableProduction(int productionID)

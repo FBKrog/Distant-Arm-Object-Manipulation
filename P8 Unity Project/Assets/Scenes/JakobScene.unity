@@ -39050,6 +39050,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8450754596097813701, guid: d4cecb55548f0f942bcc7647cf295748, type: 3}
   m_PrefabInstance: {fileID: 8446750260158441883}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &149047627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8981578043505675998, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+  m_PrefabInstance: {fileID: 1708761366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
 --- !u!114 &149047629 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5382453996675475326, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
@@ -72392,17 +72403,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5020710888578872244, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
   m_PrefabInstance: {fileID: 385161710}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &385161720 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5535393808001161148, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-  m_PrefabInstance: {fileID: 385161710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
 --- !u!114 &385161721 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8627678314436867958, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
@@ -101695,6 +101695,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Task5_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: triggers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 149047627}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 573386475}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1199573562}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1900217215}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1900217217}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TryOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DoorTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: DoorLinker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: _animator
       value: 
@@ -101706,15 +101774,27 @@ PrefabInstance:
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[0]'
       value: 
-      objectReference: {fileID: 385161720}
+      objectReference: {fileID: 149047627}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[1]'
       value: 
-      objectReference: {fileID: 328017722}
+      objectReference: {fileID: 573386475}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[2]'
       value: 
-      objectReference: {fileID: 810306147}
+      objectReference: {fileID: 1199573562}
+    - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnDoorOpened.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645387943292406514, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: activateOnObjective
+      value: SimonSays
+      objectReference: {fileID: 0}
     - target: {fileID: 6461916147906208451, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -101755,7 +101835,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 858827848241804638, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -102257,6 +102338,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8627362119230997616, guid: 96aeac0d987362a4d9ee1657551309e6, type: 3}
   m_PrefabInstance: {fileID: 572762313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &573386475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6627877905115437439, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+  m_PrefabInstance: {fileID: 1708761366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
 --- !u!1 &574247213
 GameObject:
   m_ObjectHideFlags: 0
@@ -133646,17 +133738,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5020710888578872244, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
   m_PrefabInstance: {fileID: 810306137}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &810306147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5535393808001161148, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
-  m_PrefabInstance: {fileID: 810306137}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
 --- !u!114 &810306148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8627678314436867958, guid: 748061ff6803c9545ad92095bea44be6, type: 3}
@@ -189220,6 +189301,17 @@ Transform:
   - {fileID: 658630579}
   m_Father: {fileID: 1097542873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199573562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4292920105785629078, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+  m_PrefabInstance: {fileID: 1708761366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
 --- !u!1001 &1199661181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277472,8 +277564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   tutorialManager: {fileID: 0}
-  hintText: All tasks completed.
-  displayDuration: 2
+  hintText: All tasks completed. Commencing production...
+  displayDuration: 7
   showOnce: 1
 --- !u!114 &1835598299
 MonoBehaviour:
@@ -277488,9 +277580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AllTriggersCompleted
   triggers:
-  - {fileID: 385161720}
-  - {fileID: 328017722}
-  - {fileID: 810306147}
+  - {fileID: 149047627}
+  - {fileID: 573386475}
+  - {fileID: 1199573562}
   OnAllTriggersCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -277517,6 +277609,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1078550588}
+        m_TargetAssemblyTypeName: ConveyorProductionManager, Assembly-CSharp
+        m_MethodName: EnableEverything
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1836188420
 GameObject:
@@ -283023,6 +283127,28 @@ Transform:
   - {fileID: 38683801}
   m_Father: {fileID: 49407969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900217215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4645387943292406514, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+  m_PrefabInstance: {fileID: 563342943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+--- !u!114 &1900217217 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+  m_PrefabInstance: {fileID: 563342943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb0214345754bf448d163b761c073fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
 --- !u!1001 &1900467063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287936,26 +288062,98 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Task5_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: triggers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 149047627}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 573386475}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: 'triggers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1199573562}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1944026372}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1944026374}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TryOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DoorTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: DoorLinker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084673879402187500, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: _animator
       value: 
       objectReference: {fileID: 1944026369}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: triggers.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[0]'
       value: 
-      objectReference: {fileID: 385161720}
+      objectReference: {fileID: 149047627}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[1]'
       value: 
-      objectReference: {fileID: 328017722}
+      objectReference: {fileID: 573386475}
     - target: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: 'triggers.Array.data[2]'
       value: 
-      objectReference: {fileID: 810306147}
+      objectReference: {fileID: 1199573562}
+    - target: {fileID: 4645387943292406514, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+      propertyPath: activateOnObjective
+      value: SimonSays
+      objectReference: {fileID: 0}
     - target: {fileID: 5471591409457164804, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
       propertyPath: _animator
       value: 
@@ -288000,7 +288198,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 858827848241804638, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -288015,6 +288214,28 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3082946890360220694, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
   m_PrefabInstance: {fileID: 1944026367}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1944026372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4645387943292406514, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+  m_PrefabInstance: {fileID: 1944026367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3402fe7c26f34eaa87d0f657161a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+--- !u!114 &1944026374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2167442370587707796, guid: eca908dd02a04bf46bea404bb01f9fc2, type: 3}
+  m_PrefabInstance: {fileID: 1944026367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb0214345754bf448d163b761c073fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorLinker
 --- !u!1 &1944163558
 GameObject:
   m_ObjectHideFlags: 0
