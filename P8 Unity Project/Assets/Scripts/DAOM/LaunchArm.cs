@@ -197,14 +197,16 @@ public class LaunchArm : MonoBehaviour
     IEnumerator GrabInteractable() 
     {
         selectedInteractable = daomInteractable;
-        var interactableRb = selectedInteractable.transform.GetComponent<Rigidbody>();
-        interactableRb.linearVelocity = Vector3.zero;
-        interactableRb.angularVelocity = Vector3.zero;
+        var xrGrab = selectedInteractable.transform.GetComponent<XRGrabInteractable>();
+        var interactionType = xrGrab.movementType;
+        xrGrab.movementType = XRBaseInteractable.MovementType.Instantaneous;
+        //var interactableRb = selectedInteractable.transform.GetComponent<Rigidbody>();
+        //interactableRb.linearVelocity = Vector3.zero;
+        //interactableRb.angularVelocity = Vector3.zero;
         selectedInteractable.transform.position = interactor.attachTransform.position;
         yield return waitForEndOfFrame;
-        //interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
-        interactor.StartManualInteraction(selectedInteractable);
-        interactor.EndManualInteraction();
+        interactor.interactionManager.SelectEnter(interactor, (IXRSelectInteractable)xrGrab);
+        selectedInteractable.transform.GetComponent<XRGrabInteractable>().movementType = interactionType;
     }
 
     IEnumerator ClearInteractables()

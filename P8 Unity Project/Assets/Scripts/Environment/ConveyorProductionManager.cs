@@ -5,8 +5,7 @@ using UnityEngine;
 public class ConveyorProductionManager : MonoBehaviour
 {
     [Header("Conveyor Belt")]
-    [SerializeField] Material beltMaterialA;
-    [SerializeField] Material beltMaterialB;
+    [SerializeField] Material beltMaterial;
     [SerializeField] [Tooltip("Speed of the conveyor belts (make sure it matches the speed assigned to the belts)")] float conveyorBeltSpeed = 1f;
     [SerializeField] [Tooltip("Multiplier for the change in belt material offset")] float speedMultiplier = 1f;
     [SerializeField] bool productionStartsActive = false;
@@ -85,8 +84,7 @@ public class ConveyorProductionManager : MonoBehaviour
     {
         if(beltsActive)
         {
-            beltMaterialA.mainTextureOffset += new Vector2(-conveyorBeltSpeed * speedMultiplier * Time.deltaTime, 0);
-            beltMaterialB.mainTextureOffset += new Vector2(conveyorBeltSpeed * speedMultiplier * Time.deltaTime, 0);
+            beltMaterial.mainTextureOffset += new Vector2(-conveyorBeltSpeed * speedMultiplier * Time.deltaTime, 0);
         }
     }
 }
