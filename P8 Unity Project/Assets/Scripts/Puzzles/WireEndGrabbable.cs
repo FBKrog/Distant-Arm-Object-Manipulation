@@ -37,9 +37,6 @@ public class WireEndGrabbable : MonoBehaviour
         // Start wall-mounted.
         rb.isKinematic = true;
 
-        // trackPosition/trackRotation are false so XRI never moves the object —
-        // movement type is irrelevant, but Instantaneous is the clearest intent.
-        grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
         // We handle all movement ourselves — disable XRI's built-in tracking.
         // grab.trackPosition = false; We want this to be true
         // grab.trackRotation = false; We want this to be true
@@ -65,14 +62,14 @@ public class WireEndGrabbable : MonoBehaviour
         rb.isKinematic = false;
     }
 
-    void FixedUpdate()
-    {
-        if (heldBy == null) return;
+    //void FixedUpdate()
+    //{
+    //    if (heldBy == null) return;
 
-        // MovePosition on a kinematic Rigidbody moves directly to the controller
-        // with no spring oscillation. Kinematic bodies ignore joint constraint
-        // forces on themselves, so nothing fights the movement. The joint on the
-        // last wire segment then pulls the cable chain along behind the anchor.
-        rb.MovePosition(heldBy.GetAttachTransform(grab).position);
-    }
+    //    // MovePosition on a kinematic Rigidbody moves directly to the controller
+    //    // with no spring oscillation. Kinematic bodies ignore joint constraint
+    //    // forces on themselves, so nothing fights the movement. The joint on the
+    //    // last wire segment then pulls the cable chain along behind the anchor.
+    //    rb.MovePosition(heldBy.GetAttachTransform(grab).position);
+    //}
 }

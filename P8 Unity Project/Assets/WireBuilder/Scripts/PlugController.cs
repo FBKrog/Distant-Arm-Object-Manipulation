@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -30,12 +29,13 @@ public class PlugController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (isConected) return;
-        if (endAnchor == null || other.gameObject != endAnchor.gameObject) return;
-        if (other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && wireEnd.id != id) return;
-        StartCoroutine(SnapWire());
+        if (!other.TryGetComponent<Rigidbody>(out endAnchorRB) && 
+            other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
+            wireEnd.id != id) return;
+        StartCoroutine(SnapWire(other.transform));
     }
 
-    private IEnumerator SnapWire()
+    private IEnumerator SnapWire(Transform endAnchor)  
     {
         isConected = true; // guard against re-entry immediately
         AudioManager.PlaySound(SfxType.WirePlug, transform);
@@ -74,9 +74,9 @@ public class PlugController : MonoBehaviour
         OnPlugged();
     }
 
-    private void Update()
-    {
-        if (isConected && endAnchorRB != null)
-            endAnchorRB.isKinematic = true;
-    }
+    //private void Update()
+    //{
+    //    if (isConected && endAnchorRB != null)
+    //        endAnchorRB.isKinematic = true;
+    //}
 }

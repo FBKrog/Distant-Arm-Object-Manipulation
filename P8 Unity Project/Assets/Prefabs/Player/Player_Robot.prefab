@@ -6860,6 +6860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aae301beb240dd4f902147269d1966e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeadCollisionFader
+  errorString: 
+  errorTextUI: {fileID: 0}
   fadeCanvas: {fileID: 5696403487885496421}
   fadeDuration: 1
 --- !u!1 &8016082274040797991

@@ -270,7 +270,7 @@ public class LaunchArm : MonoBehaviour
             canLaunch = false;
             aiming = false;
             
-            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable")
+            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable" && hitInteractable.enabled)
             {
                 this.hitInteractable = hitInteractable;
             }

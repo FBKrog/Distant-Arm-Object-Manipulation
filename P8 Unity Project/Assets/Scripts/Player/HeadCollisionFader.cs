@@ -1,16 +1,23 @@
+using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class HeadCollisionFader : MonoBehaviour
 {
+    WaitForSeconds waitForSeconds = new(0.04f);
+    
+    [SerializeField][TextArea(2, 5)] string errorString;
+    [SerializeField] TextMeshProUGUI errorTextUI;
     [SerializeField] CanvasGroup fadeCanvas;
     [SerializeField] float fadeDuration = 0.2f;
 
-    Coroutine currentFade;
+    Coroutine currentFadeCoroutine;
+    Coroutine currentErrorTextCoroutine;
     HashSet<Collider> currentCollisions = new();
+    int textIndex = 0;
     bool clearScreen;
-
+    bool clearText;
     void Awake()
     {
         if (fadeCanvas == null)
@@ -57,16 +64,25 @@ public class HeadCollisionFader : MonoBehaviour
 
     void StartFade(float targetAlpha)
     {
-        if (currentFade != null)
-            StopCoroutine(currentFade);
+        if (currentFadeCoroutine != null)
+            StopCoroutine(currentFadeCoroutine);
 
-        currentFade = StartCoroutine(FadeRoutine(targetAlpha));
+        currentFadeCoroutine = StartCoroutine(FadeRoutine(targetAlpha));
     }
 
     IEnumerator FadeRoutine(float target)
     {
+        if(errorTextUI == null || fadeCanvas == null)
+        {
+            Debug.LogError("Error Text UI or Fade Canvas is not assigned in the Inspector.");
+            yield break;
+        }
+        if (currentFadeCoroutine != null)
+            StopCoroutine(currentFadeCoroutine);
+        
         float start = fadeCanvas.alpha;
         float time = 0f;
+        clearText = target == 0;
 
         while (time < fadeDuration)
         {
@@ -74,10 +90,32 @@ public class HeadCollisionFader : MonoBehaviour
             fadeCanvas.alpha = Mathf.Lerp(start, target, time / fadeDuration);
             yield return null;
         }
-        if(target == 0f)
-            clearScreen = true;
-        else
-            clearScreen = false;
         fadeCanvas.alpha = target;
+
+        if (target == 0f)
+        {
+            clearScreen = true;
+            errorTextUI.text = "";
+            textIndex = 0;
+        }
+        else
+        {
+            clearScreen = false;
+            currentErrorTextCoroutine = StartCoroutine(ShowErrorText());
+        }
+    }
+
+    IEnumerator ShowErrorText()
+    {
+        for (int i = textIndex; i < errorString.Length; i++)
+        {
+            if(clearText)
+                yield break;
+            errorTextUI.text = errorString.Substring(0, i + 1) + "<color=#FFFFFF>|</color>";
+            textIndex = i + 1;
+            yield return waitForSeconds;
+        }
+        errorTextUI.text = errorString;
+        textIndex = 0;
     }
 }
