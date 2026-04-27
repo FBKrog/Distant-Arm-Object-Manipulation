@@ -202,10 +202,9 @@ public class LaunchArm : MonoBehaviour
         interactableRb.angularVelocity = Vector3.zero;
         selectedInteractable.transform.position = interactor.attachTransform.position;
         yield return waitForEndOfFrame;
-        interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
-        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
-        yield return waitForEndOfFrame;
-        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
+        //interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
+        interactor.StartManualInteraction(selectedInteractable);
+        interactor.EndManualInteraction();
     }
 
     IEnumerator ClearInteractables()
