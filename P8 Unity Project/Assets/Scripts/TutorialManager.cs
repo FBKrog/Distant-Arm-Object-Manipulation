@@ -45,11 +45,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float rotationSpeed   = 5f;     // Slerp speed multiplier
 
     [Header("Visuals")]
+    [SerializeField] private Material backgroundMaterial;
     [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.75f);
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private float fontSize = 5f;
     [Tooltip("Optional TMP font. Uses TMP default if null.")]
     [SerializeField] private TMP_FontAsset subtitleFont;
+    [SerializeField] private Material textMaterial;
 
     [Header("Dependencies")]
     [Tooltip("Auto-found if null.")]
@@ -115,6 +117,7 @@ public class TutorialManager : MonoBehaviour
 
         // --- Canvas root (world space, not parented to camera) ---
         var canvasGO = new GameObject("[TutorialManager] SubtitleCanvas");
+        canvasGO.layer                = 5; // UI layer id
         canvasGO.transform.position   = GetTargetPosition();
         canvasGO.transform.rotation   = GetTargetRotation();
         canvasGO.transform.localScale = Vector3.one * 0.01f;   // 1 canvas unit = 1 cm
@@ -126,9 +129,11 @@ public class TutorialManager : MonoBehaviour
 
         // --- Background panel ---
         var panelGO = new GameObject("Background");
+        panelGO.layer                = 5; // UI layer id
         panelGO.transform.SetParent(canvasGO.transform, false);
 
         var panelRect = panelGO.AddComponent<RectTransform>();
+
         panelRect.anchorMin = Vector2.zero;
         panelRect.anchorMax = Vector2.one;
         panelRect.offsetMin = Vector2.zero;
@@ -138,9 +143,11 @@ public class TutorialManager : MonoBehaviour
         _backgroundImage.color       = backgroundColor;
         _backgroundImage.type        = Image.Type.Simple;
         _backgroundImage.preserveAspect = false;
+        _backgroundImage.material    = backgroundMaterial;
 
         // --- Text ---
         var textGO = new GameObject("SubtitleText");
+        textGO.layer = 5; // UI layer id
         textGO.transform.SetParent(panelGO.transform, false);
 
         textGO.AddComponent<RectTransform>();
@@ -150,6 +157,7 @@ public class TutorialManager : MonoBehaviour
         _subtitleText.fontSize           = fontSize;
         _subtitleText.alignment          = TextAlignmentOptions.Center;
         _subtitleText.textWrappingMode   = TextWrappingModes.Normal;
+        _subtitleText.material           = textMaterial;
 
         if (subtitleFont != null)
             _subtitleText.font = subtitleFont;
