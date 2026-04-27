@@ -25,7 +25,6 @@ public class WireEndGrabbable : MonoBehaviour
 {
     private Rigidbody rb;
     private XRGrabInteractable grab;
-    private IXRSelectInteractor heldBy;
 
     public int id; // set in Inspector to match with the corresponding PlugController's id
 
@@ -35,7 +34,7 @@ public class WireEndGrabbable : MonoBehaviour
         grab = GetComponent<XRGrabInteractable>();
 
         // Start wall-mounted.
-        rb.isKinematic = true;
+        // rb.isKinematic = true;
 
         // We handle all movement ourselves — disable XRI's built-in tracking.
         // grab.trackPosition = false; We want this to be true
@@ -49,12 +48,10 @@ public class WireEndGrabbable : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         rb.isKinematic = true; // Ensure kinematic so MovePosition works correctly.
-        heldBy = args.interactorObject;
     }
 
     void OnReleased(SelectExitEventArgs args)
     {
-        heldBy = null;
         // Zero velocity before going non-kinematic to prevent a launch on release.
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

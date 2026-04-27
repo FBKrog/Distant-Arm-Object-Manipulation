@@ -57,8 +57,8 @@ public class LaunchArm : MonoBehaviour
     public static Action ArmLaunched;
     public static void OnArmLaunched() => ArmLaunched?.Invoke();
 
-    public static Action ArmRecalled;
-    public static void OnArmRecalled() => ArmRecalled?.Invoke();
+    public static Action<IXRSelectInteractable> ArmRecalled;
+    public static void OnArmRecalled(IXRSelectInteractable interactable) => ArmRecalled?.Invoke(interactable);
 
     public static Action<IXRSelectInteractable> GrabbedGameObject;
     public static void OnGrabbedGameObject(IXRSelectInteractable interactable) => GrabbedGameObject?.Invoke(interactable);
@@ -80,7 +80,6 @@ public class LaunchArm : MonoBehaviour
     {
         ArmRecalled += RemoveDAOMArm;
         EarlyRecall += canLaunch ? Launch : null;
-        GrabbedGameObject += AddGrabbedGameObject;
 
         // <Input>
         interactor.selectEntered.AddListener(OnGrab);
@@ -97,7 +96,6 @@ public class LaunchArm : MonoBehaviour
     void OnDisable()
     {
         ArmRecalled -= RemoveDAOMArm;
-        GrabbedGameObject -= AddGrabbedGameObject;
         EarlyRecall -= canLaunch ? Launch : null;
 
         // <Input>
@@ -130,16 +128,15 @@ public class LaunchArm : MonoBehaviour
     /// <summary>
     /// Stores the currently grabbed object, if any, to make sure the player will hold that object after recalling the arm.
     /// </summary>
-    /// <param name="gameObject"></param>
-    void AddGrabbedGameObject(IXRSelectInteractable gameObject)
-    {
-        if(gameObject == null)
-        {
-            daomInteractable = null;
-            return;
-        }
-        daomInteractable = gameObject;
-    }
+    //void AddGrabbedGameObject(IXRSelectInteractable interactable)
+    //{
+    //    if(interactable == null)
+    //    {
+    //        daomInteractable = null;
+    //        return;
+    //    }
+    //    daomInteractable = interactable;
+    //}
 
     void LaunchState(InputAction.CallbackContext ctx)
     {
@@ -170,14 +167,14 @@ public class LaunchArm : MonoBehaviour
     /// <summary>
     /// Removes the currently active DAOM arm from the scene, if one exists. And resets the state to allow for launching again as well as interaction.
     /// </summary>
-    void RemoveDAOMArm()
+    void RemoveDAOMArm(IXRSelectInteractable interactable)
     {
         if (daomArm != null)
         {
             Destroy(daomArm);
             daomArm = null;
             armGameObject.SetActive(true);
-            ForceGrabInteractable();
+            ForceGrabInteractable(interactable);
             canLaunch = true;
         }
     }
@@ -185,9 +182,11 @@ public class LaunchArm : MonoBehaviour
     /// <summary>
     /// Forces the interactor to grab the interactable object from the recalled DAOM.
     /// </summary>
-    void ForceGrabInteractable()
+    void ForceGrabInteractable(IXRSelectInteractable interactable)
     {
         interactor.allowSelect = true;
+        daomInteractable = interactable;
+
         if (daomInteractable != null)
         {
             StartCoroutine(GrabInteractable());
@@ -204,6 +203,9 @@ public class LaunchArm : MonoBehaviour
         selectedInteractable.transform.position = interactor.attachTransform.position;
         yield return waitForEndOfFrame;
         interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
+        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
+        //yield return waitForEndOfFrame;
+        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     IEnumerator ClearInteractables()
