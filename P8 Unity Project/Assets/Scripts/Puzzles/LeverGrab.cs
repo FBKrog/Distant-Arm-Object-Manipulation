@@ -143,11 +143,6 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         }
     }
 
-    public void CanLeverBeGrabbed(bool canGrab)
-    {
-        canBeGrabbed = canGrab;
-    }
-
     // ── LateUpdate (order 200) ─────────────────────────────────────────────
 
     void LateUpdate()

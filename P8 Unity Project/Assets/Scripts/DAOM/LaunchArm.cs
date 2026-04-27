@@ -190,16 +190,15 @@ public class LaunchArm : MonoBehaviour
         interactor.allowSelect = true;
         if (daomInteractable != null)
         {
-            StartCoroutine(GrabNextFrame());
+            GrabInteractable();
         }
         StartCoroutine(ClearInteractables());
     }
 
-    IEnumerator GrabNextFrame() 
+    void GrabInteractable() 
     {
-        // Wait for end of frame to grab in order for VR to follow along.
-        yield return waitForEndOfFrame; 
         selectedInteractable = daomInteractable;
+        selectedInteractable.transform.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         selectedInteractable.transform.position = interactor.attachTransform.position;
         interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
     }
