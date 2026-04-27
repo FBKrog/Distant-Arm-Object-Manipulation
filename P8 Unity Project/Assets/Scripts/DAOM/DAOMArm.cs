@@ -365,13 +365,14 @@ public class DAOMArm : MonoBehaviour
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
             return;
         }
-        if (recalling)
-        {
-            LaunchArm.OnArmRecalled();
-            return;
-        }
 
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
+
+        if (recalling)
+        {
+            LaunchArm.OnArmRecalled(selectedInteractable);
+            return;
+        }
 
         // The wall extension offset makes the raycast stop a bit before the actual wall and since we round to the nearest 90 degrees for rotation, it looks like the arm didn't hit the right spot
         // This needs some adjusment if the surface is the ground.
