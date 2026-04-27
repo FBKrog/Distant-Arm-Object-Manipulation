@@ -184,14 +184,11 @@ public class LaunchArm : MonoBehaviour
     void ForceGrabInteractable(IXRSelectInteractable interactable)
     {
         interactor.allowSelect = true;
-        //interactor.keepSelectedTargetValid = true;
         if (interactable != null)
         {
             interactable.transform.position = interactor.attachTransform.position;
             interactor.interactionManager.SelectEnter(interactor, interactable);
-            //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     void Update()

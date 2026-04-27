@@ -23,6 +23,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 [RequireComponent(typeof(XRGrabInteractable))]
 public class WireEndGrabbable : MonoBehaviour
 {
+    [SerializeField] WireController wireController;
     private Rigidbody rb;
     private XRGrabInteractable grab;
 
@@ -33,12 +34,6 @@ public class WireEndGrabbable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         grab = GetComponent<XRGrabInteractable>();
 
-        // Start wall-mounted.
-        // rb.isKinematic = true;
-
-        // We handle all movement ourselves — disable XRI's built-in tracking.
-        // grab.trackPosition = false; We want this to be true
-        // grab.trackRotation = false; We want this to be true
         grab.throwOnDetach = false;
 
         grab.selectEntered.AddListener(OnGrabbed);
@@ -48,6 +43,7 @@ public class WireEndGrabbable : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         rb.isKinematic = true; // Ensure kinematic so MovePosition works correctly.
+        wireController.segmentsRadius = 8;
     }
 
     void OnReleased(SelectExitEventArgs args)
@@ -57,6 +53,7 @@ public class WireEndGrabbable : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         // Go non-kinematic so the cable hangs naturally from the StartAnchor.
         rb.isKinematic = false;
+        wireController.segmentsRadius = 2;
     }
 
     //void FixedUpdate()
