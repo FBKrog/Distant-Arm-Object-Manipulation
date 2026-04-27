@@ -153669,17 +153669,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
---- !u!114 &946632965 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1034715964346803313, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
-  m_PrefabInstance: {fileID: 946632964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54aaabab8b3ef96458d8ec2789eb4648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
 --- !u!1 &946683714
 GameObject:
   m_ObjectHideFlags: 0
@@ -178849,20 +178838,24 @@ PrefabInstance:
       objectReference: {fileID: 1147929076}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1485042513}
+    - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 946632965}
+      objectReference: {fileID: 1485042513}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -178876,20 +178869,32 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CompleteObjective
+      value: Unlock
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: Unlock
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PuzzleInteractableGate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ObjectivesManager, Assembly-CSharp
+      value: PuzzleInteractableGate, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: PuzzleInteractableGate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
+      propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: FuseColliderStep
       objectReference: {fileID: 0}
     - target: {fileID: 4487290857660739716, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
       propertyPath: OnAllTriggersCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
