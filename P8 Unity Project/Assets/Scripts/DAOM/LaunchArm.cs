@@ -46,7 +46,6 @@ public class LaunchArm : MonoBehaviour
     LineRenderer lineRenderer;
 
     IXRSelectInteractable selectedInteractable;
-    IXRSelectInteractable daomInteractable;
     IXRSelectInteractable hitInteractable;
     WaitForEndOfFrame waitForEndOfFrame = new();
     public bool IsAiming => aiming;
@@ -154,12 +153,12 @@ public class LaunchArm : MonoBehaviour
         if(!canLaunch) return;
         if (ctx.ReadValue<float>() > 0)
         {
-            interactor.keepSelectedTargetValid = false;
+            //interactor.keepSelectedTargetValid = false;
             aiming = true;
         }
         else
         {
-            interactor.keepSelectedTargetValid = true;
+            //interactor.keepSelectedTargetValid = true;
             aiming = false;
         }
     }
@@ -171,9 +170,9 @@ public class LaunchArm : MonoBehaviour
     {
         if (daomArm != null)
         {
+            armGameObject.SetActive(true);
             Destroy(daomArm);
             daomArm = null;
-            armGameObject.SetActive(true);
             ForceGrabInteractable(interactable);
             canLaunch = true;
         }
@@ -185,35 +184,14 @@ public class LaunchArm : MonoBehaviour
     void ForceGrabInteractable(IXRSelectInteractable interactable)
     {
         interactor.allowSelect = true;
-        daomInteractable = interactable;
-
-        if (daomInteractable != null)
+        //interactor.keepSelectedTargetValid = true;
+        if (interactable != null)
         {
-            StartCoroutine(GrabInteractable());
+            interactable.transform.position = interactor.attachTransform.position;
+            interactor.interactionManager.SelectEnter(interactor, interactable);
+            //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        StartCoroutine(ClearInteractables());
-    }
-
-    IEnumerator GrabInteractable() 
-    {
-        selectedInteractable = daomInteractable;
-        var xrGrab = selectedInteractable.transform.GetComponent<XRGrabInteractable>();
-        var interactionType = xrGrab.movementType;
-        xrGrab.movementType = XRBaseInteractable.MovementType.Instantaneous;
-        //var interactableRb = selectedInteractable.transform.GetComponent<Rigidbody>();
-        //interactableRb.linearVelocity = Vector3.zero;
-        //interactableRb.angularVelocity = Vector3.zero;
-        selectedInteractable.transform.position = interactor.attachTransform.position;
-        yield return waitForEndOfFrame;
-        interactor.interactionManager.SelectEnter(interactor, (IXRSelectInteractable)xrGrab);
-        selectedInteractable.transform.GetComponent<XRGrabInteractable>().movementType = interactionType;
-    }
-
-    IEnumerator ClearInteractables()
-    {
-        yield return waitForEndOfFrame;
-        daomInteractable = null;
-        hitInteractable = null;
+        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     void Update()
@@ -259,6 +237,7 @@ public class LaunchArm : MonoBehaviour
     {
         if (!canLaunch)
         {
+            aiming = false;
             RecallArm();
         }
         if(canLaunch && ValidLayer())
@@ -274,7 +253,7 @@ public class LaunchArm : MonoBehaviour
             // Preconditions met, launch the arm and set canLaunch to false until the arm is recalled.
             canLaunch = false;
             aiming = false;
-            
+
             if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable" && hitInteractable.enabled)
             {
                 this.hitInteractable = hitInteractable;
