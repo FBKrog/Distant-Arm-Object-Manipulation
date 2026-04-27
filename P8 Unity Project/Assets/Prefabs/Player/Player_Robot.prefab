@@ -1096,6 +1096,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
   defaultPose: {fileID: 11400000, guid: b6ad0daf5d7a21f448de15287edd677a, type: 2}
+  grabPose: {fileID: 11400000, guid: 88bae2e71c16487499789010408f47fe, type: 2}
   leftHand: 1
 --- !u!1 &1328899966735882065
 GameObject:
@@ -6581,6 +6582,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
   defaultPose: {fileID: 11400000, guid: b6ad0daf5d7a21f448de15287edd677a, type: 2}
+  grabPose: {fileID: 11400000, guid: 88bae2e71c16487499789010408f47fe, type: 2}
   leftHand: 0
 --- !u!1 &7781280962212410777
 GameObject:

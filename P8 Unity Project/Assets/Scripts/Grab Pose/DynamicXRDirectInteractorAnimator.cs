@@ -13,7 +13,6 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     [SerializeField] GrabPoseScriptableObject grabPose;
     [SerializeField] bool leftHand = false;
     GrabPose currentGrabPose;
-    bool isGrabbing = false;
 
     protected override void Awake()
     {
@@ -42,8 +41,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
     void OnSelectPressed(InputAction.CallbackContext context)
     {
-        if (hasHover || hasSelection) return;
-        else
+        if (!hasHover && !hasSelection)
             BendPhalanges(grabPose.handData);
     }
 
@@ -58,7 +56,6 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         if (args != null)
         {
             base.OnSelectEntered(args);
-            isGrabbing = true;
 
             AudioManager.PlaySound(SfxType.Grab, transform);
 
@@ -131,6 +128,11 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 #if UNITY_EDITOR
     public void SetGrabPose()
     {
+        if(currentGrabPose == null)
+        {
+            Debug.LogError("No GrabPose component found on the currently hovered object. Please add a GrabPose component to the object you want to set the grab pose for.");
+            return;
+        }
         print("Setting grab pose values...");
         SetPhalanxValues();
         StartCoroutine(SetGrabPoseVariables());
