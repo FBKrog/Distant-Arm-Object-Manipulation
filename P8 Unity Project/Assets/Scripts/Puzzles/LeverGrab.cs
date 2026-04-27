@@ -55,7 +55,6 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
     private enum ActiveTechnique { None, Homer, GoGo, Daom }
     private ActiveTechnique activeTechnique = ActiveTechnique.None;
 
-    private bool canBeGrabbed = false;
     private bool isGrabbed = false;
     private bool isActivated = false;
 
@@ -150,7 +149,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         // ALWAYS lock lever position — nothing external is allowed to move it.
         transform.position = leverFixedPosition;
 
-        if (isActivated || !canBeGrabbed) return; // snap coroutine owns rotation
+        if (isActivated) return; // snap coroutine owns rotation
 
         if (!isGrabbed)
         {
@@ -383,7 +382,6 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         Debug.Log($"[LeverGrab:{name}] SnapAndActivate — START  currentAngle={currentAngle:F1}°  snapToAngle={snapToAngle:F1}°");
 
         isActivated = true;
-        canBeGrabbed = false;
 
         AudioManager.PlaySound(SfxType.LeverActivate, transform);
         ForceRelease();

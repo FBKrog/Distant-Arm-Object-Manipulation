@@ -190,16 +190,17 @@ public class LaunchArm : MonoBehaviour
         interactor.allowSelect = true;
         if (daomInteractable != null)
         {
-            GrabInteractable();
+            StartCoroutine(GrabInteractable());
         }
         StartCoroutine(ClearInteractables());
     }
 
-    void GrabInteractable() 
+    IEnumerator GrabInteractable() 
     {
         selectedInteractable = daomInteractable;
         selectedInteractable.transform.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         selectedInteractable.transform.position = interactor.attachTransform.position;
+        yield return waitForEndOfFrame;
         interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
     }
 
