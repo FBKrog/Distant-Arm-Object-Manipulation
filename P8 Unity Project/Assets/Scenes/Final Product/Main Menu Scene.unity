@@ -14862,7 +14862,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199761115}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -26882,6 +26882,7 @@ GameObject:
   - component: {fileID: 443479275}
   - component: {fileID: 443479276}
   - component: {fileID: 443479277}
+  - component: {fileID: 443479278}
   m_Layer: 0
   m_Name: Cutscene Director
   m_TagString: Untagged
@@ -26981,6 +26982,8 @@ PlayableDirector:
     value: {fileID: 1551232144}
   - key: {fileID: 5730170396833555222, guid: 64ce3eb8ccbfb9a4f9021b1fbd9d741f, type: 2}
     value: {fileID: 2061186063}
+  - key: {fileID: 2836681424961097212, guid: 64ce3eb8ccbfb9a4f9021b1fbd9d741f, type: 2}
+    value: {fileID: 443479278}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &443479277
@@ -27047,6 +27050,36 @@ MonoBehaviour:
     m_Flags: 0
   cutsceneDirector: {fileID: 443479276}
   skipContent: 2
+--- !u!114 &443479278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443479274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 547fa0729e00a7245acb1f5a87fd113b, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 443479277}
+          m_TargetAssemblyTypeName: Cutscene.CutsceneController, Assembly-CSharp
+          m_MethodName: LoadNextScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &446625323
 GameObject:
   m_ObjectHideFlags: 0
@@ -31098,6 +31131,10 @@ PrefabInstance:
     - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_fontSizeBase
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279774896
       objectReference: {fileID: 0}
     - target: {fileID: 6075453312948009151, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41231,7 +41268,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680465810}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -41282,7 +41319,7 @@ VisualEffect:
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
-  m_ResetSeedOnPlay: 0
+  m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
@@ -71794,7 +71831,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124857354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -93126,6 +93163,10 @@ PrefabInstance:
 
         Anders Reitzel'
       objectReference: {fileID: 0}
+    - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279774896
+      objectReference: {fileID: 0}
     - target: {fileID: 4411929305860783308, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1.78
@@ -109548,7 +109589,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740443596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -110004,7 +110045,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747938913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -121915,6 +121956,10 @@ PrefabInstance:
       value: '<size=1.5>Programming</size>
 
         Nikolaj B. M. Jensen'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279774896
       objectReference: {fileID: 0}
     - target: {fileID: 4411929305860783308, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_SizeDelta.x

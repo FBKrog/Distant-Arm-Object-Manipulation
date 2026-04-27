@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 namespace Cutscene
 {
@@ -42,6 +43,14 @@ namespace Cutscene
         private void SkipCutscene(InputAction.CallbackContext context)
         {
             cutsceneDirector.time = cutsceneDirector.duration - skipContent;
+        }
+
+        /// <summary>
+        /// Loads next scene after cutscene is done
+        /// </summary>
+        public void LoadNextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
