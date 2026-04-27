@@ -203,9 +203,9 @@ public class LaunchArm : MonoBehaviour
         selectedInteractable.transform.position = interactor.attachTransform.position;
         yield return waitForEndOfFrame;
         interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
-        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
-        //yield return waitForEndOfFrame;
-        //interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
+        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
+        yield return waitForEndOfFrame;
+        interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
     }
 
     IEnumerator ClearInteractables()
