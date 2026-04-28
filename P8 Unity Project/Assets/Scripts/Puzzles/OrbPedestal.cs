@@ -42,6 +42,7 @@ public class OrbPedestal : MonoBehaviour
     /// </summary>
     public void ReleaseOrb() 
     {
+        if (_currentOrb == null) return;
         if(_currentOrb.TryGetComponent<TeleportOrb>(out var teleportOrb))
             teleportOrb.ReEnableOrb();
     }
