@@ -14862,7 +14862,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199761115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -17691,57 +17691,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &251238621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 251238622}
-  - component: {fileID: 251238623}
-  m_Layer: 0
-  m_Name: Robot Specular changer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &251238622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251238621}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2135002800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &251238623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251238621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4c0a53c2f174d929ca724370721b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlterBondBlood
-  theBondBlooder: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
-  bloodAmount: 1
-  updateBlood: 0
-  floatToChange: _SpecularCutoff
-  targetColor: {r: 1, g: 1, b: 1, a: 1}
-  updateColor: 0
-  colorToChange: _ShadowColor
 --- !u!1 &253523419
 GameObject:
   m_ObjectHideFlags: 0
@@ -68570,57 +68519,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89f76d7f6d6a5e43a87c3946fe5b64d, type: 3}
---- !u!1 &1070843613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1070843614}
-  - component: {fileID: 1070843615}
-  m_Layer: 0
-  m_Name: Robot Eye shadow changer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1070843614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070843613}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2135002800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1070843615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070843613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4c0a53c2f174d929ca724370721b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlterBondBlood
-  theBondBlooder: {fileID: 2100000, guid: 4faf6cd26ea825e48bf1f187cc62c97d, type: 2}
-  bloodAmount: 1
-  updateBlood: 0
-  floatToChange: _ShadowSoftCutoff
-  targetColor: {r: 0.6901961, g: 0.18039216, b: 0.09411765, a: 1}
-  updateColor: 0
-  colorToChange: _ShadowColor
 --- !u!1 &1073571864
 GameObject:
   m_ObjectHideFlags: 0
@@ -80126,57 +80024,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000000013969839, y: 0.008106835, z: -0.0026591718}
     m_Extent: {x: 0.0022841026, y: 0.0032699278, z: 0.0030796668}
   m_DirtyAABB: 0
---- !u!1 &1298938119
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1298938120}
-  - component: {fileID: 1298938121}
-  m_Layer: 0
-  m_Name: Robot Shadow 2 changer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1298938120
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1298938119}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2135002800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1298938121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1298938119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4c0a53c2f174d929ca724370721b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlterBondBlood
-  theBondBlooder: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
-  bloodAmount: 1
-  updateBlood: 0
-  floatToChange: _ShadowSoftCutoff
-  targetColor: {r: 1, g: 1, b: 1, a: 1}
-  updateColor: 0
-  colorToChange: _ShadowColor
 --- !u!1 &1299353627
 GameObject:
   m_ObjectHideFlags: 0
@@ -124752,57 +124599,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 422035572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2069359356
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2069359357}
-  - component: {fileID: 2069359358}
-  m_Layer: 0
-  m_Name: Robot Eye emission changer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2069359357
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069359356}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2135002800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2069359358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069359356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4c0a53c2f174d929ca724370721b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlterBondBlood
-  theBondBlooder: {fileID: 2100000, guid: 4faf6cd26ea825e48bf1f187cc62c97d, type: 2}
-  bloodAmount: 1
-  updateBlood: 0
-  floatToChange: _ShadowCutoff
-  targetColor: {r: 0, g: 0, b: 0, a: 1}
-  updateColor: 0
-  colorToChange: _EmissionColor
 --- !u!1 &2069576128
 GameObject:
   m_ObjectHideFlags: 0
@@ -130394,7 +130190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135002800}
-  - component: {fileID: 2135002801}
+  - component: {fileID: 2135002802}
   m_Layer: 0
   m_Name: Robot Colour Changer
   m_TagString: Untagged
@@ -130414,14 +130210,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1298938120}
-  - {fileID: 251238622}
-  - {fileID: 2069359357}
-  - {fileID: 1070843614}
+  m_Children: []
   m_Father: {fileID: 380553890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2135002801
+--- !u!114 &2135002802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130430,16 +130222,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2135002799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4e4c0a53c2f174d929ca724370721b, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a0970874aba0a4186ff59fff1ef0f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlterBondBlood
-  theBondBlooder: {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
-  bloodAmount: 1
-  updateBlood: 0
-  floatToChange: _ShadowCutoff
-  targetColor: {r: 0.6901961, g: 0.18039216, b: 0.09411765, a: 1}
-  updateColor: 0
-  colorToChange: _ShadowColor
+  m_EditorClassIdentifier: Assembly-CSharp::Cutscene.MultiMaterialValueAlterer
+  allMaterials:
+  - {fileID: 2100000, guid: 26b0ea5a07c3a5b48a95e7591d7c29a5, type: 2}
+  - {fileID: 2100000, guid: 4faf6cd26ea825e48bf1f187cc62c97d, type: 2}
+  - {fileID: 2100000, guid: 2daebb3834cc9174981bf9c195c96eb7, type: 2}
+  - {fileID: 2100000, guid: 281a6f0f9f5c9d540a3be0fd8c8adf9e, type: 2}
+  - {fileID: 2100000, guid: 621952c1be54fad4382714946f60a1c9, type: 2}
+  doShadow: 0101010101
+  doSpecular: 0100010101
+  doEmission: 0001000000
+  updateValues: 0
+  shadowCutoffValue: 1
+  shadowSoftCutoffValue: 1
+  shadowColor: {r: 0.6901961, g: 0.18039216, b: 0.09411765, a: 1}
+  specularValue: 1
+  emissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &2136201299
 GameObject:
   m_ObjectHideFlags: 0
@@ -131863,6 +131663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1999859919}
     m_Modifications:
+    - target: {fileID: 675350915094197229, guid: dcf227946dd62e248900d7ffc007971a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3166899035038930741, guid: dcf227946dd62e248900d7ffc007971a, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
