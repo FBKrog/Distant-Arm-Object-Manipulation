@@ -6994,8 +6994,7 @@ MonoBehaviour:
 
     [SYSTEM.ADMIN]
     > Please exit current collider to continue the experience.'
-  errorTextUI: {fileID: 7937253569986727034}
-  fadeCanvas: {fileID: 5696403487885496421}
+  canvasGroup: {fileID: 0}
   fadeDuration: 1
 --- !u!1 &8016082274040797991
 GameObject:
