@@ -54,12 +54,12 @@ MonoBehaviour:
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
       outward and use the <b>[SELECT]</b> button to grab it.
-    stepId: 
+    stepId: GrabStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Place the blue orb into the empty slot on your left hand to enable
       teleportation.
-    stepId: 
+    stepId: SnapStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
@@ -81,7 +81,7 @@ MonoBehaviour:
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the orb and teleport further into the factory to complete the remaining tasks.
     stepId: 
-    displayDuration: 6
+    displayDuration: 15
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -90,10 +90,11 @@ MonoBehaviour:
   viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
-  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
+  backgroundMaterial: {fileID: 2100000, guid: bf475951f2fbf9f47a2fe95f871732d6, type: 2}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 0}
+  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &1206466485640629815
 GameObject:
@@ -150,12 +151,12 @@ MonoBehaviour:
   - subtitleText: To retrieve the blue orb on the table, you must use the <b>[A]</b>
       button to aim, the <b>[TRIGGER]</b> button to shoot, and the <b>[SELECT]</b>
       button to grab.
-    stepId: 
+    stepId: GrabStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Place the blue orb into the empty slot on your left hand to enable
       teleportation.
-    stepId: 
+    stepId: SnapStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
@@ -177,7 +178,7 @@ MonoBehaviour:
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the orb and teleport further into the factory to complete the remaining tasks.
     stepId: 
-    displayDuration: 6
+    displayDuration: 15
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -186,10 +187,11 @@ MonoBehaviour:
   viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
-  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
+  backgroundMaterial: {fileID: 2100000, guid: bf475951f2fbf9f47a2fe95f871732d6, type: 2}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 0}
+  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &4155103511497936179
 GameObject:
@@ -247,12 +249,12 @@ MonoBehaviour:
   - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
       to aim, the <b>[TRIGGER]</b> button to shoot and retract, and the <b>[SELECT]</b>
       button to grab it.
-    stepId: 
+    stepId: GrabStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Place the blue orb into the empty slot on your left hand to enable
       teleportation.
-    stepId: 
+    stepId: SnapStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
@@ -274,7 +276,7 @@ MonoBehaviour:
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the orb and teleport further into the factory to complete the remaining tasks.
     stepId: 
-    displayDuration: 6
+    displayDuration: 15
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -283,10 +285,11 @@ MonoBehaviour:
   viewOffsetY: -0.3
   followSmoothing: 0.35
   rotationSpeed: 6
-  backgroundColor: {r: 0.16981131, g: 0.1612063, b: 0.15475257, a: 0.6509804}
+  backgroundMaterial: {fileID: 2100000, guid: bf475951f2fbf9f47a2fe95f871732d6, type: 2}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 0}
+  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &5950508674144004181
 GameObject:
@@ -391,6 +394,9 @@ MonoBehaviour:
   orbConnect: {fileID: 0}
   orbGrabInteractable: {fileID: 0}
   autoStart: 1
+  grabStepId: GrabStep
+  snapStepId: SnapStep
+  alreadyCompletedDisplayDuration: 1
 --- !u!114 &1407943549580462494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,3 +411,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
   activateOnObjective: OrbObjective
   tutorialManager: {fileID: 7143218743850561371}
+  alreadyCompletedDisplayDuration: 1

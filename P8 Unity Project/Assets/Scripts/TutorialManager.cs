@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -55,6 +56,13 @@ public class TutorialManager : MonoBehaviour
     [Header("Dependencies")]
     [Tooltip("Auto-found if null.")]
     [SerializeField] private ObjectivesManager objectivesManager;
+
+    // -------------------------------------------------------------------------
+    // Events
+    // -------------------------------------------------------------------------
+
+    /// <summary>Fired each time a step becomes active, passing its stepId (may be null/empty).</summary>
+    public event Action<string> OnStepShown;
 
     // -------------------------------------------------------------------------
     // Private state
@@ -291,6 +299,8 @@ public class TutorialManager : MonoBehaviour
 
         if (step.displayDuration > 0f)
             _autoAdvanceCoroutine = StartCoroutine(AutoAdvance(step.displayDuration));
+
+        OnStepShown?.Invoke(step.stepId);
     }
 
     /// <summary>

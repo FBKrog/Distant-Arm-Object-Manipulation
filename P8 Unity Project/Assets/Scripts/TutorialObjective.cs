@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -11,8 +12,23 @@ public class TutorialObjective : MonoBehaviour
     [SerializeField] private string activateOnObjective;
 
     [SerializeField] private TutorialManager tutorialManager;
+    [Tooltip("Seconds to display a pre-completed step before auto-advancing past it.")]
+    [SerializeField] private float alreadyCompletedDisplayDuration = 1f;
 
     private int _step = -1;   // -1 = not yet activated
+    private string _pendingStepId;
+
+    private void Start()
+    {
+        if (tutorialManager != null)
+            tutorialManager.OnStepShown += OnStepShownHandler;
+    }
+
+    private void OnDestroy()
+    {
+        if (tutorialManager != null)
+            tutorialManager.OnStepShown -= OnStepShownHandler;
+    }
 
     /// <summary>Wire to ObjectivesManager.onObjectiveCompleted.</summary>
     public void ActivateIfName(string completedObjectiveName)
@@ -61,12 +77,35 @@ public class TutorialObjective : MonoBehaviour
         }
         if (string.IsNullOrEmpty(id) || tutorialManager.CurrentStepId != id)
         {
-            Debug.Log($"[TutorialObjective] '{gameObject.name}' — AdvanceIfStepId('{id}') ignored: current step ID is '{tutorialManager.CurrentStepId}'.");
+            if (_step >= 0 && !string.IsNullOrEmpty(id))
+                _pendingStepId = id;
+            Debug.Log($"[TutorialObjective] '{gameObject.name}' — AdvanceIfStepId('{id}') ignored: current step ID is '{tutorialManager.CurrentStepId}'. Stored as pending.");
             return;
         }
 
+        _pendingStepId = null;
         _step++;
         Debug.Log($"[TutorialObjective] '{gameObject.name}' — AdvanceIfStepId('{id}') matched. Advancing tutorial (internal step now {_step}).");
         tutorialManager.AdvanceToNextStep();
+    }
+
+    private void OnStepShownHandler(string stepId)
+    {
+        if (_step < 0 || string.IsNullOrEmpty(_pendingStepId)) return;
+        if (stepId != _pendingStepId) return;
+        var pending = _pendingStepId;
+        _pendingStepId = null;
+        StartCoroutine(BriefDisplayThenAdvance(pending));
+    }
+
+    private IEnumerator BriefDisplayThenAdvance(string expectedStepId)
+    {
+        yield return new WaitForSeconds(alreadyCompletedDisplayDuration);
+        if (_step >= 0 && tutorialManager.CurrentStepId == expectedStepId)
+        {
+            _step++;
+            Debug.Log($"[TutorialObjective] '{gameObject.name}' — pre-completed step '{expectedStepId}' auto-advanced after brief display.");
+            tutorialManager.AdvanceToNextStep();
+        }
     }
 }
