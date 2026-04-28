@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 267550166181070063}
   - component: {fileID: 7674976486029752673}
   - component: {fileID: 8249982721169000335}
-  - component: {fileID: 7489367255241552443}
   - component: {fileID: 423562392676956940}
   - component: {fileID: 1752807963815123989}
-  - component: {fileID: 7606690046627349358}
   m_Layer: 0
   m_Name: Left Leg(Clone) (1)
   m_TagString: Untagged
@@ -94,33 +92,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &7489367255241552443
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752623389369917618}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &423562392676956940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -149,34 +120,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752623389369917618}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 3
---- !u!64 &7606690046627349358
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752623389369917618}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &1873210070484314348
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,10 +137,8 @@ GameObject:
   - component: {fileID: 6816208177345926415}
   - component: {fileID: 6563102543284199675}
   - component: {fileID: 1920187788161054632}
-  - component: {fileID: 6530037503559308307}
   - component: {fileID: 4338414126796720176}
   - component: {fileID: 3758908621122848995}
-  - component: {fileID: 2642243005787270766}
   m_Layer: 0
   m_Name: Left Leg(Clone) (2)
   m_TagString: Untagged
@@ -271,33 +218,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &6530037503559308307
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873210070484314348}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &4338414126796720176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -326,34 +246,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873210070484314348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 3
---- !u!64 &2642243005787270766
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873210070484314348}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &2353062215259012139
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,10 +263,8 @@ GameObject:
   - component: {fileID: 5201857685594271258}
   - component: {fileID: 4561847949614946860}
   - component: {fileID: 1254726486315272350}
-  - component: {fileID: 2565626645966218354}
   - component: {fileID: 566020958790999309}
   - component: {fileID: 6645460957976408073}
-  - component: {fileID: 7506317972710667728}
   m_Layer: 0
   m_Name: Rings(Clone) (3)
   m_TagString: Untagged
@@ -448,33 +344,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2565626645966218354
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2353062215259012139}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &566020958790999309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -503,34 +372,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2353062215259012139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 6
---- !u!64 &7506317972710667728
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2353062215259012139}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6889500831704049005, guid: 7be736583c0515846a2d0142b5c0d9f8, type: 3}
 --- !u!1 &2480982145673528789
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,10 +569,8 @@ GameObject:
   - component: {fileID: 4878606697948626277}
   - component: {fileID: 6119602093712742018}
   - component: {fileID: 287733388575986801}
-  - component: {fileID: 3299581189697875105}
   - component: {fileID: 6724792767371620451}
   - component: {fileID: 704214664632504252}
-  - component: {fileID: 7207361233233988113}
   m_Layer: 0
   m_Name: Right Leg(Clone) (2)
   m_TagString: Untagged
@@ -805,33 +650,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3299581189697875105
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746758633018507947}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6724792767371620451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -860,34 +678,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3746758633018507947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 4
---- !u!64 &7207361233233988113
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746758633018507947}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &3880908522905128897
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,10 +695,8 @@ GameObject:
   - component: {fileID: 6534742249135985888}
   - component: {fileID: 1279361199677576197}
   - component: {fileID: 5499656255378399879}
-  - component: {fileID: 5218885002454930038}
   - component: {fileID: 2259142272386207003}
   - component: {fileID: 4848382462858470164}
-  - component: {fileID: 5679949221274266029}
   m_Layer: 0
   m_Name: Rings(Clone) (1)
   m_TagString: Untagged
@@ -982,33 +776,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &5218885002454930038
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880908522905128897}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2259142272386207003
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1037,34 +804,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3880908522905128897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 6
---- !u!64 &5679949221274266029
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880908522905128897}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6889500831704049005, guid: 7be736583c0515846a2d0142b5c0d9f8, type: 3}
 --- !u!1 &4105509329875577285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,10 +821,8 @@ GameObject:
   - component: {fileID: 485905339490897336}
   - component: {fileID: 561005411328196942}
   - component: {fileID: 8629483591813785878}
-  - component: {fileID: 6530947652227546146}
   - component: {fileID: 7978142416517569882}
   - component: {fileID: 5683353398096410264}
-  - component: {fileID: 7237139009989296399}
   m_Layer: 0
   m_Name: Right Leg(Clone) (3)
   m_TagString: Untagged
@@ -1159,33 +902,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &6530947652227546146
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105509329875577285}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &7978142416517569882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1214,34 +930,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4105509329875577285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 4
---- !u!64 &7237139009989296399
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105509329875577285}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &5223166822576249521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,10 +947,8 @@ GameObject:
   - component: {fileID: 6579776093298874238}
   - component: {fileID: 5561067186268056802}
   - component: {fileID: 4244207592809316436}
-  - component: {fileID: 605084322877205678}
   - component: {fileID: 6128659721304268190}
   - component: {fileID: 59245536333316776}
-  - component: {fileID: 7233413570498684782}
   m_Layer: 0
   m_Name: Rings(Clone) (2)
   m_TagString: Untagged
@@ -1336,33 +1028,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &605084322877205678
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223166822576249521}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6128659721304268190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1391,34 +1056,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5223166822576249521}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 6
---- !u!64 &7233413570498684782
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223166822576249521}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6889500831704049005, guid: 7be736583c0515846a2d0142b5c0d9f8, type: 3}
 --- !u!1 &6657116066424611317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,10 +1073,8 @@ GameObject:
   - component: {fileID: 7065711541011462020}
   - component: {fileID: 4461895316248219431}
   - component: {fileID: 8426814860532738042}
-  - component: {fileID: 986507103138626845}
   - component: {fileID: 3321152396050337293}
   - component: {fileID: 38305441532461377}
-  - component: {fileID: 960423104646945016}
   m_Layer: 0
   m_Name: Right Leg(Clone) (1)
   m_TagString: Untagged
@@ -1513,33 +1154,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &986507103138626845
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657116066424611317}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &3321152396050337293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1568,34 +1182,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6657116066424611317}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 4
---- !u!64 &960423104646945016
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657116066424611317}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &6700695337223713945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1199,6 @@ GameObject:
   - component: {fileID: 6087069774135148172}
   - component: {fileID: 5452906734106007832}
   - component: {fileID: 3978346908733245147}
-  - component: {fileID: 6862386063762584738}
   m_Layer: 0
   m_Name: Head (1)
   m_TagString: Untagged
@@ -1666,28 +1257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 5
---- !u!64 &6862386063762584738
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6700695337223713945}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &6722672604874516583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,10 +1268,8 @@ GameObject:
   - component: {fileID: 7170116003640382759}
   - component: {fileID: 3731182829438553484}
   - component: {fileID: 3288998686889745247}
-  - component: {fileID: 3717871361810429724}
   - component: {fileID: 4221689256217186540}
   - component: {fileID: 2577651936093621684}
-  - component: {fileID: 7803070731909431785}
   m_Layer: 0
   m_Name: Body(Clone) (3)
   m_TagString: Untagged
@@ -1782,33 +1349,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3717871361810429724
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6722672604874516583}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &4221689256217186540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1837,34 +1377,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6722672604874516583}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 0
---- !u!64 &7803070731909431785
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6722672604874516583}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2496214720692311644, guid: 50a4b37b279ae5944a9aecd4bc281085, type: 3}
 --- !u!1 &7094267722001655841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,10 +1394,8 @@ GameObject:
   - component: {fileID: 6542020131447072735}
   - component: {fileID: 9071091795560263376}
   - component: {fileID: 8245266559574210125}
-  - component: {fileID: 4842613211630059351}
   - component: {fileID: 2141271403735858842}
   - component: {fileID: 5434935363285476055}
-  - component: {fileID: 9138212356519335574}
   m_Layer: 0
   m_Name: Body(Clone) (1)
   m_TagString: Untagged
@@ -1959,33 +1475,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4842613211630059351
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7094267722001655841}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2141271403735858842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2014,34 +1503,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7094267722001655841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 0
---- !u!64 &9138212356519335574
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7094267722001655841}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2496214720692311644, guid: 50a4b37b279ae5944a9aecd4bc281085, type: 3}
 --- !u!1 &7693412189895375971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,10 +1564,8 @@ GameObject:
   - component: {fileID: 72694229824450564}
   - component: {fileID: 7462366571954414285}
   - component: {fileID: 3611569726983414239}
-  - component: {fileID: 4090774833994438166}
   - component: {fileID: 6953275844873798147}
   - component: {fileID: 7279730113796508008}
-  - component: {fileID: 1340705982781848950}
   m_Layer: 0
   m_Name: Left Leg(Clone) (3)
   m_TagString: Untagged
@@ -2180,33 +1645,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4090774833994438166
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230483522996889142}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6953275844873798147
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2235,34 +1673,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8230483522996889142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 3
---- !u!64 &1340705982781848950
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230483522996889142}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &9010950674927834825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,10 +1690,8 @@ GameObject:
   - component: {fileID: 7393287392943791829}
   - component: {fileID: 9064684000858386172}
   - component: {fileID: 5126341896653712780}
-  - component: {fileID: 9205242546816148758}
   - component: {fileID: 5651901674879877548}
   - component: {fileID: 6314206539253333971}
-  - component: {fileID: 21644648213102581}
   m_Layer: 0
   m_Name: Body(Clone) (2)
   m_TagString: Untagged
@@ -2357,33 +1771,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &9205242546816148758
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9010950674927834825}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &5651901674879877548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2412,31 +1799,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9010950674927834825}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 0
---- !u!64 &21644648213102581
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9010950674927834825}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2496214720692311644, guid: 50a4b37b279ae5944a9aecd4bc281085, type: 3}

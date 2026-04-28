@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9138808705105465244}
   - component: {fileID: 300690175929488736}
   - component: {fileID: 5844276300073307140}
-  - component: {fileID: 5039572808091444239}
   m_Layer: 0
   m_Name: Rings(Clone)
   m_TagString: Untagged
@@ -149,34 +148,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777365613285934646}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 6
---- !u!64 &5039572808091444239
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777365613285934646}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6889500831704049005, guid: 7be736583c0515846a2d0142b5c0d9f8, type: 3}
 --- !u!1 &3231238806441165666
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +168,6 @@ GameObject:
   - component: {fileID: 6957132515650046368}
   - component: {fileID: 2967374696010172624}
   - component: {fileID: 7690929798648452633}
-  - component: {fileID: 595061393399132479}
   m_Layer: 0
   m_Name: Left Leg(Clone)
   m_TagString: Untagged
@@ -326,34 +302,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231238806441165666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 3
---- !u!64 &595061393399132479
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231238806441165666}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -646248845268703997, guid: d2b7147633d48fb459f47fc0e93d98c6, type: 3}
 --- !u!1 &3811184427525154542
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +356,6 @@ GameObject:
   - component: {fileID: 2104974561526081076}
   - component: {fileID: 4389896398589240211}
   - component: {fileID: 2435746594482364372}
-  - component: {fileID: 149058198857516366}
   m_Layer: 0
   m_Name: Arm_DAOM(Clone)
   m_TagString: Untagged
@@ -537,31 +490,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804772655179229520}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6b696d8e2a8aa4d8d998c71740f0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotPart
   part: 2
---- !u!64 &149058198857516366
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804772655179229520}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7695152187008983426, guid: 55b405fbf9fc5044e837abfc5d26a337, type: 3}
