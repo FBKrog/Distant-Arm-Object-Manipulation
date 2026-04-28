@@ -51,7 +51,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float fontSize = 5f;
     [Tooltip("Optional TMP font. Uses TMP default if null.")]
     [SerializeField] private TMP_FontAsset subtitleFont;
-    [SerializeField] private Material textMaterial;
 
     [Header("Dependencies")]
     [Tooltip("Auto-found if null.")]
@@ -157,7 +156,6 @@ public class TutorialManager : MonoBehaviour
         _subtitleText.fontSize           = fontSize;
         _subtitleText.alignment          = TextAlignmentOptions.Center;
         _subtitleText.textWrappingMode   = TextWrappingModes.Normal;
-        _subtitleText.material           = textMaterial;
 
         if (subtitleFont != null)
             _subtitleText.font = subtitleFont;
