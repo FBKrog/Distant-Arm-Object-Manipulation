@@ -41,7 +41,7 @@ namespace ResearchLogging
             //Create file
             int logNum = 0;
 
-            string myDataPath = Application.dataPath;
+            string myDataPath = Application.persistentDataPath;
             // Go from last to first character
             for (int i = myDataPath.Length - 1; i >= 0; i--)
             {
