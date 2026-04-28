@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.Audio;
 
 public class SceneFader : MonoBehaviour
 {
@@ -41,18 +42,12 @@ public class SceneFader : MonoBehaviour
     {
         OnFinalFade();
         Invoke(nameof(BeginFinalFade), finalFadeDelay);
+        Invoke(nameof(EndGame), 48f); // song duration + buffer
     }
 
     void BeginFinalFade()
     {
         OnStartFade(1f, finalFadeDuration, finalFadeText);
-        StartCoroutine(BeginEndGame());
-    }
-
-    IEnumerator BeginEndGame()
-    {
-        yield return new WaitForSeconds(finalFadeDuration);
-        Invoke(nameof(EndGame), 6f);
     }
 
     void EndGame()

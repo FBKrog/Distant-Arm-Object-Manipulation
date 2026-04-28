@@ -52,7 +52,7 @@ public class HeadCollisionFader : MonoBehaviour
         clearText = true;
         canCollide = false;
         tmp.fontSize = 30;
-        tmp.transform.position = new(-0.25f, tmp.transform.position.y, tmp.transform.position.z);
+        tmp.transform.localPosition = new(-0.25f, tmp.transform.localPosition.y, tmp.transform.localPosition.z);
     }
 
     void CleanupCollisions()

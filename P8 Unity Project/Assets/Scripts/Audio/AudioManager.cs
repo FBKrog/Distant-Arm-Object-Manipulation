@@ -33,7 +33,8 @@ public enum SfxType
     ValveTurn,
     WireComplete,
     LeverActivate,
-    FactoryMachine
+    FactoryMachine,
+    EndingMusic
 }
 
 public class AudioManager : MonoBehaviour
@@ -85,7 +86,7 @@ public class AudioManager : MonoBehaviour
     }
 #endif
 
-    public static void PlaySound(SfxType sfx, Transform tf, bool parented = false)
+    public static void PlaySound(SfxType sfx, Transform tf, bool parented = false, bool twoD = false)
     {
         var sfxType = instance.sfxs[(int)sfx];
         if (sfxType.clips == null || sfxType.clips.Length == 0)
@@ -130,26 +131,16 @@ public class AudioManager : MonoBehaviour
             audioSource.transform.parent = tf;
         }
 
+        audioSource.spatialBlend = twoD ? 0f : 1f;
         audioSource.clip = clip;
-        audioSource.volume = instance.sfxs[(int)sfx].volume;
+        audioSource.volume = sfxType.volume;
         audioSource.Play();
 #if UNITY_EDITOR
         audioSource.name = $"AudioSource_{sfx}_{clip.name}";
 #endif
     }
 
-    IEnumerator StopSound(AudioSource source)
-    {
-        if (source == null) yield return null;
-        source.transform.parent = transform;
-        
-        source.volume = 0.0001f; // Avoid clipping sounds when stopping.
-        yield return waitForSeconds0_1;
-        source.loop = false;
-        source.Stop();
-    }
-
-    public static AudioSource PlayLoopSound(SfxType sfx, Transform tf, bool parented = false)
+    public static AudioSource PlayLoopSound(SfxType sfx, Transform tf, bool parented = false, bool twoD = false)
     {
         var sfxType = instance.sfxs[(int)sfx];
         if (sfxType.clips == null || sfxType.clips.Length == 0)
@@ -189,8 +180,9 @@ public class AudioManager : MonoBehaviour
             audioSource.transform.parent = tf;
         }
 
+        audioSource.spatialBlend = twoD ? 0f : 1f;
         audioSource.clip = clip;
-        audioSource.volume = instance.sfxs[(int)sfx].volume;
+        audioSource.volume = sfxType.volume;
         audioSource.loop = true;
         audioSource.Play();
 #if UNITY_EDITOR
@@ -205,6 +197,77 @@ public class AudioManager : MonoBehaviour
         {
             instance.StartCoroutine(instance.StopSound(source));
         }
+    }
+
+    IEnumerator StopSound(AudioSource source)
+    {
+        if (source == null) yield return null;
+        source.transform.parent = transform;
+        
+        source.volume = 0.0001f; // Avoid clipping sounds when stopping.
+        yield return waitForSeconds0_1;
+        source.loop = false;
+        source.Stop();
+    }
+
+    static public void PlayFadeInSound(SfxType sfx, float fadeTime, bool twoD = false)
+    {
+        var music = instance.sfxs[(int)sfx];
+        if (music.clips == null || music.clips.Length == 0)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has no audio clips assigned.");
+            return;
+        }
+
+        var clip = music.clips[0];
+        if (music.clips.Length > 1)
+        {
+            clip = music.clips[Random.Range(0, music.clips.Length)];
+        }
+        if (clip == null)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has a null audio clip assigned.");
+            return;
+        }
+
+        // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
+        if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
+        {
+            Debug.LogWarning("Cleaning up null audio sources from the pool.");
+            instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+        }
+
+        var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
+
+        if (audioSource == null || audioSource.gameObject == null)
+        {
+            audioSource = instance.AddAudioSource();
+            print($"Created new audio source for {clip.name}.");
+        }
+
+        audioSource.spatialBlend = twoD ? 0f : 1f;
+        audioSource.clip = clip;
+        var targetVolume = music.volume;
+#if UNITY_EDITOR
+        audioSource.name = $"AudioSource_{sfx}_{clip.name}";
+#endif
+
+        instance.StartCoroutine(instance.PlayFadeInSoundCoroutine(audioSource, fadeTime, music.volume));
+    }
+
+    IEnumerator PlayFadeInSoundCoroutine(AudioSource audioSource, float fadeTime, float targetVolume)
+    {
+        audioSource.volume = 0f;
+        audioSource.Play();
+        var t = 0f;
+        while (audioSource.volume < targetVolume)
+        {                                       
+            audioSource.volume = Mathf.Lerp(0f, targetVolume, t / fadeTime);
+            t += Time.deltaTime;
+            print("Audio source volume: " + audioSource.volume + "| Delta Time: " + t);
+            yield return null;
+        }
+        audioSource.volume = targetVolume;
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class ConveyorProductionManager : MonoBehaviour
 {
@@ -51,7 +51,7 @@ public class ConveyorProductionManager : MonoBehaviour
     IEnumerator IncreaseProductionRate()
     {
         float newSpeed = 0.2f;
-        float newProductionInterval = -0.1f;
+        float newProductionInterval = -0.07f;
         while (true)
         {
             AllConveyorBeltsSpeedChange(newSpeed);
