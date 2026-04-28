@@ -27,10 +27,8 @@ using UnityEditor;
 public class ValveGrab : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast       homer;
+    public HOMERArm           homer;
     public GoGoExtend         goGoExtend;
-    [Tooltip("XRDirectInteractor on GoGo's virtual hand.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(-0.035f, -0.07f, 0); // compensate for DAOM attach transform offset
 
@@ -288,8 +286,8 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         ActiveTechnique technique = ActiveTechnique.None;
         string interName = args.interactorObject?.transform?.name ?? "null";
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
             Debug.Log($"[ValveGrab:{name}] OnSelectEntered — matched GoGo interactor '{interName}'");
@@ -380,14 +378,15 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && valveGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && valveGrabbable != null)
                 {
                     Debug.Log($"[ValveGrab:{name}] ForceRelease — calling SelectExit on GoGo interactor");
-                    valveGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInteractor, (IXRSelectInteractable)valveGrabbable);
+                    valveGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInter, (IXRSelectInteractable)valveGrabbable);
                 }
                 else
                 {
-                    Debug.LogWarning($"[ValveGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInteractor != null} valveGrabbable={valveGrabbable != null})");
+                    Debug.LogWarning($"[ValveGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInter != null} valveGrabbable={valveGrabbable != null})");
                 }
                 break;
 

@@ -24,10 +24,8 @@ using UnityEditor;
 public class LeverGrab : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast homer;
+    public HOMERArm homer;
     public GoGoExtend goGoExtend;
-    [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(-0.1f, -0.02f, 0); // compensate for DAOM attach transform offset
     [SerializeField] private Vector3 daomRotationOffset = new(0, 180, 135); // compensate for DAOM attach transform rotation
@@ -258,8 +256,8 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         ActiveTechnique technique = ActiveTechnique.None;
         string interactorName = args.interactorObject?.transform?.name ?? "null";
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
             Debug.Log($"[LeverGrab:{name}] OnSelectEntered — matched GoGo interactor '{interactorName}'");
@@ -349,14 +347,15 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && leverGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && leverGrabbable != null)
                 {
                     Debug.Log($"[LeverGrab:{name}] ForceRelease — calling SelectExit on GoGo interactor");
-                    leverGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInteractor, (IXRSelectInteractable)leverGrabbable);
+                    leverGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInter, (IXRSelectInteractable)leverGrabbable);
                 }
                 else
                 {
-                    Debug.LogWarning($"[LeverGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInteractor != null} leverGrabbable={leverGrabbable != null})");
+                    Debug.LogWarning($"[LeverGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInter != null} leverGrabbable={leverGrabbable != null})");
                 }
                 break;
 

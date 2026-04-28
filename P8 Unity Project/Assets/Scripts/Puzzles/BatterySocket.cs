@@ -118,7 +118,7 @@ public class BatterySocket : MonoBehaviour
         }
 
         // --- 1b. Force-release from HOMER — only yields if HOMER was holding it ---
-        var homers = FindObjectsByType<HOMERRaycast>(FindObjectsSortMode.None);
+        var homers = FindObjectsByType<HOMERArm>(FindObjectsSortMode.None);
         bool homerReleased = false;
         foreach (var h in homers)
         {

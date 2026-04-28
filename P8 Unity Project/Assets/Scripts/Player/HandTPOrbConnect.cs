@@ -17,7 +17,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     [SerializeField] private TeleportationActivator teleportationActivator;
     [SerializeField] private float snapRadius = 0.12f;
     [SerializeField] private string orbTag = "TPOrb";
-    [SerializeField] private HOMERRaycast homerRaycast; // optional — assign if HOMER is active
+    [SerializeField] private HOMERArm homerRaycast; // optional — assign if HOMER is active
     [Tooltip("The left controller's XRDirectInteractor. Blocked from re-grabbing the orb while it is snapped to this hand.")]
     [SerializeField] private XRBaseInteractor leftHandInteractor;
 

@@ -1,124 +1,157 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
 /// Go-Go interaction technique (Poupyrev et al. 1996).
-/// Attach to the Right Hand controller GameObject.
+/// Attach to a child GameObject under the Right Hand controller.
 ///
-/// Coordinate system (user-centred, origin at chest):
-///   R_r = distance from chest to physical controller
-///   R_v = distance from chest to virtual hand
+/// Instantiates a floating virtual hand prefab (goGoHandPrefab) at Start and positions it
+/// each LateUpdate using the Go-Go mapping:
 ///
-/// Mapping F(R_r):
-///   R_v = R_r               if R_r &lt; D          (linear zone, 1:1)
-///   R_v = R_r + k(R_r-D)²   otherwise             (non-linear zone)
+///   R_v = R_r               if R_r &lt; D  (linear zone, 1:1)
+///   R_v = R_r + k(R_r-D)²  otherwise   (non-linear zone)
 ///
-/// where D = 2/3 × armLength, and k ≈ 16.67 in metre units
-/// (equivalent to the paper's k = 1/6 in centimetre units).
+/// where D = 2/3 × armLength. The physical hand renderers are hidden when the virtual hand
+/// enters the non-linear zone (i.e. when they start to diverge spatially).
 /// </summary>
 [DefaultExecutionOrder(100)]
 public class GoGoExtend : MonoBehaviour
 {
+    [Header("GoGo Hand Prefab")]
+    [Tooltip("Prefab instantiated at Start as the floating virtual hand. Must have an XRDirectInteractor.")]
+    public GameObject goGoHandPrefab;
+
+    [Header("Physical Hand")]
+    [Tooltip("Renderers on the physical right-controller hand mesh. Hidden when the virtual hand enters the non-linear zone.")]
+    public Renderer[] physicalHandRenderers;
+
     [Header("References")]
     [Tooltip("Transform at the chest/torso — the user-centred origin for Go-Go vectors. " +
-             "If null, the position is estimated as main camera position offset down by chestHeadOffset.")]
+             "If null, estimated as main camera position offset down by chestHeadOffset.")]
     public Transform chestTransform;
+
+    [Tooltip("The IK end-effector target that FollowXROrigin drives to the physical hand each frame. " +
+             "GoGoExtend overrides it (at execution order 100) to the virtual GoGo position so TwoBoneIK extends the whole arm.")]
+    [SerializeField] private GameObject armXRTarget;
 
     [Header("Go-Go Parameters")]
     [Tooltip("Physical arm length in metres. The linear-zone threshold D = 2/3 × armLength.")]
     public float armLength = 0.6f;
 
-    [Tooltip("Maximum virtual reach in metres when the physical hand is fully extended " +
-             "(R_r = armLength). The Go-Go coefficient k is derived automatically from this.")]
+    [Tooltip("Maximum virtual reach in metres when the physical hand is fully extended (R_r = armLength).")]
     public float maxReachDistance = 5f;
 
     [Header("Rotation")]
-    [Tooltip("Euler offset applied on top of the controller rotation. " +
-             "Adjust Z to correct a clockwise/counter-clockwise roll misalignment.")]
+    [Tooltip("Euler offset applied on top of the controller rotation.")]
     public Vector3 rotationOffset = new Vector3(0f, 0f, 120f);
+
+    [Tooltip("Slerp speed for mirroring the controller rotation onto the virtual hand.")]
+    public float rotationSmoothing = 12f;
+
+    [Header("Position Offset")]
+    [Tooltip("Controller-local XYZ offset applied to the virtual hand position. X = right, Y = up, Z = forward relative to the controller. Adjust Z to push forward/back, X for side offset.")]
+    public Vector3 handPositionOffset = Vector3.zero;
 
     [Header("Chest Estimation")]
     [Tooltip("Vertical offset below the HMD used to estimate chest position when chestTransform is null.")]
     public float chestHeadOffset = 0.3f;
 
-    [Tooltip("Slerp speed for mirroring the controller rotation onto the virtual hand.")]
-    public float rotationSmoothing = 12f;
+    private Transform _virtualHand;
+    private XRDirectInteractor _interactor;
 
-    // Read-only accessors for other components (e.g. interactors, grabbing).
-    public Transform VirtualHand => virtualHand;
-    /// <summary>Current physical arm length R_r from chest to controller.</summary>
+    /// <summary>The instantiated floating hand Transform. LeverGrab/ValveGrab/SimonButton read and write its position for arc-locking.</summary>
+    public Transform VirtualHand => _virtualHand;
+    /// <summary>The XRDirectInteractor on the virtual hand. Puzzle scripts compare against this to detect GoGo grabs.</summary>
+    public XRDirectInteractor Interactor => _interactor;
+    /// <summary>Current physical arm length R_r (chest to controller).</summary>
     public float CurrentRr { get; private set; }
     /// <summary>Current virtual arm length R_v after Go-Go mapping.</summary>
     public float CurrentRv { get; private set; }
 
-    private Transform virtualHand;
-    private Vector3   handLocalPos;
-    private Quaternion handLocalRot;
-
-    void Awake()
+    void Start()
     {
-        // Find the first child tagged "Hand" — same convention as ExtendRaycast.
-        foreach (Transform t in GetComponentsInChildren<Transform>())
+        if (goGoHandPrefab == null)
         {
-            if (t != transform && t.CompareTag("Hand"))
-            {
-                virtualHand = t;
-                break;
-            }
-        }
-
-        if (virtualHand == null)
-        {
-            Debug.LogError("[GoGoExtend] No child Transform tagged 'Hand' found. " +
-                           "Tag the hand visual/interactor GameObject as 'Hand'.", this);
+            Debug.LogWarning("[GoGoExtend] goGoHandPrefab is not assigned. Assign a prefab with an XRDirectInteractor in the Inspector.", this);
             return;
         }
 
-        handLocalPos = virtualHand.localPosition;
-        handLocalRot = virtualHand.localRotation;
+        GameObject hand = Instantiate(goGoHandPrefab);
+        hand.transform.SetParent(null);
+        _virtualHand = hand.transform;
+        _interactor = hand.GetComponentInChildren<XRDirectInteractor>();
+
+        if (_interactor == null)
+            Debug.LogWarning("[GoGoExtend] Instantiated GoGo hand prefab has no XRDirectInteractor component.", this);
     }
 
-    // LateUpdate runs after XR pose updates, ensuring we read the final controller position.
+    void OnEnable()
+    {
+        if (_virtualHand != null) _virtualHand.gameObject.SetActive(true);
+        SetPhysicalHandVisible(false);
+    }
+
+    void OnDisable()
+    {
+        if (_virtualHand != null) _virtualHand.gameObject.SetActive(false);
+        SetPhysicalHandVisible(true);
+    }
+
+    void OnDestroy()
+    {
+        if (_virtualHand != null) Destroy(_virtualHand.gameObject);
+    }
+
     void LateUpdate()
     {
-        if (virtualHand == null) return;
+        if (_virtualHand == null && armXRTarget == null) return;
 
-        Vector3 chestPos     = GetChestPosition();
+        Vector3 chestPos = GetChestPosition();
         Vector3 controllerPos = transform.position;
-        Vector3 toController  = controllerPos - chestPos;
+        Vector3 toController = controllerPos - chestPos;
 
         float R_r = toController.magnitude;
-        if (R_r < 1e-5f) return;   // avoid division by zero / NaN
+        if (R_r < 1e-5f) return;
 
         Vector3 dir = toController / R_r;
-        float   D   = (2f / 3f) * armLength;
+        float D = 2f / 3f * armLength;
 
-        // Derive k so that at full arm extension (R_r = armLength) the virtual hand
-        // reaches maxReachDistance. Formula: maxReach = armLength + k*(armLength/3)²
         float armOverThree = armLength / 3f;
         float k = armOverThree > 1e-5f
             ? Mathf.Max(0f, maxReachDistance - armLength) / (armOverThree * armOverThree)
             : 0f;
 
-        // --- Go-Go mapping F(R_r) ---
         float R_v = R_r < D
-            ? R_r                              // linear zone
-            : R_r + k * (R_r - D) * (R_r - D); // non-linear zone
+            ? R_r
+            : R_r + k * (R_r - D) * (R_r - D);
 
         R_v = Mathf.Min(R_v, maxReachDistance);
 
         CurrentRr = R_r;
         CurrentRv = R_v;
 
-        // Place the virtual hand along the same direction as the physical hand,
-        // but at the mapped (potentially extended) distance from the chest.
-        virtualHand.position = chestPos + dir * R_v;
+        // Single consistent formula — no branch, no snap at the zone boundary.
+        // In the linear zone R_v == R_r, so targetPos == controllerPos exactly.
+        Vector3 targetPos = chestPos + dir * R_v;
+        // Controller-local offset so it stays aligned regardless of hand orientation.
+        Vector3 worldOffset = transform.TransformDirection(handPositionOffset);
 
-        // Mirror the controller rotation with smoothing, applying a correction offset.
-        Quaternion target = transform.rotation * Quaternion.Euler(rotationOffset);
-        virtualHand.rotation = Quaternion.Slerp(
-            virtualHand.rotation,
-            target,
-            rotationSmoothing * Time.deltaTime);
+        if (armXRTarget != null)
+            armXRTarget.transform.SetPositionAndRotation(targetPos, transform.rotation);
+
+        if (_virtualHand != null)
+        {
+            Quaternion handRot = transform.rotation * Quaternion.Euler(rotationOffset);
+            Quaternion smoothedRot = Quaternion.Slerp(_virtualHand.rotation, handRot, rotationSmoothing * Time.deltaTime);
+            _virtualHand.SetPositionAndRotation(targetPos + worldOffset, smoothedRot);
+        }
+    }
+
+    private void SetPhysicalHandVisible(bool visible)
+    {
+        if (physicalHandRenderers == null) return;
+        foreach (var r in physicalHandRenderers)
+            if (r != null) r.enabled = visible;
     }
 
     private Vector3 GetChestPosition()
@@ -130,41 +163,37 @@ public class GoGoExtend : MonoBehaviour
         if (cam != null)
             return cam.transform.position + Vector3.down * chestHeadOffset;
 
-        return transform.position;  // last-resort fallback
+        return transform.position;
     }
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
-        // Visualise the two Go-Go zones in the Scene view.
         Vector3 chest = Application.isPlaying
             ? GetChestPosition()
             : (chestTransform != null
                 ? chestTransform.position
                 : transform.position + Vector3.down * chestHeadOffset);
 
-        float D = (2f / 3f) * armLength;
+        float D = 2f / 3f * armLength;
 
-        // Linear zone (green, solid fill)
         Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.10f);
         Gizmos.DrawSphere(chest, D);
         Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.80f);
         Gizmos.DrawWireSphere(chest, D);
 
-        // Full arm length (orange, for reference)
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.05f);
         Gizmos.DrawSphere(chest, armLength);
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.60f);
         Gizmos.DrawWireSphere(chest, armLength);
 
-        // Draw current R_r and R_v vectors when playing.
-        if (!Application.isPlaying || virtualHand == null) return;
+        if (!Application.isPlaying || _virtualHand == null) return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(chest, transform.position);  // R_r (physical)
+        Gizmos.DrawLine(chest, transform.position);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(chest, virtualHand.position); // R_v (virtual)
+        Gizmos.DrawLine(chest, _virtualHand.position);
     }
 #endif
 }

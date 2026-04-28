@@ -2166,7 +2166,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 211
+  m_VersionIndex: 217
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2305,8 +2305,8 @@ GameObject:
   - component: {fileID: 8344835107594169740}
   - component: {fileID: 863467232005498104}
   - component: {fileID: 7192630352164224329}
-  - component: {fileID: 2552239608273295255}
   - component: {fileID: 3003351708283057854}
+  - component: {fileID: 1395623813016941126}
   - component: {fileID: 2546229168171584866}
   - component: {fileID: 4940298238370962171}
   m_Layer: 0
@@ -10843,7 +10843,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 75
+  m_VersionIndex: 81
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10931,27 +10931,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3147082203301561911}
   m_Mesh: {fileID: 0}
---- !u!65 &2552239608273295255
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3147082203301561911}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.25, z: 0.25}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3003351708283057854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10966,10 +10945,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TechniqueSelectButton
   techniqueRoot: {fileID: 0}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.02
+  pressDistance: 0.05
   buttonRenderer: {fileID: 863467232005498104}
   activeColor: {r: 0, g: 2, b: 0, a: 2}
   inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+--- !u!135 &1395623813016941126
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147082203301561911}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.125
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2546229168171584866
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10992,8 +10992,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -13201,7 +13201,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 211
+  m_VersionIndex: 217
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -13643,8 +13643,8 @@ GameObject:
   - component: {fileID: 5417654970261237010}
   - component: {fileID: 7738633204506520435}
   - component: {fileID: 3547657494978019578}
-  - component: {fileID: 5071791592615217368}
   - component: {fileID: 1408939083819016506}
+  - component: {fileID: 1022172285772348016}
   - component: {fileID: 1404798417687048264}
   - component: {fileID: 3765879033958144772}
   m_Layer: 0
@@ -22181,7 +22181,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 75
+  m_VersionIndex: 81
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22269,27 +22269,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5387408075107281790}
   m_Mesh: {fileID: 0}
---- !u!65 &5071791592615217368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5387408075107281790}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.25, z: 0.25}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1408939083819016506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22304,10 +22283,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TechniqueSelectButton
   techniqueRoot: {fileID: 0}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.02
+  pressDistance: 0.05
   buttonRenderer: {fileID: 7738633204506520435}
   activeColor: {r: 0, g: 2, b: 0, a: 2}
   inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+--- !u!135 &1022172285772348016
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387408075107281790}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.125
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1404798417687048264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22330,8 +22330,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -24630,7 +24630,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 211
+  m_VersionIndex: 217
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -24767,8 +24767,8 @@ GameObject:
   - component: {fileID: 2175205326498464297}
   - component: {fileID: 5345601488043409848}
   - component: {fileID: 5504392244265959418}
-  - component: {fileID: 1647342751917303715}
   - component: {fileID: 8058928693293481501}
+  - component: {fileID: 6451706497270102229}
   - component: {fileID: 2564788047225744269}
   - component: {fileID: 579029344449602068}
   m_Layer: 0
@@ -33305,7 +33305,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 75
+  m_VersionIndex: 81
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -33393,27 +33393,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8907782529142773253}
   m_Mesh: {fileID: 0}
---- !u!65 &1647342751917303715
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8907782529142773253}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.25, z: 0.25}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8058928693293481501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33428,10 +33407,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TechniqueSelectButton
   techniqueRoot: {fileID: 0}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.02
+  pressDistance: 0.05
   buttonRenderer: {fileID: 5345601488043409848}
   activeColor: {r: 0, g: 2, b: 0, a: 2}
   inactiveColor: {r: 2, g: 0, b: 0, a: 2}
+--- !u!135 &6451706497270102229
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907782529142773253}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.125
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2564788047225744269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33454,8 +33454,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

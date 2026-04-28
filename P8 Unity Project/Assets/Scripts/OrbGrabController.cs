@@ -17,7 +17,7 @@ public class OrbGrabController : MonoBehaviour, IXRSelectFilter
     [Tooltip("Optional — assign even if DAOM is inactive.")]
     [SerializeField] private LaunchArm launchArm;
     [Tooltip("Optional — assign even if HOMER is inactive.")]
-    [SerializeField] private HOMERRaycast homerRaycast;
+    [SerializeField] private HOMERArm homerRaycast;
 
     public bool canProcess => isActiveAndEnabled;
 

@@ -19,10 +19,8 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class SimonButton : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast homer;
+    public HOMERArm homer;
     public GoGoExtend goGoExtend;
-    [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(0, 0, 0); // compensate for DAOM attach transform offset
     [SerializeField] private Vector3 daomRotationOffset = new(0, 0, 0); // rotate DAOM hand to match button orientation
@@ -316,8 +314,8 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
 
         ActiveTechnique technique = ActiveTechnique.None;
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
         }
@@ -383,9 +381,10 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && buttonGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && buttonGrabbable != null)
                     buttonGrabbable.interactionManager.SelectExit(
-                        (IXRSelectInteractor)goGoInteractor,
+                        (IXRSelectInteractor)goGoInter,
                         (IXRSelectInteractable)buttonGrabbable);
                 break;
 
