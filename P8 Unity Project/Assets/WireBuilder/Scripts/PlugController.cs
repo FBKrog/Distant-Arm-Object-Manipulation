@@ -14,9 +14,7 @@ public class PlugController : MonoBehaviour
 
     public int id; // set in Inspector to match with the corresponding WireEndGrabbable's id
 
-    [HideInInspector]
     public Transform endAnchor;
-    [HideInInspector]
     public Rigidbody endAnchorRB;
     [HideInInspector]
     public WireController wireController;
@@ -29,13 +27,13 @@ public class PlugController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (isConected) return;
-        if (!other.TryGetComponent<Rigidbody>(out endAnchorRB) &&
-            endAnchorRB.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
+        if (other.gameObject != endAnchor.gameObject) return;
+        if (other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
             wireEnd.id != id) return;
-        StartCoroutine(SnapWire(other.transform));
+        StartCoroutine(SnapWire());
     }
 
-    private IEnumerator SnapWire(Transform endAnchor)  
+    private IEnumerator SnapWire()  
     {
         isConected = true; // guard against re-entry immediately
         AudioManager.PlaySound(SfxType.WirePlug, transform);
