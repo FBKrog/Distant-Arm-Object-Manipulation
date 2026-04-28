@@ -29,8 +29,8 @@ public class PlugController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (isConected) return;
-        if (!other.TryGetComponent<Rigidbody>(out endAnchorRB) && 
-            other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
+        if (!other.TryGetComponent<Rigidbody>(out endAnchorRB) &&
+            endAnchorRB.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
             wireEnd.id != id) return;
         StartCoroutine(SnapWire(other.transform));
     }
