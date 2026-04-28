@@ -41,6 +41,9 @@ public class PlugController : MonoBehaviour
         AudioManager.PlaySound(SfxType.WirePlug, transform);
         var grab = endAnchor.GetComponent<XRGrabInteractable>();
 
+        if (TryGetComponent<WireEndGrabbable>(out var wireEnd))
+            wireEnd.wireController.segmentsRadius = 8; // less jitter while plugged in
+
         // Force-release from the player's hand
         if (grab != null && grab.isSelected)
         {

@@ -23,7 +23,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 [RequireComponent(typeof(XRGrabInteractable))]
 public class WireEndGrabbable : MonoBehaviour
 {
-    [SerializeField] WireController wireController;
+    public WireController wireController;
     private Rigidbody rb;
     private XRGrabInteractable grab;
 
@@ -43,7 +43,7 @@ public class WireEndGrabbable : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         rb.isKinematic = true; // Ensure kinematic so MovePosition works correctly.
-        wireController.segmentsRadius = 8;
+        wireController.segmentsRadius = 8; // less jitter while holding the end
     }
 
     void OnReleased(SelectExitEventArgs args)
