@@ -52,7 +52,8 @@ public class HeadCollisionFader : MonoBehaviour
         clearScreen = false;
         clearText = true;
         canCollide = false;
-        tmp.fontSize = 60;
+        tmp.fontSize = 30;
+        tmp.transform.position = new(-0.25f, tmp.transform.position.y, tmp.transform.position.z);
     }
 
     void Update()
