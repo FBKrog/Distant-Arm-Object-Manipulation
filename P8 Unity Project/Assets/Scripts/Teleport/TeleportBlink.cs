@@ -82,8 +82,8 @@ public class TeleportBlink : MonoBehaviour
         if (_activator != null)
             _activator.onBeforeTeleport = null;
 
-        if (_fadeMaterial != null)
-            Destroy(_fadeMaterial);
+        //if (_fadeMaterial != null)
+        //    Destroy(_fadeMaterial);
     }
 
     // -------------------------------------------------------------------------
