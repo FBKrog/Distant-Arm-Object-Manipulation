@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -21,6 +22,12 @@ public class OrbTutorialObjective : MonoBehaviour
     [SerializeField] private HandTPOrbConnect orbConnect;
     [SerializeField] private XRGrabInteractable orbGrabInteractable;
     [SerializeField] private bool autoStart = true;
+    [Tooltip("stepId of the TutorialManager step that instructs the player to grab the orb.")]
+    [SerializeField] private string grabStepId;
+    [Tooltip("stepId of the TutorialManager step that instructs the player to snap the orb to their hand.")]
+    [SerializeField] private string snapStepId;
+    [Tooltip("Seconds to display a pre-completed step before auto-advancing past it.")]
+    [SerializeField] private float alreadyCompletedDisplayDuration = 1f;
 
     private int _step = -1;
 
@@ -44,6 +51,8 @@ public class OrbTutorialObjective : MonoBehaviour
 
         if (launchArm != null)
             LaunchArm.GrabbedGameObject += OnDAOMGrabbed;
+
+        tutorialManager.OnStepShown += OnStepShownHandler;
     }
 
     // ── Step 0 → 1: orb grabbed ───────────────────────────────────────────────
@@ -75,10 +84,28 @@ public class OrbTutorialObjective : MonoBehaviour
         Cleanup();
     }
 
+    // ── Pre-completion detection ──────────────────────────────────────────────
+
+    private void OnStepShownHandler(string stepId)
+    {
+        if (!string.IsNullOrEmpty(grabStepId) && stepId == grabStepId && _step > 1)
+            StartCoroutine(BriefDisplayThenAdvance(grabStepId));
+        else if (!string.IsNullOrEmpty(snapStepId) && stepId == snapStepId && _step > 2)
+            StartCoroutine(BriefDisplayThenAdvance(snapStepId));
+    }
+
+    private IEnumerator BriefDisplayThenAdvance(string expectedStepId)
+    {
+        yield return new WaitForSeconds(alreadyCompletedDisplayDuration);
+        if (tutorialManager.CurrentStepId == expectedStepId)
+            tutorialManager.AdvanceToNextStep();
+    }
+
     // ── Cleanup ───────────────────────────────────────────────────────────────
 
     private void Cleanup()
     {
+        tutorialManager.OnStepShown -= OnStepShownHandler;
         orbGrabInteractable.selectEntered.RemoveListener(OnOrbGrabbed);
         orbConnect.OrbSnapped -= OnOrbSnapped;
 
