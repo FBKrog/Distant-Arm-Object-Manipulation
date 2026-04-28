@@ -37,6 +37,7 @@ public enum SfxType
     EndingMusic,
     Typing,
     Notification,
+    LightOn,
 }
 
 public class AudioManager : MonoBehaviour
@@ -307,9 +308,9 @@ public class AudioManager : MonoBehaviour
         }
 
         audioSource.spatialBlend = twoD ? 0f : 1f;
-        audioSource.pitch = Random.Range(1 - pitchRange, 1 + pitchRange);
+        audioSource.pitch = 1 + Random.Range(-pitchRange, pitchRange);
         audioSource.clip = clip;
-        audioSource.volume = Random.Range(sfxType.volume - volumeRange, sfxType.volume + volumeRange);
+        audioSource.volume = sfxType.volume + Random.Range(-volumeRange, volumeRange);
         audioSource.Play();
     }
 

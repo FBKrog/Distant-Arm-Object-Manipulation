@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
-
+using Random = UnityEngine.Random;
 public class TutorialManager : MonoBehaviour
 {
     [System.Serializable]
@@ -51,6 +51,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.75f);
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private float fontSize = 5f;
+
+    [Header("Text Writing Effect")]
+    [SerializeField] float writingSpeed = 0.06f;
+    [SerializeField] float writingSpeedVariance = 0.02f;
+    [SerializeField] float sfxPitchVariance = 0.05f;
+    [SerializeField] float sfxVolumeVariance = 0.03f;
+
     [Tooltip("Optional TMP font. Uses TMP default if null.")]
     [SerializeField] private TMP_FontAsset subtitleFont;
 
@@ -341,23 +348,22 @@ public class TutorialManager : MonoBehaviour
         _subtitleText.text = "";
         Regex richTextTagRegex = new Regex(@"<.*?>");
 
-        for (int i = 0; i < text.Length; i++)
-        {
+        for (int i = 0; i < text.Length; i++) 
+        { 
             // Find any rich text tag starting at the current index
             Match match = richTextTagRegex.Match(text, i);
             if (match.Success && match.Index == i)
             {
-                _subtitleText.text += match.Value;
-                i += match.Length - 1;
+                _subtitleText.text += match.Value; i += match.Length - 1; 
                 continue;
-            }
-            else
-            {
+            }      
+            else 
+            {   
                 _subtitleText.text = $"{text.Substring(0, i + 1)}</color><color=#FFFFFF>|</color>";
-                AudioManager.PlaySoundRandomPitchAndVolume(SfxType.Typing, 0.05f, 0.03f, true);
-                yield return new WaitForSeconds(0.06f);
+                AudioManager.PlaySoundRandomPitchAndVolume(SfxType.Typing, sfxPitchVariance, sfxVolumeVariance, true);
+                yield return new WaitForSeconds(writingSpeed + Random.Range(-writingSpeedVariance, writingSpeedVariance));            
             }
-        }
+        }        
         _subtitleText.text = text;
     }
 
