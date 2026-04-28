@@ -49612,6 +49612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever_01
       objectReference: {fileID: 0}
+    - target: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4779289183145225951, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_Name
       value: Task4_LeverBox_01
@@ -61459,6 +61463,10 @@ PrefabInstance:
     - target: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_Name
       value: Lever_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4779289183145225951, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_Name
@@ -177586,6 +177594,10 @@ PrefabInstance:
     - target: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_Name
       value: Lever_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531732130701625420, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4779289183145225951, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_Name
