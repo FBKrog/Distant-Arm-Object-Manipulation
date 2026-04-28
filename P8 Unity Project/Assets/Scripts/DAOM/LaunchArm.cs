@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -47,7 +46,6 @@ public class LaunchArm : MonoBehaviour
 
     IXRSelectInteractable selectedInteractable;
     IXRSelectInteractable hitInteractable;
-    WaitForEndOfFrame waitForEndOfFrame = new();
     public bool IsAiming => aiming;
 
     public static Action<XRDirectInteractor> SetInteractorHandedness;
@@ -124,19 +122,6 @@ public class LaunchArm : MonoBehaviour
         selectedInteractable = null;
     }
 
-    /// <summary>
-    /// Stores the currently grabbed object, if any, to make sure the player will hold that object after recalling the arm.
-    /// </summary>
-    //void AddGrabbedGameObject(IXRSelectInteractable interactable)
-    //{
-    //    if(interactable == null)
-    //    {
-    //        daomInteractable = null;
-    //        return;
-    //    }
-    //    daomInteractable = interactable;
-    //}
-
     void LaunchState(InputAction.CallbackContext ctx)
     {
         if (ctx.ReadValue<float>() >= 0.99f)
@@ -186,6 +171,7 @@ public class LaunchArm : MonoBehaviour
         interactor.allowSelect = true;
         if (interactable != null)
         {
+            //interactor.keepSelectedTargetValid = true;
             interactable.transform.position = interactor.attachTransform.position;
             interactor.interactionManager.SelectEnter(interactor, interactable);
         }
