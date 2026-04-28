@@ -200,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -492,7 +491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -936,7 +934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -2289,7 +2286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -2693,7 +2689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -3097,7 +3092,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -3725,7 +3719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -3907,6 +3900,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: 01f3bd4123c27354b9250944db62b733, type: 2}
+--- !u!1 &2824758248105842185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5262555638538408484}
+  - component: {fileID: 457825580337612910}
+  - component: {fileID: 9107570187996547858}
+  m_Layer: 0
+  m_Name: ButtonLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5262555638538408484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824758248105842185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071067, w: 0.7071068}
+  m_LocalPosition: {x: 0.8699999, y: 2.1000001, z: 0.49999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4531529856354112961}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &457825580337612910
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824758248105842185}
+  m_Mesh: {fileID: -5880139377724796487, guid: 88b71ba49e8242e4cbe5adb87c3cb069, type: 3}
+--- !u!23 &9107570187996547858
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824758248105842185}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 30fe196d803bb7148b44f25bf2ef208f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2882036222017437412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,7 +4100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -4340,7 +4422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -4543,7 +4624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5853178261430876971
 Transform:
   m_ObjectHideFlags: 0
@@ -4847,7 +4928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -5644,7 +5724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -5826,6 +5905,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: 01f3bd4123c27354b9250944db62b733, type: 2}
+--- !u!1 &3866598431986290555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4531529856354112961}
+  m_Layer: 0
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4531529856354112961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866598431986290555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6122290272874241130}
+  - {fileID: 5262555638538408484}
+  m_Father: {fileID: 6035274718004861553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4049549036369844662
 GameObject:
   m_ObjectHideFlags: 0
@@ -6365,7 +6477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -6657,7 +6768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -7061,7 +7171,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -7474,7 +7583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -7766,7 +7874,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -8170,7 +8277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -8462,7 +8568,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -9006,6 +9111,7 @@ Transform:
   - {fileID: 5853178261430876971}
   - {fileID: 5205428451983443659}
   - {fileID: 1731439955030820603}
+  - {fileID: 4531529856354112961}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &6706373378086669158
@@ -9384,6 +9490,96 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.31843278, y: 0.049999952, z: 0.31843272}
   m_Center: {x: 2.1000004, y: -0.8949998, z: 0.49999994}
+--- !u!1 &7477582342603511126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6122290272874241130}
+  - component: {fileID: 388445875426333889}
+  - component: {fileID: 644587245673163320}
+  m_Layer: 0
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6122290272874241130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477582342603511126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071067, w: 0.7071068}
+  m_LocalPosition: {x: 0.8699999, y: 2.1000001, z: 0.49999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4531529856354112961}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &388445875426333889
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477582342603511126}
+  m_Mesh: {fileID: -5447036705194824928, guid: 88b71ba49e8242e4cbe5adb87c3cb069, type: 3}
+--- !u!23 &644587245673163320
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477582342603511126}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b94645a4779a3ed47825d97935aa151c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7572131170003240425
 GameObject:
   m_ObjectHideFlags: 0
@@ -9494,7 +9690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -9929,7 +10124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -10221,7 +10415,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -10715,7 +10908,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -11262,7 +11454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
@@ -11698,7 +11889,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimonButton
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: 0, y: 0, z: 0}
   daomRotationOffset: {x: 0, y: 0, z: 0}
   grabPoints:
