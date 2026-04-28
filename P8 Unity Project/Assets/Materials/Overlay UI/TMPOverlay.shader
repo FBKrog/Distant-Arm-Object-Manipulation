@@ -27,6 +27,8 @@ Shader "Custom/TMPOverlay"
             #pragma vertex vert
             #pragma fragment frag
 
+            #pragma multi_compile_instancing
+
             #include "UnityCG.cginc"
 
             struct appdata_t
@@ -34,6 +36,7 @@ Shader "Custom/TMPOverlay"
                 float4 vertex   : POSITION;
                 float2 uv       : TEXCOORD0;
                 float4 color    : COLOR;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
@@ -41,6 +44,7 @@ Shader "Custom/TMPOverlay"
                 float4 vertex   : SV_POSITION;
                 float2 uv       : TEXCOORD0;
                 float4 color    : COLOR;
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             sampler2D _MainTex;
@@ -49,6 +53,8 @@ Shader "Custom/TMPOverlay"
             v2f vert (appdata_t v)
             {
                 v2f o;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 o.color = v.color * _FaceColor;
@@ -57,6 +63,7 @@ Shader "Custom/TMPOverlay"
 
             half4 frag (v2f i) : SV_Target
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 float sdf = tex2D(_MainTex, i.uv).a;
 
                 float alpha = smoothstep(0.5 - 0.1, 0.5 + 0.1, sdf);

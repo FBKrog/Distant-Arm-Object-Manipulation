@@ -25,6 +25,8 @@ Shader "Custom/Overlay"
         {
             HLSLPROGRAM
 
+            #pragma multi_compile_instancing
+            
             #pragma vertex vert
             #pragma fragment frag
 
@@ -35,6 +37,7 @@ Shader "Custom/Overlay"
                 float4 positionOS : POSITION;
                 float2 uv         : TEXCOORD0;
                 float4 color      : COLOR;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct Varyings
@@ -42,6 +45,7 @@ Shader "Custom/Overlay"
                 float4 positionHCS : SV_POSITION;
                 float2 uv          : TEXCOORD0;
                 float4 color       : COLOR;
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             TEXTURE2D(_BaseMap);
@@ -55,6 +59,8 @@ Shader "Custom/Overlay"
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
+                UNITY_SETUP_INSTANCE_ID(IN);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
 
@@ -65,6 +71,7 @@ Shader "Custom/Overlay"
 
             half4 frag(Varyings IN) : SV_Target
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
                 half4 tex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv);
 
                 half4 col = tex * _BaseColor;
