@@ -34,7 +34,9 @@ public enum SfxType
     WireComplete,
     LeverActivate,
     FactoryMachine,
-    EndingMusic
+    EndingMusic,
+    Typing,
+    Notification,
 }
 
 public class AudioManager : MonoBehaviour
@@ -268,6 +270,47 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         audioSource.volume = targetVolume;
+    }
+
+    static public void PlaySoundRandomPitchAndVolume(SfxType sfx, float pitchRange = 0.1f, float volumeRange = 0.02f, bool twoD = false)
+    {
+        var sfxType = instance.sfxs[(int)sfx];
+        if (sfxType.clips == null || sfxType.clips.Length == 0)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has no audio clips assigned.");
+            return;
+        }
+        var clip = sfxType.clips[0];
+        if (sfxType.clips.Length > 1)
+        {
+            clip = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
+        }
+        if (clip == null)
+        {
+            Debug.LogWarning($"Attempted to play SFX of type {sfx} which has a null audio clip assigned.");
+            return;
+        }
+
+        // In case an audio source was destroyed or became null, we should clean it up from the pool to avoid errors when trying to access it.
+        if (instance.availableAudioSources.Any(item => item == null || item.gameObject == null))
+        {
+            Debug.LogWarning("Cleaning up null audio sources from the pool.");
+            instance.availableAudioSources.RemoveAll(item => item == null || item.gameObject == null);
+        }
+
+        var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
+
+        if (audioSource == null || audioSource.gameObject == null)
+        {
+            audioSource = instance.AddAudioSource();
+            print($"Created new audio source for {clip.name}.");
+        }
+
+        audioSource.spatialBlend = twoD ? 0f : 1f;
+        audioSource.pitch = Random.Range(1 - pitchRange, 1 + pitchRange);
+        audioSource.clip = clip;
+        audioSource.volume = Random.Range(sfxType.volume - volumeRange, sfxType.volume + volumeRange);
+        audioSource.Play();
     }
 
     /// <summary>

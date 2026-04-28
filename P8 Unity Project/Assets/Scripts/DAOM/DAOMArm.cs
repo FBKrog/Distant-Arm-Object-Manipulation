@@ -353,6 +353,9 @@ public class DAOMArm : MonoBehaviour
         animator.enabled = true;
         GetComponent<LimbStretch>().enabled = true;
         
+        AudioManager.StopLoopSound(fireAudioSource);
+        AudioManager.PlaySound(SfxType.ArmAttach, transform);
+        
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
         {
@@ -363,8 +366,6 @@ public class DAOMArm : MonoBehaviour
             return;
         }
 
-        AudioManager.StopLoopSound(fireAudioSource);
-        AudioManager.PlaySound(SfxType.ArmAttach, transform);
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.StateChange;
 
         if (recalling)

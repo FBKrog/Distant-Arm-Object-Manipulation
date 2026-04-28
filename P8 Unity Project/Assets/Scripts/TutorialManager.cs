@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -296,6 +297,7 @@ public class TutorialManager : MonoBehaviour
             objectivesManager.CompleteObjective(step.completesObjective);
 
         ShowSubtitle(step.subtitleText);
+        AudioManager.PlaySound(SfxType.Notification, transform, false, true);
 
         if (step.displayDuration > 0f)
             _autoAdvanceCoroutine = StartCoroutine(AutoAdvance(step.displayDuration));
@@ -316,6 +318,7 @@ public class TutorialManager : MonoBehaviour
         _tempHintCoroutine = StartCoroutine(HideAfterDelay(duration));
     }
 
+    Coroutine writeCoroutine;
     public void ShowSubtitle(string text)
     {
         if (_panelRoot == null) return;
@@ -328,6 +331,34 @@ public class TutorialManager : MonoBehaviour
         _panelRoot.SetActive(true);
         _subtitleText.text = text;
         ResizeCanvasToFitText();
+        if(writeCoroutine != null)
+            StopCoroutine(writeCoroutine);
+        writeCoroutine = StartCoroutine(Write(text));
+    }
+
+    IEnumerator Write(string text)
+    {
+        _subtitleText.text = "";
+        Regex richTextTagRegex = new Regex(@"<.*?>");
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            // Find any rich text tag starting at the current index
+            Match match = richTextTagRegex.Match(text, i);
+            if (match.Success && match.Index == i)
+            {
+                _subtitleText.text += match.Value;
+                i += match.Length - 1;
+                continue;
+            }
+            else
+            {
+                _subtitleText.text = $"{text.Substring(0, i + 1)}</color><color=#FFFFFF>|</color>";
+                AudioManager.PlaySoundRandomPitchAndVolume(SfxType.Typing, 0.05f, 0.03f, true);
+                yield return new WaitForSeconds(0.06f);
+            }
+        }
+        _subtitleText.text = text;
     }
 
     public void HideSubtitle()
