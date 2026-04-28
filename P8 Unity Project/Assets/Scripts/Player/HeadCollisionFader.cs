@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,13 +12,12 @@ public class HeadCollisionFader : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] float fadeDuration = 0.2f;
 
-    Image fadeImage;
     TextMeshProUGUI tmp;
     Coroutine currentFadeCoroutine;
 
     HashSet<Collider> currentCollisions = new();
     int textIndex = 0;
-    bool clearScreen = true;
+    bool clearScreen;
     bool clearText;
     bool canCollide = true;
 
@@ -30,9 +29,9 @@ public class HeadCollisionFader : MonoBehaviour
             enabled = false;
             return;
         }
-        fadeImage = canvasGroup.GetComponentInChildren<Image>();
         tmp = canvasGroup.GetComponentInChildren<TextMeshProUGUI>();
         tmp.text = "";
+        InvokeRepeating(nameof(CleanupCollisions), 0f, 0.5f);
     }
 
     void OnEnable()
@@ -56,17 +55,16 @@ public class HeadCollisionFader : MonoBehaviour
         tmp.transform.position = new(-0.25f, tmp.transform.position.y, tmp.transform.position.z);
     }
 
-    void Update()
-    {
-        if (currentCollisions.Count > 0 && canCollide)
-            CleanupCollisions();
-    }
-
     void CleanupCollisions()
     {
-        currentCollisions.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
-        if (currentCollisions.Count == 0 && !clearScreen)
-            StartFade(0f, fadeDuration, errorString);
+        if (currentCollisions.Count > 0)
+        {
+            if(currentCollisions.Any(c => !c.enabled || !c.gameObject.activeInHierarchy))
+            {
+                currentCollisions.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
+                StartFade(0f, fadeDuration, errorString);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -97,9 +95,9 @@ public class HeadCollisionFader : MonoBehaviour
         currentFadeCoroutine = StartCoroutine(FadeRoutine(targetAlpha, duration, text));
     }
 
-    IEnumerator FadeRoutine(float target, float duration, string text)
+    IEnumerator FadeRoutine(float targetAlpha, float duration, string text)
     {
-        if(tmp == null || canvasGroup == null)
+        if (tmp == null || canvasGroup == null)
         {
             Debug.LogError("Error Text UI or Fade Canvas is not assigned in the Inspector.");
             yield break;
@@ -107,17 +105,17 @@ public class HeadCollisionFader : MonoBehaviour
         
         float start = canvasGroup.alpha;
         float time = 0f;
-        clearText = target == 0;
+        clearText = targetAlpha == 0;
 
         while (time < duration)
         {
             time += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(start, target, time / duration);
+            canvasGroup.alpha = Mathf.Lerp(start, targetAlpha, time / duration);
             yield return null;
         }
-        canvasGroup.alpha = target;
+        canvasGroup.alpha = targetAlpha;
 
-        if (target == 0f)
+        if (targetAlpha == 0f)
         {
             clearScreen = true;
             tmp.text = "";
