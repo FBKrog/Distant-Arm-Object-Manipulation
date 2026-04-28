@@ -179331,7 +179331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3492359667129919110, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5622140220218610970, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: canvasGroup
