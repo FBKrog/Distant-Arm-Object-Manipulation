@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FI Wall 3
+  m_Name: FI End Floor
   m_Shader: {fileID: 4800000, guid: b50cbe1da89da2840bd6442d4bbbe9ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _NORMALMAP
   - _USEEMISSION_OFF
-  m_InvalidKeywords:
-  - _USEBUMP_OFF
+  - _USESPECULAR_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -90,6 +89,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -108,6 +108,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SampleGI: 0
     - _ShadowBlur: 0.002
     - _ShadowCutoff: 0.4
     - _ShadowSoftCutoff: 0.7
@@ -120,13 +121,13 @@ Material:
     - _Surface: 0
     - _UseBump: 0
     - _UseEmission: 0
-    - _UseSpecular: 1
+    - _UseSpecular: 0
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.57254905, b: 0, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.10524209, g: 0.10524209, b: 0.4056604, a: 1}
+    - _Color: {r: 0.050980374, g: 0.050980374, b: 0.29411763, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 0.050980367, g: 0.050980367, b: 0.29411766, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8909154452499743382}
   m_Layer: 0
-  m_Name: Cutscene Wires
+  m_Name: Cutscene Wires Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
