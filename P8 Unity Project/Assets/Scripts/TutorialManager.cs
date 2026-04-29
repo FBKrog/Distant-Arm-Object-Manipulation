@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
@@ -65,6 +66,9 @@ public class TutorialManager : MonoBehaviour
     [Tooltip("Auto-found if null.")]
     [SerializeField] private ObjectivesManager objectivesManager;
 
+#if UNITY_EDITOR
+    [SerializeField][TextArea(5, 20)] private string testText = "This is a <color=#FF0000>test</color> subtitle with <b>rich text</b> support.";
+#endif
     // -------------------------------------------------------------------------
     // Events
     // -------------------------------------------------------------------------
@@ -404,7 +408,7 @@ public class TutorialManagerEditor : UnityEditor.Editor
         {
             var tutorialManager = (TutorialManager)target;
 
-            tutorialManager.ShowSubtitle("To retrieve the <color=#87FFFF>blue orb</color> on the table, you must use the <color=#FFFFFF>[A]</color> button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot and retract, and the <color=#FFFFFF>[SELECT]</color> button to grab it.");
+            tutorialManager.ShowSubtitle(testText);
         }
     }
 }
