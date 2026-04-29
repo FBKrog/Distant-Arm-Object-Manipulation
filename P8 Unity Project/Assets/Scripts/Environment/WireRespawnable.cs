@@ -1,17 +1,15 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class WireRespawnable : MonoBehaviour
 {
-    //[SerializeField] GameObject wireParent;
-    //[SerializeField] GameObject wirePrefab;
-    //[SerializeField] Vector3 spawnPosition;
-    //[SerializeField] Transform spawnParent;
-
     [SerializeField] Rigidbody[] rbs;
     Vector3[] rbInitialPositions;
     Quaternion[] rbInitialRotations;
     bool[] wasKinematic;
-    public void Awake()
+    XRGrabInteractable wireEnd;
+    
+    void Awake()
     {
         wasKinematic = new bool[rbs.Length];
         rbInitialPositions = new Vector3[rbs.Length];
@@ -19,6 +17,8 @@ public class WireRespawnable : MonoBehaviour
 
         for(int i = 0; i < rbs.Length; i++)
         {
+            if (rbs[i].TryGetComponent<XRGrabInteractable>(out var grabInteractable))
+                wireEnd = grabInteractable;
             wasKinematic[i] = rbs[i].isKinematic ? true : false;
             rbInitialPositions[i] = rbs[i].transform.localPosition;
             rbInitialRotations[i] = rbs[i].transform.localRotation;
@@ -27,7 +27,11 @@ public class WireRespawnable : MonoBehaviour
 
     public void Respawn()
     {
-        for(int i = 0; i < rbs.Length; i++)
+        if(wireEnd && wireEnd.isSelected)
+        {
+            wireEnd.interactionManager.SelectExit(wireEnd.firstInteractorSelecting, wireEnd);
+        }
+        for (int i = 0; i < rbs.Length; i++)
         {
             rbs[i].isKinematic = true;
             rbs[i].linearVelocity = Vector3.zero;
@@ -36,19 +40,7 @@ public class WireRespawnable : MonoBehaviour
             rbs[i].transform.localRotation = rbInitialRotations[i];
             rbs[i].isKinematic = wasKinematic[i];
         }
-        //var wire = Instantiate(wirePrefab, new(0,100,0), Quaternion.identity);
-        //wire.transform.parent = spawnParent;
-        //wire.transform.localPosition = spawnPosition;
-        //wire.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        //Destroy(wireParent);
     }
 
-    //IEnumerator BeginRepawn()
-    //{
-    //    var wire = Instantiate(wirePrefab);
-    //    wire.transform.parent = spawnParent;
-    //    wire.transform.localPosition = spawnPosition;
-    //    wire.transform.localRotation = Quaternion.Euler(Vector3.zero);
-    //    Destroy(wireParent, 0.01f);
-    //}
+
 }
