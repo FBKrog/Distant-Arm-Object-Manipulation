@@ -94,6 +94,12 @@ public class HOMERArm : MonoBehaviour
         : VirtualHand;
     public Transform PhysicalHand => transform;
     public GameObject GrabbedObject { get; private set; }
+    /// <summary>
+    /// The internal position accumulator that drives VirtualHand each LateUpdate.
+    /// Arc-locking scripts (LeverGrab, ValveGrab) must write back here after overriding
+    /// VirtualHand.position so HOMER's next-frame delta starts from the correct base.
+    /// </summary>
+    public Vector3 ExtendedPos { get => _extendedPos; set => _extendedPos = value; }
 
     public event Action ExtendStarted;
     public event Action<GameObject> GrabStarted;
@@ -357,7 +363,16 @@ public class HOMERArm : MonoBehaviour
             float velocity = handDelta.magnitude / Time.deltaTime;
             float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
             float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
-            _extendedPos += handDelta * (_scaleFactor * speedScale);
+
+            // Rotary objects (lever, valve) supply their own scale multiplier so the
+            // virtual hand moves closer to 1:1 with the physical hand instead of
+            // amplifying by the full HOMER distance ratio.
+            var rotary = (_state == State.Grabbed && GrabbedObject != null)
+                ? GrabbedObject.GetComponent<IRotaryGrabbable>()
+                : null;
+            float rotaryMult = rotary != null ? rotary.HomerScaleMultiplier : 1f;
+
+            _extendedPos += handDelta * (_scaleFactor * speedScale * rotaryMult);
         }
 
         // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.

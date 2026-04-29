@@ -42,6 +42,11 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
     [Tooltip("Local-space axis of the cylindrical hinge shaft. Check the gizmo in Scene view to confirm the blue disc aligns with the lever's swing plane.")]
     public Vector3 hingeAxisLocal = Vector3.right;
 
+    [Header("HOMER Sensitivity")]
+    [Tooltip("Fraction of HOMER's computed scale factor applied while grabbing. 1 = full scaling (fast); 0.2 = 20% (close to 1:1 physical feel).")]
+    [SerializeField][Range(0f, 1f)] float homerScaleMultiplier = 0.2f;
+    public float HomerScaleMultiplier => homerScaleMultiplier;
+
     [Header("Angle Settings")]
     [Tooltip("Pull past this angle (degrees) to trigger the snap.")]
     public float activationAngle = 75f;
@@ -313,7 +318,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         _dbgFrame = 0;
 
         transform.position = leverFixedPosition;
-        
+
         Debug.Log($"[LeverGrab:{name}] StartGrab — technique={technique}  currentAngle={currentAngle:F1}°  leverPos={leverFixedPosition:F3}");
     }
 
@@ -424,14 +429,17 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
-                return homer?.VirtualHand != null ? homer.HandTip.position : Vector3.zero;
+                // Use root position, not HandTip. HandTip is a child of VirtualHand and shifts
+                // every frame when HOMER overwrites the rotation with the physical hand's rotation,
+                // causing a non-zero angleDelta even with zero controller movement.
+                return homer?.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.GoGo:
-                // Use HandTip (interactor attachTransform) so the angle is computed from the actual
-                // hand/palm point, not the elbow root of the GoGo arm prefab.
-                return goGoExtend?.VirtualHand != null ? goGoExtend.HandTip.position : Vector3.zero;
+                // Use root position — tip shifts when rotation is locked each frame, causing
+                // false angle delta. Root is stable and unaffected by rotation changes.
+                return goGoExtend?.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 return DAOMArm.ActiveInstance?.DaomIKTarget != null
-                    ? DAOMArm.ActiveInstance.DaomIKTarget.position 
+                    ? DAOMArm.ActiveInstance.DaomIKTarget.position
                     : Vector3.zero;
             default:
                 return Vector3.zero;
@@ -445,22 +453,18 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
                 {
-                    var root = homer.VirtualHand;
-                    var tip  = homer.HandTip;
-                    root.rotation = leverHandlePoint.rotation * Quaternion.Euler(homerRotationOffset);
-                    Vector3 handToRoot = root.position - tip.position;
-                    root.position = position + homerPositionOffset + handToRoot;
+                    homer.VirtualHand.SetPositionAndRotation(
+                        position + homerPositionOffset,
+                        leverHandlePoint.rotation * Quaternion.Euler(homerRotationOffset));
+                    homer.ExtendedPos = homer.VirtualHand.position;
                 }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
                 {
-                    var root = goGoExtend.VirtualHand;
-                    var tip  = goGoExtend.HandTip;
-                    // Do NOT override root.rotation — it would fight GoGoExtend's slerp each frame,
-                    // causing tip oscillation and a false angleDelta every tick (same bug as ValveGrab).
-                    Vector3 handToRoot = root.position - tip.position;
-                    root.position = position + goGoPositionOffset + handToRoot;
+                    goGoExtend.VirtualHand.SetPositionAndRotation(
+                        position + goGoPositionOffset,
+                        leverHandlePoint.rotation * Quaternion.Euler(goGoRotationOffset));
                 }
                 break;
             case ActiveTechnique.Daom:

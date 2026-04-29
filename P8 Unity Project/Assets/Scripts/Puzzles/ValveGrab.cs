@@ -36,6 +36,11 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
     [SerializeField] private Vector3 homerPositionOffset = Vector3.zero; // world-space offset applied to the HOMER virtual hand at the grab point
     [SerializeField] private Vector3 homerRotationOffset = Vector3.zero; // Euler offset on top of grab point rotation for the HOMER hand
 
+    [Header("HOMER Sensitivity")]
+    [Tooltip("Fraction of HOMER's computed scale factor applied while grabbing. 1 = full scaling (fast); 0.2 = 20% (close to 1:1 physical feel).")]
+    [SerializeField][Range(0f, 1f)] float homerScaleMultiplier = 0.2f;
+    public float HomerScaleMultiplier => homerScaleMultiplier;
+
     [Header("Spin Axis")]
     [Tooltip("Local-space spin axis of the valve. Blue disc in Scene view should align with the valve face.")]
     public Vector3 spinAxisLocal = Vector3.up;
@@ -442,11 +447,13 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
-                return homer != null && homer.VirtualHand != null ? homer.HandTip.position : Vector3.zero;
+                // Use root position, not HandTip. HandTip shifts every frame when HOMER
+                // overwrites the rotation with the physical hand, causing spurious angle delta.
+                return homer != null && homer.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.GoGo:
-                // Use HandTip (interactor attachTransform) so the angle is computed from the actual
-                // hand/palm point, not the elbow root of the GoGo arm prefab.
-                return goGoExtend != null && goGoExtend.VirtualHand != null ? goGoExtend.HandTip.position : Vector3.zero;
+                // Use root position — tip shifts when rotation is locked each frame, causing
+                // false angle delta. Root is stable and unaffected by rotation changes.
+                return goGoExtend != null && goGoExtend.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 var daomInst = DAOMArm.ActiveInstance;
                 return daomInst != null && daomInst.DaomIKTarget != null
@@ -464,24 +471,18 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
                 {
-                    var root = homer.VirtualHand;
-                    var tip  = homer.HandTip;
-                    root.rotation = activeGrabPoint.rotation * Quaternion.Euler(homerRotationOffset);
-                    Vector3 handToRoot = root.position - tip.position;
-                    root.position = position + homerPositionOffset + handToRoot;
+                    homer.VirtualHand.SetPositionAndRotation(
+                        position + homerPositionOffset,
+                        activeGrabPoint.rotation * Quaternion.Euler(homerRotationOffset));
+                    homer.ExtendedPos = homer.VirtualHand.position;
                 }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
                 {
-                    var root = goGoExtend.VirtualHand;
-                    var tip  = goGoExtend.HandTip;
-                    // Compute the root→tip offset with the arm in its current GoGoExtend-driven orientation
-                    // (do NOT override root.rotation — setting it here would fight GoGoExtend's slerp each
-                    // frame, causing the tip to oscillate and produce a false angleDelta every tick, which
-                    // spins the valve to 360° automatically because contribution = Abs(angleDelta)).
-                    Vector3 handToRoot = root.position - tip.position;
-                    root.position = position + goGoPositionOffset + handToRoot;
+                    goGoExtend.VirtualHand.SetPositionAndRotation(
+                        position + goGoPositionOffset,
+                        activeGrabPoint.rotation * Quaternion.Euler(goGoRotationOffset));
                 }
                 break;
             case ActiveTechnique.Daom:

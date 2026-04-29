@@ -451,12 +451,13 @@ MonoBehaviour:
   goGoExtend: {fileID: 0}
   daomPositionOffset: {x: -0.1, y: -0.02, z: 0}
   daomRotationOffset: {x: 0, y: 180, z: 135}
-  goGoPositionOffset: {x: -0.1, y: 0.015, z: -0.09}
-  goGoRotationOffset: {x: 134.5, y: -90, z: 0}
-  homerPositionOffset: {x: -0.1, y: 0, z: -0.07}
-  homerRotationOffset: {x: 44.4, y: 90, z: 180}
+  goGoPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
+  goGoRotationOffset: {x: 35, y: 90, z: 180}
+  homerPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
+  homerRotationOffset: {x: 35, y: 90, z: 180}
   leverHandlePoint: {fileID: 6044137656340020379}
   hingeAxisLocal: {x: 0, y: 1, z: 0}
+  homerScaleMultiplier: 0.45
   activationAngle: -75
   snapToAngle: -90
   snapDuration: 0.15
