@@ -52533,6 +52533,7 @@ Transform:
   - {fileID: 108294937}
   - {fileID: 2074615983}
   - {fileID: 1963177674}
+  - {fileID: 1579269039}
   m_Father: {fileID: 1867087718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &336952142
@@ -125653,8 +125654,8 @@ PrefabInstance:
     - target: {fileID: 6557113022658846402, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[5].subtitleText
       value: The fusebox needs <color=#FFFFFF>three fuses</color> to power on the
-        light in the factory. Grab and insert the fuses and pull the lever to turn
-        on the light.
+        light in the factory. Grab and insert the fuses and pull the <color=#FFFFFF>lever</color>
+        to turn on the light.
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].subtitleText
@@ -125676,8 +125677,8 @@ PrefabInstance:
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[5].subtitleText
       value: The fusebox needs <color=#FFFFFF>three fuses</color> to power on the
-        light in the factory. Grab and insert the fuses and pull the lever to turn
-        on the light.
+        light in the factory. Grab and insert the fuses and pull the <color=#FFFFFF>lever</color>
+        to turn on the light.
       objectReference: {fileID: 0}
     - target: {fileID: 7682397682567780143, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].subtitleText
@@ -125699,8 +125700,8 @@ PrefabInstance:
     - target: {fileID: 7682397682567780143, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[5].subtitleText
       value: The fusebox needs <color=#FFFFFF>three fuses</color> to power on the
-        light in the factory. Grab and insert the fuses and pull the lever to turn
-        on the light.
+        light in the factory. Grab and insert the fuses and pull the <color=#FFFFFF>lever</color>
+        to turn on the light.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -187925,11 +187926,11 @@ Transform:
   m_GameObject: {fileID: 1579269038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 16.999996, y: 2, z: -12.75}
+  m_LocalPosition: {x: 17, y: 2, z: -12.750004}
   m_LocalScale: {x: 0.49999988, y: 4, z: 0.49999988}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1867087718}
+  m_Father: {fileID: 334849261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1579269040
 BoxCollider:
@@ -216168,7 +216169,6 @@ Transform:
   m_Children:
   - {fileID: 832237048}
   - {fileID: 334849261}
-  - {fileID: 1579269039}
   - {fileID: 461402817}
   - {fileID: 534962550}
   - {fileID: 1084323684}
