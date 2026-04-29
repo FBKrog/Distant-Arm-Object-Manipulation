@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RespawnOutOfBounds : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if(other.TryGetComponent<Respawnable>(out var respawnable))
         {
