@@ -454,9 +454,8 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
                 {
                     var root = goGoExtend.VirtualHand;
                     var tip  = goGoExtend.HandTip;
-                    // Set rotation first so the handToRoot offset reflects the new arm orientation.
-                    root.rotation = leverHandlePoint.rotation * Quaternion.Euler(goGoRotationOffset);
-                    // Shift the root so the hand tip lands at (position + goGoPositionOffset).
+                    // Do NOT override root.rotation — it would fight GoGoExtend's slerp each frame,
+                    // causing tip oscillation and a false angleDelta every tick (same bug as ValveGrab).
                     Vector3 handToRoot = root.position - tip.position;
                     root.position = position + goGoPositionOffset + handToRoot;
                 }

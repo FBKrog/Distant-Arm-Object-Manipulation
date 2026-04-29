@@ -473,9 +473,10 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
                 {
                     var root = goGoExtend.VirtualHand;
                     var tip  = goGoExtend.HandTip;
-                    // Set rotation first so the handToRoot offset reflects the new arm orientation.
-                    root.rotation = activeGrabPoint.rotation * Quaternion.Euler(goGoRotationOffset);
-                    // Shift the root so the hand tip lands at (position + goGoPositionOffset).
+                    // Compute the root→tip offset with the arm in its current GoGoExtend-driven orientation
+                    // (do NOT override root.rotation — setting it here would fight GoGoExtend's slerp each
+                    // frame, causing the tip to oscillate and produce a false angleDelta every tick, which
+                    // spins the valve to 360° automatically because contribution = Abs(angleDelta)).
                     Vector3 handToRoot = root.position - tip.position;
                     root.position = position + goGoPositionOffset + handToRoot;
                 }
