@@ -274,6 +274,8 @@ public class HOMERArm : MonoBehaviour
             case State.Extended:
                 if (triggerPressed && retractOnTriggerPress)
                     BeginRetract();
+                if (selectReleased)
+                    BeginRetract();
                 break;
 
             case State.Grabbed:
