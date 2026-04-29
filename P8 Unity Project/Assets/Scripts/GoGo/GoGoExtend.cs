@@ -100,7 +100,7 @@ public class GoGoExtend : MonoBehaviour
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(true);
         SetPhysicalHandVisible(false);
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform);
+            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform, true);
     }
 
     void OnDisable()

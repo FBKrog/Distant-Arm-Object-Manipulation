@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using UnityEngine.Audio;
+using ResearchLogging;
 
 public class SceneFader : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class SceneFader : MonoBehaviour
 
     void EndGame()
     {
+        DataLogger.Instance.SaveLogAsCsv();
         Application.Quit();
     }
 }

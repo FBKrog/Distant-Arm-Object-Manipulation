@@ -464,7 +464,7 @@ public class HOMERArm : MonoBehaviour
         if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
 
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform);
+            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform, true);
     }
 
     private void EndExtend()
