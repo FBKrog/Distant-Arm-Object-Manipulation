@@ -61,6 +61,9 @@ public class HOMERArm : MonoBehaviour
     [Header("Extension")]
     [SerializeField] float extendSpeed = 30f;
     [SerializeField] float retractSpeed = 30f;
+    [Tooltip("When enabled, pressing the trigger during extend or while grabbing will retract the arm. " +
+             "Disable to match original HOMER behaviour where only releasing the object triggers retraction.")]
+    [SerializeField] bool retractOnTriggerPress = true;
 
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
@@ -78,6 +81,10 @@ public class HOMERArm : MonoBehaviour
     [SerializeField] float minVelocity = 0.05f;
     [SerializeField] float maxVelocity = 1.5f;
     [SerializeField][Range(0f, 1f)] float minSpeedScale = 0.1f;
+    [Tooltip("Maximum speed multiplier applied at and above maxVelocity. " +
+             "Reduce below 1 to cap how fast the virtual hand moves at high physical velocity. " +
+             "Effective max movement per frame = maxSpeedScale × scaleFactor × physicalHandDelta.")]
+    [SerializeField][Range(0f, 1f)] float maxSpeedScale = 1f;
 
     [Header("Edge Cases")]
     [SerializeField] float minHandDistance = 0.05f;
@@ -220,7 +227,7 @@ public class HOMERArm : MonoBehaviour
                 break;
 
             case State.Extending:
-                if (triggerPressed)
+                if (triggerPressed && retractOnTriggerPress)
                 {
                     if (_extendCarryObject != null)
                     {
@@ -264,7 +271,7 @@ public class HOMERArm : MonoBehaviour
                 break;
 
             case State.Extended:
-                if (triggerPressed)
+                if (triggerPressed && retractOnTriggerPress)
                     BeginRetract();
                 break;
 
@@ -273,7 +280,7 @@ public class HOMERArm : MonoBehaviour
                 {
                     EndGrab();
                 }
-                else if (triggerPressed)
+                else if (triggerPressed && retractOnTriggerPress)
                 {
                     _carriedObject = GrabbedObject;
                     _carriedRb = _grabbedRb;
@@ -362,7 +369,7 @@ public class HOMERArm : MonoBehaviour
 
             float velocity = handDelta.magnitude / Time.deltaTime;
             float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
-            float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
+            float speedScale = Mathf.Lerp(minSpeedScale, maxSpeedScale, t);
 
             // Rotary objects (lever, valve) supply their own scale multiplier so the
             // virtual hand moves closer to 1:1 with the physical hand instead of
