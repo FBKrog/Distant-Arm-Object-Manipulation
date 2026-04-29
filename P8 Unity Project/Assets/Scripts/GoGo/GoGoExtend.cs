@@ -63,6 +63,11 @@ public class GoGoExtend : MonoBehaviour
     public Transform VirtualHand => _virtualHand;
     /// <summary>The XRDirectInteractor on the virtual hand. Puzzle scripts compare against this to detect GoGo grabs.</summary>
     public XRDirectInteractor Interactor => _interactor;
+    /// <summary>The intended grab/attach point on the virtual hand — the interactor's attachTransform (Attach Point child).
+    /// Falls back to VirtualHand root if the interactor has no attachTransform assigned.</summary>
+    public Transform HandTip => (_interactor != null && _interactor.attachTransform != null)
+        ? _interactor.attachTransform
+        : _virtualHand;
     /// <summary>Current physical arm length R_r (chest to controller).</summary>
     public float CurrentRr { get; private set; }
     /// <summary>Current virtual arm length R_v after Go-Go mapping.</summary>

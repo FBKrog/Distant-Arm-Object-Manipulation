@@ -29,6 +29,10 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(-0.1f, -0.02f, 0); // compensate for DAOM attach transform offset
     [SerializeField] private Vector3 daomRotationOffset = new(0, 180, 135); // compensate for DAOM attach transform rotation
+    [SerializeField] private Vector3 goGoPositionOffset = Vector3.zero; // world-space offset applied to the GoGo hand tip at the handle
+    [SerializeField] private Vector3 goGoRotationOffset = Vector3.zero; // Euler offset on top of handle rotation for the GoGo hand
+    [SerializeField] private Vector3 homerPositionOffset = Vector3.zero; // world-space offset applied to the HOMER virtual hand at the handle
+    [SerializeField] private Vector3 homerRotationOffset = Vector3.zero; // Euler offset on top of handle rotation for the HOMER hand
 
     [Header("Lever Geometry")]
     [Tooltip("Empty child at the grip end of the lever arm. If null, uses the lever pivot.")]
@@ -422,7 +426,9 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Homer:
                 return homer?.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.GoGo:
-                return goGoExtend?.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
+                // Use HandTip (interactor attachTransform) so the angle is computed from the actual
+                // hand/palm point, not the elbow root of the GoGo arm prefab.
+                return goGoExtend?.VirtualHand != null ? goGoExtend.HandTip.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 return DAOMArm.ActiveInstance?.DaomIKTarget != null
                     ? DAOMArm.ActiveInstance.DaomIKTarget.position 
@@ -438,17 +444,28 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         {
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
-                    homer.VirtualHand.position = position;
+                {
+                    homer.VirtualHand.position = position + homerPositionOffset;
+                    homer.VirtualHand.rotation = leverHandlePoint.rotation * Quaternion.Euler(homerRotationOffset);
+                }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
-                    goGoExtend.VirtualHand.position = position;
+                {
+                    var root = goGoExtend.VirtualHand;
+                    var tip  = goGoExtend.HandTip;
+                    // Set rotation first so the handToRoot offset reflects the new arm orientation.
+                    root.rotation = leverHandlePoint.rotation * Quaternion.Euler(goGoRotationOffset);
+                    // Shift the root so the hand tip lands at (position + goGoPositionOffset).
+                    Vector3 handToRoot = root.position - tip.position;
+                    root.position = position + goGoPositionOffset + handToRoot;
+                }
                 break;
             case ActiveTechnique.Daom:
                 var daomTarget = DAOMArm.ActiveInstance?.DaomIKTarget;
                 if (daomTarget != null)
                 {
-                    daomTarget.position = position + daomPositionOffset; // compensate for attach transform offset;
+                    daomTarget.position = position + daomPositionOffset;
                     daomTarget.rotation = leverHandlePoint.rotation * Quaternion.Euler(daomRotationOffset);
                 }
                 break;
