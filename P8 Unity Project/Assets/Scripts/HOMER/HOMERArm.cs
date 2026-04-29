@@ -35,6 +35,7 @@ public class HOMERArm : MonoBehaviour
              "invisible volumes, etc. Everything else acts as a physical blocker.")]
     [SerializeField] LayerMask unhitableLayer;
 
+
     [Header("Aim")]
     [SerializeField] GameObject aimOffset;
 
@@ -84,7 +85,7 @@ public class HOMERArm : MonoBehaviour
     [Tooltip("Maximum speed multiplier applied at and above maxVelocity. " +
              "Reduce below 1 to cap how fast the virtual hand moves at high physical velocity. " +
              "Effective max movement per frame = maxSpeedScale × scaleFactor × physicalHandDelta.")]
-    [SerializeField][Range(0f, 1f)] float maxSpeedScale = 1f;
+    [SerializeField][Range(0f, 100f)] float maxSpeedScale = 100f;
 
     [Header("Edge Cases")]
     [SerializeField] float minHandDistance = 0.05f;
