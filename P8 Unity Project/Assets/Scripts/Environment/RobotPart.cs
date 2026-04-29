@@ -4,6 +4,7 @@ public class RobotPart : MonoBehaviour
 {
     public Parts part;
 }
+
 public enum Parts
 {
     Body,

@@ -17,7 +17,6 @@ public class FeetToGround : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        ScaleLegs();
     }
 
     void LateUpdate()
