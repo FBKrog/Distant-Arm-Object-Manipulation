@@ -40,7 +40,8 @@ public enum SfxType
     LightOn,
     HomerInvalidTarget,
     FuseComplete,
-    Hover
+    Hover,
+    Griddy
 }
 
 public class AudioManager : MonoBehaviour

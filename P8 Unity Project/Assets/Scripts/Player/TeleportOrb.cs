@@ -11,6 +11,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class TeleportOrb : MonoBehaviour
 {
     private XRGrabInteractable interactable;
+    public OrbType orbType;
 
     private void Awake()
     {
@@ -31,4 +32,10 @@ public class TeleportOrb : MonoBehaviour
     {
         interactable.enabled = true;
     }
+}
+
+public enum OrbType
+{
+    Blue,
+    Red
 }

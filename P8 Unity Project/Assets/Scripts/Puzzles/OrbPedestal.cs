@@ -44,7 +44,13 @@ public class OrbPedestal : MonoBehaviour
     {
         if (_currentOrb == null) return;
         if(_currentOrb.TryGetComponent<TeleportOrb>(out var teleportOrb))
+        {
             teleportOrb.ReEnableOrb();
+            if(_currentOrb.orbType == OrbType.Red)
+            {
+                ImportantScript.Instance.DoThing();
+            }
+        }
     }
 
     private void Update()
