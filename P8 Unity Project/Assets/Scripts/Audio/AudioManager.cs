@@ -39,7 +39,8 @@ public enum SfxType
     Notification,
     LightOn,
     HomerInvalidTarget,
-    FuseComplete
+    FuseComplete,
+    Griddy
 }
 
 public class AudioManager : MonoBehaviour
