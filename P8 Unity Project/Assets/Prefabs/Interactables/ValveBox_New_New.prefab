@@ -340,8 +340,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ValveGrab
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
-  goGoInteractor: {fileID: 0}
   daomPositionOffset: {x: -0.035, y: -0.07, z: 0}
+  goGoPositionOffset: {x: 0, y: 0, z: 0}
+  goGoRotationOffset: {x: 140, y: -90, z: 0}
+  homerPositionOffset: {x: 0, y: 0, z: 0}
+  homerRotationOffset: {x: 0, y: 0, z: 0}
   spinAxisLocal: {x: 0, y: 0, z: -1}
   grabPoints:
   - {fileID: 689799428125141526}
