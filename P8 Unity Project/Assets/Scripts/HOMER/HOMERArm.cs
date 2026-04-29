@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -40,6 +41,8 @@ public class HOMERArm : MonoBehaviour
     [Header("HOMER Hand Prefab")]
     [Tooltip("Instantiated when the arm extends. Must contain a forearm+hand mesh and an XRDirectInteractor.")]
     public GameObject homerHandPrefab;
+    [Tooltip("Euler rotation applied to the virtual hand during retraction. (0,180,0) flips the palm toward the player as the arm returns.")]
+    [SerializeField] Vector3 retractHandRotationOffset = new(0f, 180f, 0f);
 
     [Header("Physical Hand")]
     [Tooltip("Renderers on the physical forearm/hand mesh. Hidden while the arm is extended.")]
@@ -60,9 +63,9 @@ public class HOMERArm : MonoBehaviour
     [SerializeField] float retractSpeed = 30f;
 
     [Header("Line Renderer")]
-    [SerializeField][ColorUsage(true, true)] Color validColor = Color.green;
-    [SerializeField][ColorUsage(true, true)] Color invalidColor = Color.red;
-    [SerializeField][ColorUsage(true, true)] Color invalidPressColor = Color.yellow;
+    [SerializeField][ColorUsage(true, true)] Color validColor;
+    [SerializeField][ColorUsage(true, true)] Color invalidColor;
+    [SerializeField][ColorUsage(true, true)] Color invalidPressColor;
 
     [Header("Torso Estimation")]
     [SerializeField] float torsoHeadOffset = 0.15f;
@@ -121,11 +124,11 @@ public class HOMERArm : MonoBehaviour
     private bool _lastValid;
     private bool _invalidFlashRunning;
     private static readonly WaitForSeconds _flashWait = new(0.15f);
+    private static readonly RaycastHit[] _rayBuffer = new RaycastHit[16];
 
     // ── Manipulator state ─────────────────────────────────────────────────
     private float _scaleFactor;
     private Quaternion _rotationOffset;
-    private Quaternion _handViewRotOffset;
     private Vector3 _prevHandPos;
 
     // ── Unity lifecycle ───────────────────────────────────────────────────
@@ -233,6 +236,10 @@ public class HOMERArm : MonoBehaviour
                     _carriedRbWasKinematic = _rbWasKinematic;
                     GrabbedObject = null;
                     _grabbedRb = null;
+                    // Parent to VirtualHand so the object cannot be repositioned by
+                    // XRI or event listeners that fire inside GrabEnded.
+                    if (_carriedObject != null && VirtualHand != null)
+                        _carriedObject.transform.SetParent(VirtualHand, worldPositionStays: true);
                     GrabEnded?.Invoke();
                     BeginRetract();
                 }
@@ -258,41 +265,43 @@ public class HOMERArm : MonoBehaviour
     {
         UpdateLine();
 
-        if (_state == State.Retracting && _carriedObject != null && VirtualHand != null)
-            _carriedObject.transform.position = _extendedPos;
+        if (VirtualHand == null) return;
 
-        if (!IsHandExtended || VirtualHand == null) return;
+        Quaternion extendedRot = _state == State.Retracting
+            ? transform.rotation * Quaternion.Euler(retractHandRotationOffset)
+            : transform.rotation;
 
-        Vector3 handPos = transform.position;
-        Vector3 handDelta = handPos - _prevHandPos;
-        _prevHandPos = handPos;
+        // Velocity-scaled manipulation — only while the player is actively holding the grab.
+        if (_state == State.Grabbed)
+        {
+            Vector3 handPos = transform.position;
+            Vector3 handDelta = handPos - _prevHandPos;
+            _prevHandPos = handPos;
 
-        float velocity = handDelta.magnitude / Time.deltaTime;
-        float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
-        float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
-        Vector3 scaledDelta = handDelta * _scaleFactor * speedScale;
+            float velocity = handDelta.magnitude / Time.deltaTime;
+            float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
+            float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
+            _extendedPos += handDelta * (_scaleFactor * speedScale);
+        }
 
-        _extendedPos += scaledDelta;
-
-        Quaternion extendedRot = transform.rotation * _handViewRotOffset;
+        // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
         VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
-
-        // Drive IK target to extended position so the avatar arm stretches toward the target.
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(_extendedPos, extendedRot);
 
         if (IsGrabbing && GrabbedObject != null
             && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
-            GrabbedObject.transform.position += scaledDelta;
-            GrabbedObject.transform.rotation = transform.rotation * _rotationOffset;
+            GrabbedObject.transform.SetPositionAndRotation(
+                HandTip != null ? HandTip.position : _extendedPos,
+                transform.rotation * _rotationOffset);
         }
     }
 
     void OnDestroy()
     {
-        if (_handInstance != null) { Destroy(_handInstance); _handInstance = null; }
         if (_carriedObject != null) DropCarriedObject();
+        if (_handInstance != null) { Destroy(_handInstance); _handInstance = null; }
         RestorePhysicalArm();
     }
 
@@ -317,23 +326,51 @@ public class HOMERArm : MonoBehaviour
 
         _didDisablePhysicalInteractor = physicalInteractor != null && !physicalInteractor.hasSelection;
         if (_didDisablePhysicalInteractor) physicalInteractor.allowSelect = false;
+
+        // Disable all XRDirectInteractors in the avatar arm hierarchy (e.g. IK hand interactor)
+        // so none of them auto-select the target via XRI while HOMER owns the grab.
+        if (armRoot != null)
+            foreach (var inter in armRoot.GetComponentsInChildren<XRDirectInteractor>())
+                if (!inter.hasSelection) inter.allowSelect = false;
+
+        if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
     }
 
     private void EndExtend()
     {
+        var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+        if (poseAnimatorEnd != null) poseAnimatorEnd.ResetToDefaultPose();
+
+        // Un-parent BEFORE destroying the hand prefab — Destroy() propagates to all
+        // children at end-of-frame, so the carried object must leave the hierarchy first.
+        if (_carriedObject != null)
+            _carriedObject.transform.SetParent(null, worldPositionStays: true);
+
         if (_handInstance != null) { Destroy(_handInstance); _handInstance = null; }
         _virtualInteractor = null;
         VirtualHand = null;
 
         SetPhysicalHandVisible(true);
-        RestorePhysicalArm();
 
+        // Restore physical interactor before delivery so SelectEnter can succeed.
+        if (_didDisablePhysicalInteractor && physicalInteractor != null)
+        {
+            physicalInteractor.allowSelect = true;
+            _didDisablePhysicalInteractor = false;
+        }
+
+        // Deliver BEFORE restoring arm hierarchy — prevents IK arm interactor
+        // from auto-selecting the carried object before the physical hand gets it.
         if (_carriedObject != null)
         {
             DeliverToPhysicalHand(_carriedObject);
             _carriedObject = null;
             _carriedRb = null;
         }
+
+        if (armRoot != null)
+            foreach (var inter in armRoot.GetComponentsInChildren<XRDirectInteractor>())
+                if (inter != null) inter.allowSelect = true;
     }
 
     private void RestorePhysicalArm()
@@ -343,6 +380,18 @@ public class HOMERArm : MonoBehaviour
             physicalInteractor.allowSelect = true;
             _didDisablePhysicalInteractor = false;
         }
+        if (armRoot != null)
+            foreach (var inter in armRoot.GetComponentsInChildren<XRDirectInteractor>())
+                if (inter != null) inter.allowSelect = true;
+    }
+
+    private void ForceReleaseFromAllInteractors(GameObject obj)
+    {
+        var xrGrabbable = obj.GetComponent<XRGrabInteractable>();
+        if (xrGrabbable == null || !xrGrabbable.isSelected) return;
+        var interactors = new List<IXRSelectInteractor>(xrGrabbable.interactorsSelecting);
+        foreach (var interactor in interactors)
+            xrGrabbable.interactionManager.SelectExit(interactor, xrGrabbable);
     }
 
     private void SetPhysicalHandVisible(bool visible)
@@ -356,6 +405,7 @@ public class HOMERArm : MonoBehaviour
 
     private void BeginGrab(GameObject obj)
     {
+        ForceReleaseFromAllInteractors(obj);
         GrabbedObject = obj;
 
         _grabbedRb = obj.GetComponent<Rigidbody>();
@@ -366,11 +416,19 @@ public class HOMERArm : MonoBehaviour
         }
 
         if (obj.GetComponent<IRotaryGrabbable>() == null)
-            obj.transform.position = _extendedPos;
+            obj.transform.position = HandTip != null ? HandTip.position : _extendedPos;
         VirtualHand.rotation = transform.rotation;
 
         _rotationOffset = obj.transform.rotation * Quaternion.Inverse(transform.rotation);
         _state = State.Grabbed;
+
+        var poseAnimator = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+        if (poseAnimator != null)
+        {
+            var grabPose = obj.GetComponent<GrabPose>();
+            if (grabPose != null && grabPose.data != null)
+                poseAnimator.BendPhalanges(grabPose.data.handData);
+        }
 
         GrabStarted?.Invoke(obj);
     }
@@ -383,6 +441,9 @@ public class HOMERArm : MonoBehaviour
             _grabbedRb = null;
         }
 
+        var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+        if (poseAnimatorEnd != null) poseAnimatorEnd.ResetToDefaultPose();
+
         GrabbedObject = null;
         _state = State.Extended;
 
@@ -391,6 +452,11 @@ public class HOMERArm : MonoBehaviour
 
     private void DropCarriedObject()
     {
+        if (_carriedObject != null) _carriedObject.transform.SetParent(null, worldPositionStays: true);
+
+        var poseAnimator = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+        if (poseAnimator != null) poseAnimator.ResetToDefaultPose();
+
         if (_carriedRb != null)
         {
             _carriedRb.isKinematic = _carriedRbWasKinematic;
@@ -462,7 +528,6 @@ public class HOMERArm : MonoBehaviour
 
         _scaleFactor = virtualDist / handDist;
         _prevHandPos = handPos;
-        _handViewRotOffset = Quaternion.Inverse(transform.rotation) * VirtualHand.rotation;
     }
 
     private Vector3 GetTorsoPosition()
@@ -475,27 +540,54 @@ public class HOMERArm : MonoBehaviour
 
     // ── Raycast ───────────────────────────────────────────────────────────
 
+    // Processes a pre-filled _rayBuffer (hitCount entries) sorted by distance.
+    // Rules: trigger+grabbable → grab target; trigger+no-grab → transparent;
+    //        solid+grabbable → grab target; solid+no-grab → blocker (blockerLayer set).
+    // Returns true if a grab target was found. blockerLayer = -1 when no solid blocker.
+    private bool ProcessRayHits(int hitCount, out Vector3 hitPoint, out XRGrabInteractable grabbable, out int blockerLayer)
+    {
+        Array.Sort(_rayBuffer, 0, hitCount, Comparer<RaycastHit>.Create((a, b) => a.distance.CompareTo(b.distance)));
+        hitPoint = Vector3.zero;
+        grabbable = null;
+        blockerLayer = -1;
+        for (int i = 0; i < hitCount; i++)
+        {
+            var hit = _rayBuffer[i];
+            var found = hit.collider.GetComponentInParent<XRGrabInteractable>();
+            if (found != null && found.enabled)
+            {
+                hitPoint = hit.point;
+                grabbable = found;
+                return true;
+            }
+            if (!hit.collider.isTrigger)
+            {
+                hitPoint = hit.point;
+                blockerLayer = hit.collider.gameObject.layer;
+                return false;
+            }
+            // non-grabbable trigger: transparent, keep searching
+        }
+        return false;
+    }
+
     private bool TryGetTarget(out Vector3 hitPoint, out XRGrabInteractable grabbable)
     {
         Vector3 origin = aimOffset != null ? aimOffset.transform.position : transform.position;
         Vector3 dir = aimOffset != null ? aimOffset.transform.forward : transform.forward;
-
-        // Single scan against all layers except explicitly ignored ones (player body, etc.).
-        // Triggers are excluded — only solid colliders stop the ray.
         LayerMask scanMask = ~unhitableLayer;
-        if (!Physics.Raycast(origin, dir, out RaycastHit hit, rayLength, scanMask, QueryTriggerInteraction.Ignore))
-        { hitPoint = Vector3.zero; grabbable = null; return false; }
 
-        hitPoint = hit.point;
+        int count = Physics.RaycastNonAlloc(origin, dir, _rayBuffer, rayLength, scanMask, QueryTriggerInteraction.Collide);
+        if (count == 0) { hitPoint = Vector3.zero; grabbable = null; return false; }
 
-        var found = hit.collider.GetComponentInParent<XRGrabInteractable>();
-        bool hasGrabbable = found != null && found.enabled;
-
-        if (!hasGrabbable)
-        { grabbable = null; return false; }
-
-        grabbable = found;
-        return true;
+        bool found = ProcessRayHits(count, out hitPoint, out grabbable, out int blockerLayer);
+        if (!found && blockerLayer >= 0 && (hitableLayer.value & (1 << blockerLayer)) != 0)
+        {
+            // Hitable surface with no grabbable: arm can extend here, will immediately retract.
+            // grabbable remains null → Extending state calls BeginRetract() on arrival.
+            return true;
+        }
+        return found;
     }
 
     // ── Line renderer ─────────────────────────────────────────────────────
@@ -510,12 +602,12 @@ public class HOMERArm : MonoBehaviour
         bool valid = false;
 
         LayerMask scanMask = ~unhitableLayer;
-        if (Physics.Raycast(origin, dir, out RaycastHit hit, rayLength, scanMask, QueryTriggerInteraction.Ignore))
+        int count = Physics.RaycastNonAlloc(origin, dir, _rayBuffer, rayLength, scanMask, QueryTriggerInteraction.Collide);
+        if (count > 0)
         {
-            endpoint = hit.point;
-            var found = hit.collider.GetComponentInParent<XRGrabInteractable>();
-            bool hasGrabbable = found != null && found.enabled;
-            valid = hasGrabbable;
+            bool hasTarget = ProcessRayHits(count, out Vector3 hp, out _, out int bl);
+            if (hp != Vector3.zero) endpoint = hp;
+            valid = hasTarget || (bl >= 0 && (hitableLayer.value & (1 << bl)) != 0);
         }
 
         _line.SetPosition(0, origin);

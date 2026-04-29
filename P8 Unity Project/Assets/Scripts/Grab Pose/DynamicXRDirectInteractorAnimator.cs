@@ -98,6 +98,12 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         }
     }
 
+    public void ResetToDefaultPose()
+    {
+        if (defaultPose != null)
+            BendPhalanges(defaultPose.handData);
+    }
+
     public void BendPhalanges(HandData newPose)
     {
         for (int i = 0; i < handData.thumb.phalanges.Length; i++)
