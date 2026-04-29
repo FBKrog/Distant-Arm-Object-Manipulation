@@ -38,6 +38,7 @@ public enum SfxType
     Typing,
     Notification,
     LightOn,
+    HomerInvalidTarget,
 }
 
 public class AudioManager : MonoBehaviour

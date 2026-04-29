@@ -442,7 +442,7 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
-                return homer != null && homer.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
+                return homer != null && homer.VirtualHand != null ? homer.HandTip.position : Vector3.zero;
             case ActiveTechnique.GoGo:
                 // Use HandTip (interactor attachTransform) so the angle is computed from the actual
                 // hand/palm point, not the elbow root of the GoGo arm prefab.
@@ -464,8 +464,11 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
                 {
-                    homer.VirtualHand.position = position + homerPositionOffset;
-                    homer.VirtualHand.rotation = activeGrabPoint.rotation * Quaternion.Euler(homerRotationOffset);
+                    var root = homer.VirtualHand;
+                    var tip  = homer.HandTip;
+                    root.rotation = activeGrabPoint.rotation * Quaternion.Euler(homerRotationOffset);
+                    Vector3 handToRoot = root.position - tip.position;
+                    root.position = position + homerPositionOffset + handToRoot;
                 }
                 break;
             case ActiveTechnique.GoGo:

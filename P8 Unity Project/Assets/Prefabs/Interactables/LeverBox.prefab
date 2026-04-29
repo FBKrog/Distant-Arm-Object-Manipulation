@@ -452,8 +452,8 @@ MonoBehaviour:
   daomRotationOffset: {x: 0, y: 180, z: 135}
   goGoPositionOffset: {x: -0.1, y: 0.015, z: -0.09}
   goGoRotationOffset: {x: 134.5, y: -90, z: 0}
-  homerPositionOffset: {x: 0, y: 0, z: 0}
-  homerRotationOffset: {x: 0, y: 0, z: 0}
+  homerPositionOffset: {x: -0.1, y: -0.34, z: 0.335}
+  homerRotationOffset: {x: 44.4, y: 90, z: 180}
   leverHandlePoint: {fileID: 6044137656340020379}
   hingeAxisLocal: {x: 0, y: 1, z: 0}
   activationAngle: -75

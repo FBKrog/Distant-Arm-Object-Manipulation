@@ -62,6 +62,7 @@ public class HOMERArm : MonoBehaviour
     [Header("Line Renderer")]
     [SerializeField][ColorUsage(true, true)] Color validColor = Color.green;
     [SerializeField][ColorUsage(true, true)] Color invalidColor = Color.red;
+    [SerializeField][ColorUsage(true, true)] Color invalidPressColor = Color.yellow;
 
     [Header("Torso Estimation")]
     [SerializeField] float torsoHeadOffset = 0.15f;
@@ -75,10 +76,15 @@ public class HOMERArm : MonoBehaviour
     [SerializeField] float minHandDistance = 0.05f;
 
     // ── Public API ────────────────────────────────────────────────────────
-    public bool IsAiming      => _state == State.Aiming;
-    public bool IsGrabbing    => _state == State.Grabbed;
+    public bool IsAiming => _state == State.Aiming;
+    public bool IsGrabbing => _state == State.Grabbed;
     public bool IsHandExtended => _state == State.Extended || _state == State.Grabbed;
     public Transform VirtualHand { get; private set; }
+    /// <summary>Intended grab/attach point — interactor's attachTransform (Attach Point child).
+    /// Falls back to VirtualHand root if interactor has no attachTransform.</summary>
+    public Transform HandTip => (_virtualInteractor != null && _virtualInteractor.attachTransform != null)
+        ? _virtualInteractor.attachTransform
+        : VirtualHand;
     public Transform PhysicalHand => transform;
     public GameObject GrabbedObject { get; private set; }
 
@@ -113,6 +119,8 @@ public class HOMERArm : MonoBehaviour
     // ── Line renderer ─────────────────────────────────────────────────────
     private LineRenderer _line;
     private bool _lastValid;
+    private bool _invalidFlashRunning;
+    private static readonly WaitForSeconds _flashWait = new(0.15f);
 
     // ── Manipulator state ─────────────────────────────────────────────────
     private float _scaleFactor;
@@ -132,8 +140,8 @@ public class HOMERArm : MonoBehaviour
             _line.enabled = false;
         }
 
-        if (aimOffset      == null) Debug.LogWarning("[HOMERArm] aimOffset not assigned.", this);
-        if (armXRTarget    == null) Debug.LogWarning("[HOMERArm] armXRTarget not assigned.", this);
+        if (aimOffset == null) Debug.LogWarning("[HOMERArm] aimOffset not assigned.", this);
+        if (armXRTarget == null) Debug.LogWarning("[HOMERArm] armXRTarget not assigned.", this);
         if (homerHandPrefab == null) Debug.LogWarning("[HOMERArm] homerHandPrefab not assigned.", this);
     }
 
@@ -153,10 +161,10 @@ public class HOMERArm : MonoBehaviour
 
     void Update()
     {
-        bool aimPressed     = aimAction.action.WasPressedThisFrame();
-        bool aimReleased    = aimAction.action.WasReleasedThisFrame();
+        bool aimPressed = aimAction.action.WasPressedThisFrame();
+        bool aimReleased = aimAction.action.WasReleasedThisFrame();
         bool triggerPressed = triggerAction.action.WasPressedThisFrame();
-        bool selectPressed  = selectAction.action.WasPressedThisFrame();
+        bool selectPressed = selectAction.action.WasPressedThisFrame();
         bool selectReleased = selectAction.action.WasReleasedThisFrame();
 
         switch (_state)
@@ -179,16 +187,14 @@ public class HOMERArm : MonoBehaviour
                 {
                     if (TryGetTarget(out Vector3 hitPt, out XRGrabInteractable grabbable))
                     {
-                        _targetWorldPos    = hitPt;
+                        _targetWorldPos = hitPt;
                         _grabbableAtTarget = grabbable;
                         StartExtend();
                         if (_line != null) _line.enabled = false;
                         _state = State.Extending;
                     }
-                    else
-                    {
-                        CancelAim();
-                    }
+                    else if (!_invalidFlashRunning)
+                        StartCoroutine(FlashInvalidLine());
                 }
                 break;
 
@@ -202,20 +208,17 @@ public class HOMERArm : MonoBehaviour
                 if (VirtualHand != null && Vector3.Distance(_extendedPos, _targetWorldPos) < 0.01f)
                 {
                     _extendedPos = _targetWorldPos;
-                    _state = State.Extended;
                     OnExtendBegin();
                     ExtendStarted?.Invoke();
+                    if (_grabbableAtTarget != null && _grabbableAtTarget.enabled)
+                        BeginGrab(_grabbableAtTarget.gameObject);
+                    else
+                        BeginRetract();
                 }
                 break;
 
             case State.Extended:
-                if (triggerPressed)
-                {
-                    BeginRetract();
-                    break;
-                }
-                if (selectPressed && _grabbableAtTarget != null && _grabbableAtTarget.enabled)
-                    BeginGrab(_grabbableAtTarget.gameObject);
+                BeginRetract();
                 break;
 
             case State.Grabbed:
@@ -225,11 +228,11 @@ public class HOMERArm : MonoBehaviour
                 }
                 else if (triggerPressed)
                 {
-                    _carriedObject          = GrabbedObject;
-                    _carriedRb              = _grabbedRb;
-                    _carriedRbWasKinematic  = _rbWasKinematic;
-                    GrabbedObject           = null;
-                    _grabbedRb              = null;
+                    _carriedObject = GrabbedObject;
+                    _carriedRb = _grabbedRb;
+                    _carriedRbWasKinematic = _rbWasKinematic;
+                    GrabbedObject = null;
+                    _grabbedRb = null;
                     GrabEnded?.Invoke();
                     BeginRetract();
                 }
@@ -260,12 +263,12 @@ public class HOMERArm : MonoBehaviour
 
         if (!IsHandExtended || VirtualHand == null) return;
 
-        Vector3 handPos   = transform.position;
+        Vector3 handPos = transform.position;
         Vector3 handDelta = handPos - _prevHandPos;
         _prevHandPos = handPos;
 
-        float velocity   = handDelta.magnitude / Time.deltaTime;
-        float t          = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
+        float velocity = handDelta.magnitude / Time.deltaTime;
+        float t = Mathf.Clamp01(Mathf.InverseLerp(minVelocity, maxVelocity, velocity));
         float speedScale = Mathf.Lerp(minSpeedScale, 1f, t);
         Vector3 scaledDelta = handDelta * _scaleFactor * speedScale;
 
@@ -282,7 +285,7 @@ public class HOMERArm : MonoBehaviour
             && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
             GrabbedObject.transform.position += scaledDelta;
-            GrabbedObject.transform.rotation  = transform.rotation * _rotationOffset;
+            GrabbedObject.transform.rotation = transform.rotation * _rotationOffset;
         }
     }
 
@@ -304,11 +307,11 @@ public class HOMERArm : MonoBehaviour
         }
 
         Vector3 startPos = launchPoint != null ? launchPoint.transform.position : transform.position;
-        _handInstance      = Instantiate(homerHandPrefab, startPos, transform.rotation);
+        _handInstance = Instantiate(homerHandPrefab, startPos, transform.rotation);
         _handInstance.transform.SetParent(null);
-        VirtualHand        = _handInstance.transform;
+        VirtualHand = _handInstance.transform;
         _virtualInteractor = _handInstance.GetComponentInChildren<XRDirectInteractor>();
-        _extendedPos       = startPos;
+        _extendedPos = startPos;
 
         SetPhysicalHandVisible(false);
 
@@ -329,7 +332,7 @@ public class HOMERArm : MonoBehaviour
         {
             DeliverToPhysicalHand(_carriedObject);
             _carriedObject = null;
-            _carriedRb     = null;
+            _carriedRb = null;
         }
     }
 
@@ -358,7 +361,7 @@ public class HOMERArm : MonoBehaviour
         _grabbedRb = obj.GetComponent<Rigidbody>();
         if (_grabbedRb != null)
         {
-            _rbWasKinematic    = _grabbedRb.isKinematic;
+            _rbWasKinematic = _grabbedRb.isKinematic;
             _grabbedRb.isKinematic = true;
         }
 
@@ -429,17 +432,36 @@ public class HOMERArm : MonoBehaviour
         _state = State.Idle;
     }
 
+    private System.Collections.IEnumerator FlashInvalidLine()
+    {
+        _invalidFlashRunning = true;
+        AudioManager.PlaySound(SfxType.HomerInvalidTarget, transform);
+        if (_line != null)
+        {
+            _line.material.color = invalidPressColor;
+            _line.material.SetColor("_EmissionColor", invalidPressColor);
+        }
+        yield return _flashWait;
+        if (_line != null)
+        {
+            Color restore = _lastValid ? validColor : invalidColor;
+            _line.material.color = restore;
+            _line.material.SetColor("_EmissionColor", restore);
+        }
+        _invalidFlashRunning = false;
+    }
+
     // ── Manipulator helpers ───────────────────────────────────────────────
 
     private void OnExtendBegin()
     {
         Vector3 torsoPos = GetTorsoPosition();
-        Vector3 handPos  = transform.position;
-        float handDist   = Mathf.Max((handPos - torsoPos).magnitude, minHandDistance);
+        Vector3 handPos = transform.position;
+        float handDist = Mathf.Max((handPos - torsoPos).magnitude, minHandDistance);
         float virtualDist = (_extendedPos - torsoPos).magnitude;
 
-        _scaleFactor      = virtualDist / handDist;
-        _prevHandPos      = handPos;
+        _scaleFactor = virtualDist / handDist;
+        _prevHandPos = handPos;
         _handViewRotOffset = Quaternion.Inverse(transform.rotation) * VirtualHand.rotation;
     }
 
@@ -456,7 +478,7 @@ public class HOMERArm : MonoBehaviour
     private bool TryGetTarget(out Vector3 hitPoint, out XRGrabInteractable grabbable)
     {
         Vector3 origin = aimOffset != null ? aimOffset.transform.position : transform.position;
-        Vector3 dir    = aimOffset != null ? aimOffset.transform.forward  : transform.forward;
+        Vector3 dir = aimOffset != null ? aimOffset.transform.forward : transform.forward;
 
         // Single scan against all layers except explicitly ignored ones (player body, etc.).
         // Triggers are excluded — only solid colliders stop the ray.
@@ -466,16 +488,13 @@ public class HOMERArm : MonoBehaviour
 
         hitPoint = hit.point;
 
-        var found         = hit.collider.GetComponentInParent<XRGrabInteractable>();
+        var found = hit.collider.GetComponentInParent<XRGrabInteractable>();
         bool hasGrabbable = found != null && found.enabled;
-        bool onHitable    = ((1 << hit.collider.gameObject.layer) & hitableLayer) != 0;
 
-        // Valid target: has an XRGrabInteractable OR is on hitableLayer.
-        // Anything else is solid geometry — ray stops here but arm cannot extend.
-        if (!hasGrabbable && !onHitable)
+        if (!hasGrabbable)
         { grabbable = null; return false; }
 
-        grabbable = hasGrabbable ? found : null;
+        grabbable = found;
         return true;
     }
 
@@ -485,19 +504,18 @@ public class HOMERArm : MonoBehaviour
     {
         if (_line == null || !_line.enabled) return;
 
-        Vector3 origin   = aimOffset != null ? aimOffset.transform.position : transform.position;
-        Vector3 dir      = aimOffset != null ? aimOffset.transform.forward  : transform.forward;
+        Vector3 origin = aimOffset != null ? aimOffset.transform.position : transform.position;
+        Vector3 dir = aimOffset != null ? aimOffset.transform.forward : transform.forward;
         Vector3 endpoint = origin + dir * rayLength;
-        bool valid       = false;
+        bool valid = false;
 
         LayerMask scanMask = ~unhitableLayer;
         if (Physics.Raycast(origin, dir, out RaycastHit hit, rayLength, scanMask, QueryTriggerInteraction.Ignore))
         {
             endpoint = hit.point;
-            var found         = hit.collider.GetComponentInParent<XRGrabInteractable>();
+            var found = hit.collider.GetComponentInParent<XRGrabInteractable>();
             bool hasGrabbable = found != null && found.enabled;
-            bool onHitable    = ((1 << hit.collider.gameObject.layer) & hitableLayer) != 0;
-            valid = hasGrabbable || onHitable;
+            valid = hasGrabbable;
         }
 
         _line.SetPosition(0, origin);
