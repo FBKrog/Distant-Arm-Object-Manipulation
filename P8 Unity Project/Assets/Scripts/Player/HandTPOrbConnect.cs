@@ -98,6 +98,8 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 
         _snappedOrb = orb;
         _isSnapping = false;
+        AudioManager.PlaySound(SfxType.OrbPlaced, transform);
+
 
         if (teleportationActivator != null)
             teleportationActivator.orbConnected = true;
