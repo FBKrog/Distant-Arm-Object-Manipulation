@@ -344,7 +344,7 @@ MonoBehaviour:
   goGoPositionOffset: {x: 0, y: 0, z: 0}
   goGoRotationOffset: {x: 140, y: -90, z: 0}
   homerPositionOffset: {x: 0, y: 0, z: 0}
-  homerRotationOffset: {x: 0, y: 0, z: 0}
+  homerRotationOffset: {x: 40, y: 90, z: 180}
   spinAxisLocal: {x: 0, y: 0, z: -1}
   grabPoints:
   - {fileID: 689799428125141526}

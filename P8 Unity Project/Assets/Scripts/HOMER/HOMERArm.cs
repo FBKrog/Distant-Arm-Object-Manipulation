@@ -126,6 +126,11 @@ public class HOMERArm : MonoBehaviour
     private static readonly WaitForSeconds _flashWait = new(0.15f);
     private static readonly RaycastHit[] _rayBuffer = new RaycastHit[16];
 
+    // ── Extend-carry (object taken from physical hand at extend start) ────
+    private GameObject _extendCarryObject;
+    private Rigidbody _extendCarryRb;
+    private bool _extendCarryRbWasKinematic;
+
     // ── Manipulator state ─────────────────────────────────────────────────
     private float _scaleFactor;
     private Quaternion _rotationOffset;
@@ -204,6 +209,13 @@ public class HOMERArm : MonoBehaviour
             case State.Extending:
                 if (triggerPressed)
                 {
+                    if (_extendCarryObject != null)
+                    {
+                        _extendCarryObject.transform.SetParent(null, worldPositionStays: true);
+                        if (_extendCarryRb != null) _extendCarryRb.isKinematic = _extendCarryRbWasKinematic;
+                        _extendCarryObject = null;
+                        _extendCarryRb = null;
+                    }
                     BeginRetract();
                     break;
                 }
@@ -213,15 +225,34 @@ public class HOMERArm : MonoBehaviour
                     _extendedPos = _targetWorldPos;
                     OnExtendBegin();
                     ExtendStarted?.Invoke();
-                    if (_grabbableAtTarget != null && _grabbableAtTarget.enabled)
+                    if (_extendCarryObject != null)
+                    {
+                        var obj = _extendCarryObject;
+                        obj.transform.SetParent(null, worldPositionStays: true);
+                        GrabbedObject = obj;
+                        _grabbedRb = _extendCarryRb;
+                        _rbWasKinematic = _extendCarryRbWasKinematic;
+                        _extendCarryObject = null;
+                        _extendCarryRb = null;
+                        if (obj.GetComponent<IRotaryGrabbable>() == null)
+                            obj.transform.position = HandTip != null ? HandTip.position : _extendedPos;
+                        VirtualHand.rotation = transform.rotation;
+                        _rotationOffset = obj.transform.rotation * Quaternion.Inverse(transform.rotation);
+                        _state = State.Grabbed;
+                        var pa = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+                        if (pa != null) { var gp = obj.GetComponent<GrabPose>(); if (gp != null && gp.data != null) pa.BendPhalanges(gp.data.handData); }
+                        GrabStarted?.Invoke(obj);
+                    }
+                    else if (_grabbableAtTarget != null && _grabbableAtTarget.enabled)
                         BeginGrab(_grabbableAtTarget.gameObject);
                     else
-                        BeginRetract();
+                        _state = State.Extended;
                 }
                 break;
 
             case State.Extended:
-                BeginRetract();
+                if (triggerPressed)
+                    BeginRetract();
                 break;
 
             case State.Grabbed:
@@ -267,12 +298,50 @@ public class HOMERArm : MonoBehaviour
 
         if (VirtualHand == null) return;
 
+        // Detect external snaps (e.g. PlugController disabling XRGrabInteractable).
+        // Must run before any position overrides so the released object keeps its snapped position.
+        if (_state == State.Grabbed && GrabbedObject != null)
+        {
+            var g = GrabbedObject.GetComponent<XRGrabInteractable>();
+            if (g != null && !g.enabled)
+            {
+                _grabbedRb = null; // leave kinematic — PlugController already set it
+                var paSnap = _virtualInteractor as DynamicXRDirectInteractorAnimator;
+                if (paSnap != null) paSnap.ResetToDefaultPose();
+                GrabbedObject = null;
+                GrabEnded?.Invoke();
+                BeginRetract();
+            }
+        }
+        if (_state == State.Retracting && _carriedObject != null)
+        {
+            var g = _carriedObject.GetComponent<XRGrabInteractable>();
+            if (g != null && !g.enabled)
+            {
+                _carriedObject.transform.SetParent(null, worldPositionStays: true);
+                _carriedRb = null;
+                _carriedObject = null;
+            }
+        }
+        if (_state == State.Extending && _extendCarryObject != null)
+        {
+            var g = _extendCarryObject.GetComponent<XRGrabInteractable>();
+            if (g != null && !g.enabled)
+            {
+                _extendCarryObject.transform.SetParent(null, worldPositionStays: true);
+                if (_extendCarryRb != null) _extendCarryRb.isKinematic = true;
+                _extendCarryRb = null;
+                _extendCarryObject = null;
+                BeginRetract();
+            }
+        }
+
         Quaternion extendedRot = _state == State.Retracting
             ? transform.rotation * Quaternion.Euler(retractHandRotationOffset)
             : transform.rotation;
 
-        // Velocity-scaled manipulation — only while the player is actively holding the grab.
-        if (_state == State.Grabbed)
+        // Velocity-scaled manipulation — while grabbing or freely extended.
+        if (_state == State.Grabbed || _state == State.Extended)
         {
             Vector3 handPos = transform.position;
             Vector3 handDelta = handPos - _prevHandPos;
@@ -300,6 +369,13 @@ public class HOMERArm : MonoBehaviour
 
     void OnDestroy()
     {
+        if (_extendCarryObject != null)
+        {
+            _extendCarryObject.transform.SetParent(null, worldPositionStays: true);
+            if (_extendCarryRb != null) _extendCarryRb.isKinematic = _extendCarryRbWasKinematic;
+            _extendCarryObject = null;
+            _extendCarryRb = null;
+        }
         if (_carriedObject != null) DropCarriedObject();
         if (_handInstance != null) { Destroy(_handInstance); _handInstance = null; }
         RestorePhysicalArm();
@@ -323,6 +399,26 @@ public class HOMERArm : MonoBehaviour
         _extendedPos = startPos;
 
         SetPhysicalHandVisible(false);
+
+        // If physical hand is already holding something, take it along for the extend.
+        _extendCarryObject = null;
+        _extendCarryRb = null;
+        if (physicalInteractor != null && physicalInteractor.hasSelection
+            && physicalInteractor.interactablesSelected.Count > 0)
+        {
+            var mb = physicalInteractor.interactablesSelected[0] as MonoBehaviour;
+            if (mb != null)
+            {
+                var obj = mb.gameObject;
+                ForceReleaseFromAllInteractors(obj);
+                var rb = obj.GetComponent<Rigidbody>();
+                _extendCarryRbWasKinematic = rb != null && rb.isKinematic;
+                if (rb != null) rb.isKinematic = true;
+                _extendCarryRb = rb;
+                _extendCarryObject = obj;
+                obj.transform.SetParent(VirtualHand, worldPositionStays: true);
+            }
+        }
 
         _didDisablePhysicalInteractor = physicalInteractor != null && !physicalInteractor.hasSelection;
         if (_didDisablePhysicalInteractor) physicalInteractor.allowSelect = false;
@@ -445,9 +541,8 @@ public class HOMERArm : MonoBehaviour
         if (poseAnimatorEnd != null) poseAnimatorEnd.ResetToDefaultPose();
 
         GrabbedObject = null;
-        _state = State.Extended;
-
         GrabEnded?.Invoke();
+        BeginRetract();
     }
 
     private void DropCarriedObject()
@@ -583,8 +678,8 @@ public class HOMERArm : MonoBehaviour
         bool found = ProcessRayHits(count, out hitPoint, out grabbable, out int blockerLayer);
         if (!found && blockerLayer >= 0 && (hitableLayer.value & (1 << blockerLayer)) != 0)
         {
-            // Hitable surface with no grabbable: arm can extend here, will immediately retract.
-            // grabbable remains null → Extending state calls BeginRetract() on arrival.
+            // Hitable surface with no grabbable: arm extends here and stays (State.Extended).
+            // grabbable remains null — player moves the empty hand, trigger retracts.
             return true;
         }
         return found;
