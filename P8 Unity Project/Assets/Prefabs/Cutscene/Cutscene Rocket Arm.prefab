@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3209449040106772151}
   - component: {fileID: 1643971667023026152}
   - component: {fileID: 2253275717275102946}
-  - component: {fileID: 507841772715682296}
   m_Layer: 0
   m_Name: Quad Bullet Trail
   m_TagString: Untagged
@@ -91,28 +90,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &507841772715682296
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4986450970495855612}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &4480742162360384440
 PrefabInstance:
   m_ObjectHideFlags: 0
