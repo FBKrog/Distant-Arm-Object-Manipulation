@@ -391,7 +391,6 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
 
         isActivated = true;
 
-        AudioManager.PlaySound(SfxType.LeverActivate, transform);
         ForceRelease();
 
         float startAngle = currentAngle;
