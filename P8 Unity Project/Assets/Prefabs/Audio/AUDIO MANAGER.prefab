@@ -170,7 +170,7 @@ MonoBehaviour:
   - title: LightOn
     clips:
     - {fileID: 8300000, guid: 2e953fdef0d8bae4c8878ceb4b6a0e9c, type: 3}
-    volume: 0.5
+    volume: 1
   - title: HomerInvalidTarget
     clips:
     - {fileID: 0}
