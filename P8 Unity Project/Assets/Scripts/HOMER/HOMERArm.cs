@@ -565,6 +565,9 @@ public class HOMERArm : MonoBehaviour
         }
 
         GrabStarted?.Invoke(obj);
+
+        var wireEnd = obj.GetComponent<WireEndGrabbable>();
+        if (wireEnd != null) wireEnd.OnHOMERGrab();
     }
 
     public void EndGrab()
@@ -577,6 +580,12 @@ public class HOMERArm : MonoBehaviour
 
         var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
         if (poseAnimatorEnd != null) poseAnimatorEnd.ResetToDefaultPose();
+
+        if (GrabbedObject != null)
+        {
+            var wireEnd = GrabbedObject.GetComponent<WireEndGrabbable>();
+            if (wireEnd != null) wireEnd.OnHOMERRelease();
+        }
 
         GrabbedObject = null;
         GrabEnded?.Invoke();
@@ -595,6 +604,13 @@ public class HOMERArm : MonoBehaviour
             _carriedRb.isKinematic = _carriedRbWasKinematic;
             _carriedRb = null;
         }
+
+        if (_carriedObject != null)
+        {
+            var wireEnd = _carriedObject.GetComponent<WireEndGrabbable>();
+            if (wireEnd != null) wireEnd.OnHOMERRelease();
+        }
+
         _carriedObject = null;
     }
 

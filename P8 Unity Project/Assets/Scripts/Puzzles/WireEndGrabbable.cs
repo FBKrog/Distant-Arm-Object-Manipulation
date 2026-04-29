@@ -56,6 +56,20 @@ public class WireEndGrabbable : MonoBehaviour
         wireController.segmentsRadius = 2;
     }
 
+    public void OnHOMERGrab()
+    {
+        rb.isKinematic = true;
+        wireController.segmentsRadius = 8;
+    }
+
+    public void OnHOMERRelease()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = false;
+        wireController.segmentsRadius = 2;
+    }
+
     //void FixedUpdate()
     //{
     //    if (heldBy == null) return;
