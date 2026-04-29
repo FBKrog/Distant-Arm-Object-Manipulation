@@ -54,7 +54,7 @@ public class GoGoExtend : MonoBehaviour
 
     [Header("Chest Estimation")]
     [Tooltip("Vertical offset below the HMD used to estimate chest position when chestTransform is null.")]
-    public float chestHeadOffset = 0.3f;
+    public float chestHeadOffset = 0.45f;
 
     private Transform _virtualHand;
     private XRDirectInteractor _interactor;
