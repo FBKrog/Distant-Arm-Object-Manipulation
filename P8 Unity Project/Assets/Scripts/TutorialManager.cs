@@ -67,8 +67,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private ObjectivesManager objectivesManager;
 
 #if UNITY_EDITOR
-    [SerializeField][TextArea(5, 20)] private string testText = "This is a <color=#FF0000>test</color> subtitle with <b>rich text</b> support.";
+    [TextArea(5,20)] public string sampleHint;
+    public string SampleHint() => sampleHint;
 #endif
+
     // -------------------------------------------------------------------------
     // Events
     // -------------------------------------------------------------------------
@@ -402,13 +404,13 @@ public class TutorialManagerEditor : UnityEditor.Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-
+        
         UnityEditor.EditorGUILayout.Space();
         if (GUILayout.Button("Show sample hint"))
         {
             var tutorialManager = (TutorialManager)target;
 
-            tutorialManager.ShowSubtitle(testText);
+            tutorialManager.ShowSubtitle(tutorialManager.SampleHint());
         }
     }
 }
