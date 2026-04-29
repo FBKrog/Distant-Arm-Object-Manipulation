@@ -56,6 +56,11 @@ public class GoGoExtend : MonoBehaviour
     [Tooltip("Vertical offset below the HMD used to estimate chest position when chestTransform is null.")]
     public float chestHeadOffset = 0.45f;
 
+    [Header("Audio")]
+    [SerializeField] bool loopSfxWhileExtended;
+    [SerializeField] SfxType extendedLoopSfx;
+
+    private AudioSource _extendedLoopSource;
     private Transform _virtualHand;
     private XRDirectInteractor _interactor;
 
@@ -94,16 +99,21 @@ public class GoGoExtend : MonoBehaviour
     {
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(true);
         SetPhysicalHandVisible(false);
+        if (loopSfxWhileExtended)
+            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform);
     }
 
     void OnDisable()
     {
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(false);
         SetPhysicalHandVisible(true);
+        AudioManager.StopLoopSound(_extendedLoopSource);
+        _extendedLoopSource = null;
     }
 
     void OnDestroy()
     {
+        AudioManager.StopLoopSound(_extendedLoopSource);
         if (_virtualHand != null) Destroy(_virtualHand.gameObject);
     }
 

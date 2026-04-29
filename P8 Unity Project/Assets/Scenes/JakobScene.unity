@@ -179955,6 +179955,14 @@ PrefabInstance:
       propertyPath: chestHeadOffset
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1022214665727427543, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: extendedLoopSfx
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022214665727427543, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: loopSfxWhileExtended
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.95015
@@ -180032,6 +180040,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5288017453514605667, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: extendedLoopSfx
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288017453514605667, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: hitableLayer.m_Bits
       value: 16832
       objectReference: {fileID: 0}
@@ -180050,6 +180062,10 @@ PrefabInstance:
     - target: {fileID: 5288017453514605667, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: invalidPressColor.r
       value: 4.12284
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288017453514605667, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: loopSfxWhileExtended
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5288017453514605667, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: unhitableLayer.m_Bits

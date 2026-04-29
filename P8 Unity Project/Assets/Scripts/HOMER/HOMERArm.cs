@@ -62,6 +62,10 @@ public class HOMERArm : MonoBehaviour
     [SerializeField] float extendSpeed = 30f;
     [SerializeField] float retractSpeed = 30f;
 
+    [Header("Audio")]
+    [SerializeField] bool loopSfxWhileExtended;
+    [SerializeField] SfxType extendedLoopSfx;
+
     [Header("Line Renderer")]
     [SerializeField][ColorUsage(true, true)] Color validColor;
     [SerializeField][ColorUsage(true, true)] Color invalidColor;
@@ -118,6 +122,9 @@ public class HOMERArm : MonoBehaviour
     private GameObject _handInstance;
     private XRDirectInteractor _virtualInteractor;
     private bool _didDisablePhysicalInteractor;
+
+    // ── Audio ─────────────────────────────────────────────────────────────
+    private AudioSource _extendedLoopSource;
 
     // ── Line renderer ─────────────────────────────────────────────────────
     private LineRenderer _line;
@@ -369,6 +376,8 @@ public class HOMERArm : MonoBehaviour
 
     void OnDestroy()
     {
+        AudioManager.StopLoopSound(_extendedLoopSource);
+
         if (_extendCarryObject != null)
         {
             _extendCarryObject.transform.SetParent(null, worldPositionStays: true);
@@ -430,10 +439,16 @@ public class HOMERArm : MonoBehaviour
                 if (!inter.hasSelection) inter.allowSelect = false;
 
         if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
+
+        if (loopSfxWhileExtended)
+            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform);
     }
 
     private void EndExtend()
     {
+        AudioManager.StopLoopSound(_extendedLoopSource);
+        _extendedLoopSource = null;
+
         var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
         if (poseAnimatorEnd != null) poseAnimatorEnd.ResetToDefaultPose();
 
