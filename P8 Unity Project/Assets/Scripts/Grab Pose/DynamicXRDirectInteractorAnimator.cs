@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using UnityEngine.InputSystem;
-using System;
 
 public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
@@ -55,6 +54,12 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     {
         if (args != null)
         {
+            // Make sticky when grabbing a teleport orb to prevent softlock
+            if (TryGetComponent<TeleportOrb>(out var orb))
+            {
+                selectActionTrigger = InputTriggerType.Sticky;
+            }
+
             base.OnSelectEntered(args);
 
             AudioManager.PlaySound(SfxType.Grab, transform);
@@ -95,6 +100,12 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         {
             base.OnSelectExited(args);
             AudioManager.PlaySound(SfxType.Release, transform);
+
+            // Make non-sticky when grabbing a teleport orb to prevent softlock
+            if (TryGetComponent<TeleportOrb>(out var orb))
+            {
+                selectActionTrigger = InputTriggerType.StateChange;
+            }
         }
     }
 
