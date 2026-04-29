@@ -4423,7 +4423,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48917617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -75214,7 +75214,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059536862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -80906,7 +80906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -99116,7 +99116,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -103250,14 +103250,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448494392}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5246547, y: 0, z: 0, w: 0.85131514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1807557936}
   m_Father: {fileID: 2022785721}
-  m_LocalEulerAnglesHint: {x: 63.29, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1448494394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109835,7 +109835,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138299,7 +138299,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -146726,14 +146726,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_text
-      value: '<size=1.5>Intro credits <size=1.2>and</size> Shaders</size>
+      value: '<size=1.4>Intro credits <size=1.1>and</size> Shaders</size>
 
         Felix
-        B Krog'
+        Bengtvig Krog'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
+      propertyPath: m_fontSize
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500434481666278076, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 4411929305860783308, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.67
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 6075453312948009151, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -146745,7 +146753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075453312948009151, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3600011
+      value: -2.02
       objectReference: {fileID: 0}
     - target: {fileID: 6075453312948009151, guid: 868d90f0da5ca6445af6e71ed0705dd3, type: 3}
       propertyPath: m_LocalRotation.w
