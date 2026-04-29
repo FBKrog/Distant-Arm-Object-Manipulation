@@ -95,7 +95,6 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
         _restLocalPos        = transform.localPosition;
         buttonFixedWorldPos  = transform.position;
         pressWorldDir        = (transform.rotation * pressDirectionLocal.normalized).normalized;
-
         if (buttonRb != null)
             buttonRb.isKinematic = true;
 
@@ -106,8 +105,10 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             buttonGrabbable.throwOnDetach = false;
             buttonGrabbable.movementType = XRBaseInteractable.MovementType.Instantaneous;
 
-            if (grabPoints.Count > 0 && grabPoints[0] != null)
-                buttonGrabbable.attachTransform = grabPoints[0];
+            if(buttonGrabbable.attachTransform != null )
+                grabPoints[0] = buttonGrabbable.attachTransform;
+            //if (grabPoints.Count > 0 && grabPoints[0] != null)
+            //    buttonGrabbable.attachTransform = grabPoints[0];
 
             buttonGrabbable.selectEntered.AddListener(OnSelectEntered);
             buttonGrabbable.selectExited.AddListener(OnSelectExited);
