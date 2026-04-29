@@ -47,13 +47,13 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the <b>Go-Go interaction technique</b> to extend your
-      arm to interact with distant objects.
+  - subtitleText: You can use the <color=#FFFFFF>Go-Go interaction technique</color>
+      to extend your arm to interact with distant objects.
     stepId: 
     displayDuration: 15
     completesObjective: 
   - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
-      outward and use the <b>[SELECT]</b> button to grab it.
+      outward and use the <color=#FFFFFF>[SELECT]</color> button to grab it.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
@@ -62,13 +62,13 @@ MonoBehaviour:
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
-      to a desired destination.
+  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+      to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
-      to begin the tutorial puzzle.
+  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
+      orb</color> to the pedestal to begin the tutorial puzzle.
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -79,9 +79,10 @@ MonoBehaviour:
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the orb and teleport further into the factory to complete the remaining tasks.
+      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
+      complete the remaining tasks.
     stepId: 
-    displayDuration: 15
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -94,7 +95,11 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
+  writingSpeed: 0.06
+  writingSpeedVariance: 0.015
+  sfxPitchVariance: 0.05
+  sfxVolumeVariance: 0.02
+  subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &1206466485640629815
 GameObject:
@@ -143,14 +148,14 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the <b>Scaled HOMER interaction technique</b> to relocate
-      your arm to interact with distant objects.
+  - subtitleText: You can use the <color=#FFFFFF>Scaled HOMER interaction technique</color>
+      to relocate your arm to interact with distant objects.
     stepId: 
     displayDuration: 15
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must use the <b>[A]</b>
-      button to aim, the <b>[TRIGGER]</b> button to shoot, and the <b>[SELECT]</b>
-      button to grab.
+  - subtitleText: To retrieve the blue orb on the table, you must use the <color=#FFFFFF>[A]</color>
+      button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot, and the
+      <color=#FFFFFF>[SELECT]</color> button to grab.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
@@ -159,13 +164,13 @@ MonoBehaviour:
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
-      to a desired destination.
+  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+      to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
-      to begin the tutorial puzzle.
+  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
+      orb</color> to the pedestal to begin the tutorial puzzle.
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -176,9 +181,10 @@ MonoBehaviour:
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the orb and teleport further into the factory to complete the remaining tasks.
+      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
+      complete the remaining tasks.
     stepId: 
-    displayDuration: 15
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -191,7 +197,11 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
+  writingSpeed: 0.06
+  writingSpeedVariance: 0.015
+  sfxPitchVariance: 0.05
+  sfxVolumeVariance: 0.02
+  subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &4155103511497936179
 GameObject:
@@ -240,15 +250,15 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the <b>DAOM interaction technique</b> to attach your
-      arm to any surface for remote control or to shoot at an object to retract it
-      directly.
+  - subtitleText: You can use the <color=#FFFFFF>DAOM interaction technique</color>
+      to attach your arm to any surface for remote control or to shoot at an object
+      to retract it directly.
     stepId: 
     displayDuration: 15
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must use the [A] button
-      to aim, the <b>[TRIGGER]</b> button to shoot and retract, and the <b>[SELECT]</b>
-      button to grab it.
+  - subtitleText: To retrieve the blue orb on the table, you must use the <color=#FFFFFF>[A]</color>
+      button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot and retract,
+      and the <color=#FFFFFF>[SELECT]</color> button to grab it.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
@@ -257,13 +267,13 @@ MonoBehaviour:
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <b>[LEFT THUMBSTICK]</b> forward to teleport
-      to a desired destination.
+  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+      to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the blue orb to the pedestal
-      to begin the tutorial puzzle.
+  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
+      orb</color> to the pedestal to begin the tutorial puzzle.
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -274,9 +284,10 @@ MonoBehaviour:
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the orb and teleport further into the factory to complete the remaining tasks.
+      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
+      complete the remaining tasks.
     stepId: 
-    displayDuration: 15
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -289,7 +300,11 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.34901962}
   textColor: {r: 1, g: 0.7667351, b: 0.3150943, a: 1}
   fontSize: 3.5
-  subtitleFont: {fileID: 11400000, guid: d149d99630a3c3a45bdfabfe0beff890, type: 2}
+  writingSpeed: 0.06
+  writingSpeedVariance: 0.015
+  sfxPitchVariance: 0.1
+  sfxVolumeVariance: 0.02
+  subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
 --- !u!1 &5950508674144004181
 GameObject:

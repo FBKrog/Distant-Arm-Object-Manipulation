@@ -1036,6 +1036,7 @@ GameObject:
   - component: {fileID: 7549851305246879908}
   - component: {fileID: 8245177548374063742}
   - component: {fileID: 4082881849251327158}
+  - component: {fileID: 4016634347074980961}
   m_Layer: 0
   m_Name: Socket_03
   m_TagString: Untagged
@@ -1163,6 +1164,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4016634347074980961}
+        m_TargetAssemblyTypeName: SFX, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8245177548374063742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,6 +1204,22 @@ MonoBehaviour:
   targetRenderer: {fileID: 8918978797969470844}
   inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
   activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
+--- !u!114 &4016634347074980961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404781445828573409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfx: 20
+  sfxOnImpact: 0
+  twoD: 0
+  targetTransform: {fileID: 0}
 --- !u!1 &2439411496363894596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,6 +2915,7 @@ GameObject:
   - component: {fileID: 9171821893505277550}
   - component: {fileID: 4487290857660739716}
   - component: {fileID: 2174001877514501014}
+  - component: {fileID: 8730260917837475186}
   m_Layer: 0
   m_Name: Fusebox
   m_TagString: Untagged
@@ -2943,6 +2973,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8730260917837475186}
+        m_TargetAssemblyTypeName: SFX, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2174001877514501014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2956,6 +2998,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
   activateOnObjective: 
+--- !u!114 &8730260917837475186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911652101996177771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfx: 30
+  sfxOnImpact: 0
+  twoD: 0
+  targetTransform: {fileID: 0}
 --- !u!1 &6229344710169990177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,6 +3118,7 @@ GameObject:
   - component: {fileID: 6452005048958968278}
   - component: {fileID: 7938989742946663761}
   - component: {fileID: 6197872109597740640}
+  - component: {fileID: 4597818965912278344}
   m_Layer: 0
   m_Name: Socket_02
   m_TagString: Untagged
@@ -3187,6 +3246,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4016634347074980961}
+        m_TargetAssemblyTypeName: SFX, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7938989742946663761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,6 +3286,22 @@ MonoBehaviour:
   targetRenderer: {fileID: 1064458665782244009}
   inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
   activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
+--- !u!114 &4597818965912278344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324088192753875504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfx: 20
+  sfxOnImpact: 0
+  twoD: 0
+  targetTransform: {fileID: 0}
 --- !u!1 &6561844638261454644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3440,6 +3527,7 @@ GameObject:
   - component: {fileID: 8969647093307044953}
   - component: {fileID: 6313659475001412281}
   - component: {fileID: 1450446968089996320}
+  - component: {fileID: 2180488438126301342}
   m_Layer: 0
   m_Name: Socket_01
   m_TagString: Untagged
@@ -3567,6 +3655,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4016634347074980961}
+        m_TargetAssemblyTypeName: SFX, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6313659475001412281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3595,6 +3695,22 @@ MonoBehaviour:
   targetRenderer: {fileID: 7334954782767583439}
   inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
   activeColor: {r: 0, g: 23.968622, b: 0, a: 2}
+--- !u!114 &2180488438126301342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556157811887325467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFX
+  sfx: 20
+  sfxOnImpact: 0
+  twoD: 0
+  targetTransform: {fileID: 0}
 --- !u!1 &7566264368396751587
 GameObject:
   m_ObjectHideFlags: 0

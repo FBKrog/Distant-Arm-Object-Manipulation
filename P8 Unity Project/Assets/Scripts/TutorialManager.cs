@@ -390,3 +390,22 @@ public class TutorialManager : MonoBehaviour
         _tempHintCoroutine = null;
     }
 }
+
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(TutorialManager))]
+public class TutorialManagerEditor : UnityEditor.Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        UnityEditor.EditorGUILayout.Space();
+        if (GUILayout.Button("Show sample hint"))
+        {
+            var tutorialManager = (TutorialManager)target;
+
+            tutorialManager.ShowSubtitle("To retrieve the <color=#87FFFF>blue orb</color> on the table, you must use the <color=#FFFFFF>[A]</color> button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot and retract, and the <color=#FFFFFF>[SELECT]</color> button to grab it.");
+        }
+    }
+}
+#endif

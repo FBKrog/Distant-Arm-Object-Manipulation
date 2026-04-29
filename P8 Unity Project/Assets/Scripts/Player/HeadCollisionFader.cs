@@ -17,7 +17,6 @@ public class HeadCollisionFader : MonoBehaviour
 
     HashSet<Collider> currentCollisions = new();
     int textIndex = 0;
-    bool clearScreen;
     bool clearText;
     bool canCollide = true;
 
@@ -48,7 +47,6 @@ public class HeadCollisionFader : MonoBehaviour
 
     void FinalFade()
     {
-        clearScreen = false;
         clearText = true;
         canCollide = false;
         tmp.fontSize = 30;
@@ -117,13 +115,11 @@ public class HeadCollisionFader : MonoBehaviour
 
         if (targetAlpha == 0f)
         {
-            clearScreen = true;
             tmp.text = "";
             textIndex = 0;
         }
         else
         {
-            clearScreen = false;
             StartCoroutine(ShowErrorText(text));
         }
     }
