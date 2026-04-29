@@ -40,7 +40,7 @@ public enum SfxType
     LightOn,
     HomerInvalidTarget,
     FuseComplete,
-    Griddy
+    Hover
 }
 
 public class AudioManager : MonoBehaviour
@@ -51,6 +51,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<AudioSource> availableAudioSources = new();
     [Header("Audio Clips")]
     public Sfx[] sfxs;
+    public string hasd;
     
     public static AudioManager instance;
 
