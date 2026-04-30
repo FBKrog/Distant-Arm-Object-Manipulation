@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2becc8ce1eeb2274b85b1e7373321e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbPedestal
-  snapRadius: 0.1
+  snapRadius: 0.15
   orbTag: TPOrb
   handTPConnect: {fileID: 0}
   OrbPlaced:
