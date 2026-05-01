@@ -51,14 +51,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EnginePower: 1
-    - _FlamePulse: 5
+    - _EnginePower: 0.714
+    - _FlamePulse: 11.52
     - _JiggleStrength: 0.5
-    - _NoiseTilling: 0.1
-    - _Noise_Speed: 2
+    - _NoiseTilling: 0.307
+    - _Noise_Speed: 2.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thrust: 0.15
+    - _Thrust: 0.29
     m_Colors:
     - _ColorThrust: {r: 21.132076, g: 2.6553392, b: 0, a: 1}
   m_BuildTextureStacks: []

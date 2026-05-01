@@ -38,9 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Current_Fill: 0.7999989
+    - _Current_Fill: 0.7999935
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _XRMotionVectorsPass: 1
     m_Colors:
     - _Blood_Color: {r: 0.6886792, g: 0.1817461, b: 0.09420614, a: 1}
     - _Color: {r: 1, g: 0.9411765, b: 0, a: 1}

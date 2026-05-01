@@ -17,17 +17,39 @@ public class TeleportationActivator : MonoBehaviour
     public System.Action<System.Action> onBeforeTeleport;
 
     [HideInInspector] public bool orbConnected = false;
-
+    
+    AudioSource teleportAimingAudioSource;
+    
     void Start()
     {
         teleportInteractor.gameObject.SetActive(false);
+    }
+
+    void OnEnable()
+    {
         teleportActivatorAction.action.performed += Action_performed;
+        teleportActivatorAction.action.canceled += KillLoopAudio;
+    }
+
+    void OnDisable()
+    {
+        teleportActivatorAction.action.performed -= Action_performed;
+        teleportActivatorAction.action.canceled -= KillLoopAudio;
+        if (teleportAimingAudioSource != null)
+            AudioManager.StopLoopSound(teleportAimingAudioSource);
     }
 
     private void Action_performed(InputAction.CallbackContext obj)
     {
         if (!orbConnected) return;
         teleportInteractor.gameObject.SetActive(true);
+        teleportAimingAudioSource = AudioManager.PlayLoopSound(SfxType.TeleportAiming, transform);
+    }
+
+    void KillLoopAudio(InputAction.CallbackContext obj)
+    {
+        if (teleportAimingAudioSource != null)
+            AudioManager.StopLoopSound(teleportAimingAudioSource);
     }
 
     void Update()
@@ -66,5 +88,6 @@ public class TeleportationActivator : MonoBehaviour
         }
         teleportInteractor.gameObject.SetActive(false);
         onAfterTeleport?.Invoke();
+        AudioManager.StopLoopSound(teleportAimingAudioSource);
     }
 }

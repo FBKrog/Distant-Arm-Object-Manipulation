@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -8,6 +9,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
     [Header("Hand Data")]
     [SerializeField] HandData handData;
     [SerializeField] GrabPoseScriptableObject defaultPose;
+    [SerializeField] GrabPoseScriptableObject grabPose;
     [SerializeField] bool leftHand = false;
     GrabPose currentGrabPose;
 
@@ -22,11 +24,46 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         base.Awake();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        selectInput.inputActionReferenceValue.action.performed += OnSelectPressed;
+        selectInput.inputActionReferenceValue.action.canceled += OnSelectReleased;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        selectInput.inputActionReferenceValue.action.performed -= OnSelectPressed;
+        selectInput.inputActionReferenceValue.action.canceled -= OnSelectReleased;
+    }
+
+    void OnSelectPressed(InputAction.CallbackContext context)
+    {
+        if (!hasHover && !hasSelection)
+            BendPhalanges(grabPose.handData);
+    }
+
+    void OnSelectReleased(InputAction.CallbackContext context)
+    {
+        // Reset hand pose to initial values when releasing the object
+        BendPhalanges(defaultPose.handData);
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         if (args != null)
         {
+            // Make sticky when grabbing a teleport orb to prevent softlock
+            if (TryGetComponent<TeleportOrb>(out var orb))
+            {
+                selectActionTrigger = InputTriggerType.Sticky;
+            }
+
             base.OnSelectEntered(args);
+
+            AudioManager.PlaySound(SfxType.Grab, transform);
+
             if (args.interactableObject.transform.TryGetComponent(out GrabPose grabPose))
             {
                 currentGrabPose = grabPose;
@@ -53,17 +90,29 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         }
         else
         {
-            Debug.LogWarning("Selected object does not have a GrabPose component. Hand pose will reset.");
-            BendPhalanges(defaultPose.handData);
+            BendPhalanges(grabPose.handData);
         }
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         if (args != null)
+        {
             base.OnSelectExited(args);
-        // Reset hand pose to initial values when releasing the object
-        BendPhalanges(defaultPose.handData);
+            AudioManager.PlaySound(SfxType.Release, transform);
+
+            // Make non-sticky when grabbing a teleport orb to prevent softlock
+            if (TryGetComponent<TeleportOrb>(out var orb))
+            {
+                selectActionTrigger = InputTriggerType.StateChange;
+            }
+        }
+    }
+
+    public void ResetToDefaultPose()
+    {
+        if (defaultPose != null)
+            BendPhalanges(defaultPose.handData);
     }
 
     public void BendPhalanges(HandData newPose)
@@ -96,6 +145,11 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 #if UNITY_EDITOR
     public void SetGrabPose()
     {
+        if(currentGrabPose == null)
+        {
+            Debug.LogError("No GrabPose component found on the currently hovered object. Please add a GrabPose component to the object you want to set the grab pose for.");
+            return;
+        }
         print("Setting grab pose values...");
         SetPhalanxValues();
         StartCoroutine(SetGrabPoseVariables());

@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cde48b0f37587f84d9084221a634d3af, type: 2}
+  - {fileID: 2100000, guid: b94645a4779a3ed47825d97935aa151c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b066954d17ed37d498e9eaad15715d26, type: 2}
+  - {fileID: 2100000, guid: 30fe196d803bb7148b44f25bf2ef208f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,6 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4132168671491970216}
+  - component: {fileID: 5143721642595197358}
   m_Layer: 0
   m_Name: Pedestal
   m_TagString: Untagged
@@ -215,6 +216,19 @@ Transform:
   - {fileID: 4606767169936743107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5143721642595197358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303348024955972390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733b79e739318fd468f6d824a246471b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrbPedestalGate
+  orbPedestal: {fileID: 3451720885960628193}
 --- !u!1 &6417973802945889588
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +242,6 @@ GameObject:
   - component: {fileID: 1380318851215646237}
   - component: {fileID: 3451720885960628193}
   - component: {fileID: 555926082611455409}
-  - component: {fileID: 4277918436117067123}
   m_Layer: 0
   m_Name: BallHandler
   m_TagString: Untagged
@@ -284,7 +297,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cde48b0f37587f84d9084221a634d3af, type: 2}
+  - {fileID: 2100000, guid: b94645a4779a3ed47825d97935aa151c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -320,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2becc8ce1eeb2274b85b1e7373321e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbPedestal
-  snapRadius: 0.1
+  snapRadius: 0.15
   orbTag: TPOrb
   handTPConnect: {fileID: 0}
   OrbPlaced:
@@ -338,7 +351,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4277918436117067123}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TutorialObjective, Assembly-CSharp
+        m_MethodName: AdvanceIfStepId
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FuseOrbStep
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LightsTrigger, Assembly-CSharp
         m_MethodName: Enable
         m_Mode: 1
@@ -362,20 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8db4e924984841a2e1104677c9f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleInteractableGate
-  _interactables: []
---- !u!114 &4277918436117067123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417973802945889588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b327801957501b547a85a249aa82bc4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightsTrigger
-  lights: []
+  _interactables:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6689732018059275179
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b066954d17ed37d498e9eaad15715d26, type: 2}
+  - {fileID: 2100000, guid: d854cb5155c146b499e532767ba49ff0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -486,6 +502,6 @@ MeshCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2954808662792032550, guid: 5316092e98def634eaf837ef26a5b823, type: 3}

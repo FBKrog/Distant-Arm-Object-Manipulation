@@ -19,13 +19,17 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class SimonButton : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast homer;
+    public HOMERArm homer;
     public GoGoExtend goGoExtend;
-    [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
-    [SerializeField] private Vector3 daomPositionOffset = new(0, 0, 0); // compensate for DAOM attach transform offset
-    [SerializeField] private Vector3 daomRotationOffset = new(0, 0, 0); // rotate DAOM hand to match button orientation
+
+    [Header("Technique Offsets")]
+    [SerializeField] private Vector3 daomPositionOffset = Vector3.zero;
+    [SerializeField] private Vector3 daomRotationOffset = Vector3.zero;
+    [SerializeField] private Vector3 homerPositionOffset = Vector3.zero;
+    [SerializeField] private Vector3 homerRotationOffset = Vector3.zero;
+    [SerializeField] private Vector3 goGoPositionOffset = Vector3.zero;
+    [SerializeField] private Vector3 goGoRotationOffset = Vector3.zero;
 
     [Header("Grab Points")]
     [Tooltip("Child Transforms on the button surface. On grab, the nearest one is selected and the virtual hand snaps to it each frame (arc-lock).")]
@@ -48,6 +52,9 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     [Header("Events")]
     public UnityEvent OnButtonPressed;
 
+    // IRotaryGrabbable — arc-lock handles positioning, scale factor has no effect here
+    public float HomerScaleMultiplier => 1f;
+
     // ── Runtime state ──────────────────────────────────────────────────────────
     private enum ActiveTechnique { None, Homer, GoGo, Daom }
     private ActiveTechnique activeTechnique = ActiveTechnique.None;
@@ -68,9 +75,9 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
 
     private Transform activeGrabPoint;     // nearest grab point selected at StartGrab
 
-    private MaterialPropertyBlock _mpb;
+    private Material _buttonMaterial;
     private static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
-    private static readonly int BaseColorID     = Shader.PropertyToID("_BaseColor");
+    private static readonly int BaseColorID = Shader.PropertyToID("_BaseColor");
     private Color _originalBaseColor;
 
     // ── Lifecycle ──────────────────────────────────────────────────────────────
@@ -80,15 +87,23 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
         buttonRb = GetComponent<Rigidbody>();
         buttonGrabbable = GetComponent<XRGrabInteractable>();
 
-        // Cache base colour before any property-block overrides are applied.
+        // Fall back to the first renderer in children if not assigned in the Inspector.
+        if (buttonRenderer == null)
+            buttonRenderer = GetComponentInChildren<Renderer>();
+
         if (buttonRenderer != null)
-            _originalBaseColor = buttonRenderer.sharedMaterial.GetColor(BaseColorID);
+        {
+            // Create a per-instance material — required for SRP Batcher compatibility.
+            // MaterialPropertyBlock is ignored by the SRP Batcher on Felix/Cel shaders.
+            _buttonMaterial = buttonRenderer.material;
+            _buttonMaterial.DisableKeyword("_USEEMISSION_OFF");
+            _originalBaseColor = _buttonMaterial.GetColor(BaseColorID);
+        }
 
         // Cache rest state before anything can move the button.
-        _restLocalPos        = transform.localPosition;
-        buttonFixedWorldPos  = transform.position;
-        pressWorldDir        = (transform.rotation * pressDirectionLocal.normalized).normalized;
-
+        _restLocalPos = transform.localPosition;
+        buttonFixedWorldPos = transform.position;
+        pressWorldDir = (transform.rotation * pressDirectionLocal.normalized).normalized;
         if (buttonRb != null)
             buttonRb.isKinematic = true;
 
@@ -99,14 +114,15 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             buttonGrabbable.throwOnDetach = false;
             buttonGrabbable.movementType = XRBaseInteractable.MovementType.Instantaneous;
 
-            if (grabPoints.Count > 0 && grabPoints[0] != null)
-                buttonGrabbable.attachTransform = grabPoints[0];
+            if (buttonGrabbable.attachTransform != null)
+                grabPoints[0] = buttonGrabbable.attachTransform;
+            //if (grabPoints.Count > 0 && grabPoints[0] != null)
+            //    buttonGrabbable.attachTransform = grabPoints[0];
 
             buttonGrabbable.selectEntered.AddListener(OnSelectEntered);
             buttonGrabbable.selectExited.AddListener(OnSelectExited);
         }
 
-        _mpb = new MaterialPropertyBlock();
     }
 
     void OnEnable()
@@ -134,6 +150,9 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             buttonGrabbable.selectEntered.RemoveListener(OnSelectEntered);
             buttonGrabbable.selectExited.RemoveListener(OnSelectExited);
         }
+
+        if (_buttonMaterial != null)
+            Destroy(_buttonMaterial);
     }
 
     // ── LateUpdate (order 200) ─────────────────────────────────────────────────
@@ -192,12 +211,8 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// <summary>Sets emission color on buttonRenderer and optional buttonLight (used for sequence display flash).</summary>
     public void SetLightState(Color color, bool on)
     {
-        if (buttonRenderer != null)
-        {
-            buttonRenderer.GetPropertyBlock(_mpb);
-            _mpb.SetColor(EmissionColorID, on ? color : Color.black);
-            buttonRenderer.SetPropertyBlock(_mpb);
-        }
+        if (_buttonMaterial != null)
+            _buttonMaterial.SetColor(EmissionColorID, on ? color : Color.black);
 
         if (buttonLight != null)
         {
@@ -213,16 +228,12 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// </summary>
     public void SetOverlay(Color color, float alpha, bool on)
     {
-        if (buttonRenderer != null)
-        {
-            buttonRenderer.GetPropertyBlock(_mpb);
-            _mpb.SetColor(BaseColorID, on ? Color.Lerp(_originalBaseColor, color, alpha) : _originalBaseColor);
-            buttonRenderer.SetPropertyBlock(_mpb);
-        }
+        if (_buttonMaterial != null)
+            _buttonMaterial.SetColor(BaseColorID, on ? Color.Lerp(_originalBaseColor, color, alpha) : _originalBaseColor);
 
         if (buttonLight != null)
         {
-            buttonLight.color  = color;
+            buttonLight.color = color;
             buttonLight.enabled = on;
         }
     }
@@ -313,8 +324,8 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
 
         ActiveTechnique technique = ActiveTechnique.None;
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
         }
@@ -380,9 +391,10 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && buttonGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && buttonGrabbable != null)
                     buttonGrabbable.interactionManager.SelectExit(
-                        (IXRSelectInteractor)goGoInteractor,
+                        (IXRSelectInteractor)goGoInter,
                         (IXRSelectInteractable)buttonGrabbable);
                 break;
 
@@ -440,11 +452,19 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
         {
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
-                    homer.VirtualHand.position = position;
+                {
+                    homer.VirtualHand.position = position + activeGrabPoint.TransformDirection(homerPositionOffset);
+                    if (homerRotationOffset != Vector3.zero)
+                        homer.VirtualHand.rotation = Quaternion.Euler(activeGrabPoint.TransformDirection(homerRotationOffset));
+                }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
-                    goGoExtend.VirtualHand.position = position;
+                {
+                    goGoExtend.VirtualHand.position = position + activeGrabPoint.TransformDirection(goGoPositionOffset);
+                    if (goGoRotationOffset != Vector3.zero)
+                        goGoExtend.VirtualHand.rotation = Quaternion.Euler(activeGrabPoint.TransformDirection(goGoRotationOffset));
+                }
                 break;
             case ActiveTechnique.Daom:
                 var daomInst = DAOMArm.ActiveInstance;

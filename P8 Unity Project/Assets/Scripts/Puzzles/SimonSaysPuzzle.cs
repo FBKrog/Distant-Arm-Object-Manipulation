@@ -25,11 +25,11 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     [Header("Colors")]
     [Tooltip("Emission colour flashed on each button during the sequence preview.")]
-    [SerializeField] private Color sequenceColor = Color.cyan;
+    [SerializeField][ColorUsage(true, true)] private Color sequenceColor = Color.cyan;
     [Tooltip("Overlay colour blended on top of the base material for a correct press / puzzle complete.")]
-    [SerializeField] private Color correctColor = Color.green;
+    [SerializeField][ColorUsage(true, true)] private Color correctColor = Color.green;
     [Tooltip("Overlay colour blended on top of the base material on a wrong press.")]
-    [SerializeField] private Color wrongColor = Color.red;
+    [SerializeField][ColorUsage(true, true)] private Color wrongColor = Color.red;
     [Tooltip("How strongly the correct/wrong overlay blends over the base material (0 = invisible, 1 = solid).")]
     [SerializeField][Range(0f, 1f)] private float overlayAlpha = 0.4f;
 
@@ -85,6 +85,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     /// Starts the puzzle. Wire to an Inspector event or call from a trigger.
     /// Safe to call only when state == Idle.
     /// </summary>
+    [ContextMenu("Fire Puzzle Start")]
     public void BeginPuzzle()
     {
         if (state != PuzzleState.Idle)
@@ -126,12 +127,11 @@ public class SimonSaysPuzzle : MonoBehaviour
                 yield return new WaitForSeconds(sequenceGapDuration);
         }
 
-        // Enable sequence buttons — no colour change, base material is the "ready" state.
-        for (int i = 0; i < sequence.Length; i++)
-            buttons[sequence[i]].SetInteractable(true);
+        // Enable ALL buttons — any wrong press (not in sequence, or wrong order) triggers a fail.
+        SetAllButtonsInteractable(true);
 
         currentStep = 0;
-        SubscribeToSequenceButtons();
+        SubscribeToAllButtons();
         state = PuzzleState.WaitingForInput;
 
         activeCoroutine = null;
@@ -169,7 +169,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     private void OnButtonPressed(int buttonIndex)
     {
         if (state != PuzzleState.WaitingForInput) return;
-
+        AudioManager.PlaySound(SfxType.SimonButtonPress, transform);
         int expectedIndex = sequence[currentStep];
 
         if (buttonIndex == expectedIndex)
@@ -185,6 +185,7 @@ public class SimonSaysPuzzle : MonoBehaviour
                 SetAllButtonsOverlay(correctColor, overlayAlpha, true);
                 UnsubscribeFromAllButtons();
                 state = PuzzleState.Completed;
+                AudioManager.PlaySound(SfxType.SimonCorrect, transform);
                 Debug.Log($"[SimonSaysPuzzle:{name}] Puzzle completed — firing OnPuzzleCompleted.");
                 OnPuzzleCompleted.Invoke();
             }
@@ -194,30 +195,29 @@ public class SimonSaysPuzzle : MonoBehaviour
             // Wrong order.
             UnsubscribeFromAllButtons();
             if (activeCoroutine != null) StopCoroutine(activeCoroutine);
+            AudioManager.PlaySound(SfxType.SimonWrong, transform);
             activeCoroutine = StartCoroutine(WrongInputCoroutine());
         }
     }
 
     // ── Subscription helpers ───────────────────────────────────────────────────
 
-    private void SubscribeToSequenceButtons()
+    private void SubscribeToAllButtons()
     {
-        for (int i = 0; i < sequence.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            int idx = sequence[i];
-            if (idx >= 0 && idx < buttons.Length && buttons[idx] != null)
-                buttons[idx].OnButtonPressed.AddListener(_buttonListeners[idx]);
+            if (buttons[i] != null)
+                buttons[i].OnButtonPressed.AddListener(_buttonListeners[i]);
         }
     }
 
     private void UnsubscribeFromAllButtons()
     {
         if (_buttonListeners == null) return;
-        for (int i = 0; i < sequence.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            int idx = sequence[i];
-            if (idx >= 0 && idx < buttons.Length && buttons[idx] != null)
-                buttons[idx].OnButtonPressed.RemoveListener(_buttonListeners[idx]);
+            if (buttons[i] != null)
+                buttons[i].OnButtonPressed.RemoveListener(_buttonListeners[i]);
         }
     }
 

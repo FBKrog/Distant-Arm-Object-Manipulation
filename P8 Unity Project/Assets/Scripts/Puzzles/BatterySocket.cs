@@ -42,15 +42,39 @@ public class BatterySocket : MonoBehaviour
     private bool _snapInProgress   = false;
     private GameObject _currentBattery;
 
+
     // -------------------------------------------------------------------------
+
+    private void OnDisable()
+    {
+        Debug.LogWarning($"[BatterySocket] '{name}' — OnDisable fired! snapInProgress={_snapInProgress}, batteryInserted={_batteryInserted}.\n" +
+                         new System.Diagnostics.StackTrace().ToString());
+    }
+
+    private void OnDestroy()
+    {
+        Debug.LogWarning($"[BatterySocket] '{name}' — OnDestroy fired! snapInProgress={_snapInProgress}.\n" +
+                         new System.Diagnostics.StackTrace().ToString());
+    }
+
+    private void Start()
+    {
+        // ── Configuration validation ──────────────────────────────────────────
+        Debug.Log($"[BatterySocket] '{name}' — Start. " +
+                  $"socketPlus={(socketPlus != null ? socketPlus.name : "NULL ⚠")}, " +
+                  $"socketMinus={(socketMinus != null ? socketMinus.name : "NULL ⚠")}, " +
+                  $"batteryTag='{batteryTag}', plusChildName='{plusChildName}', " +
+                  $"minusChildName='{minusChildName}', snapRadius={snapRadius}m");
+
+        if (socketPlus  == null) Debug.LogError($"[BatterySocket] '{name}' — socketPlus is not assigned!", this);
+        if (socketMinus == null) Debug.LogWarning($"[BatterySocket] '{name}' — socketMinus is not assigned (needed for snap rotation).", this);
+    }
 
     private void Update()
     {
+        // ── Early-exit guards ─────────────────────────────────────────────────
         if (_batteryInserted || _snapInProgress || socketPlus == null) return;
 
-        // Cast a sphere around the socket's Plus pole to find nearby colliders.
-        // Using a 2× radius here so any part of the battery is detected, then we
-        // refine with the exact pole-to-pole distance below.
         Collider[] hits = Physics.OverlapSphere(socketPlus.position, snapRadius * 2f);
 
         foreach (Collider hit in hits)
@@ -58,14 +82,13 @@ public class BatterySocket : MonoBehaviour
             GameObject battery = GetBatteryRoot(hit.gameObject);
             if (battery == null) continue;
 
-            // Find the battery's Plus child and measure pole-to-pole distance
             Transform batteryPlus = battery.transform.Find(plusChildName);
             if (batteryPlus == null) continue;
 
             float dist = Vector3.Distance(batteryPlus.position, socketPlus.position);
             if (dist > snapRadius) continue;
 
-            // Close enough — initiate snap
+            Debug.Log($"[BatterySocket] '{name}' — snapping '{battery.name}'.");
             _snapInProgress = true;
             StartCoroutine(SnapBattery(battery));
             return;
@@ -76,35 +99,38 @@ public class BatterySocket : MonoBehaviour
 
     private IEnumerator SnapBattery(GameObject battery)
     {
-        // --- 1. Force-release from the player's XR hand ---
         var grab = battery.GetComponent<XRGrabInteractable>();
+
+        // --- 1. Force-release from XRI hand — only yields if the battery is actually held ---
         if (grab != null && grab.isSelected)
         {
+            Debug.Log($"[BatterySocket] '{name}' — releasing '{battery.name}' from XRI hand.");
             var interactors = new List<UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor>(grab.interactorsSelecting);
             foreach (var interactor in interactors)
                 grab.interactionManager.SelectExit(interactor, grab);
+
+            int safetyFrames = 0;
+            while (grab.isSelected && safetyFrames < 10)
+            {
+                yield return null;
+                safetyFrames++;
+            }
         }
 
-        // Wait until XRI has actually cleared the selection (max 10 frames safety)
-        int safetyFrames = 0;
-        while (grab != null && grab.isSelected && safetyFrames < 10)
-        {
-            yield return null;
-            safetyFrames++;
-        }
-
-        // --- 1b. Force-release from any HOMER grabber holding this battery ---
-        var homers = FindObjectsByType<HOMERRaycast>(FindObjectsSortMode.None);
+        // --- 1b. Force-release from HOMER — only yields if HOMER was holding it ---
+        var homers = FindObjectsByType<HOMERArm>(FindObjectsSortMode.None);
+        bool homerReleased = false;
         foreach (var h in homers)
         {
             if (h.IsGrabbing && h.GrabbedObject == battery)
             {
                 h.EndGrab();
+                homerReleased = true;
                 break;
             }
         }
-        // Give HOMERManipulator one LateUpdate cycle to stop tracking the object
-        yield return null;
+        if (homerReleased)
+            yield return null;  // Give HOMERManipulator one cycle to stop tracking
 
         // --- 2. Locate battery poles ---
         Transform batteryPlus  = battery.transform.Find(plusChildName);
@@ -112,29 +138,20 @@ public class BatterySocket : MonoBehaviour
 
         if (batteryPlus == null || batteryMinus == null)
         {
-            Debug.LogWarning($"[BatterySocket] Battery '{battery.name}' is missing " +
-                             $"a child named '{plusChildName}' or '{minusChildName}'.");
+            Debug.LogWarning($"[BatterySocket] '{name}' — '{battery.name}' missing '{plusChildName}' or '{minusChildName}' child.\n" +
+                             $"Direct children: {GetChildNames(battery.transform)}");
             _snapInProgress = false;
             yield break;
         }
 
         // --- 3. Compute snap rotation ---
-        // Battery Plus→Minus axis in world space (current orientation)
         Vector3 batteryAxisWorld = battery.transform.TransformDirection(
             (batteryMinus.localPosition - batteryPlus.localPosition).normalized);
-
-        // Socket Plus→Minus axis in world space
-        Vector3 socketAxisWorld = (socketMinus.position - socketPlus.position).normalized;
-
-        // Rotation that swings the battery axis onto the socket axis
+        Vector3 socketAxisWorld  = (socketMinus.position - socketPlus.position).normalized;
         Quaternion axisAlignment   = Quaternion.FromToRotation(batteryAxisWorld, socketAxisWorld);
         Quaternion snappedRotation = axisAlignment * battery.transform.rotation;
 
         // --- 4. Compute snap position ---
-        // Use the world-space offset between battery root and its Plus child so
-        // that non-unit scale on the battery is handled correctly.
-        // Only the delta rotation (axisAlignment) is applied, not the full snappedRotation,
-        // because the offset is already expressed in world space.
         Vector3 plusOffsetWorld = batteryPlus.position - battery.transform.position;
         Vector3 snappedPosition = socketPlus.position - (axisAlignment * plusOffsetWorld);
 
@@ -142,6 +159,7 @@ public class BatterySocket : MonoBehaviour
         var rb = battery.GetComponent<Rigidbody>();
         if (rb != null)
         {
+            rb.isKinematic     = false;  // must be non-kinematic to zero velocity
             rb.linearVelocity  = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.isKinematic     = true;
@@ -155,8 +173,9 @@ public class BatterySocket : MonoBehaviour
         _currentBattery  = battery;
 
         if (grab != null)
-            grab.enabled = false;   // permanent — battery cannot be re-grabbed
+            grab.enabled = false;
 
+        Debug.Log($"[BatterySocket] '{name}' — snap complete for '{battery.name}'. Firing OnBatteryPlaced ({OnBatteryPlaced.GetPersistentEventCount()} listener(s)).");
         OnBatteryPlaced.Invoke();
     }
 
@@ -172,6 +191,18 @@ public class BatterySocket : MonoBehaviour
             t = t.parent;
         }
         return null;
+    }
+
+    private static string GetChildNames(Transform parent)
+    {
+        if (parent.childCount == 0) return "(no children)";
+        var names = new System.Text.StringBuilder();
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            if (i > 0) names.Append(", ");
+            names.Append($"'{parent.GetChild(i).name}'");
+        }
+        return names.ToString();
     }
 
     // -------------------------------------------------------------------------

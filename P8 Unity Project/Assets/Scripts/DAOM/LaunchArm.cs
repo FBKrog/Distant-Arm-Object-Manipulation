@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class LaunchArm : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class LaunchArm : MonoBehaviour
     GameObject daomArm;
 
     [Header("Interactor")]
-    [SerializeField] DynamicXRDirectInteractorAnimator interactor;
+    [SerializeField] XRDirectInteractor interactor;
 
     [Header("Input")]
     [SerializeField] InputActionReference launchInput;
@@ -39,22 +40,22 @@ public class LaunchArm : MonoBehaviour
 
     [Header("Line Renderer")]
     [SerializeField] GameObject aimOffset;
-    [SerializeField] Color validColor;
-    [SerializeField] Color invalidColor;
+    [SerializeField] [ColorUsage(true, true)] Color validColor;
+    [SerializeField] [ColorUsage(true, true)] Color invalidColor;
     LineRenderer lineRenderer;
 
     IXRSelectInteractable selectedInteractable;
-    IXRSelectInteractable daomInteractable;
     IXRSelectInteractable hitInteractable;
+    public bool IsAiming => aiming;
 
-    public static Action<DynamicXRDirectInteractorAnimator> SetInteractorHandedness;
-    public static void OnSetInteractorHandedness(DynamicXRDirectInteractorAnimator interactor) => SetInteractorHandedness?.Invoke(interactor);
+    public static Action<XRDirectInteractor> SetInteractorHandedness;
+    public static void OnSetInteractorHandedness(XRDirectInteractor interactor) => SetInteractorHandedness?.Invoke(interactor);
 
     public static Action ArmLaunched;
     public static void OnArmLaunched() => ArmLaunched?.Invoke();
 
-    public static Action ArmRecalled;
-    public static void OnArmRecalled() => ArmRecalled?.Invoke();
+    public static Action<IXRSelectInteractable> ArmRecalled;
+    public static void OnArmRecalled(IXRSelectInteractable interactable) => ArmRecalled?.Invoke(interactable);
 
     public static Action<IXRSelectInteractable> GrabbedGameObject;
     public static void OnGrabbedGameObject(IXRSelectInteractable interactable) => GrabbedGameObject?.Invoke(interactable);
@@ -76,7 +77,6 @@ public class LaunchArm : MonoBehaviour
     {
         ArmRecalled += RemoveDAOMArm;
         EarlyRecall += canLaunch ? Launch : null;
-        GrabbedGameObject += AddGrabbedGameObject;
 
         // <Input>
         interactor.selectEntered.AddListener(OnGrab);
@@ -93,7 +93,6 @@ public class LaunchArm : MonoBehaviour
     void OnDisable()
     {
         ArmRecalled -= RemoveDAOMArm;
-        GrabbedGameObject -= AddGrabbedGameObject;
         EarlyRecall -= canLaunch ? Launch : null;
 
         // <Input>
@@ -123,20 +122,6 @@ public class LaunchArm : MonoBehaviour
         selectedInteractable = null;
     }
 
-    /// <summary>
-    /// Stores the currently grabbed object, if any, to make sure the player will hold that object after recalling the arm.
-    /// </summary>
-    /// <param name="gameObject"></param>
-    void AddGrabbedGameObject(IXRSelectInteractable gameObject)
-    {
-        if (gameObject == null)
-        {
-            daomInteractable = null;
-            return;
-        }
-        daomInteractable = gameObject;
-    }
-
     void LaunchState(InputAction.CallbackContext ctx)
     {
         if (ctx.ReadValue<float>() >= 0.99f)
@@ -153,12 +138,12 @@ public class LaunchArm : MonoBehaviour
         if(!canLaunch) return;
         if (ctx.ReadValue<float>() > 0)
         {
-            interactor.keepSelectedTargetValid = false;
+            //interactor.keepSelectedTargetValid = false;
             aiming = true;
         }
         else
         {
-            interactor.keepSelectedTargetValid = true;
+            //interactor.keepSelectedTargetValid = true;
             aiming = false;
         }
     }
@@ -166,31 +151,30 @@ public class LaunchArm : MonoBehaviour
     /// <summary>
     /// Removes the currently active DAOM arm from the scene, if one exists. And resets the state to allow for launching again as well as interaction.
     /// </summary>
-    void RemoveDAOMArm()
+    void RemoveDAOMArm(IXRSelectInteractable interactable)
     {
         if (daomArm != null)
         {
+            armGameObject.SetActive(true);
             Destroy(daomArm);
             daomArm = null;
+            ForceGrabInteractable(interactable);
             canLaunch = true;
-            ForceGrabInteractable();
-            armGameObject.SetActive(true);
         }
     }
 
     /// <summary>
     /// Forces the interactor to grab the interactable object from the recalled DAOM.
     /// </summary>
-    void ForceGrabInteractable()
+    void ForceGrabInteractable(IXRSelectInteractable interactable)
     {
-        interactor.enabled = true;
-        if (daomInteractable != null)
+        interactor.allowSelect = true;
+        if (interactable != null)
         {
-            selectedInteractable = daomInteractable;
-            interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
+            //interactor.keepSelectedTargetValid = true;
+            interactable.transform.position = interactor.attachTransform.position;
+            interactor.interactionManager.SelectEnter(interactor, interactable);
         }
-        daomInteractable = null;
-        hitInteractable = null;
     }
 
     void Update()
@@ -211,33 +195,22 @@ public class LaunchArm : MonoBehaviour
             return false;
         }
 
-        if (Physics.Raycast(aimOffset.transform.position, aimOffset.transform.forward, out hit, rayLength, hitableLayer))
+        RaycastHit[] hits = Physics.RaycastAll(aimOffset.transform.position, aimOffset.transform.forward, rayLength, hitableLayer);
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+        if (hits.Length == 0) return false;
+        foreach (var h in hits)
         {
-            if (selectedInteractable != null && !hit.collider.transform.IsChildOf(selectedInteractable.transform) &&
-                hit.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
+            if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
+                h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
                 return false;
-            if (selectedInteractable != null && hit.collider.transform.IsChildOf(selectedInteractable.transform))
-                return false;
+
+            if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
+                continue;
+
+            hit = h;
             return true;
         }
         return false;
-
-        //RaycastHit[] hits = Physics.RaycastAll(aimOffset.transform.position, aimOffset.transform.forward, rayLength, hitableLayer);
-        //Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-        //if (hits.Length == 0) return false;
-        //foreach (var h in hits)
-        //{
-        //    if (selectedInteractable != null && !h.collider.transform.IsChildOf(selectedInteractable.transform) &&
-        //        h.collider.transform.parent.TryGetComponent(out XRGrabInteractable hitInteractable))
-        //        return false;
-
-        //    if (selectedInteractable != null && h.collider.transform.IsChildOf(selectedInteractable.transform))
-        //        continue;
-
-        //    hit = h;
-        //    return true;
-        //}
-        //return false;
     }
 
     /// <summary>
@@ -247,6 +220,7 @@ public class LaunchArm : MonoBehaviour
     {
         if (!canLaunch)
         {
+            aiming = false;
             RecallArm();
         }
         if(canLaunch && ValidLayer())
@@ -255,16 +229,15 @@ public class LaunchArm : MonoBehaviour
             {
                 if(!daomArm.GetComponent<DAOMArm>().Recalling)
                 {
-                    Debug.Log("Arm is recalling, cannot launch!");
+                    // Arm is still flying towards the target, recalling, or attached to the surface.
                 }
                 return;
             }
             // Preconditions met, launch the arm and set canLaunch to false until the arm is recalled.
             canLaunch = false;
             aiming = false;
-            interactor.keepSelectedTargetValid = true;
-            
-            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable")
+
+            if (hit.collider.gameObject.transform.TryGetComponent(out XRGrabInteractable hitInteractable) && selectedInteractable == null && hitInteractable.gameObject.tag != "Unrecallable" && hitInteractable.enabled)
             {
                 this.hitInteractable = hitInteractable;
             }
@@ -285,7 +258,7 @@ public class LaunchArm : MonoBehaviour
             bool surfaceIsGround = hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"); // This is used to determine extra rotation for the arm when it hits the ground to make it look better.
             daomArm.GetComponent<DAOMArm>().Initialize(armRoot, armXRTarget, hit.point, this.hitInteractable, selectedInteractable, surfaceIsGround);
             OnSetInteractorHandedness(interactor);
-            interactor.enabled = false;
+            interactor.allowSelect = false;
             OnArmLaunched();
         }
     }
@@ -299,7 +272,7 @@ public class LaunchArm : MonoBehaviour
         {
             if (!daomArm.GetComponent<DAOMArm>().IsAttachedToSurface)
             {
-                Debug.Log("Arm is not attached to surface, cannot reset!");
+                // Arm is still flying towards the target or is being recalled.
                 return;
             }
             daomArm.GetComponent<DAOMArm>().RecallArm(launchPoint);
@@ -340,6 +313,7 @@ public class LaunchArm : MonoBehaviour
         if(valid == lasttValid && lineRenderer) return;
         lasttValid = valid;
         lineRenderer.material.color = valid ? validColor : invalidColor;
+        lineRenderer.material.SetColor("_EmissionColor", valid ? validColor : invalidColor);
     }
 
 #if UNITY_EDITOR

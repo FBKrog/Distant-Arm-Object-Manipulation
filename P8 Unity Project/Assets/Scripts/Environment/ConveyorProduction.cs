@@ -5,29 +5,29 @@ public class ConveyorProduction : MonoBehaviour
 {
     [SerializeField] GameObject spawnPoint;
     public int productionID = 0;
-    public bool isActive = false;
+    [HideInInspector] public bool isActive = false;
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] GameObject[] robotPartPrefabs;
-    
-    [Header("Audio")]
-    [SerializeField] AudioClip productionSound;
-    AudioSource currentLoopSound;
+
+    AudioSource productionAudioSource;
 
     void Awake()
     {
         isActive = false;
+        if (spawnPoint == null)
+            spawnPoint = gameObject;
     }
 
     void OnEnable()
     {
         ConveyorProductionManager.OnProductionStateChanged += HandleProductionStateChange;
-        ConveyorProductionManager.OnAllProductionRateChanged += (newRate) => spawnInterval = newRate;
+        ConveyorProductionManager.OnAllProductionIntervalChanged += (newInterval) => spawnInterval += newInterval;
     }
 
     void OnDisable()
     {
         ConveyorProductionManager.OnProductionStateChanged -= HandleProductionStateChange;
-        ConveyorProductionManager.OnAllProductionRateChanged -= (newRate) => spawnInterval = newRate;
+        ConveyorProductionManager.OnAllProductionIntervalChanged -= (newInterval) => spawnInterval += newInterval;
     }
 
     void HandleProductionStateChange(int id, bool state)
@@ -38,15 +38,13 @@ public class ConveyorProduction : MonoBehaviour
         {
             StartProduction();
 
-            currentLoopSound = AudioManager.PlayLoopSound(productionSound, transform, 1);
-            print($"Production #{productionID} enabled.");
+            productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform);
         }
         else
         {
             StopAllCoroutines();
 
-            AudioManager.StopSound(currentLoopSound);
-            print($"Production #{productionID} disabled.");
+            AudioManager.StopLoopSound(productionAudioSource);
         }
     }
 

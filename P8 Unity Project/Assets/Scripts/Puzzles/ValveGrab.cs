@@ -27,12 +27,19 @@ using UnityEditor;
 public class ValveGrab : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast       homer;
+    public HOMERArm           homer;
     public GoGoExtend         goGoExtend;
-    [Tooltip("XRDirectInteractor on GoGo's virtual hand.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(-0.035f, -0.07f, 0); // compensate for DAOM attach transform offset
+    [SerializeField] private Vector3 goGoPositionOffset = Vector3.zero; // world-space offset applied to the GoGo hand tip at the grab point
+    [SerializeField] private Vector3 goGoRotationOffset = Vector3.zero; // Euler offset on top of grab point rotation for the GoGo hand
+    [SerializeField] private Vector3 homerPositionOffset = Vector3.zero; // world-space offset applied to the HOMER virtual hand at the grab point
+    [SerializeField] private Vector3 homerRotationOffset = Vector3.zero; // Euler offset on top of grab point rotation for the HOMER hand
+
+    [Header("HOMER Sensitivity")]
+    [Tooltip("Fraction of HOMER's computed scale factor applied while grabbing. 1 = full scaling (fast); 0.2 = 20% (close to 1:1 physical feel).")]
+    [SerializeField][Range(0f, 1f)] float homerScaleMultiplier = 0.2f;
+    public float HomerScaleMultiplier => homerScaleMultiplier;
 
     [Header("Spin Axis")]
     [Tooltip("Local-space spin axis of the valve. Blue disc in Scene view should align with the valve face.")]
@@ -242,6 +249,7 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
     {
         Debug.Log($"[ValveGrab:{name}] Activate — cumulativeRotation={cumulativeRotation:F1}°  firing OnValveActivated");
         isActivated = true;
+        AudioManager.PlaySound(SfxType.ValveActivated, transform);
         ForceRelease();
         if (valveGrabbable != null)
             valveGrabbable.enabled = false;
@@ -287,8 +295,8 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         ActiveTechnique technique = ActiveTechnique.None;
         string interName = args.interactorObject?.transform?.name ?? "null";
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
             Debug.Log($"[ValveGrab:{name}] OnSelectEntered — matched GoGo interactor '{interName}'");
@@ -379,14 +387,15 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && valveGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && valveGrabbable != null)
                 {
                     Debug.Log($"[ValveGrab:{name}] ForceRelease — calling SelectExit on GoGo interactor");
-                    valveGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInteractor, (IXRSelectInteractable)valveGrabbable);
+                    valveGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInter, (IXRSelectInteractable)valveGrabbable);
                 }
                 else
                 {
-                    Debug.LogWarning($"[ValveGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInteractor != null} valveGrabbable={valveGrabbable != null})");
+                    Debug.LogWarning($"[ValveGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInter != null} valveGrabbable={valveGrabbable != null})");
                 }
                 break;
 
@@ -438,8 +447,12 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
+                // Use root position, not HandTip. HandTip shifts every frame when HOMER
+                // overwrites the rotation with the physical hand, causing spurious angle delta.
                 return homer != null && homer.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.GoGo:
+                // Use root position — tip shifts when rotation is locked each frame, causing
+                // false angle delta. Root is stable and unaffected by rotation changes.
                 return goGoExtend != null && goGoExtend.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 var daomInst = DAOMArm.ActiveInstance;
@@ -457,17 +470,26 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         {
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
-                    homer.VirtualHand.position = position;
+                {
+                    homer.VirtualHand.SetPositionAndRotation(
+                        position + homerPositionOffset,
+                        activeGrabPoint.rotation * Quaternion.Euler(homerRotationOffset));
+                    homer.ExtendedPos = homer.VirtualHand.position;
+                }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
-                    goGoExtend.VirtualHand.position = position;
+                {
+                    goGoExtend.VirtualHand.SetPositionAndRotation(
+                        position + goGoPositionOffset,
+                        activeGrabPoint.rotation * Quaternion.Euler(goGoRotationOffset));
+                }
                 break;
             case ActiveTechnique.Daom:
                 var daomArmInst = DAOMArm.ActiveInstance;
                 if (daomArmInst != null && daomArmInst.DaomIKTarget != null)
                 {
-                    daomArmInst.DaomIKTarget.position = position + activeGrabPoint.TransformDirection(daomPositionOffset); // compensate for attach transform offset;
+                    daomArmInst.DaomIKTarget.position = position + activeGrabPoint.TransformDirection(daomPositionOffset);
                     daomArmInst.DaomIKTarget.rotation = activeGrabPoint.rotation;
                 }
                 break;

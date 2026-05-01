@@ -1,15 +1,20 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
 public class ConveyorRobotAssembler : MonoBehaviour
 {
     [SerializeField] GameObject robotPrefab;
-    [SerializeField] List<RobotPart.Parts> acquiredParts = new();
-    
-    [SerializeField] AudioClip assemblySound;
-    [SerializeField] AudioClip assemblyComplete;
+    [SerializeField] GameObject spawnPoint;
+    [SerializeField] GameObject robotsParent;
+    [SerializeField] List<Parts> acquiredParts = new();
+
+    void Awake()
+    {
+        if(spawnPoint == null)
+            spawnPoint = gameObject;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -18,7 +23,7 @@ public class ConveyorRobotAssembler : MonoBehaviour
             var part = robotPart.part;
             acquiredParts.Add(part);
 
-            AudioManager.PlaySound(assemblySound, transform, 1);
+            AudioManager.PlaySound(SfxType.Assembly, transform);
 
             if (AreAllPartsAcquired())
             {
@@ -31,16 +36,16 @@ public class ConveyorRobotAssembler : MonoBehaviour
     bool AreAllPartsAcquired()
     {
         // Check if all required parts are acquired
-        return Enum.GetValues(typeof(RobotPart.Parts)).Cast<RobotPart.Parts>().All(part => acquiredParts.Contains(part));
+        return Enum.GetValues(typeof(Parts)).Cast<Parts>().All(part => acquiredParts.Contains(part));
     }
 
     void AssembleRobot()
     {
         // Instantiate the robot at the assembler's position
-        Instantiate(robotPrefab, transform.position, Quaternion.identity, transform);
+        Instantiate(robotPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, robotsParent.transform);
         // Clear one of each acquired part for the next assembly
-        foreach (var part in Enum.GetValues(typeof(RobotPart.Parts)).Cast<RobotPart.Parts>())
+        foreach (var part in Enum.GetValues(typeof(Parts)).Cast<Parts>())
             acquiredParts.Remove(part);
-        AudioManager.PlaySound(assemblyComplete, transform, 1);
+        AudioManager.PlaySound(SfxType.AssemblyComplete, transform);
     }
 }

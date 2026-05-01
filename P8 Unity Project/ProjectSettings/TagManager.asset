@@ -12,6 +12,7 @@ TagManager:
   - TPOrb
   - Unrecallable
   - Immovable
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - Player
   - PlayerHead
   - DAOM No Hit
-  - 
-  - 
+  - DAOM Ignore
+  - HOMER GoGo Hitable
   - 
   - 
   - 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -13,9 +12,9 @@ public class PlugController : MonoBehaviour
     public UnityEvent OnWirePlugged;
     public Transform plugPosition;
 
-    [HideInInspector]
+    public int id; // set in Inspector to match with the corresponding WireEndGrabbable's id
+
     public Transform endAnchor;
-    [HideInInspector]
     public Rigidbody endAnchorRB;
     [HideInInspector]
     public WireController wireController;
@@ -28,15 +27,20 @@ public class PlugController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (isConected) return;
-        if (endAnchor == null || other.gameObject != endAnchor.gameObject) return;
+        if (other.gameObject != endAnchor.gameObject) return;
+        if (other.TryGetComponent<WireEndGrabbable>(out var wireEnd) && 
+            wireEnd.id != id) return;
         StartCoroutine(SnapWire());
     }
 
-    private IEnumerator SnapWire()
+    private IEnumerator SnapWire()  
     {
         isConected = true; // guard against re-entry immediately
-
+        AudioManager.PlaySound(SfxType.WirePlug, transform);
         var grab = endAnchor.GetComponent<XRGrabInteractable>();
+
+        if (TryGetComponent<WireEndGrabbable>(out var wireEnd))
+            wireEnd.wireController.segmentsRadius = 8; // less jitter while plugged in
 
         // Force-release from the player's hand
         if (grab != null && grab.isSelected)
@@ -71,9 +75,9 @@ public class PlugController : MonoBehaviour
         OnPlugged();
     }
 
-    private void Update()
-    {
-        if (isConected && endAnchorRB != null)
-            endAnchorRB.isKinematic = true;
-    }
+    //private void Update()
+    //{
+    //    if (isConected && endAnchorRB != null)
+    //        endAnchorRB.isKinematic = true;
+    //}
 }

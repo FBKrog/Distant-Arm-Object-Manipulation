@@ -19,14 +19,14 @@ public class LimbStretch : MonoBehaviour
     {
         if (daomArm) return;
         LaunchArm.ArmLaunched += ToggleStretch;
-        LaunchArm.ArmRecalled += ToggleStretch;
+        LaunchArm.ArmRecalled += (_) => ToggleStretch();
     }
 
     void OnDisable()
     {
         if (daomArm) return;
         LaunchArm.ArmLaunched -= ToggleStretch;
-        LaunchArm.ArmRecalled -= ToggleStretch;
+        LaunchArm.ArmRecalled -= (_) => ToggleStretch();
     }
 
     void LateUpdate()

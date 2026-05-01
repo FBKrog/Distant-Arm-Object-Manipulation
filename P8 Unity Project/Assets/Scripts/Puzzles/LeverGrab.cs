@@ -24,13 +24,15 @@ using UnityEditor;
 public class LeverGrab : MonoBehaviour, IRotaryGrabbable
 {
     [Header("Technique References")]
-    public HOMERRaycast homer;
+    public HOMERArm homer;
     public GoGoExtend goGoExtend;
-    [Tooltip("The XRDirectInteractor that sits on GoGo's virtual hand GameObject.")]
-    public XRDirectInteractor goGoInteractor;
     // DAOM resolved at runtime via DAOMArm.ActiveInstance
     [SerializeField] private Vector3 daomPositionOffset = new(-0.1f, -0.02f, 0); // compensate for DAOM attach transform offset
     [SerializeField] private Vector3 daomRotationOffset = new(0, 180, 135); // compensate for DAOM attach transform rotation
+    [SerializeField] private Vector3 goGoPositionOffset = Vector3.zero; // world-space offset applied to the GoGo hand tip at the handle
+    [SerializeField] private Vector3 goGoRotationOffset = Vector3.zero; // Euler offset on top of handle rotation for the GoGo hand
+    [SerializeField] private Vector3 homerPositionOffset = Vector3.zero; // world-space offset applied to the HOMER virtual hand at the handle
+    [SerializeField] private Vector3 homerRotationOffset = Vector3.zero; // Euler offset on top of handle rotation for the HOMER hand
 
     [Header("Lever Geometry")]
     [Tooltip("Empty child at the grip end of the lever arm. If null, uses the lever pivot.")]
@@ -39,6 +41,11 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
     [Header("Hinge Axis")]
     [Tooltip("Local-space axis of the cylindrical hinge shaft. Check the gizmo in Scene view to confirm the blue disc aligns with the lever's swing plane.")]
     public Vector3 hingeAxisLocal = Vector3.right;
+
+    [Header("HOMER Sensitivity")]
+    [Tooltip("Fraction of HOMER's computed scale factor applied while grabbing. 1 = full scaling (fast); 0.2 = 20% (close to 1:1 physical feel).")]
+    [SerializeField][Range(0f, 1f)] float homerScaleMultiplier = 0.2f;
+    public float HomerScaleMultiplier => homerScaleMultiplier;
 
     [Header("Angle Settings")]
     [Tooltip("Pull past this angle (degrees) to trigger the snap.")]
@@ -258,8 +265,8 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         ActiveTechnique technique = ActiveTechnique.None;
         string interactorName = args.interactorObject?.transform?.name ?? "null";
 
-        if (goGoInteractor != null &&
-            args.interactorObject as XRDirectInteractor == goGoInteractor)
+        if (goGoExtend != null && goGoExtend.Interactor != null &&
+            args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
             Debug.Log($"[LeverGrab:{name}] OnSelectEntered — matched GoGo interactor '{interactorName}'");
@@ -311,7 +318,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         _dbgFrame = 0;
 
         transform.position = leverFixedPosition;
-        
+
         Debug.Log($"[LeverGrab:{name}] StartGrab — technique={technique}  currentAngle={currentAngle:F1}°  leverPos={leverFixedPosition:F3}");
     }
 
@@ -349,14 +356,15 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
                 break;
 
             case ActiveTechnique.GoGo:
-                if (goGoInteractor != null && leverGrabbable != null)
+                var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
+                if (goGoInter != null && leverGrabbable != null)
                 {
                     Debug.Log($"[LeverGrab:{name}] ForceRelease — calling SelectExit on GoGo interactor");
-                    leverGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInteractor, (IXRSelectInteractable)leverGrabbable);
+                    leverGrabbable.interactionManager.SelectExit((IXRSelectInteractor)goGoInter, (IXRSelectInteractable)leverGrabbable);
                 }
                 else
                 {
-                    Debug.LogWarning($"[LeverGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInteractor != null} leverGrabbable={leverGrabbable != null})");
+                    Debug.LogWarning($"[LeverGrab:{name}] ForceRelease — GoGo release skipped (goGoInteractor={goGoInter != null} leverGrabbable={leverGrabbable != null})");
                 }
                 break;
 
@@ -382,6 +390,7 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         Debug.Log($"[LeverGrab:{name}] SnapAndActivate — START  currentAngle={currentAngle:F1}°  snapToAngle={snapToAngle:F1}°");
 
         isActivated = true;
+
         ForceRelease();
 
         float startAngle = currentAngle;
@@ -419,12 +428,17 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
+                // Use root position, not HandTip. HandTip is a child of VirtualHand and shifts
+                // every frame when HOMER overwrites the rotation with the physical hand's rotation,
+                // causing a non-zero angleDelta even with zero controller movement.
                 return homer?.VirtualHand != null ? homer.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.GoGo:
+                // Use root position — tip shifts when rotation is locked each frame, causing
+                // false angle delta. Root is stable and unaffected by rotation changes.
                 return goGoExtend?.VirtualHand != null ? goGoExtend.VirtualHand.position : Vector3.zero;
             case ActiveTechnique.Daom:
                 return DAOMArm.ActiveInstance?.DaomIKTarget != null
-                    ? DAOMArm.ActiveInstance.DaomIKTarget.position 
+                    ? DAOMArm.ActiveInstance.DaomIKTarget.position
                     : Vector3.zero;
             default:
                 return Vector3.zero;
@@ -437,17 +451,26 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         {
             case ActiveTechnique.Homer:
                 if (homer?.VirtualHand != null)
-                    homer.VirtualHand.position = position;
+                {
+                    homer.VirtualHand.SetPositionAndRotation(
+                        position + homerPositionOffset,
+                        leverHandlePoint.rotation * Quaternion.Euler(homerRotationOffset));
+                    homer.ExtendedPos = homer.VirtualHand.position;
+                }
                 break;
             case ActiveTechnique.GoGo:
                 if (goGoExtend?.VirtualHand != null)
-                    goGoExtend.VirtualHand.position = position;
+                {
+                    goGoExtend.VirtualHand.SetPositionAndRotation(
+                        position + goGoPositionOffset,
+                        leverHandlePoint.rotation * Quaternion.Euler(goGoRotationOffset));
+                }
                 break;
             case ActiveTechnique.Daom:
                 var daomTarget = DAOMArm.ActiveInstance?.DaomIKTarget;
                 if (daomTarget != null)
                 {
-                    daomTarget.position = position + daomPositionOffset; // compensate for attach transform offset;
+                    daomTarget.position = position + daomPositionOffset;
                     daomTarget.rotation = leverHandlePoint.rotation * Quaternion.Euler(daomRotationOffset);
                 }
                 break;

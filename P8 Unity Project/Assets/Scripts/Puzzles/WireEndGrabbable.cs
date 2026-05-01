@@ -23,24 +23,17 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 [RequireComponent(typeof(XRGrabInteractable))]
 public class WireEndGrabbable : MonoBehaviour
 {
+    public WireController wireController;
     private Rigidbody rb;
     private XRGrabInteractable grab;
-    private IXRSelectInteractor heldBy;
+
+    public int id; // set in Inspector to match with the corresponding PlugController's id
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         grab = GetComponent<XRGrabInteractable>();
 
-        // Start wall-mounted.
-        rb.isKinematic = true;
-
-        // trackPosition/trackRotation are false so XRI never moves the object —
-        // movement type is irrelevant, but Instantaneous is the clearest intent.
-        grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
-        // We handle all movement ourselves — disable XRI's built-in tracking.
-        // grab.trackPosition = false; We want this to be true
-        // grab.trackRotation = false; We want this to be true
         grab.throwOnDetach = false;
 
         grab.selectEntered.AddListener(OnGrabbed);
@@ -50,27 +43,41 @@ public class WireEndGrabbable : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         rb.isKinematic = true; // Ensure kinematic so MovePosition works correctly.
-        heldBy = args.interactorObject;
+        wireController.segmentsRadius = 8; // less jitter while holding the end
     }
 
     void OnReleased(SelectExitEventArgs args)
     {
-        heldBy = null;
         // Zero velocity before going non-kinematic to prevent a launch on release.
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         // Go non-kinematic so the cable hangs naturally from the StartAnchor.
         rb.isKinematic = false;
+        wireController.segmentsRadius = 2;
     }
 
-    void FixedUpdate()
+    public void OnHOMERGrab()
     {
-        if (heldBy == null) return;
-
-        // MovePosition on a kinematic Rigidbody moves directly to the controller
-        // with no spring oscillation. Kinematic bodies ignore joint constraint
-        // forces on themselves, so nothing fights the movement. The joint on the
-        // last wire segment then pulls the cable chain along behind the anchor.
-        rb.MovePosition(heldBy.GetAttachTransform(grab).position);
+        rb.isKinematic = true;
+        wireController.segmentsRadius = 8;
     }
+
+    public void OnHOMERRelease()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = false;
+        wireController.segmentsRadius = 2;
+    }
+
+    //void FixedUpdate()
+    //{
+    //    if (heldBy == null) return;
+
+    //    // MovePosition on a kinematic Rigidbody moves directly to the controller
+    //    // with no spring oscillation. Kinematic bodies ignore joint constraint
+    //    // forces on themselves, so nothing fights the movement. The joint on the
+    //    // last wire segment then pulls the cable chain along behind the anchor.
+    //    rb.MovePosition(heldBy.GetAttachTransform(grab).position);
+    //}
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [DefaultExecutionOrder(100)]
+[RequireComponent(typeof(LimbStretch))]
 public class DAOMArm : MonoBehaviour
 {
     public static DAOMArm ActiveInstance { get; private set; }
@@ -43,12 +45,7 @@ public class DAOMArm : MonoBehaviour
     [Header("Interactor")]
     [SerializeField] DynamicXRDirectInteractorAnimator interactor;
 
-    [Header("Audio")]
-    [SerializeField] AudioClip boomSound;
-    [SerializeField] [Range(0, 1)] float boomVolume = 0.5f;
-    [SerializeField] AudioClip rocketSound;
-    [SerializeField] [Range(0, 1)] float rocketVolume = 0.5f;
-    AudioSource rocketAudioSource;
+    AudioSource fireAudioSource;
 
     Vector3 hitPoint;
     bool surfaceIsGround;
@@ -79,6 +76,8 @@ public class DAOMArm : MonoBehaviour
     void OnDestroy()
     {
         if (ActiveInstance == this) ActiveInstance = null;
+        if(fireAudioSource != null)
+            AudioManager.StopLoopSound(fireAudioSource);
     }
 
     void OnEnable()
@@ -146,24 +145,20 @@ public class DAOMArm : MonoBehaviour
         if (interactor != null && interactable != null) // If we already hold an interactable, keep holding it.
         {
             selectedInteractable = interactable;
+            selectedInteractable.transform.position = interactor.attachTransform.position;
             interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         }
-        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable") // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
+        if (hitInteractable != null) // If the arm hit is an interactable, store it so we can recall the arm holding the interactable after hitting it.
         {
             this.hitInteractable = hitInteractable;
-            rotationStartTime = 1; // Don't start rotating until the object is grabbed.
-        }
-        else
-        {
-            this.hitInteractable = null;
         }
 
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
 
-        AudioManager.PlaySound(boomSound, transform, boomVolume);
-        rocketAudioSource = AudioManager.PlayLoopSound(rocketSound, transform, rocketVolume, true);
+        AudioManager.PlaySound(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
     }
 
     /// <summary>
@@ -174,11 +169,12 @@ public class DAOMArm : MonoBehaviour
         if (isTraveling) return;
         if (!isAttachedToSurface) return;
         if (recalling) return;
-        
+
+        isAttachedToSurface = false;
         recalling = true;
         
-        AudioManager.PlaySound(boomSound, transform, boomVolume);
-        rocketAudioSource = AudioManager.PlayLoopSound(rocketSound, transform, rocketVolume, true);
+        AudioManager.PlaySound(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
 
         thruster.SetActive(true);
         wallExtention.SetActive(false);
@@ -188,13 +184,11 @@ public class DAOMArm : MonoBehaviour
 
         interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
         
-        if(hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable")
+        if(hitInteractable != null)
         {
             selectedInteractable = hitInteractable;
         }
-
-        if(selectedInteractable != null)
-            LaunchArm.OnGrabbedGameObject(selectedInteractable);
+        LaunchArm.OnGrabbedGameObject(selectedInteractable);
 
         targetRot = LookDirection(goPoint.transform.position);
         
@@ -258,7 +252,7 @@ public class DAOMArm : MonoBehaviour
 
                 if (d >= rotationStartTime)
                 {
-                    StartCoroutine(PrepareSurfaceLanding(point));
+                    StartCoroutine(PrepareSurfaceLanding());
                 }
                 if (d >= 1 && mayAttach)
                 {
@@ -292,7 +286,7 @@ public class DAOMArm : MonoBehaviour
 
             if (d >= rotationStartTime)
             {
-                StartCoroutine(PrepareSurfaceLanding(goPoint.transform.position));
+                StartCoroutine(PrepareSurfaceLanding());
             }
             if (d >= 1 && mayAttach)
             {
@@ -306,23 +300,27 @@ public class DAOMArm : MonoBehaviour
     /// <summary>
     /// Prepares the arm for landing on a surface by initiating its rotation to the appropriate orientation.
     /// </summary>
-    IEnumerator PrepareSurfaceLanding(Vector3 point)
+    IEnumerator PrepareSurfaceLanding()
     {
         if (!isLanding)
         {
             isLanding = true;
-            thruster.SetActive(false);
+            if(hitInteractable != null && !recalling)
+            {
+                mayAttach = true;
+                yield return null;
+            }
             
+            thruster.SetActive(false);
             targetRot = Quaternion.LookRotation(-transform.forward);
             StartCoroutine(RotateToTargetRotation(transform, targetRot, rotationDuration));
             StartCoroutine(TravelToPoint(lowerArm.transform, recalling == true ? lowerArmRetraction : lowerArmExtention, true));
             
             yield return new WaitForSeconds(rotationDuration);
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, -transform.forward, out hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
+            if(Physics.Raycast(transform.position, -transform.forward, out var hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
                 targetRot = Quaternion.LookRotation(hit.normal);
-            else
-                targetRot = LookDirection(playerCamera.transform.position);
+            if (surfaceIsGround)
+                targetRot = Quaternion.LookRotation(hit.normal - playerCamera.transform.forward);
             var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90,
                                          Mathf.Round(targetRot.eulerAngles.y / 90) * 90,
                                          Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
@@ -336,7 +334,7 @@ public class DAOMArm : MonoBehaviour
             {
                 StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
             }
-
+            
             yield return new WaitForSeconds(rotationDuration);
             mayAttach = true;
         }
@@ -354,14 +352,16 @@ public class DAOMArm : MonoBehaviour
         isAttachedToSurface = true;
         animator.enabled = true;
         GetComponent<LimbStretch>().enabled = true;
-
-        AudioManager.StopSound(rocketAudioSource);
-
+        
+        AudioManager.StopLoopSound(fireAudioSource);
+        AudioManager.PlaySound(SfxType.ArmAttach, transform);
+        
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
-        if (hitInteractable != null && hitInteractable.transform.gameObject.tag != "Unrecallable" && !recalling)
+        if (hitInteractable != null && !recalling)
         {
             LaunchArm.OnEarlyRecall();
-            interactor.interactionManager.SelectEnter(interactor, hitInteractable);
+            selectedInteractable.transform.position = interactor.attachTransform.position;
+            interactor.interactionManager.SelectEnter(interactor, selectedInteractable);
             interactor.selectActionTrigger = XRBaseInputInteractor.InputTriggerType.Sticky;
             return;
         }
@@ -370,13 +370,13 @@ public class DAOMArm : MonoBehaviour
 
         if (recalling)
         {
-            LaunchArm.OnArmRecalled();
+            LaunchArm.OnArmRecalled(selectedInteractable);
             return;
         }
 
         // The wall extension offset makes the raycast stop a bit before the actual wall and since we round to the nearest 90 degrees for rotation, it looks like the arm didn't hit the right spot
         // This needs some adjusment if the surface is the ground.
-        if(surfaceIsGround)
+        if (surfaceIsGround)
         {
             var newPoint = hitPoint + transform.up * wallDistanceOffset;
             transform.position = newPoint;

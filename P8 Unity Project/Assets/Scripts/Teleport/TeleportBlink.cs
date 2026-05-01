@@ -43,7 +43,7 @@ public class TeleportBlink : MonoBehaviour
     public UnityEvent    onTeleportedEvent;  // Inspector-wirable
 
     private TeleportationActivator _activator;
-    private Material _fadeMaterial;
+    [SerializeField] private Material _fadeMaterial;
     private Coroutine _blinkCoroutine;
 
     // -------------------------------------------------------------------------
@@ -72,7 +72,7 @@ public class TeleportBlink : MonoBehaviour
     {
         var cam = Camera.main;
         if (cam != null)
-            _fadeMaterial = BuildOverlay(cam);
+            BuildOverlay(cam);
         else
             Debug.LogWarning("[TeleportBlink] No camera tagged MainCamera found — overlay will be invisible.");
     }
@@ -82,8 +82,8 @@ public class TeleportBlink : MonoBehaviour
         if (_activator != null)
             _activator.onBeforeTeleport = null;
 
-        if (_fadeMaterial != null)
-            Destroy(_fadeMaterial);
+        //if (_fadeMaterial != null)
+        //    Destroy(_fadeMaterial);
     }
 
     // -------------------------------------------------------------------------
@@ -93,7 +93,7 @@ public class TeleportBlink : MonoBehaviour
         Debug.Log("[TeleportBlink] OnBeforeTeleport fired — starting blink.");
         if (_blinkCoroutine != null)
             StopCoroutine(_blinkCoroutine);
-
+        AudioManager.PlaySound(SfxType.Teleport, transform);
         _blinkCoroutine = StartCoroutine(BlinkThenTeleport(executeTeleport));
     }
 
@@ -142,7 +142,7 @@ public class TeleportBlink : MonoBehaviour
 
     // -------------------------------------------------------------------------
 
-    private Material BuildOverlay(Camera cam)
+    private void BuildOverlay(Camera cam)
     {
         var go = GameObject.CreatePrimitive(PrimitiveType.Quad);
         go.name = "[TeleportBlink] FadeQuad";
@@ -157,31 +157,29 @@ public class TeleportBlink : MonoBehaviour
         go.transform.localPosition = new Vector3(0f, 0f, dist);
         go.transform.localScale = new Vector3(size, size, 1f);
 
-        var shader = Shader.Find("Universal Render Pipeline/Unlit");
-        if (shader == null)
-        {
-            Debug.LogError("[TeleportBlink] 'Universal Render Pipeline/Unlit' shader not found.");
-            Destroy(go);
-            return null;
-        }
+        //var shader = Shader.Find("Universal Render Pipeline/Unlit");
+        //if (shader == null)
+        //{
+        //    Debug.LogError("[TeleportBlink] 'Universal Render Pipeline/Unlit' shader not found.");
+        //    Destroy(go);
+        //    return null;
+        //}
 
-        var mat = new Material(shader) { name = "[TeleportBlink] FadeMat" };
-        mat.SetFloat("_Surface", 1f);
-        mat.SetFloat("_Blend", 0f);
-        mat.SetFloat("_ZWrite", 0f);
-        mat.SetFloat("_ZTest", (float)CompareFunction.Always);
-        mat.SetFloat("_AlphaClip", 0f);
-        mat.SetInt("_SrcBlend", (int)BlendMode.SrcAlpha);
-        mat.SetInt("_DstBlend", (int)BlendMode.OneMinusSrcAlpha);
-        mat.SetColor("_BaseColor", new Color(0f, 0f, 0f, 0f));
-        mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-        mat.renderQueue = 4000;
+        //var mat = new Material(shader) { name = "[TeleportBlink] FadeMat" };
+        //mat.SetFloat("_Surface", 1f);
+        //mat.SetFloat("_Blend", 0f);
+        //mat.SetFloat("_ZWrite", 0f);
+        //mat.SetFloat("_ZTest", (float)CompareFunction.Always);
+        //mat.SetFloat("_AlphaClip", 0f);
+        //mat.SetInt("_SrcBlend", (int)BlendMode.SrcAlpha);
+        //mat.SetInt("_DstBlend", (int)BlendMode.OneMinusSrcAlpha);
+        //mat.SetColor("_BaseColor", new Color(0f, 0f, 0f, 0f));
+        //mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+        //mat.renderQueue = 4000;
 
         var mr = go.GetComponent<MeshRenderer>();
-        mr.material = mat;
+        mr.material = _fadeMaterial;
         mr.shadowCastingMode = ShadowCastingMode.Off;
         mr.receiveShadows = false;
-
-        return mat;
     }
 }

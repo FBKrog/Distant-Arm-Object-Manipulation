@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-
+using Image = UnityEngine.UI.Image;
+using Random = UnityEngine.Random;
 public class TutorialManager : MonoBehaviour
 {
     [System.Serializable]
     public class TutorialStep
     {
-        public string subtitleText;
+        [TextArea(5,20)] public string subtitleText;
         [Tooltip("Optional short ID for use with TutorialObjective.AdvanceIfStepId().")]
         public string stepId;
         [Tooltip("Seconds to display before auto-advancing. 0 = manual advance only.")]
@@ -45,15 +48,35 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float rotationSpeed   = 5f;     // Slerp speed multiplier
 
     [Header("Visuals")]
+    [SerializeField] private Material backgroundMaterial;
     [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.75f);
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private float fontSize = 5f;
+
+    [Header("Text Writing Effect")]
+    [SerializeField] float writingSpeed = 0.06f;
+    [SerializeField] float writingSpeedVariance = 0.02f;
+    [SerializeField] float sfxPitchVariance = 0.05f;
+    [SerializeField] float sfxVolumeVariance = 0.03f;
+
     [Tooltip("Optional TMP font. Uses TMP default if null.")]
     [SerializeField] private TMP_FontAsset subtitleFont;
 
     [Header("Dependencies")]
     [Tooltip("Auto-found if null.")]
     [SerializeField] private ObjectivesManager objectivesManager;
+
+#if UNITY_EDITOR
+    [TextArea(5,20)] public string sampleHint;
+    public string SampleHint() => sampleHint;
+#endif
+
+    // -------------------------------------------------------------------------
+    // Events
+    // -------------------------------------------------------------------------
+
+    /// <summary>Fired each time a step becomes active, passing its stepId (may be null/empty).</summary>
+    public event Action<string> OnStepShown;
 
     // -------------------------------------------------------------------------
     // Private state
@@ -115,6 +138,7 @@ public class TutorialManager : MonoBehaviour
 
         // --- Canvas root (world space, not parented to camera) ---
         var canvasGO = new GameObject("[TutorialManager] SubtitleCanvas");
+        canvasGO.layer                = 5; // UI layer id
         canvasGO.transform.position   = GetTargetPosition();
         canvasGO.transform.rotation   = GetTargetRotation();
         canvasGO.transform.localScale = Vector3.one * 0.01f;   // 1 canvas unit = 1 cm
@@ -126,9 +150,11 @@ public class TutorialManager : MonoBehaviour
 
         // --- Background panel ---
         var panelGO = new GameObject("Background");
+        panelGO.layer                = 5; // UI layer id
         panelGO.transform.SetParent(canvasGO.transform, false);
 
         var panelRect = panelGO.AddComponent<RectTransform>();
+
         panelRect.anchorMin = Vector2.zero;
         panelRect.anchorMax = Vector2.one;
         panelRect.offsetMin = Vector2.zero;
@@ -138,9 +164,11 @@ public class TutorialManager : MonoBehaviour
         _backgroundImage.color       = backgroundColor;
         _backgroundImage.type        = Image.Type.Simple;
         _backgroundImage.preserveAspect = false;
+        _backgroundImage.material    = backgroundMaterial;
 
         // --- Text ---
         var textGO = new GameObject("SubtitleText");
+        textGO.layer = 5; // UI layer id
         textGO.transform.SetParent(panelGO.transform, false);
 
         textGO.AddComponent<RectTransform>();
@@ -282,9 +310,12 @@ public class TutorialManager : MonoBehaviour
             objectivesManager.CompleteObjective(step.completesObjective);
 
         ShowSubtitle(step.subtitleText);
+        AudioManager.PlaySound(SfxType.Notification, transform, false, true);
 
         if (step.displayDuration > 0f)
             _autoAdvanceCoroutine = StartCoroutine(AutoAdvance(step.displayDuration));
+
+        OnStepShown?.Invoke(step.stepId);
     }
 
     /// <summary>
@@ -300,6 +331,7 @@ public class TutorialManager : MonoBehaviour
         _tempHintCoroutine = StartCoroutine(HideAfterDelay(duration));
     }
 
+    Coroutine writeCoroutine;
     public void ShowSubtitle(string text)
     {
         if (_panelRoot == null) return;
@@ -312,6 +344,33 @@ public class TutorialManager : MonoBehaviour
         _panelRoot.SetActive(true);
         _subtitleText.text = text;
         ResizeCanvasToFitText();
+        if(writeCoroutine != null)
+            StopCoroutine(writeCoroutine);
+        writeCoroutine = StartCoroutine(Write(text));
+    }
+
+    IEnumerator Write(string text)
+    {
+        _subtitleText.text = "";
+        Regex richTextTagRegex = new Regex(@"<.*?>");
+
+        for (int i = 0; i < text.Length; i++) 
+        { 
+            // Find any rich text tag starting at the current index
+            Match match = richTextTagRegex.Match(text, i);
+            if (match.Success && match.Index == i)
+            {
+                _subtitleText.text += match.Value; i += match.Length - 1; 
+                continue;
+            }      
+            else 
+            {   
+                _subtitleText.text = $"{text.Substring(0, i + 1)}</color><color=#FFFFFF>|</color>";
+                AudioManager.PlaySoundRandomPitchAndVolume(SfxType.Typing, sfxPitchVariance, sfxVolumeVariance, true);
+                yield return new WaitForSeconds(writingSpeed + Random.Range(-writingSpeedVariance, writingSpeedVariance));            
+            }
+        }        
+        _subtitleText.text = text;
     }
 
     public void HideSubtitle()
@@ -337,3 +396,22 @@ public class TutorialManager : MonoBehaviour
         _tempHintCoroutine = null;
     }
 }
+
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(TutorialManager))]
+public class TutorialManagerEditor : UnityEditor.Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        
+        UnityEditor.EditorGUILayout.Space();
+        if (GUILayout.Button("Show sample hint"))
+        {
+            var tutorialManager = (TutorialManager)target;
+
+            tutorialManager.ShowSubtitle(tutorialManager.SampleHint());
+        }
+    }
+}
+#endif

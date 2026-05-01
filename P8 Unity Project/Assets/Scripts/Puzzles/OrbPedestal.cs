@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
@@ -17,11 +16,46 @@ public class OrbPedestal : MonoBehaviour
     [SerializeField] private HandTPOrbConnect handTPConnect; // optional; assign in Inspector
     public UnityEvent OrbPlaced;
 
+    private bool _allowOrbToBeSnapped = false;
     private bool _hasOrb;
+    private TeleportOrb _currentOrb;
+
+
+    /// <summary>
+    /// Called by the Camera Presence Plate to activate the pedestal when the player is in range.
+    /// </summary>
+    public void ActivatePedestal()
+    {
+        _allowOrbToBeSnapped = true;
+    }
+
+    /// <summary>
+    /// Called by the Camera Presence Plate to deactivate the pedestal when the player is no longer in range.
+    /// </summary>
+    public void DeactivatePedestal()
+    {
+        _allowOrbToBeSnapped = false;
+    }
+
+    /// <summary>
+    /// Called by All Triggers Completed when the orb should be grabbable again
+    /// </summary>
+    public void ReleaseOrb() 
+    {
+        if (_currentOrb == null) return;
+        if(_currentOrb.TryGetComponent<TeleportOrb>(out var teleportOrb))
+        {
+            teleportOrb.ReEnableOrb();
+            if(_currentOrb.orbType == OrbType.Red)
+            {
+                ImportantScript.Instance.DoThing();
+            }
+        }
+    }
 
     private void Update()
     {
-        if (_hasOrb) return;
+        if (_hasOrb || !_allowOrbToBeSnapped) return;
         foreach (Collider col in Physics.OverlapSphere(transform.position, snapRadius))
         {
             if (!col.CompareTag(orbTag)) continue;
@@ -59,8 +93,11 @@ public class OrbPedestal : MonoBehaviour
         orb.transform.position = transform.position;
         orb.transform.rotation = transform.rotation;
 
-        orb.GetComponent<TeleportOrb>()?.OnPlacedOnPad();
-
+        if (orb.TryGetComponent<TeleportOrb>(out var teleportOrb))
+        {
+            _currentOrb = teleportOrb;
+            _currentOrb.OnPlacedOnPad();
+        }
         OrbPlaced.Invoke();
     }
 
@@ -83,6 +120,7 @@ public class OrbPedestalEditor : UnityEditor.Editor
         if (GUILayout.Button("Fire OrbPlaced (Test)"))
         {
             var pedestal = (OrbPedestal)target;
+            pedestal.ActivatePedestal();
             pedestal.OrbPlaced.Invoke();
         }
     }
