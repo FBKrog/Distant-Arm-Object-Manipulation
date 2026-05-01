@@ -37631,7 +37631,7 @@ PrefabInstance:
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: handTPConnect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 102528789}
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: OrbPlaced.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -156504,6 +156504,10 @@ PrefabInstance:
       value: Task3_Pedestal
       objectReference: {fileID: 0}
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
+      propertyPath: handTPConnect
+      value: 
+      objectReference: {fileID: 102528789}
+    - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: OrbPlaced.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -176617,6 +176621,10 @@ PrefabInstance:
       value: Task5_Pedestal
       objectReference: {fileID: 0}
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
+      propertyPath: handTPConnect
+      value: 
+      objectReference: {fileID: 102528789}
+    - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: OrbPlaced.m_PersistentCalls.m_Calls.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -177103,7 +177111,7 @@ PrefabInstance:
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: handTPConnect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 102528789}
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: OrbPlaced.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -207039,7 +207047,7 @@ PrefabInstance:
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: handTPConnect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 102528789}
     - target: {fileID: 3451720885960628193, guid: 072c687c01e33f7438f5278d03cd3032, type: 3}
       propertyPath: OrbPlaced.m_PersistentCalls.m_Calls.Array.size
       value: 3
