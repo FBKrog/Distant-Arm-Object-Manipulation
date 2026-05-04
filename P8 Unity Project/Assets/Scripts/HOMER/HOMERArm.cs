@@ -199,7 +199,7 @@ public class HOMERArm : MonoBehaviour
         switch (_state)
         {
             case State.Idle:
-                if (aimPressed)
+                if (aimPressed && (physicalInteractor == null || !physicalInteractor.hasSelection))
                 {
                     _state = State.Aiming;
                     if (_line != null) _line.enabled = true;
@@ -563,7 +563,19 @@ public class HOMERArm : MonoBehaviour
         {
             var grabPose = obj.GetComponent<GrabPose>();
             if (grabPose != null && grabPose.data != null)
+            {
                 poseAnimator.BendPhalanges(grabPose.data.handData);
+                // Apply the authored attach-point offsets so HandTip position and the
+                // object's held rotation both match the pose regardless of grab angle.
+                // homerRotationOffset / homerPositionOffset on GrabPose allow per-object
+                // fine-tuning in the Inspector without editing the shared ScriptableObject.
+                Vector3 rot = grabPose.data.rotationOffset + grabPose.homerRotationOffset;
+                Vector3 pos = grabPose.data.positionOffset + grabPose.homerPositionOffset;
+                if (_virtualInteractor.attachTransform != null)
+                    _virtualInteractor.attachTransform.SetLocalPositionAndRotation(
+                        pos, Quaternion.Euler(rot));
+                _rotationOffset = Quaternion.Euler(rot);
+            }
         }
 
         GrabStarted?.Invoke(obj);

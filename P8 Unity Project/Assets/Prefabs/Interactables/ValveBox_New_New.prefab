@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: 13669f97c04db714e8812bdaeb9e2553, type: 2}
+  homerRotationOffset: {x: 0, y: 0, z: 0}
+  homerPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &6518906046934520797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +345,8 @@ MonoBehaviour:
   daomPositionOffset: {x: -0.035, y: -0.07, z: 0}
   goGoPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
   goGoRotationOffset: {x: 40, y: 90, z: 180}
-  homerPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
-  homerRotationOffset: {x: 40, y: 90, z: 180}
+  homerPositionOffset: {x: 0, y: 0, z: 0.08}
+  homerRotationOffset: {x: 80, y: 90, z: 180}
   homerScaleMultiplier: 0.45
   spinAxisLocal: {x: 0, y: 0, z: -1}
   grabPoints:
