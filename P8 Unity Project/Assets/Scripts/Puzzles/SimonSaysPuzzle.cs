@@ -135,6 +135,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             }
 
             buttons[idx].SetLightState(sequenceColor, true);
+            AudioManager.PlaySound(SfxType.SimonSequenceLight, buttons[idx].transform);
             yield return new WaitForSeconds(sequenceShowDuration);
             buttons[idx].SetLightState(Color.black, false); // back to base material
 

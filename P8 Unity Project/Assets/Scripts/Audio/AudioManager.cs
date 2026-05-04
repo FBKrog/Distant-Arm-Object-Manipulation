@@ -20,6 +20,7 @@ public enum SfxType
     DoorClose,
     WirePlug,
     SimonButtonPress,
+    SimonSequenceLight,
     SimonCorrect,
     SimonWrong,
     SimonComplete,
@@ -53,7 +54,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public Sfx[] sfxs;
     public string hasd;
-    
+
     public static AudioManager instance;
 
     void Awake()
@@ -70,7 +71,8 @@ public class AudioManager : MonoBehaviour
 
     void CreateAudioSourcePool()
     {
-        for (int i = 0; i < maxAudioSourcesCount; i++ ) {
+        for (int i = 0; i < maxAudioSourcesCount; i++)
+        {
             var audioSource = Instantiate(audioSourcePrefab, transform);
             audioSource.gameObject.name = $"AudioSource_{i}";
             availableAudioSources.Add(audioSource);
@@ -108,7 +110,7 @@ public class AudioManager : MonoBehaviour
         {
             clip = sfxType.clips[Random.Range(0, sfxType.clips.Length)];
         }
-        if(clip == null)
+        if (clip == null)
         {
             Debug.LogWarning($"Attempted to play SFX of type {sfx} which has a null audio clip assigned.");
             return;
@@ -122,13 +124,13 @@ public class AudioManager : MonoBehaviour
         }
 
         var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
-        
+
         if (audioSource == null || audioSource.gameObject == null)
         {
             audioSource = instance.AddAudioSource();
             print($"Created new audio source for {clip.name}.");
         }
-        
+
         audioSource.transform.position = tf.position;
         if (parented)
         {
@@ -171,7 +173,7 @@ public class AudioManager : MonoBehaviour
         }
 
         var audioSource = instance.availableAudioSources.Find(source => !source.isPlaying);
-        
+
         if (audioSource == null || audioSource.gameObject == null)
         {
             audioSource = instance.AddAudioSource();
@@ -211,7 +213,7 @@ public class AudioManager : MonoBehaviour
     {
         if (source == null) yield return null;
         source.transform.parent = transform;
-        
+
         source.volume = 0.0001f; // Avoid clipping sounds when stopping.
         yield return waitForSeconds0_1;
         source.loop = false;
@@ -269,7 +271,7 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
         var t = 0f;
         while (audioSource.volume < targetVolume)
-        {                                       
+        {
             audioSource.volume = Mathf.Lerp(0f, targetVolume, t / fadeTime);
             t += Time.deltaTime;
             print("Audio source volume: " + audioSource.volume + "| Delta Time: " + t);
@@ -323,7 +325,7 @@ public class AudioManager : MonoBehaviour
     /// If there are no available audio sources to play a clip, this method can be called to add more audio sources to the pool.
     /// </summary>
     /// <returns></returns>
-    AudioSource AddAudioSource() 
+    AudioSource AddAudioSource()
     {
         var audioSource = Instantiate(audioSourcePrefab, transform);
         audioSource.gameObject.name = $"AudioSource_{availableAudioSources.Count}";
