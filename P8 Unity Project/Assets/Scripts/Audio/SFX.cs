@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SFX : MonoBehaviour
 {
-    [SerializeField] SfxType sfx;
+    [SerializeField] SfxScriptableObject sfxSO;
     [SerializeField] bool sfxOnImpact = false;
     [SerializeField] bool twoD = false;
     [SerializeField] [Tooltip("Transform to play the sound at. If left empty, the sound will play at this GameObject's position.")] Transform targetTransform;
@@ -18,19 +18,19 @@ public class SFX : MonoBehaviour
     /// </summary>
     public void PlaySound()
     {
-        AudioManager.PlaySound(sfx, transform);
+        AudioManager.Play(sfxSO.sfxType, transform);
     }
 
     public void PlayFadeInSound(float fadeTime)
     {
-        AudioManager.PlayFadeInSound(sfx, fadeTime, twoD);
+        AudioManager.PlayFadeIn(sfxSO.sfxType, fadeTime, twoD);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (sfxOnImpact)
         {
-            AudioManager.PlaySound(sfx, transform);
+            AudioManager.Play(sfxSO.sfxType, transform);
         }
     }
 }

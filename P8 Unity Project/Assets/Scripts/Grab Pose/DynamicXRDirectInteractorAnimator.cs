@@ -62,7 +62,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
             base.OnSelectEntered(args);
 
-            AudioManager.PlaySound(SfxType.Grab, transform);
+            AudioManager.Play(SfxType.Grab, transform);
 
             if (args.interactableObject.transform.TryGetComponent(out GrabPose grabPose))
             {
@@ -99,7 +99,7 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
         if (args != null)
         {
             base.OnSelectExited(args);
-            AudioManager.PlaySound(SfxType.Release, transform);
+            AudioManager.Play(SfxType.Release, transform);
 
             // Make non-sticky when grabbing a teleport orb to prevent softlock
             if (TryGetComponent<TeleportOrb>(out var orb))

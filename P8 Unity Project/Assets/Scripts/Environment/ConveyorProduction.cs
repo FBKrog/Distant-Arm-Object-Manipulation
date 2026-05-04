@@ -38,13 +38,13 @@ public class ConveyorProduction : MonoBehaviour
         {
             StartProduction();
 
-            productionAudioSource = AudioManager.PlayLoopSound(SfxType.ProductionAmbience, transform);
+            productionAudioSource = AudioManager.PlayLooping(SfxType.ProductionAmbience, transform);
         }
         else
         {
             StopAllCoroutines();
 
-            AudioManager.StopLoopSound(productionAudioSource);
+            AudioManager.StopLooping(productionAudioSource);
         }
     }
 

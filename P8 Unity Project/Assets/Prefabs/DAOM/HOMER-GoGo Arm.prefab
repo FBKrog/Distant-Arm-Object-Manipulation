@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3398175883389991379}
   - component: {fileID: 303340821575592863}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lower arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7044653118718526196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attatch Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5388208015342488192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8497065398493960653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.024
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5017140177255680839}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.029
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6342511601239709152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5559926076854004657}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 850279221365757344}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8957033952414329595}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.039
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7558331675149419926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.035
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7031150816889722659}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.041
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8396102451467729172}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5598522416974690555}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.030
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961757009799693073}
-  m_Layer: 0
+  - component: {fileID: 463761268895950796}
+  - component: {fileID: 3859302500266990335}
+  m_Layer: 10
   m_Name: HOMER-GoGo Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,6 +453,56 @@ Transform:
   - {fileID: 5872865217209973104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &463761268895950796
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734547325161131941}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!136 &3859302500266990335
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734547325161131941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 19780
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.06
+  m_Height: 0.35
+  m_Direction: 2
+  m_Center: {x: -0.01, y: 0.03, z: -0.1}
 --- !u!1 &5031724963309320750
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +514,7 @@ GameObject:
   - component: {fileID: 1817303667217125829}
   - component: {fileID: 7671849618432635134}
   - component: {fileID: 4702170159403195726}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9145352911928333260}
   - component: {fileID: 6105664525240697306}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm_DAOM_REAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2889535629405221078}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645373678047930502}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.038
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684692744158564793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450999210366020874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.027
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6142170141247387814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +1032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4150425403130726074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.036
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,7 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5102723702867256026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.037
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5332159069047463716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.028
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3137193890274466407}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.023
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1162,7 @@ GameObject:
   - component: {fileID: 3668170192710446864}
   - component: {fileID: 6135321211353103951}
   - component: {fileID: 2656713708784182958}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NewDAOMArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1226,7 +1278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23855368019354197}
   - component: {fileID: 4369916873558048392}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rig.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1290,7 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8815023830340625218}
   - component: {fileID: 3096572494264628455}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8929661035506710994}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: forearm.R.040
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,6 +1492,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5303fc8bd6f38084388f554bef7a65de, type: 3}
       propertyPath: m_Name
       value: Thruster_Cyllinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5303fc8bd6f38084388f554bef7a65de, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

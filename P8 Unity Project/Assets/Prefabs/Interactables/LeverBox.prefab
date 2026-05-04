@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFX
-  sfx: 24
+  sfxSO: {fileID: 11400000, guid: 3c8e56476453ab342a52dd70125bbe5b, type: 2}
   sfxOnImpact: 0
   twoD: 0
   targetTransform: {fileID: 0}

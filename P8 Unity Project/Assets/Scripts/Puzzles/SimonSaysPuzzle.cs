@@ -135,7 +135,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             }
 
             buttons[idx].SetLightState(sequenceColor, true);
-            AudioManager.PlaySound(SfxType.SimonSequenceLight, buttons[idx].transform);
+            AudioManager.Play(SfxType.SimonSequenceLight, buttons[idx].transform);
             yield return new WaitForSeconds(sequenceShowDuration);
             buttons[idx].SetLightState(Color.black, false); // back to base material
 
@@ -201,7 +201,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     {
         if (state != PuzzleState.WaitingForInput) return;
         _lastInputTime = Time.time;
-        AudioManager.PlaySound(SfxType.SimonButtonPress, transform);
+        AudioManager.Play(SfxType.SimonButtonPress, transform);
         int expectedIndex = sequence[currentStep];
 
         if (buttonIndex == expectedIndex)
@@ -217,7 +217,7 @@ public class SimonSaysPuzzle : MonoBehaviour
                 SetAllButtonsOverlay(correctColor, overlayAlpha, true);
                 UnsubscribeFromAllButtons();
                 state = PuzzleState.Completed;
-                AudioManager.PlaySound(SfxType.SimonCorrect, transform);
+                AudioManager.Play(SfxType.SimonCorrect, transform);
                 Debug.Log($"[SimonSaysPuzzle:{name}] Puzzle completed — firing OnPuzzleCompleted.");
                 OnPuzzleCompleted.Invoke();
             }
@@ -227,7 +227,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             // Wrong order.
             UnsubscribeFromAllButtons();
             if (activeCoroutine != null) StopCoroutine(activeCoroutine);
-            AudioManager.PlaySound(SfxType.SimonWrong, transform);
+            AudioManager.Play(SfxType.SimonWrong, transform);
             activeCoroutine = StartCoroutine(WrongInputCoroutine());
         }
     }

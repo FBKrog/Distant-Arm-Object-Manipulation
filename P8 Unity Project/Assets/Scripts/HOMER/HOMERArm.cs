@@ -114,6 +114,9 @@ public class HOMERArm : MonoBehaviour
     public event Action GrabEnded;
     public event Action RetractStarted;
 
+    // ── HOMER Physics ─────────────────────────────────────────────────────
+    private Rigidbody _virtualHandRb;
+
     // ── State machine ─────────────────────────────────────────────────────
     private enum State { Idle, Aiming, Extending, Extended, Grabbed, Retracting }
     private State _state = State.Idle;
@@ -390,6 +393,15 @@ public class HOMERArm : MonoBehaviour
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(_extendedPos, extendedRot);
 
+        //// Physics-based movement.
+        //_virtualHandRb.linearVelocity = _extendedPos - _virtualHandRb.position / Time.fixedDeltaTime;
+
+        //// Rotate the virtual hand toward the target rotation.
+        //var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
+        //rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+        //_virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+
+
         if (IsGrabbing && GrabbedObject != null
             && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
@@ -399,9 +411,10 @@ public class HOMERArm : MonoBehaviour
         }
     }
 
+
     void OnDestroy()
     {
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
 
         if (_extendCarryObject != null)
         {
@@ -431,6 +444,7 @@ public class HOMERArm : MonoBehaviour
         VirtualHand = _handInstance.transform;
         _virtualInteractor = _handInstance.GetComponentInChildren<XRDirectInteractor>();
         _extendedPos = startPos;
+        _virtualHandRb = VirtualHand.GetComponent<Rigidbody>();
 
         SetPhysicalHandVisible(false);
 
@@ -466,12 +480,12 @@ public class HOMERArm : MonoBehaviour
         if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
 
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform, true);
+            _extendedLoopSource = AudioManager.PlayLooping(extendedLoopSfx, transform, true);
     }
 
     private void EndExtend()
     {
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
         _extendedLoopSource = null;
 
         var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
@@ -664,7 +678,7 @@ public class HOMERArm : MonoBehaviour
     private System.Collections.IEnumerator FlashInvalidLine()
     {
         _invalidFlashRunning = true;
-        AudioManager.PlaySound(SfxType.HomerInvalidTarget, transform);
+        AudioManager.Play(SfxType.HomerInvalidTarget, transform);
         if (_line != null)
         {
             _line.material.color = invalidPressColor;

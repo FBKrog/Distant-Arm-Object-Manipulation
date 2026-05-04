@@ -310,7 +310,7 @@ public class TutorialManager : MonoBehaviour
             objectivesManager.CompleteObjective(step.completesObjective);
 
         ShowSubtitle(step.subtitleText);
-        AudioManager.PlaySound(SfxType.Notification, transform, false, true);
+        AudioManager.Play(SfxType.Notification, transform, false, true);
 
         if (step.displayDuration > 0f)
             _autoAdvanceCoroutine = StartCoroutine(AutoAdvance(step.displayDuration));
@@ -366,7 +366,7 @@ public class TutorialManager : MonoBehaviour
             else 
             {   
                 _subtitleText.text = $"{text.Substring(0, i + 1)}</color><color=#FFFFFF>|</color>";
-                AudioManager.PlaySoundRandomPitchAndVolume(SfxType.Typing, sfxPitchVariance, sfxVolumeVariance, true);
+                AudioManager.PlayRandomPitchAndVolume(SfxType.Typing, sfxPitchVariance, sfxVolumeVariance, true);
                 yield return new WaitForSeconds(writingSpeed + Random.Range(-writingSpeedVariance, writingSpeedVariance));            
             }
         }        

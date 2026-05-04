@@ -97,7 +97,7 @@ public class DoorLinker : MonoBehaviour
         if (_animator != null)
             _animator.SetBool("DoorOpen", true);
 
-        AudioManager.PlaySound(SfxType.DoorOpen, transform);
+        AudioManager.Play(SfxType.DoorOpen, transform);
 
         OnDoorOpened.Invoke();
     }
@@ -115,7 +115,7 @@ public class DoorLinker : MonoBehaviour
         if (_animator != null)
             _closeCoroutine = StartCoroutine(TriggerCloseWhenReady());
 
-        AudioManager.PlaySound(SfxType.DoorClose, transform);
+        AudioManager.Play(SfxType.DoorClose, transform);
 
         OnDoorClosed.Invoke();
     }

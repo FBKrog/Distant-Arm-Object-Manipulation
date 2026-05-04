@@ -22,7 +22,7 @@ public class TeleportOrb : MonoBehaviour
     public void OnPlacedOnPad() 
     { 
         interactable.enabled = false; // Disable grabbing while on the pedestal
-        AudioManager.PlaySound(SfxType.OrbPlaced, transform); 
+        AudioManager.Play(SfxType.OrbPlaced, transform); 
     }
 
     /// <summary>

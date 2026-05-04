@@ -106,7 +106,7 @@ public class VRMap
         {
             if (usePhysics)
             {
-                rbTarget.linearVelocity = (xrTarget.position + positionOffset - ikTarget.position) / Time.fixedDeltaTime;
+                rbTarget.linearVelocity = (xrTarget.position + positionOffset - rbTarget.position) / Time.fixedDeltaTime;
             }
             else
             {
@@ -121,7 +121,6 @@ public class VRMap
                 var difference = xrTarget.rotation * Quaternion.Inverse(rbTarget.rotation);
                 difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
                 rbTarget.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
-                //rbTarget.angularVelocity = (Quaternion.Inverse(rbTarget.rotation) * xrTarget.rotation * Quaternion.Euler(rotationOffset)).eulerAngles / Time.fixedDeltaTime;
             }
             else
             {

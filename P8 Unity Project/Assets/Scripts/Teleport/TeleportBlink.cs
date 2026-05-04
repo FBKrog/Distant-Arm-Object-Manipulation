@@ -93,7 +93,7 @@ public class TeleportBlink : MonoBehaviour
         Debug.Log("[TeleportBlink] OnBeforeTeleport fired — starting blink.");
         if (_blinkCoroutine != null)
             StopCoroutine(_blinkCoroutine);
-        AudioManager.PlaySound(SfxType.Teleport, transform);
+        AudioManager.Play(SfxType.Teleport, transform);
         _blinkCoroutine = StartCoroutine(BlinkThenTeleport(executeTeleport));
     }
 
