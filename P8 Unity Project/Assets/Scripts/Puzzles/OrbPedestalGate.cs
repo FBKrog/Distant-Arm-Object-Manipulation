@@ -4,14 +4,25 @@ using System.Collections;
 public class OrbPedestalGate : MonoBehaviour
 {
     [SerializeField] OrbPedestal orbPedestal;
-
+    [SerializeField] private bool startActive = false;
     Vector3 targetPosition;
+
+    void Start()
+    {
+        if (startActive)
+        {
+            Activate();
+        }
+        else
+        {
+            orbPedestal.enabled = false;
+        }
+    }
 
     void Awake()
     {
         targetPosition = transform.position;
         transform.position = new(targetPosition.x, targetPosition.y - 1.3f, targetPosition.z); // start below the floor
-        orbPedestal.enabled = false;
     }
 
     public void Activate()
