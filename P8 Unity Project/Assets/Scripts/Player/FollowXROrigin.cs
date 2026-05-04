@@ -19,20 +19,19 @@ public class FollowXROrigin : MonoBehaviour
     {
         ApplyHeadBodyOffset();
         RotateSpineTowardsHands();
-        Mapping();
+        head.Map();
+    }
+
+    void FixedUpdate()
+    {
+        leftHand.Map();
+        rightHand.Map();
     }
 
     void ApplyHeadBodyOffset()
     {
         var targetPosition = head.ikTarget.position + headBodyPositionOffset;
         transform.position = targetPosition;
-    }
-
-    void Mapping()
-    {
-        head.Map();
-        leftHand.Map();
-        rightHand.Map();
     }
 
     /// <summary>
@@ -96,15 +95,38 @@ public class VRMap
 {
     public Transform xrTarget;
     public Transform ikTarget;
+    public Rigidbody rbTarget; // Optional Rigidbody for physics-based mapping
     public Vector3 positionOffset;
     public Vector3 rotationOffset;
+    public bool usePhysics = false;
 
     public void Map(bool mapPosition = true, bool mapRotation = true)
     {
         if (mapPosition)
-            ikTarget.position = xrTarget.position + positionOffset;
+        {
+            if (usePhysics)
+            {
+                rbTarget.linearVelocity = (xrTarget.position + positionOffset - ikTarget.position) / Time.fixedDeltaTime;
+            }
+            else
+            {
+                ikTarget.position = xrTarget.position + positionOffset;
+            }
+        }
 
         if (mapRotation)
-            ikTarget.rotation = xrTarget.rotation * Quaternion.Euler(rotationOffset);
+        {
+            if(usePhysics)
+            {
+                var difference = xrTarget.rotation * Quaternion.Inverse(rbTarget.rotation);
+                difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+                rbTarget.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+                //rbTarget.angularVelocity = (Quaternion.Inverse(rbTarget.rotation) * xrTarget.rotation * Quaternion.Euler(rotationOffset)).eulerAngles / Time.fixedDeltaTime;
+            }
+            else
+            {
+                ikTarget.rotation = xrTarget.rotation * Quaternion.Euler(rotationOffset);
+            }
+        }
     }
 }
