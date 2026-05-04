@@ -343,8 +343,8 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   daomPositionOffset: {x: -0.035, y: -0.07, z: 0}
-  goGoPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
-  goGoRotationOffset: {x: 40, y: 90, z: 180}
+  goGoPositionOffset: {x: -0.01, y: 0, z: 0.065}
+  goGoRotationOffset: {x: 70, y: 90, z: 180}
   homerPositionOffset: {x: 0, y: 0, z: 0.08}
   homerRotationOffset: {x: 80, y: 90, z: 180}
   homerScaleMultiplier: 0.45

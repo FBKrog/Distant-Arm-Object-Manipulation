@@ -451,7 +451,7 @@ MonoBehaviour:
   goGoExtend: {fileID: 0}
   daomPositionOffset: {x: -0.1, y: -0.02, z: 0}
   daomRotationOffset: {x: 0, y: 180, z: 135}
-  goGoPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
+  goGoPositionOffset: {x: 0.02, y: 0.06, z: 0}
   goGoRotationOffset: {x: 35, y: 90, z: 180}
   homerPositionOffset: {x: 0.02, y: 0.06, z: 0}
   homerRotationOffset: {x: 35, y: 90, z: 180}
