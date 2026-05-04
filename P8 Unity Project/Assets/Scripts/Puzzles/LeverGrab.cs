@@ -521,6 +521,20 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         Vector3 activationDir = Quaternion.AngleAxis(activationAngle, axisWorld) * restDirLocal;
         Handles.color = new Color(1f, 0.2f, 0.2f, 0.9f);
         Handles.DrawWireArc(pivotPos, axisWorld, activationDir, snapToAngle - activationAngle, armLength);
+
+        // Visualize grab positions
+        // Go-Go:
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position + goGoPositionOffset, Vector3.one * 0.1f);
+
+        // HOMER:
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position + homerPositionOffset, 0.1f);
+        
+        // DAOM:
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position + daomPositionOffset, 0.1f);
+
     }
 #endif
 }
