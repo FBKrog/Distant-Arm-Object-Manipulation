@@ -15,7 +15,7 @@ public class Sfx
     [Range(0, 1)] public float volume;
 }
 
-// For new SFX types, add a new entry to the SfxType enum and then assign audio clips to the new SFX type in the AudioManager inspector.
+// For new SFX types, add a new entry to the SfxType enum and Create a new SfxScriptableObject for it.
 public enum SfxType
 {
     Explosion,
@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource audioSourcePrefab;
     [SerializeField] int maxAudioSourcesCount = 100;
     [SerializeField] Queue<AudioSource> audioSourcePool = new();
-    
+
     [Header("Audio Clips")]
     [SerializeField] SfxScriptableObject[] sfxScriptableObject;
     Dictionary<SfxType, SfxScriptableObject> sfxDictionary = new();

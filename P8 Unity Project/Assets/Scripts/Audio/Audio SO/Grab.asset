@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e00db798dafb94388b4800203e41f3, type: 3}
   m_Name: Grab
   m_EditorClassIdentifier: Assembly-CSharp::SfxScriptableObject
-  sfxType: 0
+  sfxType: 5
   data:
-    title: 
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: cd512b861ac24a640b5ff94774c60ffa, type: 3}
+    volume: 0.5

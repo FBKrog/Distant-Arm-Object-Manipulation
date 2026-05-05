@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e00db798dafb94388b4800203e41f3, type: 3}
   m_Name: SimonComplete
   m_EditorClassIdentifier: Assembly-CSharp::SfxScriptableObject
-  sfxType: 0
+  sfxType: 15
   data:
-    title: 
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: 21e1babb52b976b4aaaab49258c592b0, type: 3}
+    volume: 0.5

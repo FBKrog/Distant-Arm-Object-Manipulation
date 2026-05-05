@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e00db798dafb94388b4800203e41f3, type: 3}
   m_Name: WireComplete
   m_EditorClassIdentifier: Assembly-CSharp::SfxScriptableObject
-  sfxType: 0
+  sfxType: 24
   data:
-    title: 
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: e5b8fdc5841f22946bf3483f5af029de, type: 3}
+    volume: 0.5

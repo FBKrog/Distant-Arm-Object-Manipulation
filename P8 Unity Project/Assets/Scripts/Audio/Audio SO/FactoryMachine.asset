@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e00db798dafb94388b4800203e41f3, type: 3}
   m_Name: FactoryMachine
   m_EditorClassIdentifier: Assembly-CSharp::SfxScriptableObject
-  sfxType: 0
+  sfxType: 26
   data:
-    title: 
-    clips: []
-    volume: 0
+    clips:
+    - {fileID: 8300000, guid: 711604b0d78a3ff469a94fdbbafe3fa4, type: 3}
+    - {fileID: 8300000, guid: b66fec3e57ac9f1438cb4a8faf7717b2, type: 3}
+    volume: 0.5

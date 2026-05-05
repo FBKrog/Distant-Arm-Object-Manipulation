@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e00db798dafb94388b4800203e41f3, type: 3}
   m_Name: Release
   m_EditorClassIdentifier: Assembly-CSharp::SfxScriptableObject
-  sfxType: 0
+  sfxType: 6
   data:
-    title: 
     clips: []
-    volume: 0
+    volume: 0.5
