@@ -17,10 +17,6 @@ public class TeleportationActivator : MonoBehaviour
     /// </summary>
     public System.Action<System.Action> onBeforeTeleport;
 
-    // Event action for hand physics teleport fix
-    public static event Action teleport;
-    public static void OnTeleport() => teleport?.Invoke();
-
     [HideInInspector] public bool orbConnected = false;
     
     AudioSource teleportAimingAudioSource;
@@ -93,7 +89,6 @@ public class TeleportationActivator : MonoBehaviour
         }
         teleportInteractor.gameObject.SetActive(false);
         onAfterTeleport?.Invoke();
-        OnTeleport();
         AudioManager.StopLooping(teleportAimingAudioSource);
     }
 }

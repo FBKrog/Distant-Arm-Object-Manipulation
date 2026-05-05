@@ -4,6 +4,10 @@ using UnityEngine;
 public class PhysicsHandTeleportFix : MonoBehaviour
 {
     Rigidbody rb;
+
+    Vector3 previousPosition;
+    Quaternion previousRotation;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -11,18 +15,28 @@ public class PhysicsHandTeleportFix : MonoBehaviour
 
     void OnEnable()
     {
-        TeleportationActivator.teleport += ResetRigidbody;
+        TeleportBlink.teleportStarted += PrepareForTeleport;
+        TeleportBlink.teleportEnded += ResetRigidbody;
     }
 
     void OnDisable()
     {
-        TeleportationActivator.teleport -= ResetRigidbody;
+        TeleportBlink.teleportStarted -= PrepareForTeleport;
+        TeleportBlink.teleportEnded -= ResetRigidbody;
+    }
+
+    void PrepareForTeleport()
+    {
+        previousPosition = transform.position;
+        previousRotation = transform.rotation;
+        rb.isKinematic = true;
     }
 
     void ResetRigidbody()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        transform.position = previousPosition;
+        transform.rotation = previousRotation;
+        rb.isKinematic = false;
     }
 
     void OnCollisionEnter(Collision collision)
