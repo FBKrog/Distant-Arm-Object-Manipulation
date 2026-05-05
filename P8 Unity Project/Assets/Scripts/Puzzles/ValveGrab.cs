@@ -347,6 +347,21 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         isFirstGrabFrame = true;
         _dbgFrame        = 0;
 
+        switch(technique)
+        {
+            case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = true;
+                break;
+            case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = true;
+                break;
+            case ActiveTechnique.Daom:
+                var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = true;
+                break;
+        }
+
         transform.position = valveFixedPosition;
 
         // Select nearest grab point and update XRI attach transform so the hand snaps to the rim.
@@ -362,6 +377,21 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         if (!isGrabbed) return;
 
         Debug.Log($"[ValveGrab:{name}] EndGrab — technique={activeTechnique}  cumulativeRotation={cumulativeRotation:F1}°");
+
+        switch(activeTechnique)
+        {
+            case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.Daom:
+                var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = false;
+                break;
+        }
 
         isGrabbed       = false;
         activeTechnique = ActiveTechnique.None;
@@ -382,11 +412,13 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         switch (technique)
         {
             case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
                 Debug.Log($"[ValveGrab:{name}] ForceRelease — calling homer.EndGrab()");
                 if (homer != null) homer.EndGrab();
                 break;
 
             case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = false;
                 var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
                 if (goGoInter != null && valveGrabbable != null)
                 {
@@ -401,6 +433,7 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
 
             case ActiveTechnique.Daom:
                 var daom = DAOMArm.ActiveInstance;
+                daom.disablePhysicsWhileGrabbing = false;
                 if (daom?.Interactor != null && valveGrabbable != null)
                 {
                     Debug.Log($"[ValveGrab:{name}] ForceRelease — calling SelectExit on DAOM interactor");

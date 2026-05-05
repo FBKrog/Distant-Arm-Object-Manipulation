@@ -115,6 +115,7 @@ public class HOMERArm : MonoBehaviour
 
     // ── HOMER Physics ─────────────────────────────────────────────────────
     private Rigidbody _virtualHandRb;
+    public bool disablePhysicsWhileGrabbing;
 
     // ── State machine ─────────────────────────────────────────────────────
     private enum State { Idle, Aiming, Extending, Extended, Grabbed, Retracting }
@@ -387,19 +388,33 @@ public class HOMERArm : MonoBehaviour
             _extendedPos += handDelta * (_scaleFactor * speedScale * rotaryMult);
         }
 
-        // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
-        //VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(_extendedPos, extendedRot);
 
-        // Physics-based movement.
-        _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
+        if (disablePhysicsWhileGrabbing)
+        {
+            _virtualHandRb.isKinematic = true;
+            _virtualHandRb.linearVelocity = Vector3.zero;
+            _virtualHandRb.angularVelocity = Vector3.zero;
+            // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
+            VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
+        }
+        else
+        {
+            _virtualHandRb.isKinematic = false;
+            // Physics-based movement.
+            _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
 
-        // Rotate the virtual hand toward the target rotation.
-        var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
-        rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
-        _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
-
+            // Rotate the virtual hand toward the target rotation.
+            var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
+            rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+            if (angleInDegrees > 180f)
+                angleInDegrees -= 360f;
+            if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
+                _virtualHandRb.angularVelocity = Vector3.zero;
+            else
+                _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
+        }
 
         if (IsGrabbing && GrabbedObject != null
             && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)

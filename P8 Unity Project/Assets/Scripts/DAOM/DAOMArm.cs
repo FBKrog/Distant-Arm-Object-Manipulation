@@ -173,7 +173,7 @@ public class DAOMArm : MonoBehaviour
 
         isAttachedToSurface = false;
         recalling = true;
-        
+
         AudioManager.Play(SfxType.Explosion, transform); 
         fireAudioSource = AudioManager.PlayLooping(SfxType.Fire, transform); 
 
@@ -434,6 +434,7 @@ public class DAOMArm : MonoBehaviour
         RotateToPlayerHand();
     }
 
+    public bool disablePhysicsWhileGrabbing;
     /// <summary>
     /// Translates the position of the DAOM hand target to match the relative position of the player hand.
     /// </summary>
@@ -447,9 +448,18 @@ public class DAOMArm : MonoBehaviour
 
         playerHandOffset *= followStrength;
 
-        // Apply the relative position to the daom root to find the target position for the daom hand.
-        //daomIKTarget.transform.position = daomRoot.transform.TransformPoint(playerHandOffset);
-        daomIKTarget.linearVelocity = (daomRoot.transform.TransformPoint(playerHandOffset) - daomIKTarget.position) / Time.fixedDeltaTime;
+        if(disablePhysicsWhileGrabbing)
+        {
+            daomIKTarget.isKinematic = true;
+            daomIKTarget.linearVelocity = Vector3.zero;
+
+            // Apply the relative position to the daom root to find the target position for the daom hand.
+            daomIKTarget.transform.position = daomRoot.transform.TransformPoint(playerHandOffset);
+        }
+        else
+        {
+            daomIKTarget.linearVelocity = (daomRoot.transform.TransformPoint(playerHandOffset) - daomIKTarget.position) / Time.fixedDeltaTime;
+        }
     }
 
     /// <summary>
@@ -464,10 +474,24 @@ public class DAOMArm : MonoBehaviour
         relativeRot.z *= -1;
         relativeRot *= playerRoot.transform.localRotation;
 
-        // Apply the relative rotation to the daom root to find the target rotation for the daom hand.
-        //daomIKTarget.transform.rotation = relativeRot;
-        var difference = relativeRot * Quaternion.Inverse(daomIKTarget.rotation);
-        difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
-        daomIKTarget.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        if (disablePhysicsWhileGrabbing)
+        {
+            daomIKTarget.isKinematic = true;
+            daomIKTarget.angularVelocity = Vector3.zero;
+            
+            // Apply the relative rotation to the daom root to find the target rotation for the daom hand.
+            daomIKTarget.transform.rotation = relativeRot;
+        }
+        else
+        {
+            var difference = relativeRot * Quaternion.Inverse(daomIKTarget.rotation);
+            difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+            if (angleInDegrees > 180f)
+                angleInDegrees -= 360f;
+            if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
+                daomIKTarget.angularVelocity = Vector3.zero;
+            else
+                daomIKTarget.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        }
     }
 }
