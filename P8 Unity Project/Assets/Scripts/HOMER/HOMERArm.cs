@@ -68,7 +68,6 @@ public class HOMERArm : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
-    [SerializeField] SfxType extendedLoopSfx;
 
     [Header("Line Renderer")]
     [SerializeField][ColorUsage(true, true)] Color validColor;
@@ -389,17 +388,17 @@ public class HOMERArm : MonoBehaviour
         }
 
         // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
-        VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
+        //VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(_extendedPos, extendedRot);
 
-        //// Physics-based movement.
-        //_virtualHandRb.linearVelocity = _extendedPos - _virtualHandRb.position / Time.fixedDeltaTime;
+        // Physics-based movement.
+        _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
 
-        //// Rotate the virtual hand toward the target rotation.
-        //var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
-        //rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
-        //_virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        // Rotate the virtual hand toward the target rotation.
+        var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
+        rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+        _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
 
 
         if (IsGrabbing && GrabbedObject != null
@@ -480,7 +479,7 @@ public class HOMERArm : MonoBehaviour
         if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
 
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLooping(extendedLoopSfx, transform, true);
+            _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
     }
 
     private void EndExtend()

@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &257546444910071432
 Transform:
   m_ObjectHideFlags: 0
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 6542137802012591265}
   - component: {fileID: 4611639229840726641}
   - component: {fileID: 7401193469465391711}
+  - component: {fileID: 8091079080672543173}
   m_Layer: 10
   m_Name: Right Arm IK_target
   m_TagString: Untagged
@@ -355,8 +356,8 @@ Rigidbody:
   m_GameObject: {fileID: 472242028270246913}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_LinearDamping: 0.01
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -372,7 +373,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!136 &7401193469465391711
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -396,6 +397,18 @@ CapsuleCollider:
   m_Height: 2.4
   m_Direction: 1
   m_Center: {x: 0.27, y: 1.07, z: 0.19}
+--- !u!114 &8091079080672543173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472242028270246913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee33fca41e2e58b4eb7a181bb9251a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsHandTeleportFix
 --- !u!1 &472692513586215617
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4828130555326003940
 Transform:
   m_ObjectHideFlags: 0
@@ -760,7 +773,7 @@ GameObject:
   - component: {fileID: 784140187580251963}
   - component: {fileID: 294050360931362999}
   - component: {fileID: 5268324605999057583}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: RightArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2200,7 +2213,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3076
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -2947,7 +2960,7 @@ GameObject:
   - component: {fileID: 7715499685247812817}
   - component: {fileID: 4818391149651651447}
   - component: {fileID: 4864310665731209066}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: LeftArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4945,6 +4958,7 @@ GameObject:
   - component: {fileID: 7875616011625446395}
   - component: {fileID: 6526787181262849827}
   - component: {fileID: 4611988149979714939}
+  - component: {fileID: 1756730894020367307}
   m_Layer: 10
   m_Name: Left Arm IK_target
   m_TagString: Untagged
@@ -4976,8 +4990,8 @@ Rigidbody:
   m_GameObject: {fileID: 5747383815535494289}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_LinearDamping: 0.01
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4993,7 +5007,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!136 &4611988149979714939
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5017,6 +5031,18 @@ CapsuleCollider:
   m_Height: 2.4
   m_Direction: 1
   m_Center: {x: -0.27, y: 1.07, z: 0.19}
+--- !u!114 &1756730894020367307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747383815535494289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee33fca41e2e58b4eb7a181bb9251a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsHandTeleportFix
 --- !u!1 &5756846481611583614
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -15,6 +16,10 @@ public class TeleportationActivator : MonoBehaviour
     /// immediately — original behaviour is preserved.
     /// </summary>
     public System.Action<System.Action> onBeforeTeleport;
+
+    // Event action for hand physics teleport fix
+    public static event Action teleport;
+    public static void OnTeleport() => teleport?.Invoke();
 
     [HideInInspector] public bool orbConnected = false;
     
@@ -88,6 +93,7 @@ public class TeleportationActivator : MonoBehaviour
         }
         teleportInteractor.gameObject.SetActive(false);
         onAfterTeleport?.Invoke();
+        OnTeleport();
         AudioManager.StopLooping(teleportAimingAudioSource);
     }
 }

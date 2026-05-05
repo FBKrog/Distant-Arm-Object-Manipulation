@@ -58,7 +58,6 @@ public class GoGoExtend : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
-    [SerializeField] SfxType extendedLoopSfx;
 
     private AudioSource _extendedLoopSource;
     private Transform _virtualHand;
@@ -101,7 +100,7 @@ public class GoGoExtend : MonoBehaviour
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(true);
         SetPhysicalHandVisible(false);
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLooping(extendedLoopSfx, transform, true);
+            _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
     }
 
     void OnDisable()
