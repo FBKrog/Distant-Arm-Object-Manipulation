@@ -1,12 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
-using UnityEngine.Tilemaps;
-using UnityEditor;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 
 [Serializable]
 public class Sfx
@@ -251,7 +248,22 @@ public class AudioManager : MonoBehaviour
                 return;
             }
         }
-        Play(sfx, Camera.main.transform);
+
+        if (!instance.TryGetClip(sfx, out var clip, out float volume)) return;
+
+        var audioSource = instance.GetAudioSource();
+
+        audioSource.transform.position = Camera.main.transform.position;
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        instance.StartCoroutine(instance.EditorTestRemoveAudioSource(audioSource));
+    }
+
+    IEnumerator EditorTestRemoveAudioSource(AudioSource source)
+    {
+        yield return new WaitForSeconds(source.clip.length);
+        DestroyImmediate(source.gameObject);
     }
 #endif
 
