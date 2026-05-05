@@ -146,7 +146,7 @@ MonoBehaviour:
   handPositionOffset: {x: 0, y: 0, z: 0}
   chestHeadOffset: 0.2
   loopSfxWhileExtended: 1
-  extendedLoopSfx: 32
+  extendedLoopSfx: 33
 --- !u!1 &301666797951260597
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4828130555326003940
 Transform:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   retractSpeed: 7
   retractOnTriggerPress: 0
   loopSfxWhileExtended: 1
-  extendedLoopSfx: 32
+  extendedLoopSfx: 33
   validColor: {r: 6.2466173, g: 0.31233093, b: 0, a: 0.8509804}
   invalidColor: {r: 0, g: 0, b: 0, a: 0}
   invalidPressColor: {r: 4.12284, g: 0.24865171, b: 0.17891523, a: 0.6039216}
@@ -1721,7 +1721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &587303744672720820
 Transform:
   m_ObjectHideFlags: 0
@@ -2255,7 +2255,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RegrabOrbStep
+          m_StringArgument: TeleportStep
           m_BoolArgument: 0
         m_CallState: 2
   _fadeMaterial: {fileID: 2100000, guid: 9d05a0214c9327b449860540efca08f4, type: 2}
