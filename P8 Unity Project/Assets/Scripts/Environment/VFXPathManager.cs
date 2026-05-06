@@ -27,6 +27,7 @@ public class VFXPathManager : MonoBehaviour
 {
     private VisualEffect effect;
     private PathFollower pathFollower;
+    AudioSource audioSource;
 
     void Start()
     {
@@ -55,6 +56,10 @@ public class VFXPathManager : MonoBehaviour
             pathFollower = GetComponentInChildren<PathFollower>();
             pathFollower.isActive = true;
         }
+        if(audioSource == null)
+        {
+            audioSource = AudioManager.PlayLooping(SfxType.Spark, effect.transform, true);
+        }
     }
 
     public void StopVFX() 
@@ -77,6 +82,10 @@ public class VFXPathManager : MonoBehaviour
         {
             pathFollower = GetComponentInChildren<PathFollower>();
             pathFollower.isActive = false;
+        }
+        if(audioSource != null) 
+        {
+            AudioManager.StopLooping(audioSource);
         }
     }
 }

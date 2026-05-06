@@ -48,7 +48,8 @@ public enum SfxType
     HomerInvalidTarget,
     FuseComplete,
     Hover,
-    Griddy
+    Griddy,
+    Spark
 }
 
 public class AudioManager : MonoBehaviour

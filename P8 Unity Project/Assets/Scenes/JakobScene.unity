@@ -165323,7 +165323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4825672110706735961, guid: 55d436d1f32722446b6b7c125869e607, type: 3}
       propertyPath: sfxScriptableObject.Array.size
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 4825672110706735961, guid: 55d436d1f32722446b6b7c125869e607, type: 3}
       propertyPath: audioScriptableObject.Array.size
@@ -165469,6 +165469,10 @@ PrefabInstance:
       propertyPath: 'sfxScriptableObject.Array.data[34]'
       value: 
       objectReference: {fileID: 11400000, guid: 043000df3e13a4d4996a3c58dc45bd09, type: 2}
+    - target: {fileID: 4825672110706735961, guid: 55d436d1f32722446b6b7c125869e607, type: 3}
+      propertyPath: 'sfxScriptableObject.Array.data[35]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 38d674927faf629408179dd325032fc3, type: 2}
     - target: {fileID: 4825672110706735961, guid: 55d436d1f32722446b6b7c125869e607, type: 3}
       propertyPath: 'audioScriptableObject.Array.data[0]'
       value: 
