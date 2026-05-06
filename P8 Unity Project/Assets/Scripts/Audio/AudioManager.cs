@@ -256,12 +256,44 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.Play();
-        instance.StartCoroutine(instance.EditorTestRemoveAudioSource(audioSource));
+        instance.StartCoroutine(instance.EditorTestRemoveAudioSource(audioSource, clip.length));
     }
 
-    IEnumerator EditorTestRemoveAudioSource(AudioSource source)
+    public static AudioSource EditorTestPlayLooping(SfxType sfx)
     {
-        yield return new WaitForSeconds(source.clip.length);
+        if (instance == null)
+        {
+            instance = FindFirstObjectByType<AudioManager>();
+            if (instance == null)
+            {
+                Debug.LogError("No AudioManager in scene!");
+                return null;
+            }
+        }
+
+        if (!instance.TryGetClip(sfx, out var clip, out float volume)) return null;
+
+        var audioSource = instance.GetAudioSource();
+
+        audioSource.transform.position = Camera.main.transform.position;
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.loop = true;
+        audioSource.Play();
+        return audioSource;
+    }
+
+    public static void EditorTestStopLooping(AudioSource source)
+    {
+        if (source != null && source.isPlaying)
+        {
+            instance.StartCoroutine(instance.EditorTestRemoveAudioSource(source, 0f));
+        }
+    }
+
+    IEnumerator EditorTestRemoveAudioSource(AudioSource source, float delay)
+    {
+        yield return new WaitForSeconds(delay);
         DestroyImmediate(source.gameObject);
     }
 #endif

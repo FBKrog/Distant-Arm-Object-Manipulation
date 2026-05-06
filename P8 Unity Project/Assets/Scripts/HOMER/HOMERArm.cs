@@ -145,6 +145,7 @@ public class HOMERArm : MonoBehaviour
 
     // ── Arm extension (prefab-based) ──────────────────────────────────────
     private Vector3 _extendedPos;
+    private Quaternion extendedRot;
     private GameObject _handInstance;
     private XRDirectInteractor _virtualInteractor;
     private bool _didDisablePhysicalInteractor;
@@ -371,7 +372,7 @@ public class HOMERArm : MonoBehaviour
             }
         }
 
-        Quaternion extendedRot = _state == State.Retracting
+        extendedRot = _state == State.Retracting
             ? transform.rotation * Quaternion.Euler(retractHandRotationOffset)
             : transform.rotation;
 
@@ -408,10 +409,22 @@ public class HOMERArm : MonoBehaviour
             // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
             VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
         }
-        else
+
+        if (IsGrabbing && GrabbedObject != null
+            && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
-            _virtualHandRb.isKinematic = false;
+            GrabbedObject.transform.SetPositionAndRotation(
+                HandTip != null ? HandTip.position : _extendedPos,
+                transform.rotation * _rotationOffset);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(!disablePhysicsWhileGrabbing)
+        {
             // Physics-based movement.
+            _virtualHandRb.isKinematic = false;
             _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
 
             // Rotate the virtual hand toward the target rotation.
@@ -424,16 +437,7 @@ public class HOMERArm : MonoBehaviour
             else
                 _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
         }
-
-        if (IsGrabbing && GrabbedObject != null
-            && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
-        {
-            GrabbedObject.transform.SetPositionAndRotation(
-                HandTip != null ? HandTip.position : _extendedPos,
-                transform.rotation * _rotationOffset);
-        }
     }
-
 
     void OnDestroy()
     {

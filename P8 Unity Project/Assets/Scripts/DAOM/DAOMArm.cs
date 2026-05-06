@@ -427,14 +427,21 @@ public class DAOMArm : MonoBehaviour
         yield break;
     }
 
-    void FixedUpdate()
+    public bool disablePhysicsWhileGrabbing;
+    void Update()
     {
-        if (!isAttachedToSurface || recalling) return;       
+        if ((!isAttachedToSurface || recalling) && !disablePhysicsWhileGrabbing) return;
         TransformToPlayerHand();
         RotateToPlayerHand();
     }
 
-    public bool disablePhysicsWhileGrabbing;
+    void FixedUpdate()
+    {
+        if ((!isAttachedToSurface || recalling) && disablePhysicsWhileGrabbing) return;       
+        TransformToPlayerHand();
+        RotateToPlayerHand();
+    }
+
     /// <summary>
     /// Translates the position of the DAOM hand target to match the relative position of the player hand.
     /// </summary>
