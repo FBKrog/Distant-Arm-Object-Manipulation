@@ -488,7 +488,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734547325161131941}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -516,10 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee33fca41e2e58b4eb7a181bb9251a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsHandTeleportFix
-  linearVelocityResetThreshold: 1
-  maxSpeed: 0.1
-  angularVelocityResetThreshold: 1
-  maxAngularSpeed: 0.1
 --- !u!1 &5031724963309320750
 GameObject:
   m_ObjectHideFlags: 0
