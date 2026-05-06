@@ -27,7 +27,8 @@ public class ScriptableObjectEditor : Editor
         }
         if (GUILayout.Button("Play Looping"))
         {
-            audioSource = AudioManager.EditorTestPlayLooping(sfxScriptableObject.sfxType);
+            if(audioSource == null)
+                audioSource = AudioManager.EditorTestPlayLooping(sfxScriptableObject.sfxType);
         }
         if (GUILayout.Button("Stop Looping"))
         {
