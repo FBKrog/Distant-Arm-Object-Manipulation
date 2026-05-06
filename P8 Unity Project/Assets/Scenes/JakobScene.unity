@@ -16602,7 +16602,7 @@ MonoBehaviour:
 
     Follow the <color=#87FFFF>blue sparks</color>
     in the ceiling to proceed to the next task at the <color=#FFFFFF>computer</color>.'
-  displayDuration: 8
+  displayDuration: 10
   showOnce: 1
 --- !u!114 &68787865
 MonoBehaviour:
@@ -30512,13 +30512,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
   daomHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
-    up the fuses and insert them into the fusebox to power on the factory.
+    up the <color=#FFFFFF>three fuses</color> and insert them into the <color=#FFFFFF>fusebox</color>
+    to power on the factory.
   homerTutorialManager: {fileID: 2009869314}
   homerHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
-    up the fuses and insert them into the fusebox to power on the factory.
+    up the <color=#FFFFFF>three fuses</color> and insert them into the <color=#FFFFFF>fusebox</color>
+    to power on the factory.
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
-    up the fuses and insert them into the fusebox to power on the factory.
+    up the <color=#FFFFFF>three fuses</color> and insert them into the <color=#FFFFFF>fusebox</color>
+    to power on the factory.
   displayDuration: 15
   showOnce: 1
 --- !u!114 &197630837 stripped
@@ -40605,8 +40608,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.06, z: 0.06}
-  m_Center: {x: 0.01, y: 0.01, z: 0}
+  m_Size: {x: 0.1, y: 0.07284777, z: 0.06}
+  m_Center: {x: 0.009999998, y: 0.016423887, z: -9.5234265e-11}
 --- !u!114 &344567387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61391,7 +61394,7 @@ MonoBehaviour:
 
     Follow the <color=#87FFFF>blue sparks</color>
     in the ceiling to proceed to the next task by the <color=#FFFFFF>pipes</color>.'
-  displayDuration: 8
+  displayDuration: 10
   showOnce: 1
 --- !u!114 &534962554
 MonoBehaviour:
@@ -91909,14 +91912,14 @@ PrefabInstance:
     - target: {fileID: 1407943549580462494, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 1131927772}
+      objectReference: {fileID: 2009869314}
     - target: {fileID: 1811118839066844378, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2030897116786569464, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.size
@@ -92033,7 +92036,7 @@ PrefabInstance:
       propertyPath: steps.Array.data[9].subtitleText
       value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
         doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
-        sparks/color> of the electric tubes in the ceiling will guide you onward.
+        sparks</color> of the electric tubes in the ceiling will guide you onward.
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[10].subtitleText
@@ -92061,9 +92064,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[14].subtitleText
-      value: Grab and pull the <color=#FFFFFF>lever</color> on the wall. Aim at the
-        <color=#FFFFFF>lever</color> using the <color=#FFFFFF>[A]</color> button
-        and grab it using the <color=#FFFFFF>[TRIGGER]</color>.
+      value: Grab and pull the <color=#FFFFFF>lever</color> on the wall. Stretch
+        your arm outward and grab it using the <color=#FFFFFF>[SELECT]</color> button
+        to pull the lever.
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[15].subtitleText
@@ -92075,8 +92078,12 @@ PrefabInstance:
         door and head further into the factory to complete the remaining tasks.
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[0].displayDuration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].displayDuration
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[14].displayDuration
@@ -92222,7 +92229,7 @@ PrefabInstance:
       propertyPath: steps.Array.data[9].subtitleText
       value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
         doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
-        sparks/color> of the electric tubes in the ceiling will guide you onward.
+        sparks</color> of the electric tubes in the ceiling will guide you onward.
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[10].subtitleText
@@ -92265,12 +92272,16 @@ PrefabInstance:
         door and head further into the factory to complete the remaining tasks.
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[0].displayDuration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].displayDuration
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[2].displayDuration
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[14].displayDuration
@@ -92359,7 +92370,7 @@ PrefabInstance:
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 1131927772}
+      objectReference: {fileID: 2009869314}
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: orbGrabInteractable
       value: 
@@ -92487,7 +92498,7 @@ PrefabInstance:
       propertyPath: steps.Array.data[9].subtitleText
       value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
         doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
-        sparks/color> of the electric tubes in the ceiling will guide you onward.
+        sparks</color> of the electric tubes in the ceiling will guide you onward.
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[10].subtitleText
@@ -92529,6 +92540,10 @@ PrefabInstance:
       propertyPath: steps.Array.data[16].subtitleText
       value: Grab the <color=#87FFFF>blue orb</color> and teleport back through the
         door and head further into the factory to complete the remaining tasks.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[0].displayDuration
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].displayDuration
@@ -99068,7 +99083,7 @@ MonoBehaviour:
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: "Task completed! \r\nFollow the <color=#87FFFF>blue sparks</color>
     in the ceiling to proceed to the next task at the <color=#FFFFFF>conveyor belt</color>."
-  displayDuration: 8
+  displayDuration: 10
   showOnce: 1
 --- !u!1001 &1036051998
 PrefabInstance:
@@ -102317,7 +102332,7 @@ MonoBehaviour:
     Follow the <color=#87FFFF>blue sparks</color>
     in the ceiling to proceed to the next task behind the <color=#FFFFFF>third factory
     machine</color>.'
-  displayDuration: 8
+  displayDuration: 10
   showOnce: 1
 --- !u!114 &1084323683
 MonoBehaviour:
@@ -117903,15 +117918,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
-    Rotate each valve until the light turns green to stabilize the pressure.
+  daomHintText: There are <color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate the <color=#FFFFFF>valves</color> until the lights turn green to stabilize
+    the pressure of the <color=#FFFFFF>pipes</color>.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
-    Rotate each valve until the light turns green to stabilize the pressure.
+  homerHintText: There are <color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate the <color=#FFFFFF>valves</color> until the lights turn green to stabilize
+    the pressure of the <color=#FFFFFF>pipes</color>.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
-    Rotate each valve until the light turns green to stabilize the pressure.
-  displayDuration: 18
+  goGoHintText: There are <color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate the <color=#FFFFFF>valves</color> until the lights turn green to stabilize
+    the pressure of the <color=#FFFFFF>pipes</color>.
+  displayDuration: 15
   showOnce: 1
 --- !u!114 &1303612143 stripped
 MonoBehaviour:
@@ -128884,11 +128902,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 207387185875037171, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 576059475463922452, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: homerRaycast
@@ -130787,18 +130805,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
-    Press the button sequences in the correct order to configure the computer to
-    produce robots.
+  daomHintText: There are <color=#FFFFFF>three button sequences</color> on the computer.
+    Press the <color=#FFFFFF>button sequences</color> in the correct order to configure
+    the <color=#FFFFFF>computer</color> to produce robots.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
-    Press the button sequences in the correct order to configure the computer to
-    produce robots.
+  homerHintText: There are <color=#FFFFFF>three button sequences</color> on the computer.
+    Press the <color=#FFFFFF>button sequences</color> in the correct order to configure
+    the <color=#FFFFFF>computer</color> to produce robots.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
-    Press the button sequences in the correct order to configure the computer to
-    produce robots.
-  displayDuration: 20
+  goGoHintText: There are <color=#FFFFFF>three button sequences</color> on the computer.
+    Press the <color=#FFFFFF>button sequences</color> in the correct order to configure
+    the <color=#FFFFFF>computer</color> to produce robots.
+  displayDuration: 15
   showOnce: 1
 --- !u!1 &1534940587
 GameObject:
@@ -131337,7 +131355,7 @@ MonoBehaviour:
   goGoHintText: There are <color=#FFFFFF>three chips</color> on top of the conveyor
     belt. Pick up the chips and insert them into the plugs to power on the three
     factory machines.
-  displayDuration: 20
+  displayDuration: 15
   showOnce: 1
 --- !u!114 &1539003100 stripped
 MonoBehaviour:
@@ -141086,7 +141104,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d854cb5155c146b499e532767ba49ff0, type: 2}
     - target: {fileID: 4687640909073853795, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: idleRepeatDelay
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4687640909073853795, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: 'sequence.Array.data[0]'
@@ -141246,7 +141264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5382453996675475326, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: idleRepeatDelay
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5423301850034224789, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: homer
@@ -141782,7 +141800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: idleRepeatDelay
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: 'sequence.Array.data[0]'
@@ -145674,6 +145692,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2117490484}
     m_Modifications:
+    - target: {fileID: 1865075853384977487, guid: 88997d6403fa1ef4abff797e59ec3f63, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2379504701131661993, guid: 88997d6403fa1ef4abff797e59ec3f63, type: 3}
       propertyPath: m_Name
       value: Path_Task1
@@ -147039,8 +147061,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.06, z: 0.06}
-  m_Center: {x: 0.055, y: -0.09, z: -0.07}
+  m_Size: {x: 0.1, y: 0.076189324, z: 0.059999995}
+  m_Center: {x: 0.055000003, y: -0.08190534, z: -0.07}
 --- !u!114 &1811828887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148519,15 +148541,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
-    Pull each lever to open the doors to the conveyor belts.
+  daomHintText: There are <color=#FFFFFF>three levers</color> connected to the doors.
+    Pull the <color=#FFFFFF>levers</color> to open the doors to the <color=#FFFFFF>conveyor
+    belts</color>.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
-    Pull each lever to open the doors to the conveyor belts.
+  homerHintText: There are <color=#FFFFFF>three levers</color> connected to the doors.
+    Pull the <color=#FFFFFF>levers</color> to open the doors to the <color=#FFFFFF>conveyor
+    belts</color>.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
-    Pull each lever to open the doors to the conveyor belts.
-  displayDuration: 18
+  goGoHintText: There are <color=#FFFFFF>three levers</color> connected to the doors.
+    Pull the <color=#FFFFFF>levers</color> to open the doors to the <color=#FFFFFF>conveyor
+    belts</color>.
+  displayDuration: 15
   showOnce: 1
 --- !u!114 &1843727289 stripped
 MonoBehaviour:
@@ -151307,8 +151332,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.06, z: 0.06}
-  m_Center: {x: 0.01, y: 0.01, z: 0}
+  m_Size: {x: 0.1, y: 0.074022576, z: 0.06}
+  m_Center: {x: 0.009999998, y: 0.01701129, z: -1.6525825e-10}
 --- !u!114 &1902436285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175419,6 +175444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Path_Task5
       objectReference: {fileID: 0}
+    - target: {fileID: 4799305563546414493, guid: bf7da1b610087f84c9d382532fde0a2a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6393890495387132665, guid: bf7da1b610087f84c9d382532fde0a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.886005
@@ -199182,6 +199211,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2117490484}
     m_Modifications:
+    - target: {fileID: 4036798267062419253, guid: 478a6e539c84ef24a95cf0f3ee056686, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6476834036277912556, guid: 478a6e539c84ef24a95cf0f3ee056686, type: 3}
       propertyPath: m_Name
       value: Path_Tutorial
@@ -201154,6 +201187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2117490484}
     m_Modifications:
+    - target: {fileID: 727908152278989469, guid: a682b21a916c62f47aa444f70aa651d6, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4948161573184664990, guid: a682b21a916c62f47aa444f70aa651d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.7190008
@@ -209847,7 +209884,7 @@ MonoBehaviour:
   sequenceShowDuration: 1
   sequenceGapDuration: 0.25
   wrongFlashDuration: 1.5
-  idleRepeatDelay: 15
+  idleRepeatDelay: 10
   OnPuzzleCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -234794,6 +234831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4533871121797587126, guid: e524a9d2bcd1ea546b2cfaefefa9e1ee, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -242875,6 +242916,10 @@ PrefabInstance:
     - target: {fileID: 1783477511871621656, guid: b4f74ae9dbc6c1a4bbec54129a427fd1, type: 3}
       propertyPath: m_Name
       value: Path_Task3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007325972502379894, guid: b4f74ae9dbc6c1a4bbec54129a427fd1, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
