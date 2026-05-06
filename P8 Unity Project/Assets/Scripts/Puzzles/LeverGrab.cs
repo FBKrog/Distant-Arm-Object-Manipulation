@@ -317,6 +317,21 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         isFirstGrabFrame = true; // reference captured in first grabbed LateUpdate (after technique scripts)
         _dbgFrame = 0;
 
+        switch (technique)
+        {
+            case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = true;
+                break;
+            case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = true;
+                break;
+            case ActiveTechnique.Daom:
+                var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = true;
+                break;
+        }
+
         transform.position = leverFixedPosition;
 
         Debug.Log($"[LeverGrab:{name}] StartGrab — technique={technique}  currentAngle={currentAngle:F1}°  leverPos={leverFixedPosition:F3}");
@@ -327,6 +342,21 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         if (!isGrabbed) return;
 
         Debug.Log($"[LeverGrab:{name}] EndGrab — technique={activeTechnique}  heldAngle={currentAngle:F1}°");
+
+        switch (activeTechnique)
+        {
+            case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.Daom:
+                var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = false;
+                break;
+        }
 
         isGrabbed = false;
         activeTechnique = ActiveTechnique.None;
@@ -351,11 +381,13 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
         switch (technique)
         {
             case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
                 Debug.Log($"[LeverGrab:{name}] ForceRelease — calling homer.EndGrab()");
                 homer?.EndGrab();
                 break;
 
             case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = false;
                 var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
                 if (goGoInter != null && leverGrabbable != null)
                 {
@@ -370,6 +402,8 @@ public class LeverGrab : MonoBehaviour, IRotaryGrabbable
 
             case ActiveTechnique.Daom:
                 var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = false;
                 if (daom?.Interactor != null && leverGrabbable != null)
                 {
                     Debug.Log($"[LeverGrab:{name}] ForceRelease — calling SelectExit on DAOM interactor");
