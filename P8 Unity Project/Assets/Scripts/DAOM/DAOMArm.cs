@@ -22,7 +22,7 @@ public class DAOMArm : MonoBehaviour
     [SerializeField] GameObject upperArm;
     [SerializeField] GameObject lowerArm;
     [SerializeField] GameObject tip;
-    [SerializeField] GameObject daomIKTarget; // Called daom hand in comments for readability
+    [SerializeField] Rigidbody daomIKTarget; // Called daom hand in comments for readability
 
     [Header("Travel")]
     [SerializeField] GameObject thruster;
@@ -77,7 +77,7 @@ public class DAOMArm : MonoBehaviour
     {
         if (ActiveInstance == this) ActiveInstance = null;
         if(fireAudioSource != null)
-            AudioManager.StopLoopSound(fireAudioSource);
+            AudioManager.StopLooping(fireAudioSource);
     }
 
     void OnEnable()
@@ -130,6 +130,7 @@ public class DAOMArm : MonoBehaviour
 
         thruster.SetActive(true);
         wallExtention.SetActive(false);
+        daomIKTarget.isKinematic = true;
 
         playerCamera = Camera.main.gameObject;
 
@@ -157,8 +158,8 @@ public class DAOMArm : MonoBehaviour
         StartCoroutine(TravelToPoint(transform, point));
         lowerArm.transform.localPosition = lowerArmRetraction;
 
-        AudioManager.PlaySound(SfxType.Explosion, transform); 
-        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
+        AudioManager.Play(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLooping(SfxType.Fire, transform); 
     }
 
     /// <summary>
@@ -172,9 +173,9 @@ public class DAOMArm : MonoBehaviour
 
         isAttachedToSurface = false;
         recalling = true;
-        
-        AudioManager.PlaySound(SfxType.Explosion, transform); 
-        fireAudioSource = AudioManager.PlayLoopSound(SfxType.Fire, transform); 
+
+        AudioManager.Play(SfxType.Explosion, transform); 
+        fireAudioSource = AudioManager.PlayLooping(SfxType.Fire, transform); 
 
         thruster.SetActive(true);
         wallExtention.SetActive(false);
@@ -353,8 +354,8 @@ public class DAOMArm : MonoBehaviour
         animator.enabled = true;
         GetComponent<LimbStretch>().enabled = true;
         
-        AudioManager.StopLoopSound(fireAudioSource);
-        AudioManager.PlaySound(SfxType.ArmAttach, transform);
+        AudioManager.StopLooping(fireAudioSource);
+        AudioManager.Play(SfxType.ArmAttach, transform);
         
         // If the arm hit an interactable, recall the arm WITH the interactable so the player holds it after recall.
         if (hitInteractable != null && !recalling)
@@ -386,6 +387,7 @@ public class DAOMArm : MonoBehaviour
             var newPoint = hitPoint + transform.forward * wallDistanceOffset;
             transform.position = newPoint;
         }
+        daomIKTarget.isKinematic = false;
     }
 
     /// <summary>
@@ -425,13 +427,14 @@ public class DAOMArm : MonoBehaviour
         yield break;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (!isAttachedToSurface || recalling) return;       
         TransformToPlayerHand();
         RotateToPlayerHand();
     }
 
+    public bool disablePhysicsWhileGrabbing;
     /// <summary>
     /// Translates the position of the DAOM hand target to match the relative position of the player hand.
     /// </summary>
@@ -445,8 +448,18 @@ public class DAOMArm : MonoBehaviour
 
         playerHandOffset *= followStrength;
 
-        // Apply the relative position to the daom root to find the target position for the daom hand.
-        daomIKTarget.transform.position = daomRoot.transform.TransformPoint(playerHandOffset);
+        if(disablePhysicsWhileGrabbing)
+        {
+            daomIKTarget.isKinematic = true;
+            daomIKTarget.linearVelocity = Vector3.zero;
+
+            // Apply the relative position to the daom root to find the target position for the daom hand.
+            daomIKTarget.transform.position = daomRoot.transform.TransformPoint(playerHandOffset);
+        }
+        else
+        {
+            daomIKTarget.linearVelocity = (daomRoot.transform.TransformPoint(playerHandOffset) - daomIKTarget.position) / Time.fixedDeltaTime;
+        }
     }
 
     /// <summary>
@@ -460,8 +473,25 @@ public class DAOMArm : MonoBehaviour
         relativeRot.x *= -1;
         relativeRot.z *= -1;
         relativeRot *= playerRoot.transform.localRotation;
-        
-        // Apply the relative rotation to the daom root to find the target rotation for the daom hand.
-        daomIKTarget.transform.rotation = relativeRot;
+
+        if (disablePhysicsWhileGrabbing)
+        {
+            daomIKTarget.isKinematic = true;
+            daomIKTarget.angularVelocity = Vector3.zero;
+            
+            // Apply the relative rotation to the daom root to find the target rotation for the daom hand.
+            daomIKTarget.transform.rotation = relativeRot;
+        }
+        else
+        {
+            var difference = relativeRot * Quaternion.Inverse(daomIKTarget.rotation);
+            difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+            if (angleInDegrees > 180f)
+                angleInDegrees -= 360f;
+            if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
+                daomIKTarget.angularVelocity = Vector3.zero;
+            else
+                daomIKTarget.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        }
     }
 }

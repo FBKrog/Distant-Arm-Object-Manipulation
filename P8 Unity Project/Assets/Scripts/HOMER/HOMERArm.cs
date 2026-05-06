@@ -68,7 +68,6 @@ public class HOMERArm : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
-    [SerializeField] SfxType extendedLoopSfx;
 
     [Header("Line Renderer")]
     [SerializeField][ColorUsage(true, true)] Color validColor;
@@ -113,6 +112,10 @@ public class HOMERArm : MonoBehaviour
     public event Action<GameObject> GrabStarted;
     public event Action GrabEnded;
     public event Action RetractStarted;
+
+    // ── HOMER Physics ─────────────────────────────────────────────────────
+    private Rigidbody _virtualHandRb;
+    public bool disablePhysicsWhileGrabbing;
 
     // ── State machine ─────────────────────────────────────────────────────
     private enum State { Idle, Aiming, Extending, Extended, Grabbed, Retracting }
@@ -199,7 +202,7 @@ public class HOMERArm : MonoBehaviour
         switch (_state)
         {
             case State.Idle:
-                if (aimPressed)
+                if (aimPressed && (physicalInteractor == null || !physicalInteractor.hasSelection))
                 {
                     _state = State.Aiming;
                     if (_line != null) _line.enabled = true;
@@ -385,10 +388,33 @@ public class HOMERArm : MonoBehaviour
             _extendedPos += handDelta * (_scaleFactor * speedScale * rotaryMult);
         }
 
-        // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
-        VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(_extendedPos, extendedRot);
+
+        if (disablePhysicsWhileGrabbing)
+        {
+            _virtualHandRb.isKinematic = true;
+            _virtualHandRb.linearVelocity = Vector3.zero;
+            _virtualHandRb.angularVelocity = Vector3.zero;
+            // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
+            VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
+        }
+        else
+        {
+            _virtualHandRb.isKinematic = false;
+            // Physics-based movement.
+            _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
+
+            // Rotate the virtual hand toward the target rotation.
+            var rotationDifference = extendedRot * Quaternion.Inverse(_virtualHandRb.rotation);
+            rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+            if (angleInDegrees > 180f)
+                angleInDegrees -= 360f;
+            if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
+                _virtualHandRb.angularVelocity = Vector3.zero;
+            else
+                _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
+        }
 
         if (IsGrabbing && GrabbedObject != null
             && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
@@ -399,9 +425,10 @@ public class HOMERArm : MonoBehaviour
         }
     }
 
+
     void OnDestroy()
     {
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
 
         if (_extendCarryObject != null)
         {
@@ -431,6 +458,7 @@ public class HOMERArm : MonoBehaviour
         VirtualHand = _handInstance.transform;
         _virtualInteractor = _handInstance.GetComponentInChildren<XRDirectInteractor>();
         _extendedPos = startPos;
+        _virtualHandRb = VirtualHand.GetComponent<Rigidbody>();
 
         SetPhysicalHandVisible(false);
 
@@ -466,12 +494,12 @@ public class HOMERArm : MonoBehaviour
         if (_virtualInteractor != null) _virtualInteractor.allowSelect = false;
 
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform, true);
+            _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
     }
 
     private void EndExtend()
     {
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
         _extendedLoopSource = null;
 
         var poseAnimatorEnd = _virtualInteractor as DynamicXRDirectInteractorAnimator;
@@ -563,7 +591,19 @@ public class HOMERArm : MonoBehaviour
         {
             var grabPose = obj.GetComponent<GrabPose>();
             if (grabPose != null && grabPose.data != null)
+            {
                 poseAnimator.BendPhalanges(grabPose.data.handData);
+                // Apply the authored attach-point offsets so HandTip position and the
+                // object's held rotation both match the pose regardless of grab angle.
+                // homerRotationOffset / homerPositionOffset on GrabPose allow per-object
+                // fine-tuning in the Inspector without editing the shared ScriptableObject.
+                Vector3 rot = grabPose.data.rotationOffset + grabPose.homerRotationOffset;
+                Vector3 pos = grabPose.data.positionOffset + grabPose.homerPositionOffset;
+                if (_virtualInteractor.attachTransform != null)
+                    _virtualInteractor.attachTransform.SetLocalPositionAndRotation(
+                        pos, Quaternion.Euler(rot));
+                _rotationOffset = Quaternion.Euler(rot);
+            }
         }
 
         GrabStarted?.Invoke(obj);
@@ -652,7 +692,7 @@ public class HOMERArm : MonoBehaviour
     private System.Collections.IEnumerator FlashInvalidLine()
     {
         _invalidFlashRunning = true;
-        AudioManager.PlaySound(SfxType.HomerInvalidTarget, transform);
+        AudioManager.Play(SfxType.HomerInvalidTarget, transform);
         if (_line != null)
         {
             _line.material.color = invalidPressColor;

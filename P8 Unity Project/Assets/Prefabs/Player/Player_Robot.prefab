@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2396561a387798243a7d1dc71ae42d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoGoExtend
-  goGoHandPrefab: {fileID: 4734547325161131941, guid: 4dbccd4e2ea781d4092712670e1153e2, type: 3}
+  goGoHandPrefab: {fileID: 4734547325161131941, guid: 16846ef082ea97846a557d36ac5b0911, type: 3}
   physicalHandRenderers:
   - {fileID: 2970372946478029515}
   chestTransform: {fileID: 0}
@@ -143,8 +143,10 @@ MonoBehaviour:
   maxReachDistance: 25
   rotationOffset: {x: 0, y: 0, z: -90}
   rotationSmoothing: 25
-  handPositionOffset: {x: 0, y: 0, z: -0.55}
-  chestHeadOffset: 0.355
+  handPositionOffset: {x: 0, y: 0, z: 0}
+  chestHeadOffset: 0.2
+  loopSfxWhileExtended: 1
+  extendedLoopSfx: 33
 --- !u!1 &301666797951260597
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +322,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6542137802012591265}
-  m_Layer: 0
+  - component: {fileID: 4611639229840726641}
+  - component: {fileID: 7401193469465391711}
+  - component: {fileID: 8091079080672543173}
+  m_Layer: 10
   m_Name: Right Arm IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,6 +347,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3657171344756896604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &4611639229840726641
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472242028270246913}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0.01
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!136 &7401193469465391711
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472242028270246913}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 19780
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.51
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0.27, y: 1.07, z: 0.19}
+--- !u!114 &8091079080672543173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472242028270246913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee33fca41e2e58b4eb7a181bb9251a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsHandTeleportFix
 --- !u!1 &472692513586215617
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,30 +490,35 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rayLength: 25
+  rayLength: 15
   hitableLayer:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 29056
   unhitableLayer:
     serializedVersion: 2
-    m_Bits: 16119
+    m_Bits: 3703
   aimOffset: {fileID: 1929745318263289077}
   homerHandPrefab: {fileID: 4734547325161131941, guid: 16846ef082ea97846a557d36ac5b0911, type: 3}
+  retractHandRotationOffset: {x: 0, y: 180, z: 0}
   physicalHandRenderers:
   - {fileID: 2970372946478029515}
   armRoot: {fileID: 1163203054149219590}
   armXRTarget: {fileID: 5075559601168966818}
   physicalInteractor: {fileID: 7716455207520570192}
   launchPoint: {fileID: 7253741170936662748}
-  extendSpeed: 10
-  retractSpeed: 10
-  validColor: {r: 6.2745094, g: 0.29017332, b: 0, a: 1}
+  extendSpeed: 7
+  retractSpeed: 7
+  retractOnTriggerPress: 0
+  loopSfxWhileExtended: 1
+  extendedLoopSfx: 33
+  validColor: {r: 6.2466173, g: 0.31233093, b: 0, a: 0.8509804}
   invalidColor: {r: 0, g: 0, b: 0, a: 0}
-  invalidPressColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  invalidPressColor: {r: 4.12284, g: 0.24865171, b: 0.17891523, a: 0.6039216}
   torsoHeadOffset: 0.15
-  minVelocity: 0.05
-  maxVelocity: 1.5
-  minSpeedScale: 0.1
+  minVelocity: 0.1
+  maxVelocity: 1
+  minSpeedScale: 0.25
+  maxSpeedScale: 1.5
   minHandDistance: 0.05
 --- !u!120 &4465171979223027178
 LineRenderer:
@@ -502,7 +574,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.04696285
+    widthMultiplier: 1.0098654
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -701,7 +773,7 @@ GameObject:
   - component: {fileID: 784140187580251963}
   - component: {fileID: 294050360931362999}
   - component: {fileID: 5268324605999057583}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: RightArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1710,7 +1782,7 @@ MonoBehaviour:
   aiming: 0
   canLaunch: 1
   aimOffset: {fileID: 1929745318263289077}
-  validColor: {r: 6.2745094, g: 0.29017332, b: 0, a: 1}
+  validColor: {r: 6.2745094, g: 0.29017332, b: 0, a: 0.8509804}
   invalidColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!120 &598509667653900069
 LineRenderer:
@@ -2141,7 +2213,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3076
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -2196,7 +2268,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RegrabOrbStep
+          m_StringArgument: TeleportStep
           m_BoolArgument: 0
         m_CallState: 2
   _fadeMaterial: {fileID: 2100000, guid: 9d05a0214c9327b449860540efca08f4, type: 2}
@@ -2888,7 +2960,7 @@ GameObject:
   - component: {fileID: 7715499685247812817}
   - component: {fileID: 4818391149651651447}
   - component: {fileID: 4864310665731209066}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: LeftArmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4884,7 +4956,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7875616011625446395}
-  m_Layer: 0
+  - component: {fileID: 6526787181262849827}
+  - component: {fileID: 4611988149979714939}
+  - component: {fileID: 1756730894020367307}
+  m_Layer: 10
   m_Name: Left Arm IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4906,6 +4981,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4176871585063992797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &6526787181262849827
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747383815535494289}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0.01
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!136 &4611988149979714939
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747383815535494289}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 19780
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.51
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: -0.27, y: 1.07, z: 0.19}
+--- !u!114 &1756730894020367307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747383815535494289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee33fca41e2e58b4eb7a181bb9251a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsHandTeleportFix
 --- !u!1 &5756846481611583614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5994,7 +6131,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7195224672458926390}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -7988,18 +8125,24 @@ MonoBehaviour:
   head:
     xrTarget: {fileID: 8424142011389712124}
     ikTarget: {fileID: 5800523683166511947}
+    rbTarget: {fileID: 0}
     positionOffset: {x: 0, y: -0.15, z: 0}
     rotationOffset: {x: 0, y: 0, z: 0}
+    usePhysics: 0
   leftHand:
     xrTarget: {fileID: 334929514476106561}
     ikTarget: {fileID: 7875616011625446395}
+    rbTarget: {fileID: 6526787181262849827}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 0, y: 0, z: 0}
+    usePhysics: 1
   rightHand:
     xrTarget: {fileID: 7225041135724484854}
     ikTarget: {fileID: 6542137802012591265}
+    rbTarget: {fileID: 4611639229840726641}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 0, y: 0, z: 0}
+    usePhysics: 1
 --- !u!114 &2967087556475438502
 MonoBehaviour:
   m_ObjectHideFlags: 0

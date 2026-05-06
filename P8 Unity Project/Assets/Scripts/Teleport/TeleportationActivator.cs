@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -36,20 +37,20 @@ public class TeleportationActivator : MonoBehaviour
         teleportActivatorAction.action.performed -= Action_performed;
         teleportActivatorAction.action.canceled -= KillLoopAudio;
         if (teleportAimingAudioSource != null)
-            AudioManager.StopLoopSound(teleportAimingAudioSource);
+            AudioManager.StopLooping(teleportAimingAudioSource);
     }
 
     private void Action_performed(InputAction.CallbackContext obj)
     {
         if (!orbConnected) return;
         teleportInteractor.gameObject.SetActive(true);
-        teleportAimingAudioSource = AudioManager.PlayLoopSound(SfxType.TeleportAiming, transform);
+        teleportAimingAudioSource = AudioManager.PlayLooping(SfxType.TeleportAiming, transform);
     }
 
     void KillLoopAudio(InputAction.CallbackContext obj)
     {
         if (teleportAimingAudioSource != null)
-            AudioManager.StopLoopSound(teleportAimingAudioSource);
+            AudioManager.StopLooping(teleportAimingAudioSource);
     }
 
     void Update()
@@ -88,6 +89,6 @@ public class TeleportationActivator : MonoBehaviour
         }
         teleportInteractor.gameObject.SetActive(false);
         onAfterTeleport?.Invoke();
-        AudioManager.StopLoopSound(teleportAimingAudioSource);
+        AudioManager.StopLooping(teleportAimingAudioSource);
     }
 }

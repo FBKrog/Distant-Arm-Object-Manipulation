@@ -451,9 +451,9 @@ MonoBehaviour:
   goGoExtend: {fileID: 0}
   daomPositionOffset: {x: -0.1, y: -0.02, z: 0}
   daomRotationOffset: {x: 0, y: 180, z: 135}
-  goGoPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
+  goGoPositionOffset: {x: 0.02, y: 0.06, z: 0}
   goGoRotationOffset: {x: 35, y: 90, z: 180}
-  homerPositionOffset: {x: -0.12, y: 0.06, z: 0.07}
+  homerPositionOffset: {x: 0.02, y: 0.06, z: 0}
   homerRotationOffset: {x: 35, y: 90, z: 180}
   leverHandlePoint: {fileID: 6044137656340020379}
   hingeAxisLocal: {x: 0, y: 1, z: 0}
@@ -537,6 +537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: df03e349916fdd8439ba0607fa35cce5, type: 2}
+  homerRotationOffset: {x: 0, y: 0, z: 0}
+  homerPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &3326497799186379153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFX
-  sfx: 24
+  sfxSO: {fileID: 11400000, guid: 3c8e56476453ab342a52dd70125bbe5b, type: 2}
   sfxOnImpact: 0
   twoD: 0
   targetTransform: {fileID: 0}

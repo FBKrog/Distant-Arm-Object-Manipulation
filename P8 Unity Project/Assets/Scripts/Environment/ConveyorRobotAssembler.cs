@@ -23,13 +23,14 @@ public class ConveyorRobotAssembler : MonoBehaviour
             var part = robotPart.part;
             acquiredParts.Add(part);
 
-            AudioManager.PlaySound(SfxType.Assembly, transform);
+            AudioManager.Play(SfxType.Assembly, transform);
 
             if (AreAllPartsAcquired())
             {
                 AssembleRobot();
             }
-            Destroy(other.gameObject);
+            print(other.name);
+            //Destroy(other.gameObject);
         }
     }
 
@@ -46,6 +47,6 @@ public class ConveyorRobotAssembler : MonoBehaviour
         // Clear one of each acquired part for the next assembly
         foreach (var part in Enum.GetValues(typeof(Parts)).Cast<Parts>())
             acquiredParts.Remove(part);
-        AudioManager.PlaySound(SfxType.AssemblyComplete, transform);
+        AudioManager.Play(SfxType.AssemblyComplete, transform);
     }
 }

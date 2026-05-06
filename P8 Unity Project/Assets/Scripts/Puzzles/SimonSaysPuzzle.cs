@@ -43,6 +43,10 @@ public class SimonSaysPuzzle : MonoBehaviour
     [Tooltip("Seconds all buttons flash red after a wrong-order press.")]
     [SerializeField] private float wrongFlashDuration = 1.2f;
 
+    [Header("Idle Repeat")]
+    [Tooltip("Seconds without a button press before the sequence replays automatically. Set to 0 to disable.")]
+    [SerializeField] private float idleRepeatDelay = 10f;
+
     [Header("Events")]
     public UnityEvent OnPuzzleCompleted;
 
@@ -52,6 +56,7 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     private int currentStep;
     private Coroutine activeCoroutine;
+    private float _lastInputTime;
 
     // Pre-allocated per-button listeners capturing index by value.
     private UnityEngine.Events.UnityAction[] _buttonListeners;
@@ -72,6 +77,16 @@ public class SimonSaysPuzzle : MonoBehaviour
         // All buttons start disabled, showing only their base material.
         SetAllButtonsInteractable(false);
         ResetAllButtons();
+    }
+
+    void Update()
+    {
+        if (state != PuzzleState.WaitingForInput || idleRepeatDelay <= 0f) return;
+        if (Time.time - _lastInputTime < idleRepeatDelay) return;
+
+        UnsubscribeFromAllButtons();
+        if (activeCoroutine != null) StopCoroutine(activeCoroutine);
+        activeCoroutine = StartCoroutine(IdleRepeatCoroutine());
     }
 
     void OnDestroy()
@@ -120,6 +135,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             }
 
             buttons[idx].SetLightState(sequenceColor, true);
+            AudioManager.Play(SfxType.SimonSequenceLight, buttons[idx].transform);
             yield return new WaitForSeconds(sequenceShowDuration);
             buttons[idx].SetLightState(Color.black, false); // back to base material
 
@@ -132,9 +148,24 @@ public class SimonSaysPuzzle : MonoBehaviour
 
         currentStep = 0;
         SubscribeToAllButtons();
+        _lastInputTime = Time.time;
         state = PuzzleState.WaitingForInput;
 
         activeCoroutine = null;
+    }
+
+    private IEnumerator IdleRepeatCoroutine()
+    {
+        state = PuzzleState.ShowingSequence;
+        SetAllButtonsInteractable(false);
+
+        for (int i = 0; i < buttons.Length; i++)
+            if (buttons[i] != null) buttons[i].UnlockAndSnapBack();
+
+        yield return null; // grace frame for snap-back coroutines to start
+
+        ResetAllButtons();
+        activeCoroutine = StartCoroutine(ShowSequenceCoroutine());
     }
 
     private IEnumerator WrongInputCoroutine()
@@ -169,7 +200,8 @@ public class SimonSaysPuzzle : MonoBehaviour
     private void OnButtonPressed(int buttonIndex)
     {
         if (state != PuzzleState.WaitingForInput) return;
-        AudioManager.PlaySound(SfxType.SimonButtonPress, transform);
+        _lastInputTime = Time.time;
+        AudioManager.Play(SfxType.SimonButtonPress, transform);
         int expectedIndex = sequence[currentStep];
 
         if (buttonIndex == expectedIndex)
@@ -185,7 +217,7 @@ public class SimonSaysPuzzle : MonoBehaviour
                 SetAllButtonsOverlay(correctColor, overlayAlpha, true);
                 UnsubscribeFromAllButtons();
                 state = PuzzleState.Completed;
-                AudioManager.PlaySound(SfxType.SimonCorrect, transform);
+                AudioManager.Play(SfxType.SimonCorrect, transform);
                 Debug.Log($"[SimonSaysPuzzle:{name}] Puzzle completed — firing OnPuzzleCompleted.");
                 OnPuzzleCompleted.Invoke();
             }
@@ -195,7 +227,7 @@ public class SimonSaysPuzzle : MonoBehaviour
             // Wrong order.
             UnsubscribeFromAllButtons();
             if (activeCoroutine != null) StopCoroutine(activeCoroutine);
-            AudioManager.PlaySound(SfxType.SimonWrong, transform);
+            AudioManager.Play(SfxType.SimonWrong, transform);
             activeCoroutine = StartCoroutine(WrongInputCoroutine());
         }
     }

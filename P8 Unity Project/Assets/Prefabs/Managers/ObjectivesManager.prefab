@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &674290638065339267
+--- !u!1 &1811118839066844378
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 815460456919414840}
-  - component: {fileID: 6557113022658846402}
+  - component: {fileID: 2480578310126148083}
+  - component: {fileID: 2207946992050787605}
   m_Layer: 0
   m_Name: TutorialManager GoGo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &815460456919414840
+  m_IsActive: 1
+--- !u!4 &2480578310126148083
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674290638065339267}
+  m_GameObject: {fileID: 1811118839066844378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4170788173571011524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6557113022658846402
+--- !u!114 &2207946992050787605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674290638065339267}
+  m_GameObject: {fileID: 1811118839066844378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05fbdcbb681bdeb4fb26b3678d019e2d, type: 3}
@@ -52,37 +52,91 @@ MonoBehaviour:
     stepId: 
     displayDuration: 15
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must stretch your hand
-      outward and use the <color=#FFFFFF>[SELECT]</color> button to grab it.
+  - subtitleText: To retrieve the <color=#87FFFF>blue orb</color> on the table, you
+      must stretch your hand outward and use the <color=#FFFFFF>[SELECT]</color>
+      button to grab it.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
-      teleportation.
+  - subtitleText: Bring the <color=#87FFFF>blue orb</color> back and place it into
+      the empty slot on your left hand to enable teleportation.
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+  - subtitleText: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
       to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
-      orb</color> to the pedestal to begin the tutorial puzzle.
+  - subtitleText: 'Teleport to the orange rings on the floor in front of the pedestal
+      on your right, in front of the computer.
+
+      Place the <color=#87FFFF>blue
+      orb</color> into the pedestal to begin the first tutorial task.'
+    stepId: ComputerStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'The computer will show a sequence on the buttons in yellow lights.
+
+      Grab
+      & Press the <color=#FFFFFF>buttons</color> on the computer in the correct sequence.'
+    stepId: ComputerStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and Teleport to the
+      orange rings on the floor in front of the pedestal behind you.
+
+      Place
+      the <color=#87FFFF>blue orb</color> into the pedestal to begin the next tutorial
+      task.'
+    stepId: ValveStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Grab and turn the <color=#FFFFFF>Valve</color> on the wall.
+    stepId: ValveStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
+      adjacent room through the 2 doors.
+
+      The doors can open when the required
+      tasks are completed and you stand in front of them.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
-      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
-      the lever to turn on the light in the factory.
-    stepId: FuseColliderStep
+  - subtitleText: Place the <color=#87FFFF>blue orb</color> into the pedestal to
+      begin your next task.
+    stepId: WireStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Grab the <color=#FFFFFF>Wire</color> and extend your <color=#FFFFFF>GoGo</color>
+      Arm to place it into the Plug on the wall.
+    stepId: WireStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Teleport to the next pedestal at the end of this room and place
+      the <color=#87FFFF>blue orb</color> inside to begin your next task.
+    stepId: FuseStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: "The Fusebox needs <color=#FFFFFF>three fuses</color> to power
+      on the light in the factory. \nGrab the missing fuse from the floor and place
+      it into the Fusebox."
+    stepId: FuseStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'On the wall there is a <color=#FFFFFF>Lever</color>.
+
+      Grab
+      and pull down the <color=#FFFFFF>Lever</color> to turn on the factory  lights.'
+    stepId: LeverStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the <color=#87FFFF>blue orb</color> and teleport further into the factory to
       complete the remaining tasks.
     stepId: 
-    displayDuration: 10
+    displayDuration: 13
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -101,7 +155,8 @@ MonoBehaviour:
   sfxVolumeVariance: 0.02
   subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
---- !u!1 &1206466485640629815
+  sampleHint: 
+--- !u!1 &2030897116786569464
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,22 +164,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4648632467607329093}
-  - component: {fileID: 7682397682567780143}
+  - component: {fileID: 5399326420568358421}
+  - component: {fileID: 2954497517315875966}
   m_Layer: 0
   m_Name: TutorialManager HOMER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4648632467607329093
+  m_IsActive: 1
+--- !u!4 &5399326420568358421
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206466485640629815}
+  m_GameObject: {fileID: 2030897116786569464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -133,13 +188,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4170788173571011524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7682397682567780143
+--- !u!114 &2954497517315875966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206466485640629815}
+  m_GameObject: {fileID: 2030897116786569464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05fbdcbb681bdeb4fb26b3678d019e2d, type: 3}
@@ -148,43 +203,105 @@ MonoBehaviour:
   playTutorialOnStart: 0
   vrCamera: {fileID: 0}
   steps:
-  - subtitleText: You can use the <color=#FFFFFF>Scaled HOMER interaction technique</color>
+  - subtitleText: 'You can use the <color=#FFFFFF>Scaled HOMER interaction technique</color>
       to relocate your arm to interact with distant objects.
+
+      When your arm
+      is extended, the speed at which it moves is scaled with how fast you move your
+      hand.'
     stepId: 
     displayDuration: 15
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must use the <color=#FFFFFF>[A]</color>
-      button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot, and the
-      <color=#FFFFFF>[SELECT]</color> button to grab.
+  - subtitleText: To retrieve the <color=#87FFFF>blue orb</color> on the table, you
+      must use the <color=#FFFFFF>[A]</color> button to aim, the <color=#FFFFFF>[TRIGGER]</color>
+      button to shoot, and the <color=#FFFFFF>[SELECT]</color> button to grab and
+      retract.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
-      teleportation.
+  - subtitleText: Place the <color=#87FFFF>blue orb</color> into the empty slot on
+      your left hand to enable teleportation.
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+  - subtitleText: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
       to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
-      orb</color> to the pedestal to begin the tutorial puzzle.
+  - subtitleText: 'Teleport to the orange rings on the floor in front of the pedestal
+      on your right, in front of the computer.
+
+      Place the <color=#87FFFF>blue
+      orb</color> into the pedestal to begin the first tutorial task.'
+    stepId: ComputerStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'The computer will show a sequence on the buttons in yellow lights.
+
+      Grab
+      & Press the <color=#FFFFFF>buttons</color> on the computer in the correct sequence
+      by extending your arm to each of them.'
+    stepId: ComputerStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and Teleport to the
+      pedestal behind you.
+
+      Place the <color=#87FFFF>blue orb</color> into
+      the pedestal to begin the next tutorial task.'
+    stepId: ValveStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Grab and turn the <color=#FFFFFF>Valve</color> on the wall by extending
+      your <color=#FFFFFF>HOMER</color> Arm anywere on the Valve surface.
+    stepId: ValveStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
+      adjacent room through the 2 doors.
+
+      The doors can open when the required
+      tasks are completed and you stand in front of them.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
-      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
-      the lever to turn on the light in the factory.
-    stepId: FuseColliderStep
+  - subtitleText: Place the <color=#87FFFF>blue orb</color> into the pedestal to
+      begin your next task.
+    stepId: WireStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Aim your <color=#FFFFFF>HOMER</color> Arm at the <color=#FFFFFF>Wire</color>
+      to grab it.
+
+      Move your arm with the wire in hand to place it in the Plug
+      on the Machine marked with <color=#FFFFFF>T</color>.'
+    stepId: WireStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Teleport to the next pedestal at the end of this room and place
+      the <color=#87FFFF>blue orb</color> inside to begin your next task.
+    stepId: FuseStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: "The Fusebox needs <color=#FFFFFF>three fuses</color> to power
+      on the factory. \nGrab and insert the missing fuse into the Fusebox."
+    stepId: FuseStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'On the wall there is a <color=#FFFFFF>Lever</color>.
+
+      Aim
+      your <color=#FFFFFF>HOMER</color> Arm anywhere on the handle, then pull the
+      <color=#FFFFFF>Lever</color> to turn on the factory lights.'
+    stepId: LeverStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the <color=#87FFFF>blue orb</color> and teleport further into the factory to
       complete the remaining tasks.
     stepId: 
-    displayDuration: 10
+    displayDuration: 13
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -203,6 +320,7 @@ MonoBehaviour:
   sfxVolumeVariance: 0.02
   subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
+  sampleHint: 
 --- !u!1 &4155103511497936179
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,38 +374,97 @@ MonoBehaviour:
     stepId: 
     displayDuration: 15
     completesObjective: 
-  - subtitleText: To retrieve the blue orb on the table, you must use the <color=#FFFFFF>[A]</color>
-      button to aim, the <color=#FFFFFF>[TRIGGER]</color> button to shoot and retract,
-      and the <color=#FFFFFF>[SELECT]</color> button to grab it.
+  - subtitleText: To retrieve the <color=#87FFFF>blue orb</color> on the table, you
+      must use the <color=#FFFFFF>[A]</color> button to aim, the <color=#FFFFFF>[TRIGGER]</color>
+      button to shoot and retract, and the <color=#FFFFFF>[SELECT]</color> button
+      to grab it.
     stepId: GrabStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Place the blue orb into the empty slot on your left hand to enable
-      teleportation.
+  - subtitleText: Place the <color=#87FFFF>blue orb</color> into the empty slot on
+      your left hand to enable teleportation.
     stepId: SnapStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: You must tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+  - subtitleText: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
       to teleport to a desired destination.
     stepId: TeleportStep
     displayDuration: 0
     completesObjective: OrbObjective
-  - subtitleText: Teleport to the adjacent room and place the <color=#87FFFF>blue
-      orb</color> to the pedestal to begin the tutorial puzzle.
+  - subtitleText: 'Teleport to the orange rings on the floor in front of the pedestal
+      on your right, in front of the computer.
+
+      Place the <color=#87FFFF>blue
+      orb</color> into the pedestal to begin the first tutorial task.'
+    stepId: ComputerStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Place your <color=#FFFFFF>DAOM</color> arm in the middle of the
+      Buttons on <color=#FFFFFF>T</color>.
+
+      The computer will show a sequence
+      on the buttons in yellow lights.
+
+      Grab & Press the <color=#FFFFFF>buttons</color>
+      on the computer in the correct sequence.'
+    stepId: ComputerStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and Teleport to the
+      orange rings on the floor in front of the pedestal behind you.
+
+      Place
+      the <color=#87FFFF>blue orb</color> into the pedestal to begin the next tutorial
+      task.'
+    stepId: ValveStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Grab and turn the <color=#FFFFFF>Valve</color> on the wall by placing
+      your <color=#FFFFFF>DAOM</color> Arm anywere on the wall underneath.
+    stepId: ValveStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
+      adjacent room through the 2 doors.
+
+      The doors can open when the required
+      tasks are completed and you stand in front of them.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: The fusebox needs three fuses to power on the light in the factory.
-      Grab the missing fuse and place it in the empty slot in the fusebox, and pull
-      the lever to turn on the light in the factory.
-    stepId: FuseColliderStep
+  - subtitleText: Place the <color=#87FFFF>blue orb</color> into the pedestal to
+      begin your next task.
+    stepId: WireStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Grab the <color=#FFFFFF>Wire</color> and extend your <color=#FFFFFF>DAOM</color>
+      Arm to place it in the Plug on the wall.
+    stepId: WireStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: Teleport to the next pedestal at the end of this room and place
+      the <color=#87FFFF>blue orb</color> inside to begin your next task.
+    stepId: FuseStart
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: "The Fusebox needs <color=#FFFFFF>three fuses</color> to power
+      on the light in the factory. \nGrab and insert the missing fuse into the Fusebox."
+    stepId: FuseStep
+    displayDuration: 0
+    completesObjective: 
+  - subtitleText: 'On the wall there is a <color=#FFFFFF>Lever</color>.
+
+      Place
+      your <color=#FFFFFF>DAOM</color> Arm anywhere on the wall beneath it, then
+      pull the <color=#FFFFFF>Lever</color> to turn on the factory  lights.'
+    stepId: LeverStep
     displayDuration: 0
     completesObjective: 
   - subtitleText: Congratulations, you have now completed the tutorial! Please grab
       the <color=#87FFFF>blue orb</color> and teleport further into the factory to
       complete the remaining tasks.
     stepId: 
-    displayDuration: 10
+    displayDuration: 13
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -302,10 +479,11 @@ MonoBehaviour:
   fontSize: 3.5
   writingSpeed: 0.06
   writingSpeedVariance: 0.015
-  sfxPitchVariance: 0.1
+  sfxPitchVariance: 0.05
   sfxVolumeVariance: 0.02
   subtitleFont: {fileID: 11400000, guid: 9c1b5106b2ac6d14485a57ecda590818, type: 2}
   objectivesManager: {fileID: 1034715964346803313}
+  sampleHint: 
 --- !u!1 &5950508674144004181
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,8 +517,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2399485307500871039}
-  - {fileID: 815460456919414840}
-  - {fileID: 4648632467607329093}
+  - {fileID: 5399326420568358421}
+  - {fileID: 2480578310126148083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1034715964346803313

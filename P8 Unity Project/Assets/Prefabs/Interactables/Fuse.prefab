@@ -397,6 +397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabPose
   data: {fileID: 11400000, guid: e461ec182e446b849ab0c27e1509809b, type: 2}
+  homerRotationOffset: {x: 15, y: 0, z: 90}
+  homerPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5539419357725877165
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,6 +85,11 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
         if (interactor != null)
             orb.interactionManager.SelectExit(interactor, orb);
 
+        // HOMER holds objects directly (not via XRI select), so release it explicitly.
+        // EndGrab() clears GrabbedObject, restores kinematic, and triggers arm retraction.
+        if (homerRaycast != null && homerRaycast.GrabbedObject == orb.gameObject)
+            homerRaycast.EndGrab();
+
         // Wait one frame for XRI to process the release
         yield return null;
 
@@ -98,7 +103,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 
         _snappedOrb = orb;
         _isSnapping = false;
-        AudioManager.PlaySound(SfxType.OrbPlaced, transform);
+        AudioManager.Play(SfxType.OrbPlaced, transform);
 
 
         if (teleportationActivator != null)

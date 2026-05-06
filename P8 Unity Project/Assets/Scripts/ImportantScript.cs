@@ -33,7 +33,7 @@ public class ImportantScript : MonoBehaviour
     public void DoThing()
     {
         StartCoroutine(ChangeLightColor());
-        AudioManager.PlayLoopSound(SfxType.Griddy, transform, false, true);
+        AudioManager.PlayLooping(SfxType.Griddy, transform, false, true);
     }
 
     IEnumerator ChangeLightColor()

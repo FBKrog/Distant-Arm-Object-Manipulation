@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
-
 /// <summary>
 /// Produces a blink-to-black transition with correct ordering:
 ///   1. Fade to black
@@ -41,6 +40,12 @@ public class TeleportBlink : MonoBehaviour
     /// </summary>
     public System.Action onTeleported;       // kept for code subscribers
     public UnityEvent    onTeleportedEvent;  // Inspector-wirable
+
+    // Event action for hand physics teleport fix
+    public static event System.Action teleportEnded;
+    public static event System.Action teleportStarted;
+    public static void OnTeleportEnded() => teleportEnded?.Invoke();
+    public static void OnTeleportStarted() => teleportStarted?.Invoke();
 
     private TeleportationActivator _activator;
     [SerializeField] private Material _fadeMaterial;
@@ -93,12 +98,13 @@ public class TeleportBlink : MonoBehaviour
         Debug.Log("[TeleportBlink] OnBeforeTeleport fired — starting blink.");
         if (_blinkCoroutine != null)
             StopCoroutine(_blinkCoroutine);
-        AudioManager.PlaySound(SfxType.Teleport, transform);
+        AudioManager.Play(SfxType.Teleport, transform);
         _blinkCoroutine = StartCoroutine(BlinkThenTeleport(executeTeleport));
     }
 
     private IEnumerator BlinkThenTeleport(System.Action executeTeleport)
     {
+        OnTeleportStarted();
         // 1. Fade to black — runs over multiple frames before anything moves
         for (float t = 0f; t < fadeOutDuration; t += Time.deltaTime)
         {
@@ -132,6 +138,7 @@ public class TeleportBlink : MonoBehaviour
         SetAlpha(0f);
 
         _blinkCoroutine = null;
+        OnTeleportEnded();
     }
 
     private void SetAlpha(float alpha)

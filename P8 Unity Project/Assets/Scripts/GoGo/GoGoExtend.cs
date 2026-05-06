@@ -58,11 +58,12 @@ public class GoGoExtend : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
-    [SerializeField] SfxType extendedLoopSfx;
 
     private AudioSource _extendedLoopSource;
     private Transform _virtualHand;
     private XRDirectInteractor _interactor;
+    private Rigidbody _virtualHandRb;
+    public bool disablePhysicsWhileGrabbing;
 
     /// <summary>The instantiated floating hand Transform. LeverGrab/ValveGrab/SimonButton read and write its position for arc-locking.</summary>
     public Transform VirtualHand => _virtualHand;
@@ -86,10 +87,10 @@ public class GoGoExtend : MonoBehaviour
             return;
         }
 
-        GameObject hand = Instantiate(goGoHandPrefab);
-        hand.transform.SetParent(null);
+        GameObject hand = Instantiate(goGoHandPrefab, transform.position, Quaternion.identity, null);
         _virtualHand = hand.transform;
         _interactor = hand.GetComponentInChildren<XRDirectInteractor>();
+        _virtualHandRb = hand.GetComponent<Rigidbody>();
 
         if (_interactor == null)
             Debug.LogWarning("[GoGoExtend] Instantiated GoGo hand prefab has no XRDirectInteractor component.", this);
@@ -100,24 +101,24 @@ public class GoGoExtend : MonoBehaviour
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(true);
         SetPhysicalHandVisible(false);
         if (loopSfxWhileExtended)
-            _extendedLoopSource = AudioManager.PlayLoopSound(extendedLoopSfx, transform, true);
+            _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
     }
 
     void OnDisable()
     {
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(false);
         SetPhysicalHandVisible(true);
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
         _extendedLoopSource = null;
     }
 
     void OnDestroy()
     {
-        AudioManager.StopLoopSound(_extendedLoopSource);
+        AudioManager.StopLooping(_extendedLoopSource);
         if (_virtualHand != null) Destroy(_virtualHand.gameObject);
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (_virtualHand == null && armXRTarget == null) return;
 
@@ -154,8 +155,27 @@ public class GoGoExtend : MonoBehaviour
         if (armXRTarget != null)
             armXRTarget.transform.SetPositionAndRotation(targetPos, transform.rotation);
 
-        if (_virtualHand != null)
+        if (_virtualHand != null && !disablePhysicsWhileGrabbing)
         {
+            _virtualHandRb.isKinematic = false;
+            // Set position based on velocity for contrained physics.
+            _virtualHandRb.linearVelocity = (targetPos + worldOffset - _virtualHandRb.position) / Time.fixedDeltaTime;
+
+            // Set rotation based on angular velocity for contrained physics.
+            var rotationDifference = (transform.rotation * Quaternion.Euler(rotationOffset)) * Quaternion.Inverse(_virtualHandRb.rotation);
+            rotationDifference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
+            if (angleInDegrees > 180f)
+                angleInDegrees -= 360f;
+            if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
+                _virtualHandRb.angularVelocity = Vector3.zero;
+            else
+                _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        }
+        if(_virtualHand != null && disablePhysicsWhileGrabbing)
+        {
+            _virtualHandRb.isKinematic = true;
+            _virtualHandRb.linearVelocity = Vector3.zero;
+            _virtualHandRb.angularVelocity = Vector3.zero;
             Quaternion handRot = transform.rotation * Quaternion.Euler(rotationOffset);
             Quaternion smoothedRot = Quaternion.Slerp(_virtualHand.rotation, handRot, rotationSmoothing * Time.deltaTime);
             _virtualHand.SetPositionAndRotation(targetPos + worldOffset, smoothedRot);
