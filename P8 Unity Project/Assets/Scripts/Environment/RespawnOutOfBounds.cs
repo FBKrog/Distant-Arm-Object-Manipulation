@@ -1,12 +1,32 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RespawnOutOfBounds : MonoBehaviour
 {
-    void OnTriggerStay(Collider other)
+    [SerializeField] string zoneName;
+    [SerializeField] RespawnType respawnType = RespawnType.OnExit;
+
+    public enum RespawnType { OnEnter, OnExit }
+
+    void Start()
     {
-        if(other.TryGetComponent<Respawnable>(out var respawnable))
+        zoneName = zoneName.ToLower();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (respawnType != RespawnType.OnEnter) return;
+        if (other.TryGetComponent<Respawnable>(out var respawnable) && respawnable.zoneName == zoneName)
         {
-            print("nogen dummede sig lol");
+            respawnable.Respawn();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(respawnType != RespawnType.OnExit) return;
+        if (other.TryGetComponent<Respawnable>(out var respawnable) && respawnable.zoneName == zoneName)
+        {
             respawnable.Respawn();
         }
     }
