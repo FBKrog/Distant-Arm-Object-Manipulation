@@ -108,6 +108,15 @@ public class HOMERArm : MonoBehaviour
     /// </summary>
     public Vector3 ExtendedPos { get => _extendedPos; set => _extendedPos = value; }
 
+    /// <summary>Object being carried back to the physical hand during retraction.</summary>
+    public GameObject CarriedObject => _carriedObject;
+
+    /// <summary>
+    /// Releases the carried object from the virtual hand without delivering it to the physical hand.
+    /// Call from external scripts (e.g. HandTPOrbConnect) that take ownership of the object.
+    /// </summary>
+    public void ReleaseCarried() => DropCarriedObject();
+
     public event Action ExtendStarted;
     public event Action<GameObject> GrabStarted;
     public event Action GrabEnded;

@@ -20,6 +20,7 @@ public class OrbTutorialObjective : MonoBehaviour
     [Header("Reference:")]
     [SerializeField] private TutorialManager tutorialManager;
     [Header("Settings:")]
+    [SerializeField] private HOMERArm homerArm;                 // optional — enables HOMER grab detection
     [SerializeField] private LaunchArm launchArm;                  // optional — enables DAOM grab detection
     [SerializeField] private HandTPOrbConnect orbConnect;
     [SerializeField] private XRGrabInteractable orbGrabInteractable;
@@ -51,6 +52,9 @@ public class OrbTutorialObjective : MonoBehaviour
         orbGrabInteractable.selectEntered.AddListener(OnOrbGrabbed);
         orbConnect.OrbSnapped += OnOrbSnapped;
 
+        if (homerArm != null)
+            homerArm.GrabStarted += OnHOMERGrabbed;
+
         if (launchArm != null)
             LaunchArm.GrabbedGameObject += OnDAOMGrabbed;
 
@@ -63,6 +67,15 @@ public class OrbTutorialObjective : MonoBehaviour
     private void OnOrbGrabbed(SelectEnterEventArgs args)
     {
         if (_step != 1) return;
+        _step = 2;
+        tutorialManager.AdvanceToNextStep();
+    }
+
+    // Covers HOMER grab (fires GrabStarted, not selectEntered)
+    private void OnHOMERGrabbed(GameObject obj)
+    {
+        if (_step != 1) return;
+        if (obj != orbGrabInteractable.gameObject) return;
         _step = 2;
         tutorialManager.AdvanceToNextStep();
     }
