@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEditor;
+using PathCreation.Examples;
 
 [CustomEditor(typeof(VFXPathManager))]
 public class VFXPathManagerEditor : Editor
@@ -9,7 +10,8 @@ public class VFXPathManagerEditor : Editor
     {
         base.OnInspectorGUI();
         VFXPathManager vFXPathManager = (VFXPathManager)target;
-        if (GUILayout.Button("Play")){
+        if (GUILayout.Button("Play"))
+        {
             vFXPathManager.StartVFX();
         }
         if (GUILayout.Button("Stop"))
@@ -17,34 +19,62 @@ public class VFXPathManagerEditor : Editor
             vFXPathManager.StopVFX();
         }
     }
-
 }
 
 public class VFXPathManager : MonoBehaviour
 {
     private VisualEffect effect;
+    private PathFollower pathFollower;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         effect = GetComponentInChildren<VisualEffect>();
         effect.Stop();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartVFX()
     {
-        effect = GetComponentInChildren<VisualEffect>();
-        effect.Play();
+        if (effect != null)
+        {
+            effect.Play();
+        }
+        else
+        {
+            effect = GetComponentInChildren<VisualEffect>();
+            effect.Play();
+        }
+
+        if (pathFollower != null)
+        {
+            pathFollower.isActive = true;
+        }
+        else
+        {
+            pathFollower = GetComponentInChildren<PathFollower>();
+            pathFollower.isActive = true;
+        }
     }
 
-    public void StopVFX() {
-        effect = GetComponentInChildren<VisualEffect>();
-        effect.Stop();
+    public void StopVFX() 
+    {
+        if(effect != null)
+        {
+            effect.Stop();
+        }
+        else
+        {
+            effect = GetComponentInChildren<VisualEffect>();
+            effect.Stop();
+        }
+
+        if (pathFollower != null)
+        {
+            pathFollower.isActive = false;
+        }
+        else
+        {
+            pathFollower = GetComponentInChildren<PathFollower>();
+            pathFollower.isActive = false;
+        }
     }
 }
