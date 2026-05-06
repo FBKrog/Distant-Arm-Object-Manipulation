@@ -181,15 +181,43 @@ public class GoGoExtend : MonoBehaviour
             else
                 _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
         }
-        if (_virtualHand != null && disablePhysicsWhileGrabbing)
+        if (_virtualHandRb != null && disablePhysicsWhileGrabbing)
         {
             _virtualHandRb.isKinematic = true;
             _virtualHandRb.linearVelocity = Vector3.zero;
             _virtualHandRb.angularVelocity = Vector3.zero;
-            Quaternion handRot = transform.rotation * Quaternion.Euler(rotationOffset);
-            Quaternion smoothedRot = Quaternion.Slerp(_virtualHand.rotation, handRot, rotationSmoothing * Time.deltaTime);
-            _virtualHand.SetPositionAndRotation(targetPos + worldOffset, smoothedRot);
+            // Position written in LateUpdate so it lands at order 100, before LeverGrab/ValveGrab (order 200).
         }
+    }
+
+    void LateUpdate()
+    {
+        if (_virtualHand == null || !disablePhysicsWhileGrabbing) return;
+
+        Vector3 chestPos = GetChestPosition();
+        Vector3 controllerPos = transform.position;
+        Vector3 toController = controllerPos - chestPos;
+        float R_r = toController.magnitude;
+        if (R_r < 1e-5f) return;
+
+        Vector3 dir = toController / R_r;
+        float D = 2f / 3f * armLength;
+        float armOverThree = armLength / 3f;
+        float k = armOverThree > 1e-5f
+            ? Mathf.Max(0f, maxReachDistance - armLength) / (armOverThree * armOverThree)
+            : 0f;
+        float R_v = R_r < D ? R_r : R_r + k * (R_r - D) * (R_r - D);
+        R_v = Mathf.Min(R_v, maxReachDistance);
+
+        Vector3 targetPos = chestPos + dir * R_v;
+        Vector3 worldOffset = transform.TransformDirection(handPositionOffset);
+
+        _virtualHand.SetPositionAndRotation(
+            targetPos + worldOffset,
+            transform.rotation * Quaternion.Euler(rotationOffset));
+
+        if (armXRTarget != null)
+            armXRTarget.transform.SetPositionAndRotation(targetPos, transform.rotation);
     }
 
     private void OnResetPerformed(InputAction.CallbackContext ctx)
