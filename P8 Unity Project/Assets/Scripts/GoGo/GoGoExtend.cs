@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
@@ -56,6 +58,10 @@ public class GoGoExtend : MonoBehaviour
     [Tooltip("Vertical offset below the HMD used to estimate chest position when chestTransform is null.")]
     public float chestHeadOffset = 0.45f;
 
+    [Header("Input")]
+    [Tooltip("Button that instantly snaps the virtual hand back to the controller position. Assign a Button action bound to the A/X controller button.")]
+    [SerializeField] private InputActionProperty resetAction;
+
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
 
@@ -102,10 +108,14 @@ public class GoGoExtend : MonoBehaviour
         SetPhysicalHandVisible(false);
         if (loopSfxWhileExtended)
             _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
+        resetAction.action?.Enable();
+        resetAction.action.performed += OnResetPerformed;
     }
 
     void OnDisable()
     {
+        resetAction.action.performed -= OnResetPerformed;
+        resetAction.action?.Disable();
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(false);
         SetPhysicalHandVisible(true);
         AudioManager.StopLooping(_extendedLoopSource);
@@ -171,7 +181,7 @@ public class GoGoExtend : MonoBehaviour
             else
                 _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
         }
-        if(_virtualHand != null && disablePhysicsWhileGrabbing)
+        if (_virtualHand != null && disablePhysicsWhileGrabbing)
         {
             _virtualHandRb.isKinematic = true;
             _virtualHandRb.linearVelocity = Vector3.zero;
@@ -179,6 +189,24 @@ public class GoGoExtend : MonoBehaviour
             Quaternion handRot = transform.rotation * Quaternion.Euler(rotationOffset);
             Quaternion smoothedRot = Quaternion.Slerp(_virtualHand.rotation, handRot, rotationSmoothing * Time.deltaTime);
             _virtualHand.SetPositionAndRotation(targetPos + worldOffset, smoothedRot);
+        }
+    }
+
+    private void OnResetPerformed(InputAction.CallbackContext ctx)
+    {
+        if (_interactor != null && _interactor.hasSelection)
+        {
+            var manager = _interactor.interactionManager;
+            if (manager != null)
+                manager.CancelInteractorSelection((IXRSelectInteractor)_interactor);
+        }
+
+        if (_virtualHandRb != null)
+        {
+            _virtualHandRb.position = transform.position;
+            _virtualHandRb.rotation = transform.rotation * Quaternion.Euler(rotationOffset);
+            _virtualHandRb.linearVelocity = Vector3.zero;
+            _virtualHandRb.angularVelocity = Vector3.zero;
         }
     }
 
