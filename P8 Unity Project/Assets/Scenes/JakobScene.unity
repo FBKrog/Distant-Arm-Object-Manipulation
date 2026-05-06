@@ -83262,7 +83262,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857238924}
   m_LocalRotation: {x: 0.055718407, y: 0.99842715, z: 0.000347359, w: 0.0062191463}
-  m_LocalPosition: {x: 0, y: 0, z: -0.3404564}
+  m_LocalPosition: {x: 0, y: 0, z: -0.339}
   m_LocalScale: {x: 2.5805109, y: 2.5805123, z: 2.5805113}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83270,7 +83270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 6.388}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.015853925, y: 1.9418869}
+  m_AnchoredPosition: {x: 0.032, y: 2.077}
   m_SizeDelta: {x: 5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &857238926
@@ -83320,8 +83320,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.2
-  m_fontSizeBase: 1.2
+  m_fontSize: 2.3
+  m_fontSizeBase: 2.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -142996,11 +142996,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_text
-      value: Lever
+      value: T
       objectReference: {fileID: 0}
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_fontSize
-      value: 1.37
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_fontAsset
@@ -143020,7 +143020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_fontSizeBase
-      value: 1.37
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_sharedMaterial
@@ -143035,20 +143035,28 @@ PrefabInstance:
       value: 4282215834
       objectReference: {fileID: 0}
     - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683470910359945406, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409863740224988812, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.029
+      value: -0.066
       objectReference: {fileID: 0}
     - target: {fileID: 4409863740224988812, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.271
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409863740224988812, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.512
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4481189450866546693, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -150530,6 +150538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e735a501b753d42a21eb32cf965dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnOutOfBounds
+  zoneName: 
+  respawnType: 1
 --- !u!65 &1890896454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159189,15 +159199,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5183437879840826034, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.92
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 5183437879840826034, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.12
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 5183437879840826034, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6518906046934520797, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_AttachTransform
@@ -159209,11 +159219,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_text
-      value: Valve
+      value: T
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_fontSize
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_fontAsset
@@ -159233,7 +159243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_fontSizeBase
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_sharedMaterial
@@ -159253,11 +159263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 256
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_hasFontAssetChanged
