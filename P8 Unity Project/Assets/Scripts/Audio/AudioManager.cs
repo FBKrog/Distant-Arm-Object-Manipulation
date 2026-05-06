@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
@@ -389,15 +388,15 @@ public class AudioManager : MonoBehaviour
 #endif
     }
 }
-
-[CustomEditor(typeof(AudioManager))]
-public class AudioManagerEditor : Editor
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(AudioManager))]
+public class AudioManagerEditor : UnityEditor.Editor
 {
     SfxType sfxType;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        sfxType = (SfxType)EditorGUILayout.EnumPopup("SFX", sfxType);
+        sfxType = (SfxType)UnityEditor.EditorGUILayout.EnumPopup("SFX", sfxType);
         if (GUILayout.Button("Test SFX"))
         {
             Debug.Log($"Playing test sfx: {sfxType}");
@@ -405,3 +404,4 @@ public class AudioManagerEditor : Editor
         }
     }
 }
+#endif

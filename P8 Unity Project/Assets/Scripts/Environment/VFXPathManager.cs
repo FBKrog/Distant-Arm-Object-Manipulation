@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityEditor;
 using PathCreation.Examples;
 
+#if UNITY_EDITOR
+using UnityEditor;
 [CustomEditor(typeof(VFXPathManager))]
 public class VFXPathManagerEditor : Editor
 {
@@ -20,6 +21,7 @@ public class VFXPathManagerEditor : Editor
         }
     }
 }
+#endif
 
 public class VFXPathManager : MonoBehaviour
 {
