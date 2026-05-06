@@ -16587,20 +16587,17 @@ MonoBehaviour:
   daomHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the <color=#FFFFFF>Computer</color>
-    by the end of the conveyor belt. '
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>computer</color>.'
   homerTutorialManager: {fileID: 2009869314}
   homerHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the <color=#FFFFFF>Computer</color>
-    by the end of the conveyor belt. '
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>computer</color>.'
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the <color=#FFFFFF>Computer</color>
-    by the end of the conveyor belt. '
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>computer</color>.'
   displayDuration: 8
   showOnce: 1
 --- !u!114 &68787865
@@ -30510,23 +30507,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: 'There are <color=#FFFFFF>three fuses</color> on the ground.
-
-    Aim
-    and fire your arm at them to pick them up and then insert them into the fusebox.'
+  daomHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
+    up the fuses and insert them into the fusebox to power on the factory.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: 'There are <color=#FFFFFF>three fuses</color> on the ground.
-
-    Aim
-    your arm toward them to pick them up.
-
-    Move your arm to insert them into
-    the fusebox.'
+  homerHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
+    up the fuses and insert them into the fusebox to power on the factory.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: 'There are <color=#FFFFFF>three fuses</color> on the ground.
-
-    Extend
-    your arm to pick them up and insert them into the fusebox.'
+  goGoHintText: There are <color=#FFFFFF>three fuses</color> on the ground. Pick
+    up the fuses and insert them into the fusebox to power on the factory.
   displayDuration: 15
   showOnce: 1
 --- !u!114 &197630837 stripped
@@ -31064,6 +31052,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3632063812203019486, guid: 1f03921c893428f45aaf2860373d0994, type: 3}
   m_PrefabInstance: {fileID: 204505457}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &204891690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204891694}
+  - component: {fileID: 204891693}
+  - component: {fileID: 204891692}
+  - component: {fileID: 204891691}
+  m_Layer: 0
+  m_Name: Task2_Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &204891691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204891690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &204891692
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204891690}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &204891693
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204891690}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &204891694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204891690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.1, y: 2.3500001, z: -12.650001}
+  m_LocalScale: {x: 5.5, y: 3.25, z: 19}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &205280266 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6313659475001412281, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
@@ -61318,17 +61418,17 @@ MonoBehaviour:
   daomHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task by the pipes.'
+    in the ceiling to proceed to the next task by the <color=#FFFFFF>pipes</color>.'
   homerTutorialManager: {fileID: 2009869314}
   homerHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task by the pipes.'
+    in the ceiling to proceed to the next task by the <color=#FFFFFF>pipes</color>.'
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task by the pipes.'
+    in the ceiling to proceed to the next task by the <color=#FFFFFF>pipes</color>.'
   displayDuration: 8
   showOnce: 1
 --- !u!114 &534962554
@@ -91963,22 +92063,386 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].stepId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].stepId
+      value: GrabStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].stepId
+      value: SnapStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].stepId
+      value: TeleportStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].stepId
+      value: ComputerStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].stepId
+      value: ComputerStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].stepId
+      value: ValveStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].stepId
+      value: ValveStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].stepId
+      value: HallwayStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].stepId
+      value: WireStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].stepId
+      value: WireStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].stepId
+      value: FuseStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].stepId
+      value: FuseStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].stepId
+      value: LeverStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
-      value: 'You can use the <color=#FFFFFF>Go-Go interaction technique</color>
+      value: "Commencing Go-Go tutorial program \u2026 the tutorial will consist
+        of five tasks."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].subtitleText
+      value: You can use the <color=#FFFFFF>Go-Go interaction technique</color> 
         to extend your arm to interact with distant objects.
-
-        If your <color=#FFFFFF>Go-Go</color>
-        Arm gets stuck inside the environment, you can press <color=#FFFFFF>B</color>
-        to recall it to a neutral position.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].subtitleText
+      value: To retrieve the <color=#87FFFF>blue orb</color> on the table, you must 
+        <color=#FFFFFF>stretch</color> your arm outward and use the <color=#FFFFFF>[SELECT]</color>
+        button to grab.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the empty slot on your
+        left hand to enable teleportation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].subtitleText
+      value: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+        to teleport to a desired destination.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].subtitleText
+      value: Teleport onto the <color=#FFFFFF>orange rings</color> in front of the
+        pedestal next to the computer. Place the <color=#87FFFF>blue orb</color>
+        into the pedestal to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].subtitleText
+      value: The computer shows a <color=#FFFFFF>button sequence</color> highlighted
+        in yellow. Press the <color=#FFFFFF>buttons</color> in the correct sequence.
+        Stretch your arm outward and grab it using the <color=#FFFFFF>[SELECT]</color>
+        button.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].subtitleText
+      value: Grab and rotate the <color=#FFFFFF>valve</color> on the wall. Stretch
+        your arm outward to grab the valve using the <color=#FFFFFF>[SELECT]</color>
+        button to rotate it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
+        doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
+        sparks/color> of the electric tubes in the ceiling will guide you onward.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the pedestal to begin
+        the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].subtitleText
+      value: Grab and insert the <color=#FFFFFF>chip</color> into the <color=#FFFFFF>plug</color>
+        on the <color=#FFFFFF>factory machine</color>. Grab the <color=#FFFFFF>chip</color>
+        using the <color=#FFFFFF>[SELECT]</color> button and stretch your arm outward
+        to insert it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].subtitleText
+      value: Grab and insert the <color=#FFFFFF>fuse</color> on the ground into the
+        <color=#FFFFFF>fusebox</color>. Stretch your arm outward and grab it using
+        the <color=#FFFFFF>[SELECT]</color> button.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].subtitleText
+      value: Grab and pull the <color=#FFFFFF>lever</color> on the wall. Aim at the
+        <color=#FFFFFF>lever</color> using the <color=#FFFFFF>[A]</color> button
+        and grab it using the <color=#FFFFFF>[TRIGGER]</color>.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].subtitleText
+      value: Congratulations, you have now completed the tutorial!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport back through the
+        door and head further into the factory to complete the remaining tasks.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].displayDuration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].displayDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].displayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].completesObjective
+      value: OrbObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].completesObjective
+      value: Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].stepId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].stepId
+      value: GrabStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].stepId
+      value: SnapStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].stepId
+      value: TeleportStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].stepId
+      value: ComputerStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].stepId
+      value: ComputerStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].stepId
+      value: ValveStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].stepId
+      value: ValveStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].stepId
+      value: HallwayStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].stepId
+      value: WireStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].stepId
+      value: WireStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].stepId
+      value: FuseStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].stepId
+      value: FuseStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].stepId
+      value: LeverStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[0].subtitleText
+      value: "Commencing Scaled HOMER tutorial program \u2026 the tutorial will consist
+        of five tasks."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].subtitleText
+      value: You can use the <color=#FFFFFF>Scaled HOMER interaction technique</color>
+        to relocate your arm to interact with distant objects. Your arm is <color=#FFFFFF>extended</color>
+        based on <color=#FFFFFF>velocity</color> (speed).
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[2].subtitleText
-      value: Bring the <color=#87FFFF>blue orb</color> back and place it into the
-        empty slot on your left hand to enable teleportation.
+      value: To retrieve the <color=#87FFFF>blue orb</color> on the table, you must
+        use the <color=#FFFFFF>[A]</color> button to aim and the <color=#FFFFFF>[TRIGGER]</color>
+        button to shoot, grab, and retract.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the empty slot on your
+        left hand to enable teleportation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].subtitleText
+      value: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+        to teleport to a desired destination.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].subtitleText
+      value: Teleport onto the <color=#FFFFFF>orange rings</color> in front of the
+        pedestal next to the computer. Place the <color=#87FFFF>blue orb</color>
+        into the pedestal to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].subtitleText
+      value: The computer shows a <color=#FFFFFF>button sequence</color> highlighted
+        in yellow. Press the <color=#FFFFFF>buttons</color> in the correct sequence.
+        Aim at a <color=#FFFFFF>button</color> using the <color=#FFFFFF>[A]</color>
+        button and grab it using the <color=#FFFFFF>[TRIGGER]</color> button.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].subtitleText
+      value: 'Grab and rotate the <color=#FFFFFF>valve</color> on the wall. Aim at
+        the <color=#FFFFFF>valve</color> using the <color=#FFFFFF>[A]</color> button
+        and grab it using the <color=#FFFFFF>[TRIGGER]</color> button to rotate it. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
+        doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
+        sparks/color> of the electric tubes in the ceiling will guide you onward.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the pedestal to begin
+        the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].subtitleText
+      value: Grab and insert the <color=#FFFFFF>chip</color> into the <color=#FFFFFF>plug</color>
+        on the <color=#FFFFFF>factory machine</color>. Aim at the <color=#FFFFFF>chip</color>
+        using the <color=#FFFFFF>[A]</color> button and grab it using the <color=#FFFFFF>[TRIGGER]</color>.
+        Your arm is <color=#FFFFFF>extended</color> based on <color=#FFFFFF>velocity</color>
+        (speed).
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].subtitleText
+      value: Grab and insert the <color=#FFFFFF>fuse</color> on the ground into the
+        <color=#FFFFFF>fusebox</color>. Aim at the <color=#FFFFFF>fuse</color> using
+        the <color=#FFFFFF>[A]</color> button and grab it using the <color=#FFFFFF>[TRIGGER]</color>.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].subtitleText
+      value: Grab and pull the <color=#FFFFFF>lever</color> on the wall. Aim at the
+        <color=#FFFFFF>lever</color> using the <color=#FFFFFF>[A]</color> button
+        and grab it using the <color=#FFFFFF>[TRIGGER]</color>.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].subtitleText
+      value: Congratulations, you have now completed the tutorial!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport back through the
+        door and head further into the factory to complete the remaining tasks.
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].displayDuration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].displayDuration
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].displayDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].displayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].completesObjective
+      value: OrbObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].completesObjective
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 4170788173571011524, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -92047,6 +92511,200 @@ PrefabInstance:
     - target: {fileID: 5950508674144004181, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_Name
       value: ObjectivesManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].stepId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].stepId
+      value: GrabStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].stepId
+      value: SnapStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].stepId
+      value: TeleportStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].stepId
+      value: ComputerStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].stepId
+      value: ComputerStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].stepId
+      value: ValveStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].stepId
+      value: ValveStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].stepId
+      value: HallwayStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].stepId
+      value: WireStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].stepId
+      value: WireStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].stepId
+      value: FuseStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].stepId
+      value: FuseStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].stepId
+      value: LeverStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[0].subtitleText
+      value: "Commencing DAOM tutorial program \u2026 the tutorial will consist of
+        five tasks."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].subtitleText
+      value: You can use the <color=#FFFFFF>DAOM interaction technique</color> to
+        attach your arm to any surface for remote control or to shoot at an object
+        to retract it directly.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[2].subtitleText
+      value: To retrieve the <color=#87FFFF>blue orb</color> on the table, you must
+        use the <color=#FFFFFF>[A]</color> button to aim, the <color=#FFFFFF>[TRIGGER]</color>
+        button to shoot and retract, and the <color=#FFFFFF>[SELECT]</color> button
+        to grab.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the empty slot on your
+        left hand to enable teleportation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].subtitleText
+      value: You can now tilt the <color=#FFFFFF>[LEFT THUMBSTICK]</color> forward
+        to teleport to a desired destination.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[5].subtitleText
+      value: Teleport onto the <color=#FFFFFF>orange rings</color> in front of the
+        pedestal next to the computer. Place the <color=#87FFFF>blue orb</color>
+        into the pedestal to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[6].subtitleText
+      value: The computer shows a <color=#FFFFFF>button sequence</color> highlighted
+        in yellow. Press the <color=#FFFFFF>buttons</color> in the correct sequence.
+        Aim at the middle using the <color=#FFFFFF>[A]</color> button, shoot using
+        the <color=#FFFFFF>[TRIGGER]</color> button, and grab using the <color=#FFFFFF>[SELECT]</color>
+        button.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[7].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[8].subtitleText
+      value: Grab and rotate the <color=#FFFFFF>valve</color> on the wall. Aim at
+        a <color=#FFFFFF>surface</color> near the valve using the <color=#FFFFFF>[A]</color>
+        button, shoot using the <color=#FFFFFF>[TRIGGER]</color> button, and grab
+        the valve using the <color=#FFFFFF>[SELECT]</color> button to rotate it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[9].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport through the two
+        doors to the next pedestal. After completing a task, the <color=#87FFFF>blue
+        sparks/color> of the electric tubes in the ceiling will guide you onward.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[10].subtitleText
+      value: Place the <color=#87FFFF>blue orb</color> into the pedestal to begin
+        the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[11].subtitleText
+      value: Grab and insert the <color=#FFFFFF>chip</color> into the <color=#FFFFFF>plug</color>
+        on the <color=#FFFFFF>factory machine</color>. Grab the <color=#FFFFFF>chip</color>
+        using the <color=#FFFFFF>[SELECT]</color> button, aim at a <color=#FFFFFF>surface</color>
+        near the factory machine, and shoot using the <color=#FFFFFF>[TRIGGER]</color>
+        button for remote control.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[12].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport to the next pedestal
+        in the same room. Place the <color=#87FFFF>blue orb</color> into the pedestal
+        to begin the task.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[13].subtitleText
+      value: Grab and insert the <color=#FFFFFF>fuse</color> on the ground into the
+        <color=#FFFFFF>fusebox</color>. Aim at the <color=#FFFFFF>fuse</color> using
+        the <color=#FFFFFF>[A]</color> button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].subtitleText
+      value: Grab and pull the <color=#FFFFFF>lever</color> on the wall. Aim at the
+        <color=#FFFFFF>lever</color> using the <color=#FFFFFF>[A]</color> button
+        and grab it using the <color=#FFFFFF>[TRIGGER]</color> button to shoot and
+        retract, and the <color=#FFFFFF>[SELECT]</color> button to grab.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].subtitleText
+      value: Congratulations, you have now completed the tutorial!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].subtitleText
+      value: Grab the <color=#87FFFF>blue orb</color> and teleport back through the
+        door and head further into the factory to complete the remaining tasks.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[1].displayDuration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[14].displayDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].displayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[3].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[4].completesObjective
+      value: OrbObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[15].completesObjective
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: steps.Array.data[16].completesObjective
+      value: Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98547,13 +99205,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
   daomHintText: "Task completed! \r\nFollow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the conveyor belt."
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>conveyor belt</color>."
   homerTutorialManager: {fileID: 2009869314}
   homerHintText: "Task completed! \r\nFollow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the conveyor belt."
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>conveyor belt</color>."
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: "Task completed! \r\nFollow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task at the conveyor belt."
+    in the ceiling to proceed to the next task at the <color=#FFFFFF>conveyor belt</color>."
   displayDuration: 8
   showOnce: 1
 --- !u!1001 &1036051998
@@ -101789,17 +102447,20 @@ MonoBehaviour:
   daomHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task behind the 3rd conveyor belt Machine.'
+    in the ceiling to proceed to the next task behind the <color=#FFFFFF>third factory
+    machine</color>.'
   homerTutorialManager: {fileID: 2009869314}
   homerHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task behind the 3rd conveyor belt Machine.'
+    in the ceiling to proceed to the next task behind the <color=#FFFFFF>third factory
+    machine</color>.'
   goGoTutorialManager: {fileID: 1131927772}
   goGoHintText: 'Task completed!
 
     Follow the <color=#87FFFF>blue sparks</color>
-    in the ceiling to proceed to the next task behind the 3rd conveyor belt Machine.'
+    in the ceiling to proceed to the next task behind the <color=#FFFFFF>third factory
+    machine</color>.'
   displayDuration: 8
   showOnce: 1
 --- !u!114 &1084323683
@@ -103342,6 +104003,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8627362119230997616, guid: 96aeac0d987362a4d9ee1657551309e6, type: 3}
   m_PrefabInstance: {fileID: 1123161902}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1125813914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125813918}
+  - component: {fileID: 1125813917}
+  - component: {fileID: 1125813916}
+  - component: {fileID: 1125813915}
+  m_Layer: 0
+  m_Name: Task1_Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1125813915
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125813914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1125813916
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125813914}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1125813917
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125813914}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1125813918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125813914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.5, y: 2, z: 9}
+  m_LocalScale: {x: 9, y: 4, z: 6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1127083538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117299,16 +118072,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: 'Turn on the <color=#FFFFFF>three valves</color> by rotating them.
-
-    You
-    can place your <color=#FFFFFF>DAOM</color> arm on the pipe or middle of the valve. '
+  daomHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate each valve until the light turns green to stabilize the pressure.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: Turn on the <color=#FFFFFF>three valves</color> by aiming your arm
-    to them and then rotating them.
+  homerHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate each valve until the light turns green to stabilize the pressure.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: Turn on the <color=#FFFFFF>three valves</color> by grabbing and then
-    rotating them.
+  goGoHintText: There are color=#FFFFFF>three valves</color> connected to the pipes.
+    Rotate each valve until the light turns green to stabilize the pressure.
   displayDuration: 18
   showOnce: 1
 --- !u!114 &1303612143 stripped
@@ -125977,7 +126748,6 @@ Transform:
   - {fileID: 543450652928326975}
   - {fileID: 543450652061315432}
   - {fileID: 543450652693802594}
-  - {fileID: 543450651644975890}
   - {fileID: 543450652096877090}
   - {fileID: 543450652198895784}
   - {fileID: 1039181537}
@@ -130281,17 +131051,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: Grab & Press the <color=#FFFFFF>three buttons</color> in the correct
-    sequence on the computer by placing your <color=#FFFFFF>DAOM</color> arm in the
-    middle. The correct sequence is shown with yellow lights.
+  daomHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
+    Press the button sequences in the correct order to configure the computer to
+    produce robots.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: Grab & Press the <color=#FFFFFF>three buttons</color> in the correct
-    sequence on the computer by aiming your arm to each button. The correct sequence
-    is shown with yellow lights.
+  homerHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
+    Press the button sequences in the correct order to configure the computer to
+    produce robots.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: Grab & Press the <color=#FFFFFF>three buttons</color> in the correct
-    sequence on the computer by extending your arm. The correct sequence is shown
-    with yellow lights.
+  goGoHintText: There are color=#FFFFFF>three button sequences</color> on the computer.
+    Press the button sequences in the correct order to configure the computer to
+    produce robots.
   displayDuration: 20
   showOnce: 1
 --- !u!1 &1534940587
@@ -130820,22 +131590,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: 'Pick up the <color=#FFFFFF>three wires</color> and insert them into
-    the machines with matching numbers.
-
-    Each machine has a plug where the wire
-    can be inserted.
-
-    The <color=#FFFFFF>DAOM</color> arm can be attached below
-    each plug. '
+  daomHintText: There are <color=#FFFFFF>three chips</color> on top of the conveyor
+    belt. Pick up the chips and insert them into the plugs to power on the three
+    factory machines.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: Pick up the <color=#FFFFFF>three wires</color> by aiming your arm
-    at them and insert them into the machines with matching numbers. Each machine
-    has a plug where the wire can be inserted.
+  homerHintText: There are <color=#FFFFFF>three chips</color> on top of the conveyor
+    belt. Pick up the chips and insert them into the plugs to power on the three
+    factory machines.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: Pick up the <color=#FFFFFF>three wires</color> and insert them into
-    the machines with matching numbers. Each machine has a plug where the wire can
-    be inserted.
+  goGoHintText: There are <color=#FFFFFF>three chips</color> on top of the conveyor
+    belt. Pick up the chips and insert them into the plugs to power on the three
+    factory machines.
   displayDuration: 20
   showOnce: 1
 --- !u!114 &1539003100 stripped
@@ -148011,14 +148776,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHintDisplay
   daomTutorialManager: {fileID: 568668845}
-  daomHintText: Pull the <color=#FFFFFF>three levers</color> by placing your <color=#FFFFFF>DAOM</color>
-    arm on the wall underneath to open the doors to the conveyor belt.
+  daomHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
+    Pull each lever to open the doors to the conveyor belts.
   homerTutorialManager: {fileID: 2009869314}
-  homerHintText: Pull the <color=#FFFFFF>three levers</color> by aiming your arm
-    to the handle to open the doors to the conveyor belt.
+  homerHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
+    Pull each lever to open the doors to the conveyor belts.
   goGoTutorialManager: {fileID: 1131927772}
-  goGoHintText: Extend your arm to pull the <color=#FFFFFF>three levers</color> to
-    open the doors to the conveyor belt.
+  goGoHintText: There are color=#FFFFFF>three levers</color> connected to the doors.
+    Pull each lever to open the doors to the conveyor belts.
   displayDuration: 18
   showOnce: 1
 --- !u!114 &1843727289 stripped
@@ -151840,7 +152605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3392264865665739311, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.845
+      value: 20.499996
       objectReference: {fileID: 0}
     - target: {fileID: 3392264865665739311, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -151848,7 +152613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3392264865665739311, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.463
+      value: -16.5
       objectReference: {fileID: 0}
     - target: {fileID: 3392264865665739311, guid: a777049c02889df49a9f3fb9956b6c39, type: 3}
       propertyPath: m_LocalRotation.w
@@ -170095,21 +170860,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &543450651644975890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147995935144}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.019732097, y: -0.8583219, z: -0.033100907, w: 0.5116625}
-  m_LocalPosition: {x: 2.998, y: -0.194, z: 16.458}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1460852599}
-  m_LocalEulerAnglesHint: {x: -4.417, y: -118.4, z: 0}
 --- !u!4 &543450651753008933
 Transform:
   m_ObjectHideFlags: 0
@@ -172806,24 +173556,6 @@ GameObject:
   - component: {fileID: 1711813854896239690}
   m_Layer: 0
   m_Name: Plate (12)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 111
-  m_IsActive: 1
---- !u!1 &919132147995935144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 543450651644975890}
-  - component: {fileID: 3469287837643297975}
-  - component: {fileID: 1711813854924578941}
-  m_Layer: 0
-  m_Name: Plate (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179474,55 +180206,6 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147745363359}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d854cb5155c146b499e532767ba49ff0, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!23 &1711813854924578941
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147995935144}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -193934,14 +194617,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149295038575}
   m_Mesh: {fileID: 3736213754101489272, guid: 63652c0614fa9374aa770e92b026ca1c, type: 3}
---- !u!33 &3469287837643297975
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147995935144}
-  m_Mesh: {fileID: 3736213754101489272, guid: 63652c0614fa9374aa770e92b026ca1c, type: 3}
 --- !u!33 &3469287837818306688
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -201183,7 +201858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 389253514472277592, guid: d4cecb55548f0f942bcc7647cf295748, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.88
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 389253514472277592, guid: d4cecb55548f0f942bcc7647cf295748, type: 3}
       propertyPath: m_LocalRotation.w
@@ -243303,3 +243978,5 @@ SceneRoots:
   - {fileID: 1774507165}
   - {fileID: 1867087718}
   - {fileID: 1609191599}
+  - {fileID: 1125813918}
+  - {fileID: 204891694}
