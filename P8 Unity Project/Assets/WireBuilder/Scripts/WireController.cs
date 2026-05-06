@@ -97,6 +97,8 @@ public class WireController : MonoBehaviour
     public Vector3 selectPosition;
     public Transform mousePossHelper;
 
+    private bool isFrozen = false;
+
 #if UNITY_EDITOR
     [Header("PRESETS")]
     /// <summary>
@@ -403,10 +405,55 @@ public class WireController : MonoBehaviour
 
     private void Update()
     {
-        if (usePhysics)
+        if (usePhysics && !isFrozen)
         {
             RenderWireMesh();
             DistanceBetweenStartAndEnd();
+        }
+    }
+
+    public void SetRadius(float r)
+    {
+        segmentsRadius = r;
+        if (!usePhysics) return;
+        foreach (Transform seg in segments)
+            if (seg.TryGetComponent<SphereCollider>(out var col))
+                col.radius = r;
+    }
+
+    public void SetDrag(float linearDrag, float angularDrag)
+    {
+        foreach (Transform seg in segments)
+            if (seg.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.linearDamping = linearDrag;
+                rb.angularDamping = angularDrag;
+            }
+    }
+
+    public void FreezeWire()
+    {
+        if (isFrozen) return;
+        isFrozen = true;
+        foreach (Transform seg in segments)
+        {
+            if (seg.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
+            }
+        }
+        RenderWireMesh();
+    }
+
+    public void ResetWire()
+    {
+        isFrozen = false;
+        foreach (Transform seg in segments)
+        {
+            if (seg.TryGetComponent<Rigidbody>(out var rb))
+                rb.isKinematic = false;
         }
     }
 

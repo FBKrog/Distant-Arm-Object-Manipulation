@@ -33,14 +33,16 @@ public class PlugController : MonoBehaviour
         StartCoroutine(SnapWire());
     }
 
-    private IEnumerator SnapWire()  
+    private IEnumerator SnapWire()
     {
         isConected = true; // guard against re-entry immediately
         AudioManager.Play(SfxType.WirePlug, transform);
         var grab = endAnchor.GetComponent<XRGrabInteractable>();
+        var wireEndGrabbable = endAnchor.GetComponent<WireEndGrabbable>();
+        var wc = wireEndGrabbable != null ? wireEndGrabbable.wireController : wireController;
 
-        if (TryGetComponent<WireEndGrabbable>(out var wireEnd))
-            wireEnd.wireController.segmentsRadius = 8; // less jitter while plugged in
+        // Boost drag immediately to help the chain settle before freezing
+        wc?.SetDrag(8f, 4f);
 
         // Force-release from the player's hand
         if (grab != null && grab.isSelected)
@@ -58,21 +60,47 @@ public class PlugController : MonoBehaviour
             safetyFrames++;
         }
 
-        // Snap transform
+        // Freeze all chain segments immediately — stops the shaking
+        wc?.FreezeWire();
+
+        // Lock endAnchor for kinematic lerp
         endAnchorRB.linearVelocity  = Vector3.zero;
         endAnchorRB.angularVelocity = Vector3.zero;
         endAnchorRB.isKinematic = true;
-        endAnchor.position = plugPosition.position;
-        Vector3 euler = new Vector3(transform.eulerAngles.x + 90,
-                                    transform.eulerAngles.y,
-                                    transform.eulerAngles.z);
-        endAnchor.rotation = Quaternion.Euler(euler);
 
         // Permanently disable re-grabbing
         if (grab != null)
             grab.enabled = false;
 
+        // Smoothly slide endAnchor into the socket over 0.2 s
+        Vector3 startPos = endAnchor.position;
+        Quaternion startRot = endAnchor.rotation;
+        Quaternion targetRot = Quaternion.Euler(transform.eulerAngles.x + 90,
+                                                transform.eulerAngles.y,
+                                                transform.eulerAngles.z);
+        float duration = 0.2f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            endAnchorRB.MovePosition(Vector3.Lerp(startPos, plugPosition.position, t));
+            endAnchorRB.MoveRotation(Quaternion.Slerp(startRot, targetRot, t));
+            yield return null;
+        }
+        // Final exact snap to avoid float drift
+        endAnchorRB.MovePosition(plugPosition.position);
+        endAnchorRB.MoveRotation(targetRot);
+
         OnPlugged();
+    }
+
+    public void Reset()
+    {
+        isConected = false;
+        var grab = endAnchor != null ? endAnchor.GetComponent<XRGrabInteractable>() : null;
+        if (grab != null)
+            grab.enabled = true;
     }
 
     //private void Update()

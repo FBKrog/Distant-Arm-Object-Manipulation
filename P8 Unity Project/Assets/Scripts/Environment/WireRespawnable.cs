@@ -4,6 +4,8 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class WireRespawnable : MonoBehaviour
 {
     [SerializeField] Rigidbody[] rbs;
+    [SerializeField] WireController wireController;
+    [SerializeField] PlugController[] plugControllers;
     Vector3[] rbInitialPositions;
     Quaternion[] rbInitialRotations;
     bool[] wasKinematic;
@@ -31,6 +33,11 @@ public class WireRespawnable : MonoBehaviour
         {
             wireEnd.interactionManager.SelectExit(wireEnd.firstInteractorSelecting, wireEnd);
         }
+
+        wireController?.ResetWire();
+        foreach (var plug in plugControllers)
+            plug?.Reset();
+
         for (int i = 0; i < rbs.Length; i++)
         {
             rbs[i].isKinematic = true;
@@ -40,6 +47,9 @@ public class WireRespawnable : MonoBehaviour
             rbs[i].transform.localRotation = rbInitialRotations[i];
             rbs[i].isKinematic = wasKinematic[i];
         }
+
+        if (wireEnd != null)
+            wireEnd.enabled = true;
     }
 
 

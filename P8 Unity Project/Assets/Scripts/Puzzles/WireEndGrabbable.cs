@@ -42,24 +42,25 @@ public class WireEndGrabbable : MonoBehaviour
 
     void OnGrabbed(SelectEnterEventArgs args)
     {
-        rb.isKinematic = true; // Ensure kinematic so MovePosition works correctly.
-        wireController.segmentsRadius = 8; // less jitter while holding the end
+        rb.isKinematic = true;
+        wireController.SetRadius(8f);
+        wireController.SetDrag(3f, 1f);
     }
 
     void OnReleased(SelectExitEventArgs args)
     {
-        // Zero velocity before going non-kinematic to prevent a launch on release.
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        // Go non-kinematic so the cable hangs naturally from the StartAnchor.
         rb.isKinematic = false;
-        wireController.segmentsRadius = 2;
+        wireController.SetRadius(2f);
+        wireController.SetDrag(1f, 0.5f);
     }
 
     public void OnHOMERGrab()
     {
         rb.isKinematic = true;
-        wireController.segmentsRadius = 8;
+        wireController.SetRadius(8f);
+        wireController.SetDrag(3f, 1f);
     }
 
     public void OnHOMERRelease()
@@ -67,7 +68,8 @@ public class WireEndGrabbable : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.isKinematic = false;
-        wireController.segmentsRadius = 2;
+        wireController.SetRadius(2f);
+        wireController.SetDrag(1f, 0.5f);
     }
 
     //void FixedUpdate()
