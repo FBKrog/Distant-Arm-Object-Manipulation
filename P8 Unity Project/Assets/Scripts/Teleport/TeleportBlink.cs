@@ -137,6 +137,7 @@ public class TeleportBlink : MonoBehaviour
         }
         SetAlpha(0f);
 
+        yield return new WaitForFixedUpdate();
         _blinkCoroutine = null;
         OnTeleportEnded();
     }
