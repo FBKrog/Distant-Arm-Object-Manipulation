@@ -17,7 +17,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 /// </summary>
 public class OrbTutorialObjective : MonoBehaviour
 {
+    [Header("Reference:")]
     [SerializeField] private TutorialManager tutorialManager;
+    [Header("Settings:")]
     [SerializeField] private LaunchArm launchArm;                  // optional — enables DAOM grab detection
     [SerializeField] private HandTPOrbConnect orbConnect;
     [SerializeField] private XRGrabInteractable orbGrabInteractable;

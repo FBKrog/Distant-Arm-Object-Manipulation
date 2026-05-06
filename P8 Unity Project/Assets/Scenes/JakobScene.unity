@@ -128009,6 +128009,18 @@ PrefabInstance:
       propertyPath: onObjectiveCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1637951136}
+    - target: {fileID: 1407943549580462494, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 2009869314}
+    - target: {fileID: 1811118839066844378, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030897116786569464, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
       value: 'You can use the <color=#FFFFFF>Go-Go interaction technique</color>
@@ -128066,6 +128078,10 @@ PrefabInstance:
       propertyPath: orbConnect
       value: 
       objectReference: {fileID: 102528789}
+    - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 2009869314}
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: orbGrabInteractable
       value: 
@@ -185452,11 +185468,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 207387185875037171, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1022214665727427543, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: armLength

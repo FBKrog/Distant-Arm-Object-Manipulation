@@ -8,10 +8,13 @@ using UnityEngine;
 /// </summary>
 public class TutorialObjective : MonoBehaviour
 {
+    [Header("Reference:")]
+    [SerializeField] private TutorialManager tutorialManager;
+
+    [Header("Adjustments:")]
     [Tooltip("Activate when ObjectivesManager fires an event with this name.")]
     [SerializeField] private string activateOnObjective;
 
-    [SerializeField] private TutorialManager tutorialManager;
     [Tooltip("Seconds to display a pre-completed step before auto-advancing past it.")]
     [SerializeField] private float alreadyCompletedDisplayDuration = 1f;
 
