@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Filtering;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -33,6 +34,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     }
 
     public event System.Action OrbSnapped;
+    public UnityEvent OnOrbConnected;
 
     // Read by OrbPedestal to check whether this hand controls a given orb
     public XRGrabInteractable SnappedOrb => _snappedOrb;
@@ -40,6 +42,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     private XRGrabInteractable _snappedOrb;
     private bool _isSnapping;
     private float _snapCooldown;
+    private bool _orbConnectedFired;
 
     private void Update()
     {
@@ -121,6 +124,12 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
         orb.selectFilters.Add(this);
 
         OrbSnapped?.Invoke();
+
+        if (!_orbConnectedFired)
+        {
+            _orbConnectedFired = true;
+            OnOrbConnected.Invoke();
+        }
 
         // Listen for re-grab so we can detach
         orb.selectEntered.AddListener(OnOrbRegrabbed);
