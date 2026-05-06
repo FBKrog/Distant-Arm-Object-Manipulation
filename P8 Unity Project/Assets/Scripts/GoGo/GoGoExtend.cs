@@ -179,7 +179,7 @@ public class GoGoExtend : MonoBehaviour
             if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
                 _virtualHandRb.angularVelocity = Vector3.zero;
             else
-                _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+                _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad * 0.85f / Time.fixedDeltaTime; // 0.8f is a smoothing factor.
         }
         if (_virtualHandRb != null && disablePhysicsWhileGrabbing)
         {

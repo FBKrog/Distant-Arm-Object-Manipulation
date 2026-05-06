@@ -79242,116 +79242,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813803503}
   m_Mesh: {fileID: 7807538432633192378, guid: 35811ec609f12e1458b09908f2fee630, type: 3}
---- !u!1 &814348637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 814348638}
-  - component: {fileID: 814348642}
-  - component: {fileID: 814348639}
-  - component: {fileID: 814348640}
-  - component: {fileID: 814348641}
-  m_Layer: 13
-  m_Name: Task 2 Respawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &814348638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814348637}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -13.120003, y: 1.0999999, z: -9.3099985}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1774507165}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &814348639
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814348637}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 16375
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 28.08532, y: 0.6783898, z: 49.4899}
-  m_Center: {x: 0.24785805, y: -0.9487504, z: -16.701672}
---- !u!65 &814348640
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814348637}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 16375
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1790781, y: 1.2087467, z: 24.483337}
-  m_Center: {x: -0.32222128, y: -0.8619989, z: -4.206917}
---- !u!65 &814348641
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814348637}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 16375
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 39.89114, y: 0.17750597, z: 39.18571}
-  m_Center: {x: -4.7085896, y: -1.0849922, z: 27.461313}
---- !u!114 &814348642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814348637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f3a8600ffa4e7c4f8b3f23a5aedf43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WireRespawnArea
 --- !u!1001 &816666058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85735,8 +85625,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.4753335, y: 2.3060563, z: 2.715236}
-  m_Center: {x: 1.2376668, y: 0.653028, z: 0.52147853}
+  m_Size: {x: 3.4753335, y: 3.394414, z: 4.1074114}
+  m_Center: {x: 1.2376668, y: 1.197207, z: 0.5164441}
 --- !u!114 &886183158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144959,7 +144849,6 @@ Transform:
   - {fileID: 1196395820}
   - {fileID: 979598424}
   - {fileID: 1890896451}
-  - {fileID: 814348638}
   - {fileID: 1710151438}
   - {fileID: 2096247317}
   - {fileID: 375250670}
@@ -150480,7 +150369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnOutOfBounds
   zoneName: 
-  respawnType: 1
+  respawnType: 0
 --- !u!65 &1890896454
 BoxCollider:
   m_ObjectHideFlags: 0

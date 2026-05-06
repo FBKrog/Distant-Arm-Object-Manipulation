@@ -44,7 +44,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     private float _snapCooldown;
     private bool _orbConnectedFired;
 
-    private void Update()
+    private void FixedUpdate() // physics update for more consistent snapping behavior since hand is physics-driven
     {
         if (_snappedOrb != null)
         {
@@ -55,7 +55,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 
         if (_snapCooldown > 0f)
         {
-            _snapCooldown -= Time.deltaTime;
+            _snapCooldown -= Time.fixedDeltaTime;
             return;
         }
 
