@@ -203,8 +203,12 @@ public class ValveGrab : MonoBehaviour, IRotaryGrabbable
         float angleDelta = Vector3.SignedAngle(grabRefDirProjected, projected.normalized, spinWorldAxis);
 
         // 5. Apply direction lock if requested.
+        // GoGo uses an absolute formula position (not a delta from grab point), so the projected
+        // direction flips sign at grab points rotated 180° from the top. Bypassing lockSpinDirection
+        // for GoGo and always using Abs prevents the locked sign from being established in the wrong
+        // direction, which would cause opposite-direction input to contribute zero.
         float contribution;
-        if (lockSpinDirection)
+        if (lockSpinDirection && activeTechnique != ActiveTechnique.GoGo)
         {
             if (!spinDirectionLocked && Mathf.Abs(angleDelta) > 0.5f)
             {
