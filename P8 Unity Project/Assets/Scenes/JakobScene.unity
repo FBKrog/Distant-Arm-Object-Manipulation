@@ -91912,14 +91912,14 @@ PrefabInstance:
     - target: {fileID: 1407943549580462494, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 2009869314}
+      objectReference: {fileID: 568668845}
     - target: {fileID: 1811118839066844378, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2030897116786569464, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.size
@@ -91983,8 +91983,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
-      value: "Commencing Go-Go tutorial program \u2026 the tutorial will consist
-        of five tasks."
+      value: "Commencing <color=#FFFFFF>Go-Go tutorial program</color> \u2026 the
+        tutorial will consist of five tasks."
       objectReference: {fileID: 0}
     - target: {fileID: 2207946992050787605, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].subtitleText
@@ -92175,8 +92175,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
-      value: "Commencing Scaled HOMER tutorial program \u2026 the tutorial will consist
-        of five tasks."
+      value: "Commencing <color=#FFFFFF>Scaled HOMER tutorial program</color>\u2026
+        the tutorial will consist of five tasks."
       objectReference: {fileID: 0}
     - target: {fileID: 2954497517315875966, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].subtitleText
@@ -92311,6 +92311,10 @@ PrefabInstance:
       propertyPath: steps.Array.data[16].completesObjective
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 4155103511497936179, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4170788173571011524, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.92537
@@ -92370,7 +92374,7 @@ PrefabInstance:
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 2009869314}
+      objectReference: {fileID: 568668845}
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: orbGrabInteractable
       value: 
@@ -92441,8 +92445,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[0].subtitleText
-      value: "Commencing DAOM tutorial program \u2026 the tutorial will consist of
-        five tasks."
+      value: "Commencing <color=#FFFFFF>DAOM tutorial program</color> \u2026 the
+        tutorial will consist of five tasks."
       objectReference: {fileID: 0}
     - target: {fileID: 7143218743850561371, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: steps.Array.data[1].subtitleText
@@ -128906,7 +128910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 576059475463922452, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: homerRaycast
@@ -129022,7 +129026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818019988887690339, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076515107572411841, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: validColor.a
