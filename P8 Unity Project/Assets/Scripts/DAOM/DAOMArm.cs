@@ -458,6 +458,7 @@ public class DAOMArm : MonoBehaviour
         }
         else
         {
+            daomIKTarget.isKinematic = false;
             daomIKTarget.linearVelocity = (daomRoot.transform.TransformPoint(playerHandOffset) - daomIKTarget.position) / Time.fixedDeltaTime;
         }
     }
@@ -484,6 +485,7 @@ public class DAOMArm : MonoBehaviour
         }
         else
         {
+            daomIKTarget.isKinematic = false;
             var difference = relativeRot * Quaternion.Inverse(daomIKTarget.rotation);
             difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
             if (angleInDegrees > 180f)

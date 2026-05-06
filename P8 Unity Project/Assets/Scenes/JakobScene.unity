@@ -46416,8 +46416,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.9671847}
+  m_Center: {x: 0.000000002200436, y: 0, z: -0.01640765}
 --- !u!1 &456288416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 188117416154069327, guid: 281bb00884c3d98448b8a0283f1aef71, type: 3}
@@ -106627,7 +106627,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -128982,7 +128982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.897
+      value: 19.397
       objectReference: {fileID: 0}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalPosition.y
@@ -128990,7 +128990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.05
+      value: -1.0499997
       objectReference: {fileID: 0}
     - target: {fileID: 1149967071737586915, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_LocalRotation.w
@@ -140455,6 +140455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 270462367556478699, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 270462367556478699, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -140498,6 +140502,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 288356183713125748, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 288356183713125748, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -140562,6 +140570,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 867523239606755997, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 867523239606755997, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -140631,6 +140643,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 1495405166654068497, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495405166654068497, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -140682,6 +140698,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 1642782068965827695, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1642782068965827695, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -140742,6 +140762,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 1918350488156624395, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1918350488156624395, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -140811,6 +140835,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 2717830565826094722, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2717830565826094722, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -140854,6 +140882,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 2728692627940998097, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2728692627940998097, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -140931,6 +140963,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 3383611123523094360, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383611123523094360, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -140986,6 +141022,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 3905551573832316521, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3905551573832316521, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -141059,6 +141099,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 4384968063782096197, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384968063782096197, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141130,6 +141174,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 4743697105861832073, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4743697105861832073, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -141203,6 +141251,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 4988771161308807883, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988771161308807883, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141275,6 +141327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 5423301850034224789, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423301850034224789, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141331,6 +141387,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 5497007951421354245, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497007951421354245, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141383,6 +141443,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 5782522330375210667, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782522330375210667, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141426,6 +141490,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 5869511195355123483, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5869511195355123483, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -141474,6 +141542,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 6021122955647761670, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6021122955647761670, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -141559,6 +141631,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 6142446627992928351, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142446627992928351, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141615,6 +141691,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 6570322696105657500, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570322696105657500, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141667,6 +141747,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 7310133357737011463, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310133357737011463, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141710,6 +141794,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 7423894228314354475, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7423894228314354475, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -141891,6 +141979,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 8789393094485579381, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789393094485579381, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
       objectReference: {fileID: 0}
@@ -141934,6 +142026,10 @@ PrefabInstance:
       propertyPath: goGoExtend
       value: 
       objectReference: {fileID: 1967655281}
+    - target: {fileID: 8839191556203641714, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: pressDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8839191556203641714, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: goGoInteractor
       value: 
@@ -156323,7 +156419,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -164362,7 +164458,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -172978,7 +173074,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 2485604557451775669}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 8721998114164234872}
   buttonLight: {fileID: 0}
@@ -198044,7 +198140,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 3658655264571832134}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 7282978555549620499}
   buttonLight: {fileID: 0}
@@ -204730,7 +204826,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 1341398435888877181}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 6398084530600165025}
   buttonLight: {fileID: 0}
@@ -206012,7 +206108,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 7028103315266575194}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 2327370269350252269}
   buttonLight: {fileID: 0}
@@ -210658,7 +210754,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 1149515657265066877}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 3322281585213916290}
   buttonLight: {fileID: 0}
@@ -217051,7 +217147,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 7103274622309151321}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 8208098963057261698}
   buttonLight: {fileID: 0}
@@ -221211,7 +221307,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 2504272663092770161}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 8512621174639605323}
   buttonLight: {fileID: 0}
@@ -227540,7 +227636,7 @@ MonoBehaviour:
   grabPoints:
   - {fileID: 6056576332304255002}
   pressDirectionLocal: {x: 0, y: -1, z: 0}
-  pressDistance: 0.025
+  pressDistance: 0
   snapBackDuration: 0.2
   buttonRenderer: {fileID: 4075306381440579268}
   buttonLight: {fileID: 0}

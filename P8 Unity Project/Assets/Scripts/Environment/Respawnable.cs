@@ -42,7 +42,8 @@ public class Respawnable : MonoBehaviour
 
     public void Respawn()
     {
-        if(!canRespawn) return;
+        print($"[Respawnable]: {gameObject.name} attempted to respawn");
+        if (!canRespawn) return;
         rb.isKinematic = true;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
