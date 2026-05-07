@@ -68,7 +68,7 @@ public class OrbTutorialObjective : MonoBehaviour
     {
         if (_step != 1) return;
         _step = 2;
-        tutorialManager.AdvanceToNextStep();
+        AdvanceUntilStep(snapStepId);
     }
 
     // Covers HOMER grab (fires GrabStarted, not selectEntered)
@@ -77,7 +77,7 @@ public class OrbTutorialObjective : MonoBehaviour
         if (_step != 1) return;
         if (obj != orbGrabInteractable.gameObject) return;
         _step = 2;
-        tutorialManager.AdvanceToNextStep();
+        AdvanceUntilStep(snapStepId);
     }
 
     // Covers DAOM auto-grab (fires before selectEntered on the DAOM path)
@@ -86,7 +86,7 @@ public class OrbTutorialObjective : MonoBehaviour
         if (_step != 1) return;
         if (grabbed != orbGrabInteractable) return;
         _step = 2;
-        tutorialManager.AdvanceToNextStep();
+        AdvanceUntilStep(snapStepId);
     }
 
     // ── Step 2 → 3: orb snapped to hand ──────────────────────────────────────
@@ -97,6 +97,13 @@ public class OrbTutorialObjective : MonoBehaviour
         _step = 3;
         tutorialManager.AdvanceToNextStep();
         Cleanup();
+    }
+
+    // Advances through timer steps until the target stepId is reached.
+    private void AdvanceUntilStep(string targetId)
+    {
+        do { tutorialManager.AdvanceToNextStep(); }
+        while (!string.IsNullOrEmpty(targetId) && tutorialManager.CurrentStepId != targetId);
     }
 
     // ── Pre-completion detection ──────────────────────────────────────────────
