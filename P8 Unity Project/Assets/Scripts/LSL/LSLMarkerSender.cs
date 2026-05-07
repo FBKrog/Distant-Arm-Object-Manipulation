@@ -8,7 +8,18 @@ public class LSLMarkerSender : MonoBehaviour
     [Header("BVP Settings")]
     [SerializeField] string streamName = "OpenSignals";
     [SerializeField] float samplingRate = 1000f; // Hz
-
+    public static LSLMarkerSender Instance;
+    void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         var markerInfo = new StreamInfo(

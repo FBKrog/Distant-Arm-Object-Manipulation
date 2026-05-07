@@ -30,6 +30,7 @@ namespace ResearchLogging
         public void TaskUpdate(string taskName)
         {
             daomLogData.Add(new DaomLogData(taskName, Time.time));
+            LSLMarkerSender.Instance.SendMarker(taskName);
         }
 
         /// <summary>
