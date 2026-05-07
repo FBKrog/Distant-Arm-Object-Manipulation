@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 {
@@ -52,6 +53,10 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
+        if(args.interactableObject.transform.TryGetComponent(out TeleportationArea teleportationArea))
+        {
+            return;
+        }
         if (args != null)
         {
             // Make sticky when grabbing a teleport orb to prevent softlock
@@ -96,6 +101,10 @@ public class DynamicXRDirectInteractorAnimator : XRDirectInteractor
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
+        if (args.interactableObject.transform.TryGetComponent(out TeleportationArea teleportationArea))
+        {
+            return;
+        }
         if (args != null)
         {
             base.OnSelectExited(args);

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2233517013357333993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5363601972529326540}
-  m_Layer: 12
-  m_Name: GrabPoint_3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5363601972529326540
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233517013357333993}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.34162694, y: -0.6101605, z: -0.23242177, w: 0.67599946}
-  m_LocalPosition: {x: -0.03900007, y: -0.044000003, z: -0.0059999875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3178337535639070279}
-  m_LocalEulerAnglesHint: {x: -48.203, y: -88.109, z: 8.861}
 --- !u!1 &2586446888101757631
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,11 +39,14 @@ Transform:
   m_LocalScale: {x: 8.760298, y: 8.76, z: 27.59783}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 689799428125141526}
-  - {fileID: 8677536125701861920}
-  - {fileID: 5363601972529326540}
-  - {fileID: 3998919903965803741}
-  - {fileID: 5533270551741373720}
+  - {fileID: 1661376353793340256}
+  - {fileID: 2643277783853278757}
+  - {fileID: 8724098910767466549}
+  - {fileID: 5860660683654934184}
+  - {fileID: 8981624260069092991}
+  - {fileID: 582475339008329815}
+  - {fileID: 4809108781386550276}
+  - {fileID: 6036092621193205202}
   m_Father: {fileID: 8610991553452961710}
   m_LocalEulerAnglesHint: {x: -0.9, y: 89.6, z: 45}
 --- !u!33 &2941824124039161707
@@ -273,7 +245,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 8677536125701861920}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -343,17 +315,21 @@ MonoBehaviour:
   homer: {fileID: 0}
   goGoExtend: {fileID: 0}
   daomPositionOffset: {x: -0.035, y: -0.07, z: 0}
-  goGoPositionOffset: {x: -0.01, y: 0, z: 0.065}
-  goGoRotationOffset: {x: 70, y: 90, z: 180}
+  goGoPositionOffset: {x: 0, y: 0, z: 0}
+  goGoRotationOffset: {x: 10, y: 0, z: 180}
   homerPositionOffset: {x: 0, y: 0, z: 0.08}
   homerRotationOffset: {x: 80, y: 90, z: 180}
   homerScaleMultiplier: 0.45
   spinAxisLocal: {x: 0, y: 0, z: -1}
   grabPoints:
-  - {fileID: 689799428125141526}
-  - {fileID: 8677536125701861920}
-  - {fileID: 5363601972529326540}
-  - {fileID: 3998919903965803741}
+  - {fileID: 1661376353793340256}
+  - {fileID: 2643277783853278757}
+  - {fileID: 8724098910767466549}
+  - {fileID: 5860660683654934184}
+  - {fileID: 8981624260069092991}
+  - {fileID: 582475339008329815}
+  - {fileID: 4809108781386550276}
+  - {fileID: 6036092621193205202}
   activationRotation: 360
   lockSpinDirection: 1
   OnValveActivated:
@@ -434,6 +410,68 @@ MonoBehaviour:
   targetRenderer: {fileID: 5923003810528227088}
   inactiveColor: {r: 23.96863, g: 0, b: 0, a: 2}
   activeColor: {r: 0, g: 23.96863, b: 0, a: 2}
+--- !u!1 &3100219992078171806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5860660683654934184}
+  m_Layer: 14
+  m_Name: GrabPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5860660683654934184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100219992078171806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.0662, z: 0.0088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3178337535639070279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3226920091903201139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8981624260069092991}
+  m_Layer: 14
+  m_Name: GrabPoint (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8981624260069092991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226920091903201139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.0468, y: -0.0468, z: 0.0088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3178337535639070279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!1 &4070650159643509183
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +587,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &4235447977972178862
+--- !u!1 &4874822644329346364
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,29 +595,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 689799428125141526}
-  m_Layer: 12
-  m_Name: GrabPoint_1
+  - component: {fileID: 6036092621193205202}
+  m_Layer: 14
+  m_Name: GrabPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &689799428125141526
+--- !u!4 &6036092621193205202
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4235447977972178862}
+  m_GameObject: {fileID: 4874822644329346364}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.65943694, y: 0.23545624, z: -0.62380695, w: -0.34722942}
-  m_LocalPosition: {x: 0.040000062, y: 0.042999983, z: -0.0060000243}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0, y: 0.0662, z: 0.0088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3178337535639070279}
-  m_LocalEulerAnglesHint: {x: 48.739, y: -271.686, z: 169.28}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &6129675173446406468
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +799,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 3831874401779924327}
   m_maskType: 0
---- !u!1 &6288847214930676881
+--- !u!1 &6656181894504062836
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,30 +807,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8677536125701861920}
-  m_Layer: 12
-  m_Name: GrabPoint_2
+  - component: {fileID: 1661376353793340256}
+  m_Layer: 14
+  m_Name: GrabPoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8677536125701861920
+--- !u!4 &1661376353793340256
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288847214930676881}
+  m_GameObject: {fileID: 6656181894504062836}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27564272, y: -0.6490728, z: 0.27349955, w: 0.6541588}
-  m_LocalPosition: {x: 0.0420005, y: -0.038999297, z: -0.0059999498}
+  m_LocalRotation: {x: 0.028744014, y: -0.03175414, z: 0.92280895, w: 0.38286945}
+  m_LocalPosition: {x: 0.0468, y: 0.0468, z: 0.0088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3178337535639070279}
-  m_LocalEulerAnglesHint: {x: 45.698, y: -89.553, z: 0}
---- !u!1 &7270039585207992544
+  m_LocalEulerAnglesHint: {x: 4.624, y: 1.652, z: 135}
+--- !u!1 &7584380258778392165
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -800,30 +838,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5533270551741373720}
-  m_Layer: 12
-  m_Name: '[Interactor] Dynamic Attach'
+  - component: {fileID: 582475339008329815}
+  m_Layer: 14
+  m_Name: GrabPoint (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5533270551741373720
+--- !u!4 &582475339008329815
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7270039585207992544}
+  m_GameObject: {fileID: 7584380258778392165}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.49110317, y: -0.34314507, z: -0.7691519, w: -0.22242844}
-  m_LocalPosition: {x: 0.018922847, y: -0.052429896, z: 0.012473861}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.0662, y: -0, z: 0.0088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3178337535639070279}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8608428489376012504
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &7997115695481713230
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -831,29 +869,91 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3998919903965803741}
-  m_Layer: 12
-  m_Name: GrabPoint_4
+  - component: {fileID: 2643277783853278757}
+  m_Layer: 14
+  m_Name: GrabPoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3998919903965803741
+--- !u!4 &2643277783853278757
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8608428489376012504}
+  m_GameObject: {fileID: 7997115695481713230}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.62910557, y: -0.30768448, z: -0.67537, w: 0.23115352}
-  m_LocalPosition: {x: -0.045000292, y: 0.037999824, z: -0.006000035}
+  m_LocalRotation: {x: 0.038707796, y: -0.018337144, z: 0.7060466, w: 0.706869}
+  m_LocalPosition: {x: 0.0662, y: -0, z: 0.0088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3178337535639070279}
-  m_LocalEulerAnglesHint: {x: -44.946, y: -271.547, z: 173.925}
+  m_LocalEulerAnglesHint: {x: 4.624, y: 1.652, z: 90}
+--- !u!1 &8123738851489819690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8724098910767466549}
+  m_Layer: 14
+  m_Name: GrabPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8724098910767466549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123738851489819690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0.0468, y: -0.0468, z: 0.0088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3178337535639070279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+--- !u!1 &8694320677084935273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4809108781386550276}
+  m_Layer: 14
+  m_Name: GrabPoint (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4809108781386550276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694320677084935273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.92387956, w: 0.38268343}
+  m_LocalPosition: {x: -0.0468, y: 0.0468, z: 0.0088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3178337535639070279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135}
 --- !u!1001 &2800397432121571954
 PrefabInstance:
   m_ObjectHideFlags: 0

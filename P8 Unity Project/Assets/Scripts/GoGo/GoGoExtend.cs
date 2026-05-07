@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
@@ -56,6 +58,10 @@ public class GoGoExtend : MonoBehaviour
     [Tooltip("Vertical offset below the HMD used to estimate chest position when chestTransform is null.")]
     public float chestHeadOffset = 0.45f;
 
+    [Header("Input")]
+    [Tooltip("Button that instantly snaps the virtual hand back to the controller position. Assign a Button action bound to the A/X controller button.")]
+    [SerializeField] private InputActionProperty resetAction;
+
     [Header("Audio")]
     [SerializeField] bool loopSfxWhileExtended;
 
@@ -102,10 +108,14 @@ public class GoGoExtend : MonoBehaviour
         SetPhysicalHandVisible(false);
         if (loopSfxWhileExtended)
             _extendedLoopSource = AudioManager.PlayLooping(SfxType.Hover, transform, true);
+        resetAction.action?.Enable();
+        resetAction.action.performed += OnResetPerformed;
     }
 
     void OnDisable()
     {
+        resetAction.action.performed -= OnResetPerformed;
+        resetAction.action?.Disable();
         if (_virtualHand != null) _virtualHand.gameObject.SetActive(false);
         SetPhysicalHandVisible(true);
         AudioManager.StopLooping(_extendedLoopSource);
@@ -169,16 +179,62 @@ public class GoGoExtend : MonoBehaviour
             if (Mathf.Abs(angleInDegrees) < 0.01f || rotationAxis == Vector3.zero)
                 _virtualHandRb.angularVelocity = Vector3.zero;
             else
-                _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad / Time.fixedDeltaTime;
+                _virtualHandRb.angularVelocity = rotationAxis * angleInDegrees * Mathf.Deg2Rad * 0.85f / Time.fixedDeltaTime; // 0.8f is a smoothing factor.
         }
-        if(_virtualHand != null && disablePhysicsWhileGrabbing)
+        if (_virtualHandRb != null && disablePhysicsWhileGrabbing)
         {
             _virtualHandRb.isKinematic = true;
             _virtualHandRb.linearVelocity = Vector3.zero;
             _virtualHandRb.angularVelocity = Vector3.zero;
-            Quaternion handRot = transform.rotation * Quaternion.Euler(rotationOffset);
-            Quaternion smoothedRot = Quaternion.Slerp(_virtualHand.rotation, handRot, rotationSmoothing * Time.deltaTime);
-            _virtualHand.SetPositionAndRotation(targetPos + worldOffset, smoothedRot);
+            // Position written in LateUpdate so it lands at order 100, before LeverGrab/ValveGrab (order 200).
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (_virtualHand == null || !disablePhysicsWhileGrabbing) return;
+
+        Vector3 chestPos = GetChestPosition();
+        Vector3 controllerPos = transform.position;
+        Vector3 toController = controllerPos - chestPos;
+        float R_r = toController.magnitude;
+        if (R_r < 1e-5f) return;
+
+        Vector3 dir = toController / R_r;
+        float D = 2f / 3f * armLength;
+        float armOverThree = armLength / 3f;
+        float k = armOverThree > 1e-5f
+            ? Mathf.Max(0f, maxReachDistance - armLength) / (armOverThree * armOverThree)
+            : 0f;
+        float R_v = R_r < D ? R_r : R_r + k * (R_r - D) * (R_r - D);
+        R_v = Mathf.Min(R_v, maxReachDistance);
+
+        Vector3 targetPos = chestPos + dir * R_v;
+        Vector3 worldOffset = transform.TransformDirection(handPositionOffset);
+
+        _virtualHand.SetPositionAndRotation(
+            targetPos + worldOffset,
+            transform.rotation * Quaternion.Euler(rotationOffset));
+
+        if (armXRTarget != null)
+            armXRTarget.transform.SetPositionAndRotation(targetPos, transform.rotation);
+    }
+
+    private void OnResetPerformed(InputAction.CallbackContext ctx)
+    {
+        if (_interactor != null && _interactor.hasSelection)
+        {
+            var manager = _interactor.interactionManager;
+            if (manager != null)
+                manager.CancelInteractorSelection((IXRSelectInteractor)_interactor);
+        }
+
+        if (_virtualHandRb != null)
+        {
+            _virtualHandRb.position = transform.position;
+            _virtualHandRb.rotation = transform.rotation * Quaternion.Euler(rotationOffset);
+            _virtualHandRb.linearVelocity = Vector3.zero;
+            _virtualHandRb.angularVelocity = Vector3.zero;
         }
     }
 

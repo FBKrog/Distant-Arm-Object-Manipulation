@@ -108,6 +108,15 @@ public class HOMERArm : MonoBehaviour
     /// </summary>
     public Vector3 ExtendedPos { get => _extendedPos; set => _extendedPos = value; }
 
+    /// <summary>Object being carried back to the physical hand during retraction.</summary>
+    public GameObject CarriedObject => _carriedObject;
+
+    /// <summary>
+    /// Releases the carried object from the virtual hand without delivering it to the physical hand.
+    /// Call from external scripts (e.g. HandTPOrbConnect) that take ownership of the object.
+    /// </summary>
+    public void ReleaseCarried() => DropCarriedObject();
+
     public event Action ExtendStarted;
     public event Action<GameObject> GrabStarted;
     public event Action GrabEnded;
@@ -136,6 +145,7 @@ public class HOMERArm : MonoBehaviour
 
     // ── Arm extension (prefab-based) ──────────────────────────────────────
     private Vector3 _extendedPos;
+    private Quaternion extendedRot;
     private GameObject _handInstance;
     private XRDirectInteractor _virtualInteractor;
     private bool _didDisablePhysicalInteractor;
@@ -362,7 +372,7 @@ public class HOMERArm : MonoBehaviour
             }
         }
 
-        Quaternion extendedRot = _state == State.Retracting
+        extendedRot = _state == State.Retracting
             ? transform.rotation * Quaternion.Euler(retractHandRotationOffset)
             : transform.rotation;
 
@@ -399,10 +409,22 @@ public class HOMERArm : MonoBehaviour
             // Reposition virtual hand and IK target every frame they exist — covers Extending, Grabbed, and Retracting.
             VirtualHand.SetPositionAndRotation(_extendedPos, extendedRot);
         }
-        else
+
+        if (IsGrabbing && GrabbedObject != null
+            && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
         {
-            _virtualHandRb.isKinematic = false;
+            GrabbedObject.transform.SetPositionAndRotation(
+                HandTip != null ? HandTip.position : _extendedPos,
+                transform.rotation * _rotationOffset);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(!disablePhysicsWhileGrabbing)
+        {
             // Physics-based movement.
+            _virtualHandRb.isKinematic = false;
             _virtualHandRb.linearVelocity = (_extendedPos - _virtualHandRb.position) / Time.fixedDeltaTime;
 
             // Rotate the virtual hand toward the target rotation.
@@ -415,16 +437,7 @@ public class HOMERArm : MonoBehaviour
             else
                 _virtualHandRb.angularVelocity = (rotationAxis * angleInDegrees * Mathf.Deg2Rad) / Time.fixedDeltaTime;
         }
-
-        if (IsGrabbing && GrabbedObject != null
-            && GrabbedObject.GetComponent<IRotaryGrabbable>() == null)
-        {
-            GrabbedObject.transform.SetPositionAndRotation(
-                HandTip != null ? HandTip.position : _extendedPos,
-                transform.rotation * _rotationOffset);
-        }
     }
-
 
     void OnDestroy()
     {

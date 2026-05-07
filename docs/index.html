@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-bs-theme="dark">
   <head>
     <!--Stating which set of characters are used. Useful in case you may want emoji-rich charactersets-->
     <meta charset="UTF-8" />
     <!--Title showed in bar-->
-    <title>P8 Project</title>
-  
+    <title>Distant Arm Object Manipulation</title>
+
     <!-- Bootstrap frontend library (using CDN) -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -13,16 +13,19 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    
+
     <!--Own custom css-->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Modified navbar header from Bootstrap: https://getbootstrap.com/docs/5.3/components/navbar/ -->
     <div id="header">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="top-navbar">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary fixed-top"
+        id="top-navbar"
+      >
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">P8 project</a>
+          <a class="navbar-brand" href="/">Distant Arm Object Manipulation</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -43,7 +46,12 @@
                 <a class="nav-link" href="#gallery">Gallery</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://github.com/DeadPieGamer/P8-Project">GitHub</a>
+                <a
+                  class="nav-link"
+                  href="https://github.com/DeadPieGamer/P8-Project"
+                  target="_blank"
+                  >GitHub</a
+                >
               </li>
             </ul>
           </div>
@@ -58,26 +66,50 @@
             <img
               src="assets/images/woman cooling down outlined.png"
               class="d-block mx-lg-auto img-fluid rounded"
-              alt="A woman cooling down using a fan"
+              alt="A gif showcasing DAOM in action"
+              title="A gif showcasing DAOM in action"
               height="450"
               loading="lazy"
             />
           </div>
           <div class="col-lg-6">
             <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
-              What is the Arm Bazooka Project?
+              DAOM - Distant Arm Object Manipulation
             </h1>
             <p class="lead">
-              A VR project where you can detach your arm from your body by firing it. When it hits a surface, it'll stick, and you can continue using your arm at that location.<br />
-              The aim is to see how well this would allow for distant object manipulation, when compared to more traditional methods such as a laser.<br />
+              A new interaction method for manipulating distant objects in
+              virtual reality.<br />
+              Works with a metaphor of your arm being a rocket. Your aim your
+              arm and shoot if off with it picking up whatever it hits and
+              returning it to you. If it however hits a surface, it anchors to
+              that surface and you can move it around as if this anchor-point
+              was your shoulder.<br />
+              This allows for fine manipulation of distant objects, as well as
+              decreases the need to aim precisely at far-away objects, as users
+              get an arms-length of wiggle room.
+              <!-- A VR project where you can detach your arm from your body by
+              firing it. When it hits a surface, it'll stick, and you can
+              continue using your arm at that location.<br />
+              The aim is to see how well this would allow for distant object
+              manipulation, when compared to more traditional methods such as a
+              laser.<br /> -->
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
               <a
                 role="button"
                 href="https://github.com/DeadPieGamer/P8-Project"
-                class="btn btn-outline-light btn-lg px-4 me-med-2"
+                class="btn btn-light btn-lg px-4 me-med-2"
+                target="_blank"
               >
                 GitHub
+              </a>
+              <a
+                role="button"
+                href="https://deadpiegamer.itch.io/"
+                class="btn btn-outline-light btn-lg px-4 me-med-2"
+                target="_blank"
+              >
+                Download
               </a>
             </div>
           </div>
@@ -87,11 +119,16 @@
 
     <div id="infobox">
       <div class="container py-5">
-        <h1 class="lh-1 mb-3">
-          HTML is what?
-        </h1>
+        <h1 class="lh-1 mb-3">HTML is what?</h1>
         <p>
-          Use <a href="https://www.w3schools.com/html/default.asp">w3schools</a> for general html info, and <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap</a> to see formatting info (all the classes).
+          Use
+          <a href="https://www.w3schools.com/html/default.asp">w3schools</a> for
+          general html info, and
+          <a
+            href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"
+            >Bootstrap</a
+          >
+          to see formatting info (all the classes).
         </p>
       </div>
     </div>
@@ -184,6 +221,18 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="opening">
+      <div class="container my-3">
+        <div class="row justify-content-center text-center">
+          <h2 class="mb-2 col-lg-10 col-xl-8">Opening Credits</h2>
+          <iframe
+            class="video-aspect col-lg-10 col-xl-8"
+            src="https://www.youtube.com/embed/R3MGEIBUuec"
+          ></iframe>
         </div>
       </div>
     </div>

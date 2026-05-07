@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Filtering;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -33,6 +34,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     }
 
     public event System.Action OrbSnapped;
+    public UnityEvent OnOrbConnected;
 
     // Read by OrbPedestal to check whether this hand controls a given orb
     public XRGrabInteractable SnappedOrb => _snappedOrb;
@@ -40,8 +42,9 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
     private XRGrabInteractable _snappedOrb;
     private bool _isSnapping;
     private float _snapCooldown;
+    private bool _orbConnectedFired;
 
-    private void Update()
+    private void FixedUpdate() // physics update for more consistent snapping behavior since hand is physics-driven
     {
         if (_snappedOrb != null)
         {
@@ -52,7 +55,7 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 
         if (_snapCooldown > 0f)
         {
-            _snapCooldown -= Time.deltaTime;
+            _snapCooldown -= Time.fixedDeltaTime;
             return;
         }
 
@@ -67,7 +70,9 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
 
             XRGrabInteractable grab = col.GetComponentInParent<XRGrabInteractable>();
             bool isHeld = (grab != null && grab.isSelected)
-                       || (grab != null && homerRaycast != null && homerRaycast.GrabbedObject == col.gameObject);
+                       || (grab != null && homerRaycast != null &&
+                           (homerRaycast.GrabbedObject == col.gameObject ||
+                            homerRaycast.CarriedObject == col.gameObject));
             if (isHeld)
             {
                 StartCoroutine(SnapOrb(grab));
@@ -86,9 +91,13 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
             orb.interactionManager.SelectExit(interactor, orb);
 
         // HOMER holds objects directly (not via XRI select), so release it explicitly.
-        // EndGrab() clears GrabbedObject, restores kinematic, and triggers arm retraction.
-        if (homerRaycast != null && homerRaycast.GrabbedObject == orb.gameObject)
-            homerRaycast.EndGrab();
+        if (homerRaycast != null)
+        {
+            if (homerRaycast.GrabbedObject == orb.gameObject)
+                homerRaycast.EndGrab();
+            else if (homerRaycast.CarriedObject == orb.gameObject)
+                homerRaycast.ReleaseCarried();
+        }
 
         // Wait one frame for XRI to process the release
         yield return null;
@@ -115,6 +124,12 @@ public class HandTPOrbConnect : MonoBehaviour, IXRSelectFilter
         orb.selectFilters.Add(this);
 
         OrbSnapped?.Invoke();
+
+        if (!_orbConnectedFired)
+        {
+            _orbConnectedFired = true;
+            OnOrbConnected.Invoke();
+        }
 
         // Listen for re-grab so we can detach
         orb.selectEntered.AddListener(OnOrbRegrabbed);

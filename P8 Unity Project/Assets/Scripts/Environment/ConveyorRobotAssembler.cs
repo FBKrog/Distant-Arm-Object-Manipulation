@@ -29,8 +29,7 @@ public class ConveyorRobotAssembler : MonoBehaviour
             {
                 AssembleRobot();
             }
-            print(other.name);
-            //Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
     }
 

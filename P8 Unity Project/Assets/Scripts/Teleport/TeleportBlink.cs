@@ -137,8 +137,9 @@ public class TeleportBlink : MonoBehaviour
         }
         SetAlpha(0f);
 
-        _blinkCoroutine = null;
+        yield return new WaitForFixedUpdate();
         OnTeleportEnded();
+        _blinkCoroutine = null;
     }
 
     private void SetAlpha(float alpha)

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-[DefaultExecutionOrder(100)]
+[DefaultExecutionOrder(100)] 
 [RequireComponent(typeof(LimbStretch))]
 public class DAOMArm : MonoBehaviour
 {
@@ -427,14 +426,24 @@ public class DAOMArm : MonoBehaviour
         yield break;
     }
 
-    void FixedUpdate()
+    public bool disablePhysicsWhileGrabbing;
+    void LateUpdate()
     {
-        if (!isAttachedToSurface || recalling) return;       
+        if(!ActiveInstance.disablePhysicsWhileGrabbing) return;
+        if (!isAttachedToSurface || recalling) return;
+        print("Grabbing");
         TransformToPlayerHand();
         RotateToPlayerHand();
     }
 
-    public bool disablePhysicsWhileGrabbing;
+    void FixedUpdate()
+    {
+        if (ActiveInstance.disablePhysicsWhileGrabbing) return;
+        if (!isAttachedToSurface || recalling) return;
+        TransformToPlayerHand();
+        RotateToPlayerHand();
+    }
+
     /// <summary>
     /// Translates the position of the DAOM hand target to match the relative position of the player hand.
     /// </summary>
@@ -448,16 +457,21 @@ public class DAOMArm : MonoBehaviour
 
         playerHandOffset *= followStrength;
 
-        if(disablePhysicsWhileGrabbing)
+        if(ActiveInstance.disablePhysicsWhileGrabbing)
         {
-            daomIKTarget.isKinematic = true;
-            daomIKTarget.linearVelocity = Vector3.zero;
+            if(daomIKTarget.isKinematic == false)
+            {
+                daomIKTarget.linearVelocity = Vector3.zero;
+                daomIKTarget.isKinematic = true;
+            }
 
             // Apply the relative position to the daom root to find the target position for the daom hand.
             daomIKTarget.transform.position = daomRoot.transform.TransformPoint(playerHandOffset);
         }
         else
         {
+            if(daomIKTarget.isKinematic == true)
+                daomIKTarget.isKinematic = false;
             daomIKTarget.linearVelocity = (daomRoot.transform.TransformPoint(playerHandOffset) - daomIKTarget.position) / Time.fixedDeltaTime;
         }
     }
@@ -474,16 +488,21 @@ public class DAOMArm : MonoBehaviour
         relativeRot.z *= -1;
         relativeRot *= playerRoot.transform.localRotation;
 
-        if (disablePhysicsWhileGrabbing)
+        if (ActiveInstance.disablePhysicsWhileGrabbing)
         {
-            daomIKTarget.isKinematic = true;
-            daomIKTarget.angularVelocity = Vector3.zero;
+            if(daomIKTarget.isKinematic == false)
+            {
+                daomIKTarget.angularVelocity = Vector3.zero;
+                daomIKTarget.isKinematic = true;
+            }
             
             // Apply the relative rotation to the daom root to find the target rotation for the daom hand.
             daomIKTarget.transform.rotation = relativeRot;
         }
         else
         {
+            if(daomIKTarget.isKinematic == true)
+                daomIKTarget.isKinematic = false;
             var difference = relativeRot * Quaternion.Inverse(daomIKTarget.rotation);
             difference.ToAngleAxis(out float angleInDegrees, out Vector3 rotationAxis);
             if (angleInDegrees > 180f)

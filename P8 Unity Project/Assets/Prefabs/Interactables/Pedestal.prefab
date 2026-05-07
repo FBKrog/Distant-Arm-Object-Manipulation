@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbPedestalGate
   orbPedestal: {fileID: 3451720885960628193}
+  startActive: 0
 --- !u!1 &6417973802945889588
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ GameObject:
   - component: {fileID: 4606767169936743107}
   - component: {fileID: 4477620208989741063}
   - component: {fileID: 28810512879013135}
-  - component: {fileID: 2372844204424886300}
+  - component: {fileID: 146027184067594463}
   m_Layer: 0
   m_Name: Pedestal
   m_TagString: Untagged
@@ -483,14 +484,14 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2372844204424886300
-MeshCollider:
+--- !u!65 &146027184067594463
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6689732018059275179}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b48cc48bde38f264e842d40f5bb79236, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -499,9 +500,8 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2954808662792032550, guid: 5316092e98def634eaf837ef26a5b823, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.0031984227, y: 0.0035758351, z: 0.0098647205}
+  m_Center: {x: -0.00001928836, y: -0.000093379764, z: 0.0050010504}

@@ -59,6 +59,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     private enum ActiveTechnique { None, Homer, GoGo, Daom }
     private ActiveTechnique activeTechnique = ActiveTechnique.None;
 
+    private bool _isInteractable = false;
     private bool isGrabbed = false;
     private bool isPressed = false; // true once OnButtonPressed has fired
     private bool isLocked = false; // true when puzzle manager locks the pressed state
@@ -241,6 +242,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// <summary>Enables or disables the XRGrabInteractable so the puzzle manager can gate interaction.</summary>
     public void SetInteractable(bool interactable)
     {
+        _isInteractable = interactable;
         if (buttonGrabbable != null)
             buttonGrabbable.enabled = interactable;
     }
@@ -307,7 +309,9 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     private void OnHomerGrabStarted(GameObject obj)
     {
         if (obj != gameObject) return;
+        if (!_isInteractable) return;
         StartGrab(ActiveTechnique.Homer);
+        homer.disablePhysicsWhileGrabbing = true;
     }
 
     private void OnHomerGrabEnded()
@@ -328,11 +332,13 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
             args.interactorObject as XRDirectInteractor == goGoExtend.Interactor)
         {
             technique = ActiveTechnique.GoGo;
+            goGoExtend.disablePhysicsWhileGrabbing = true; // prevent physics from interfering with the button's kinematic movement
         }
         else if (DAOMArm.ActiveInstance != null &&
                  args.interactorObject as XRDirectInteractor == DAOMArm.ActiveInstance.Interactor)
         {
             technique = ActiveTechnique.Daom;
+            DAOMArm.ActiveInstance.disablePhysicsWhileGrabbing = true; // prevent physics from interfering with the button's kinematic movement
         }
 
         if (technique != ActiveTechnique.None)
@@ -369,6 +375,22 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     {
         if (!isGrabbed) return;
 
+        switch (activeTechnique)
+        {
+            case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.GoGo:
+                if (goGoExtend != null)
+                    goGoExtend.disablePhysicsWhileGrabbing = false;
+                break;
+            case ActiveTechnique.Daom:
+                var daom = DAOMArm.ActiveInstance;
+                if (daom != null)
+                    daom.disablePhysicsWhileGrabbing = false;
+                break;
+        }
+
         isGrabbed = false;
         activeTechnique = ActiveTechnique.None;
         activeGrabPoint = null;
@@ -387,10 +409,12 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
         switch (technique)
         {
             case ActiveTechnique.Homer:
+                homer.disablePhysicsWhileGrabbing = false;
                 homer?.EndGrab();
                 break;
 
             case ActiveTechnique.GoGo:
+                goGoExtend.disablePhysicsWhileGrabbing = false;
                 var goGoInter = goGoExtend != null ? goGoExtend.Interactor : null;
                 if (goGoInter != null && buttonGrabbable != null)
                     buttonGrabbable.interactionManager.SelectExit(
@@ -400,6 +424,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
 
             case ActiveTechnique.Daom:
                 var daom = DAOMArm.ActiveInstance;
+                daom.disablePhysicsWhileGrabbing = false;
                 if (daom?.Interactor != null && buttonGrabbable != null)
                     buttonGrabbable.interactionManager.SelectExit(
                         (IXRSelectInteractor)daom.Interactor,

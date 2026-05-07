@@ -38,8 +38,8 @@ public class BatterySocket : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnBatteryPlaced;
 
-    private bool _batteryInserted  = false;
-    private bool _snapInProgress   = false;
+    private bool _batteryInserted = false;
+    private bool _snapInProgress = false;
     private GameObject _currentBattery;
 
 
@@ -66,7 +66,7 @@ public class BatterySocket : MonoBehaviour
                   $"batteryTag='{batteryTag}', plusChildName='{plusChildName}', " +
                   $"minusChildName='{minusChildName}', snapRadius={snapRadius}m");
 
-        if (socketPlus  == null) Debug.LogError($"[BatterySocket] '{name}' — socketPlus is not assigned!", this);
+        if (socketPlus == null) Debug.LogError($"[BatterySocket] '{name}' — socketPlus is not assigned!", this);
         if (socketMinus == null) Debug.LogWarning($"[BatterySocket] '{name}' — socketMinus is not assigned (needed for snap rotation).", this);
     }
 
@@ -133,7 +133,7 @@ public class BatterySocket : MonoBehaviour
             yield return null;  // Give HOMERManipulator one cycle to stop tracking
 
         // --- 2. Locate battery poles ---
-        Transform batteryPlus  = battery.transform.Find(plusChildName);
+        Transform batteryPlus = battery.transform.Find(plusChildName);
         Transform batteryMinus = battery.transform.Find(minusChildName);
 
         if (batteryPlus == null || batteryMinus == null)
@@ -147,8 +147,8 @@ public class BatterySocket : MonoBehaviour
         // --- 3. Compute snap rotation ---
         Vector3 batteryAxisWorld = battery.transform.TransformDirection(
             (batteryMinus.localPosition - batteryPlus.localPosition).normalized);
-        Vector3 socketAxisWorld  = (socketMinus.position - socketPlus.position).normalized;
-        Quaternion axisAlignment   = Quaternion.FromToRotation(batteryAxisWorld, socketAxisWorld);
+        Vector3 socketAxisWorld = (socketMinus.position - socketPlus.position).normalized;
+        Quaternion axisAlignment = Quaternion.FromToRotation(batteryAxisWorld, socketAxisWorld);
         Quaternion snappedRotation = axisAlignment * battery.transform.rotation;
 
         // --- 4. Compute snap position ---
@@ -159,18 +159,18 @@ public class BatterySocket : MonoBehaviour
         var rb = battery.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.isKinematic     = false;  // must be non-kinematic to zero velocity
-            rb.linearVelocity  = Vector3.zero;
+            rb.isKinematic = false;  // must be non-kinematic to zero velocity
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.isKinematic     = true;
+            rb.isKinematic = true;
         }
 
         battery.transform.SetPositionAndRotation(snappedPosition, snappedRotation);
         battery.transform.SetParent(transform, worldPositionStays: true);
 
         _batteryInserted = true;
-        _snapInProgress  = false;
-        _currentBattery  = battery;
+        _snapInProgress = false;
+        _currentBattery = battery;
 
         if (grab != null)
             grab.enabled = false;

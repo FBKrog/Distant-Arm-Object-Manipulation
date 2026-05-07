@@ -99,8 +99,8 @@ MonoBehaviour:
   - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
       adjacent room through the 2 doors.
 
-      The doors can open when the required
-      tasks are completed and you stand in front of them.'
+      After completing a task, look up
+      at the electric tubes in the ceiling to see where to go.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -132,11 +132,15 @@ MonoBehaviour:
     stepId: LeverStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
-      complete the remaining tasks.
+  - subtitleText: Congratulations, you have now completed the tutorial!
     stepId: 
-    displayDuration: 13
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: Please grab the <color=#87FFFF>blue orb</color> and teleport back
+      through the door and head further into the factory to complete the remaining
+      tasks.
+    stepId: 
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -172,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5399326420568358421
 Transform:
   m_ObjectHideFlags: 0
@@ -261,8 +265,8 @@ MonoBehaviour:
   - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
       adjacent room through the 2 doors.
 
-      The doors can open when the required
-      tasks are completed and you stand in front of them.'
+      After completing a task, look up
+      at the electric tubes in the ceiling to see where to go.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -297,11 +301,15 @@ MonoBehaviour:
     stepId: LeverStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
-      complete the remaining tasks.
+  - subtitleText: Congratulations, you have now completed the tutorial!
     stepId: 
-    displayDuration: 13
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: Please grab the <color=#87FFFF>blue orb</color> and teleport back
+      through the door and head further into the factory to complete the remaining
+      tasks.
+    stepId: 
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -337,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2399485307500871039
 Transform:
   m_ObjectHideFlags: 0
@@ -427,8 +435,8 @@ MonoBehaviour:
   - subtitleText: 'Regrab the <color=#87FFFF>blue orb</color> and teleport to the
       adjacent room through the 2 doors.
 
-      The doors can open when the required
-      tasks are completed and you stand in front of them.'
+      After completing a task, look up
+      at the electric tubes in the ceiling to see where to go.'
     stepId: HallwayStep
     displayDuration: 0
     completesObjective: 
@@ -460,11 +468,15 @@ MonoBehaviour:
     stepId: LeverStep
     displayDuration: 0
     completesObjective: 
-  - subtitleText: Congratulations, you have now completed the tutorial! Please grab
-      the <color=#87FFFF>blue orb</color> and teleport further into the factory to
-      complete the remaining tasks.
+  - subtitleText: Congratulations, you have now completed the tutorial!
     stepId: 
-    displayDuration: 13
+    displayDuration: 5
+    completesObjective: 
+  - subtitleText: Please grab the <color=#87FFFF>blue orb</color> and teleport back
+      through the door and head further into the factory to complete the remaining
+      tasks.
+    stepId: 
+    displayDuration: 10
     completesObjective: Tutorial
   maxPanelWidth: 0.8
   panelPadding: 3
@@ -582,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341caea7503f4c3459a22f3667226d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbTutorialObjective
-  tutorialManager: {fileID: 7143218743850561371}
+  tutorialManager: {fileID: 2207946992050787605}
   launchArm: {fileID: 0}
   orbConnect: {fileID: 0}
   orbGrabInteractable: {fileID: 0}
@@ -603,5 +615,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjective
   activateOnObjective: OrbObjective
-  tutorialManager: {fileID: 7143218743850561371}
+  tutorialManager: {fileID: 2207946992050787605}
   alreadyCompletedDisplayDuration: 1

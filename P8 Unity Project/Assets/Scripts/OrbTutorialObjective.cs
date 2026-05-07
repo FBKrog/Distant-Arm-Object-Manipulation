@@ -17,7 +17,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 /// </summary>
 public class OrbTutorialObjective : MonoBehaviour
 {
+    [Header("Reference:")]
     [SerializeField] private TutorialManager tutorialManager;
+    [Header("Settings:")]
+    [SerializeField] private HOMERArm homerArm;                 // optional — enables HOMER grab detection
     [SerializeField] private LaunchArm launchArm;                  // optional — enables DAOM grab detection
     [SerializeField] private HandTPOrbConnect orbConnect;
     [SerializeField] private XRGrabInteractable orbGrabInteractable;
@@ -49,6 +52,9 @@ public class OrbTutorialObjective : MonoBehaviour
         orbGrabInteractable.selectEntered.AddListener(OnOrbGrabbed);
         orbConnect.OrbSnapped += OnOrbSnapped;
 
+        if (homerArm != null)
+            homerArm.GrabStarted += OnHOMERGrabbed;
+
         if (launchArm != null)
             LaunchArm.GrabbedGameObject += OnDAOMGrabbed;
 
@@ -62,7 +68,16 @@ public class OrbTutorialObjective : MonoBehaviour
     {
         if (_step != 1) return;
         _step = 2;
-        tutorialManager.AdvanceToNextStep();
+        AdvanceUntilStep(snapStepId);
+    }
+
+    // Covers HOMER grab (fires GrabStarted, not selectEntered)
+    private void OnHOMERGrabbed(GameObject obj)
+    {
+        if (_step != 1) return;
+        if (obj != orbGrabInteractable.gameObject) return;
+        _step = 2;
+        AdvanceUntilStep(snapStepId);
     }
 
     // Covers DAOM auto-grab (fires before selectEntered on the DAOM path)
@@ -71,7 +86,7 @@ public class OrbTutorialObjective : MonoBehaviour
         if (_step != 1) return;
         if (grabbed != orbGrabInteractable) return;
         _step = 2;
-        tutorialManager.AdvanceToNextStep();
+        AdvanceUntilStep(snapStepId);
     }
 
     // ── Step 2 → 3: orb snapped to hand ──────────────────────────────────────
@@ -82,6 +97,13 @@ public class OrbTutorialObjective : MonoBehaviour
         _step = 3;
         tutorialManager.AdvanceToNextStep();
         Cleanup();
+    }
+
+    // Advances through timer steps until the target stepId is reached.
+    private void AdvanceUntilStep(string targetId)
+    {
+        do { tutorialManager.AdvanceToNextStep(); }
+        while (!string.IsNullOrEmpty(targetId) && tutorialManager.CurrentStepId != targetId);
     }
 
     // ── Pre-completion detection ──────────────────────────────────────────────
