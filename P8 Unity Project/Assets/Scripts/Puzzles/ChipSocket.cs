@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -14,6 +13,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 /// </summary>
 public class ChipSocket : MonoBehaviour
 {
+    [SerializeField] private Transform pos;
     [SerializeField] private XRGrabInteractable chip;
     [SerializeField] private float snapRadius = 0.15f;
 
@@ -91,10 +91,9 @@ public class ChipSocket : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        chip.transform.SetPositionAndRotation(
-            transform.TransformPoint(snapPositionOffset),
-            transform.rotation * Quaternion.Euler(snapRotationOffset));
-        chip.transform.SetParent(transform, worldPositionStays: true);
+        chip.transform.SetParent(pos);
+        chip.transform.localPosition = snapPositionOffset;
+        chip.transform.localRotation = Quaternion.Euler(snapRotationOffset);
 
         // --- 4. Permanently lock ---
         chip.enabled = false;

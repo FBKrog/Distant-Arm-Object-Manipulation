@@ -40656,9 +40656,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 373431075}
   chip: {fileID: 1178895065}
   snapRadius: 0.25
-  snapPositionOffset: {x: 0, y: 0.1, z: 0}
+  snapPositionOffset: {x: 0, y: 0, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
     m_PersistentCalls:
@@ -85811,6 +85812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 0}
   chip: {fileID: 200349134}
   snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
@@ -147293,9 +147295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 979233927}
   chip: {fileID: 2115605184}
   snapRadius: 0.25
-  snapPositionOffset: {x: 0, y: 0.1, z: 0}
+  snapPositionOffset: {x: 0, y: 0, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
     m_PersistentCalls:
@@ -151564,9 +151567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 578701064}
   chip: {fileID: 1989776773}
   snapRadius: 0.25
-  snapPositionOffset: {x: 0, y: 0.1, z: 0}
+  snapPositionOffset: {x: 0, y: 0, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
     m_PersistentCalls:
