@@ -141190,6 +141190,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4687640909073853795, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: wrongFlashDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687640909073853795, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: sequenceGapDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687640909073853795, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: 'sequence.Array.data[0]'
       value: 7
       objectReference: {fileID: 0}
@@ -141356,6 +141364,14 @@ PrefabInstance:
     - target: {fileID: 5382453996675475326, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: idleRepeatDelay
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382453996675475326, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: wrongFlashDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382453996675475326, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: sequenceGapDuration
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5423301850034224789, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: homer
@@ -141928,6 +141944,14 @@ PrefabInstance:
     - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: idleRepeatDelay
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: wrongFlashDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
+      propertyPath: sequenceGapDuration
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8607427958884324575, guid: 9d86a4f0ad9466348832bc52feafd31c, type: 3}
       propertyPath: 'sequence.Array.data[0]'
@@ -210120,7 +210144,7 @@ MonoBehaviour:
   overlayAlpha: 0.4
   startDelay: 7.5
   sequenceShowDuration: 1
-  sequenceGapDuration: 0.25
+  sequenceGapDuration: 0.2
   wrongFlashDuration: 1.5
   idleRepeatDelay: 10
   OnPuzzleCompleted:

@@ -59,6 +59,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     private enum ActiveTechnique { None, Homer, GoGo, Daom }
     private ActiveTechnique activeTechnique = ActiveTechnique.None;
 
+    private bool _isInteractable = false;
     private bool isGrabbed = false;
     private bool isPressed = false; // true once OnButtonPressed has fired
     private bool isLocked = false; // true when puzzle manager locks the pressed state
@@ -241,6 +242,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     /// <summary>Enables or disables the XRGrabInteractable so the puzzle manager can gate interaction.</summary>
     public void SetInteractable(bool interactable)
     {
+        _isInteractable = interactable;
         if (buttonGrabbable != null)
             buttonGrabbable.enabled = interactable;
     }
@@ -307,6 +309,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     private void OnHomerGrabStarted(GameObject obj)
     {
         if (obj != gameObject) return;
+        if (!_isInteractable) return;
         StartGrab(ActiveTechnique.Homer);
         homer.disablePhysicsWhileGrabbing = true;
     }
@@ -372,7 +375,7 @@ public class SimonButton : MonoBehaviour, IRotaryGrabbable
     {
         if (!isGrabbed) return;
 
-        switch(activeTechnique)
+        switch (activeTechnique)
         {
             case ActiveTechnique.Homer:
                 homer.disablePhysicsWhileGrabbing = false;
