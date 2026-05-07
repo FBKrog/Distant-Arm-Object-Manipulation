@@ -1,6 +1,6 @@
 /* Gradient animation by Manuel Pinto: https://codepen.io/P1N2O/pen/pyBNzX */
 .gradient-background {
-  background: linear-gradient(-60deg, #133032, #0dc654, #0f5c5f);
+  background: linear-gradient(-60deg, #0D0D4B, #350da2, #060448);
   background-size: 200% 200%;
   animation: gradient-animation 40s ease infinite;
 }
@@ -15,4 +15,8 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+.video-aspect {
+  aspect-ratio: 16/9;
 }
