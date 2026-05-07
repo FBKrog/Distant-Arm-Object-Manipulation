@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RespawnOutOfBounds : MonoBehaviour
+public class RespawnZone : MonoBehaviour
 {
     [SerializeField] string zoneName;
     [SerializeField] RespawnType respawnType;

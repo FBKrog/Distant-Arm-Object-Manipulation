@@ -7,9 +7,9 @@ public class Respawnable : MonoBehaviour
 {
     public string zoneName;
     [SerializeField] [Tooltip("Leaving this empty will use the object's position and rotation when Start() is called as the respawn point.")] Transform respawnPointTransform;
+    Rigidbody rb;
     Vector3 respawnPoint;
     Quaternion respawnRotation;
-    Rigidbody rb;
     bool wasKinematic;
 
     bool canRespawn;
@@ -56,6 +56,8 @@ public class Respawnable : MonoBehaviour
     {
         while (outOfBounds)
         {
+            if(!outOfBounds)
+                yield break;    
             yield return canRespawn;
             rb.isKinematic = true;
             rb.linearVelocity = Vector3.zero;

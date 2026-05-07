@@ -31120,7 +31120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e735a501b753d42a21eb32cf965dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnOutOfBounds
-  zoneName: Task2
+  zoneName: task2
   respawnType: 1
 --- !u!114 &205280266 stripped
 MonoBehaviour:
@@ -32030,11 +32030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.x
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.y
-      value: -0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.z
@@ -37904,8 +37904,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: daomPositionOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.z
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: homerScaleMultiplier
@@ -100689,8 +100693,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: daomPositionOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.z
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: homerScaleMultiplier
@@ -103959,7 +103967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e735a501b753d42a21eb32cf965dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnOutOfBounds
-  zoneName: Task1
+  zoneName: task1
   respawnType: 1
 --- !u!1001 &1127083538
 PrefabInstance:
@@ -106733,7 +106741,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2052
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -106753,7 +106761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9213540e8b00fb4abaef338a9ea5bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Respawnable
-  zoneName: Task2
+  zoneName: task2
   respawnPointTransform: {fileID: 0}
 --- !u!1001 &1179076661
 PrefabInstance:
@@ -128945,7 +128953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 576059475463922452, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: homerRaycast
@@ -129061,7 +129069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818019988887690339, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076515107572411841, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: validColor.a
@@ -129182,6 +129190,14 @@ PrefabInstance:
     - target: {fileID: 5696403487885496421, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_Alpha
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301566363545957074, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: poseDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716455207520570192, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
+      propertyPath: poseDuration
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8453859537980425749, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_Name
@@ -143148,7 +143164,11 @@ PrefabInstance:
       objectReference: {fileID: 1967655281}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.x
-      value: 0.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: daomPositionOffset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: daomPositionOffset.z
@@ -150482,7 +150502,7 @@ GameObject:
   - component: {fileID: 1890896452}
   - component: {fileID: 1890896454}
   m_Layer: 13
-  m_Name: Respawn Out of Bounds
+  m_Name: Respawn Zones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156581,7 +156601,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2052
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -156601,7 +156621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9213540e8b00fb4abaef338a9ea5bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Respawnable
-  zoneName: Task2
+  zoneName: task2
   respawnPointTransform: {fileID: 0}
 --- !u!1 &1989909022
 GameObject:
@@ -164707,7 +164727,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2052
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -164727,7 +164747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9213540e8b00fb4abaef338a9ea5bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Respawnable
-  zoneName: Task2
+  zoneName: task2
   respawnPointTransform: {fileID: 0}
 --- !u!1001 &2115964202
 PrefabInstance:
