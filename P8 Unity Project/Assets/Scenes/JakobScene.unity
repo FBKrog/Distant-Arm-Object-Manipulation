@@ -17050,11 +17050,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7955142301654913766, guid: 7ba1c199cf99930489d90ce4dffc9adb, type: 3}
   m_PrefabInstance: {fileID: 75756049}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &76859228 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 689799428125141526, guid: 6ebca770198070044943c3c172c0b451, type: 3}
-  m_PrefabInstance: {fileID: 234241959}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &81118380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32264,7 +32259,7 @@ PrefabInstance:
     - target: {fileID: 6518906046934520797, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_SecondaryAttachTransform
       value: 
-      objectReference: {fileID: 76859228}
+      objectReference: {fileID: 0}
     - target: {fileID: 7168040536052806348, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -32302,8 +32297,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoRotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: homerScaleMultiplier
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8610991553452961710, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40638,7 +40653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
   chip: {fileID: 1178895065}
-  snapRadius: 0.15
+  snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
@@ -85793,7 +85808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
   chip: {fileID: 200349134}
-  snapRadius: 0.15
+  snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
@@ -107067,8 +107082,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoRotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: homerScaleMultiplier
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8610991553452961710, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_LocalScale.x
@@ -128910,7 +128945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 576059475463922452, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: homerRaycast
@@ -129026,7 +129061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818019988887690339, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3076515107572411841, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: validColor.a
@@ -143096,6 +143131,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: goGoPositionOffset.x
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: goGoPositionOffset.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
+      propertyPath: goGoPositionOffset.z
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940353345563010427, guid: 2974ece9ae328d445ae809c91efa2a95, type: 3}
       propertyPath: homerScaleMultiplier
       value: 0.392
       objectReference: {fileID: 0}
@@ -147191,7 +147238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
   chip: {fileID: 2115605184}
-  snapRadius: 0.15
+  snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
@@ -151462,7 +151509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
   chip: {fileID: 1989776773}
-  snapRadius: 0.15
+  snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
   snapRotationOffset: {x: 90, y: 0, z: 0}
   OnChipInserted:
@@ -159182,7 +159229,7 @@ PrefabInstance:
     - target: {fileID: 6518906046934520797, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_AttachTransform
       value: 
-      objectReference: {fileID: 2049977461}
+      objectReference: {fileID: 0}
     - target: {fileID: 6518906046934520797, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_SecondaryAttachTransform
       value: 
@@ -159257,19 +159304,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: goGoPositionOffset.x
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
-      propertyPath: goGoPositionOffset.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
-      propertyPath: goGoPositionOffset.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoPositionOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: goGoRotationOffset.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: homerScaleMultiplier
@@ -159277,24 +159324,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: grabPoints.Array.size
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: homerPositionOffset.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
-      propertyPath: homerPositionOffset.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2049977471}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: 'grabPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2049977470}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: 'grabPoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2049977469}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2049977468}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2049977467}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2049977466}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2049977465}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: 'grabPoints.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2049977461}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: OnValveActivated.m_PersistentCalls.m_Calls.Array.size
       value: 5
@@ -159462,7 +159541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2049977461 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 689799428125141526, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6036092621193205202, guid: 6ebca770198070044943c3c172c0b451, type: 3}
   m_PrefabInstance: {fileID: 2049977459}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2049977462 stripped
@@ -159498,6 +159577,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ed236e33049448bba1af4447e9b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmissionStateIndicator
+--- !u!4 &2049977465 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4809108781386550276, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 582475339008329815, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8981624260069092991, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977468 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5860660683654934184, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8724098910767466549, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2643277783853278757, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2049977471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1661376353793340256, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+  m_PrefabInstance: {fileID: 2049977459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2051328688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163935,8 +164049,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967655281}
     - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: goGoRotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: homerScaleMultiplier
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerPositionOffset.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237611138261093180, guid: 6ebca770198070044943c3c172c0b451, type: 3}
+      propertyPath: homerRotationOffset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8610991553452961710, guid: 6ebca770198070044943c3c172c0b451, type: 3}
       propertyPath: m_LocalScale.x
