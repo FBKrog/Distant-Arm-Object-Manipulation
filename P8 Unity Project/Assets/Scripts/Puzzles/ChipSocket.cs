@@ -14,6 +14,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 /// </summary>
 public class ChipSocket : MonoBehaviour
 {
+    [SerializeField] private Transform pos;
     [SerializeField] private XRGrabInteractable chip;
     [SerializeField] private float snapRadius = 0.15f;
 
@@ -91,10 +92,9 @@ public class ChipSocket : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        chip.transform.SetPositionAndRotation(
-            transform.TransformPoint(snapPositionOffset),
-            transform.rotation * Quaternion.Euler(snapRotationOffset));
-        chip.transform.SetParent(transform, worldPositionStays: true);
+        chip.transform.SetParent(transform);
+        chip.transform.localPosition = snapPositionOffset;
+        chip.transform.localEulerAngles = snapRotationOffset;
 
         // --- 4. Permanently lock ---
         chip.enabled = false;

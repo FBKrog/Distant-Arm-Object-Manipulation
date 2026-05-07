@@ -40712,6 +40712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 373431075}
   chip: {fileID: 1178895065}
   snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
@@ -85867,6 +85868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 0}
   chip: {fileID: 200349134}
   snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
@@ -91987,10 +91989,10 @@ PrefabInstance:
     - target: {fileID: 1407943549580462494, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 1131927772}
+      objectReference: {fileID: 568668845}
     - target: {fileID: 1811118839066844378, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2030897116786569464, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
@@ -92388,7 +92390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155103511497936179, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4170788173571011524, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -92449,7 +92451,7 @@ PrefabInstance:
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 1131927772}
+      objectReference: {fileID: 568668845}
     - target: {fileID: 5721923283312269138, guid: ab189d3cea7baa748aaa88219c12dd9c, type: 3}
       propertyPath: orbGrabInteractable
       value: 
@@ -129005,7 +129007,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 207387185875037171, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472692513586215617, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
@@ -129125,7 +129127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818019988887690339, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076515107572411841, guid: 722d4351c8efe5f4995ba05824146275, type: 3}
       propertyPath: validColor.a
@@ -147349,6 +147351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 979233927}
   chip: {fileID: 2115605184}
   snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
@@ -151666,6 +151669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd1919078c56e458456a6dbd9e0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChipSocket
+  pos: {fileID: 578701064}
   chip: {fileID: 1989776773}
   snapRadius: 0.25
   snapPositionOffset: {x: 0, y: 0.1, z: 0}
