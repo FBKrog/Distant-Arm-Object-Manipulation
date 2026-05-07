@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,8 +11,11 @@ public class Respawnable : MonoBehaviour
     Quaternion respawnRotation;
     Rigidbody rb;
     bool wasKinematic;
-    bool canRespawn;
 
+    bool canRespawn;
+    bool outOfBounds;
+    Coroutine coroutine;
+    
     void Start()
     {
         respawnPoint = respawnPointTransform ? respawnPointTransform.position : transform.position;
@@ -40,15 +44,38 @@ public class Respawnable : MonoBehaviour
         }
     }
 
-    public void Respawn()
+    public void TryRespawn()
     {
         print($"[Respawnable]: {gameObject.name} attempted to respawn");
-        if (!canRespawn) return;
-        rb.isKinematic = true;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        transform.position = respawnPoint;
-        transform.rotation = respawnRotation;
-        rb.isKinematic = wasKinematic;
+        outOfBounds = true;
+        if(coroutine == null)
+            coroutine = StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        while (outOfBounds)
+        {
+            yield return canRespawn;
+            rb.isKinematic = true;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.position = respawnPoint;
+            transform.rotation = respawnRotation;
+            rb.isKinematic = wasKinematic;
+        }
+        outOfBounds = false;
+        coroutine = null;
+    }
+
+    public void CancelRespawn()
+    {
+        print($"[Respawnable]: {gameObject.name} cancelled respawn");
+        outOfBounds = false;
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
     }
 }

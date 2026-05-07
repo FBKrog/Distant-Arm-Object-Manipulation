@@ -14,21 +14,35 @@ public class RespawnOutOfBounds : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (respawnType == RespawnType.OnExit) return;
         if (other.TryGetComponent<Respawnable>(out var respawnable) && (respawnable.zoneName == zoneName || zoneName == ""))
         {
-            print($"[Respawner]: {gameObject.name} has respawned {other.name}");
-            respawnable.Respawn();
+            if(respawnType == RespawnType.OnEnter)
+            {
+                print($"[Respawner]: {gameObject.name} has respawned {other.name}");
+                respawnable.TryRespawn();
+            }
+            if(respawnType == RespawnType.OnExit)
+            {
+                print($"[Respawner]: {gameObject.name} cancelled respawn for {other.name}");
+                respawnable.CancelRespawn();
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(respawnType == RespawnType.OnEnter) return;
         if (other.TryGetComponent<Respawnable>(out var respawnable) && (respawnable.zoneName == zoneName || zoneName == ""))
         {
-            print($"[Respawner]: {gameObject.name} has respawned {other.name}");
-            respawnable.Respawn();
+            if (respawnType == RespawnType.OnExit)
+            {
+                print($"[Respawner]: {gameObject.name} has respawned {other.name}");
+                respawnable.TryRespawn();
+            }
+            if (respawnType == RespawnType.OnEnter)
+            {
+                print($"[Respawner]: {gameObject.name} cancelled respawn for {other.name}");
+                respawnable.CancelRespawn();
+            }
         }
     }
 }
