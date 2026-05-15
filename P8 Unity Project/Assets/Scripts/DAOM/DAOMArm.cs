@@ -319,20 +319,24 @@ public class DAOMArm : MonoBehaviour
             yield return new WaitForSeconds(rotationDuration);
             if(Physics.Raycast(transform.position, -transform.forward, out var hit, 2f)) // Allign the arm to the surface normal if we hit the surface, otherwise just look in the direction of the player camera.
                 targetRot = Quaternion.LookRotation(hit.normal);
+            var mainRotation = Quaternion.Euler(new Vector3(0, targetRot.eulerAngles.y, 0) - playerCamera.transform.forward);
+            
             if (surfaceIsGround)
                 targetRot = Quaternion.LookRotation(hit.normal - playerCamera.transform.forward);
-            var roundedRot = new Vector3(Mathf.Round(targetRot.eulerAngles.x / 90) * 90,
-                                         Mathf.Round(targetRot.eulerAngles.y / 90) * 90,
-                                         Mathf.Round(targetRot.eulerAngles.z / 90) * 90);
-            var roundedTargetRotY = Quaternion.Euler(0, roundedRot.y, 0);
-            StartCoroutine(RotateToTargetRotation(transform, roundedTargetRotY, rotationDuration));
+            
+            var roundedRot = new Vector3(0,
+                                         Mathf.Round(targetRot.eulerAngles.y / 90) * 90, // Make sure the Y rotation is only in 90° increments.
+                                         0);
+            var groundTargetRotY = Quaternion.Euler(-90, roundedRot.y, 0);
+            var wallTargetRotY = Quaternion.Euler(0, roundedRot.y, 0);
+            StartCoroutine(RotateToTargetRotation(transform, mainRotation, rotationDuration));
             if(surfaceIsGround)
             {
-                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(new Vector3(-90, roundedRot.y, 0)), rotationDuration));
+                StartCoroutine(RotateToTargetRotation(wallExtention.transform, groundTargetRotY, rotationDuration));
             }
             else
             {
-                StartCoroutine(RotateToTargetRotation(wallExtention.transform, Quaternion.Euler(roundedRot), rotationDuration));
+                StartCoroutine(RotateToTargetRotation(wallExtention.transform, wallTargetRotY, rotationDuration));
             }
             
             yield return new WaitForSeconds(rotationDuration);
@@ -456,7 +460,7 @@ public class DAOMArm : MonoBehaviour
         playerHandOffset.y *= -1;
 
         playerHandOffset *= followStrength;
-
+        
         if(ActiveInstance.disablePhysicsWhileGrabbing)
         {
             if(daomIKTarget.isKinematic == false)
