@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class ConveyorRobotAssembler : MonoBehaviour
 {
+    public bool isCool;
+    [SerializeField] GameObject coolRobotPrefab;
     [SerializeField] GameObject robotPrefab;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] GameObject robotsParent;
@@ -24,12 +26,15 @@ public class ConveyorRobotAssembler : MonoBehaviour
             acquiredParts.Add(part);
 
             AudioManager.Play(SfxType.Assembly, transform);
-
-            if (AreAllPartsAcquired())
-            {
-                AssembleRobot();
-            }
             Destroy(other.gameObject);
+        }
+    }
+
+    void Update()
+    {
+        if(AreAllPartsAcquired())
+        {
+            AssembleRobot();
         }
     }
 
@@ -42,10 +47,18 @@ public class ConveyorRobotAssembler : MonoBehaviour
     void AssembleRobot()
     {
         // Instantiate the robot at the assembler's position
-        Instantiate(robotPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, robotsParent.transform);
+        if (isCool)
+        {
+            var robot = Instantiate(coolRobotPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, robotsParent.transform);
+            robot.GetComponent<Animator>().SetBool("dance", true);
+        }
+        else
+        {
+            Instantiate(robotPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, robotsParent.transform);
+        }
         // Clear one of each acquired part for the next assembly
         foreach (var part in Enum.GetValues(typeof(Parts)).Cast<Parts>())
-            acquiredParts.Remove(part);
+                acquiredParts.Remove(part);
         AudioManager.Play(SfxType.AssemblyComplete, transform);
     }
 }

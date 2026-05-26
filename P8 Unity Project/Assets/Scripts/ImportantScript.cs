@@ -7,6 +7,9 @@ public class ImportantScript : MonoBehaviour
     [SerializeField] float interval = 0.475f;
     [SerializeField] GameObject nothingTeehee;
     [SerializeField] Transform targetTransform;
+    [SerializeField] ConveyorRobotAssembler conveyorRobotAssembler;
+    [SerializeField] EndMusic endMusic;
+    WaitForSeconds waitForSecondsHaha;
     public static ImportantScript Instance { get; private set; }
 
     void Awake()
@@ -30,6 +33,12 @@ public class ImportantScript : MonoBehaviour
         Instantiate(nothingTeehee, targetTransform.position, targetTransform.rotation);
     }
 
+    public void CoolMethod()
+    {
+        conveyorRobotAssembler.isCool = true;
+        endMusic.isCool = true;
+    }
+
     public void DoThing()
     {
         StartCoroutine(ChangeLightColor());
@@ -39,9 +48,10 @@ public class ImportantScript : MonoBehaviour
     IEnumerator ChangeLightColor()
     {
         light.enabled = true;
+        waitForSecondsHaha = new WaitForSeconds(interval);
         while (light.enabled)
         {
-            yield return new WaitForSeconds(interval);
+            yield return waitForSecondsHaha;
             var randomColorChannel = Random.Range(0, 3);
 
             int r = Random.Range(0, 256);

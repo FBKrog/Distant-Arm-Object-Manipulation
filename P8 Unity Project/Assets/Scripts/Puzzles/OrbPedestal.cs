@@ -97,6 +97,10 @@ public class OrbPedestal : MonoBehaviour
         {
             _currentOrb = teleportOrb;
             _currentOrb.OnPlacedOnPad();
+            if(_currentOrb.orbType == OrbType.Red)
+            {
+                ImportantScript.Instance.CoolMethod();
+            }
         }
         OrbPlaced.Invoke();
     }
