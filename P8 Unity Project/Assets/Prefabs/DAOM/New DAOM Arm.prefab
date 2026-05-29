@@ -1197,7 +1197,7 @@ MonoBehaviour:
   lowerArmExtention: {x: 0, y: 0.0021331396, z: 0}
   lowerArmRetraction: {x: 0, y: -0.0005, z: 0}
   retractionTime: 0.2
-  followStrength: 1
+  followStrength: 1.5
   rotationStartTime: 0.8
   rotationDuration: 0.15
   handRotationOffset: {x: 90, y: 0, z: 0}
