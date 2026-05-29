@@ -131608,7 +131608,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548305501}
-  - component: {fileID: 1548305502}
   - component: {fileID: 1548305503}
   m_Layer: 0
   m_Name: EndMusic
@@ -131632,22 +131631,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1835598295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1548305502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548305500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951742e163cbb22408d42396ad04a3a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SFX
-  sfxSO: {fileID: 11400000, guid: 8220a41e2b279064983d4d2a3d2d6f63, type: 2}
-  sfxOnImpact: 0
-  twoD: 1
-  targetTransform: {fileID: 0}
 --- !u!114 &1548305503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131660,9 +131643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2742eba1ac945cc4cb981e9462f30766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  endMusic: {fileID: 0}
+  endMusic: {fileID: 11400000, guid: 8220a41e2b279064983d4d2a3d2d6f63, type: 2}
   isCool: 0
-  coolEndMusic: {fileID: 0}
+  coolEndMusic: {fileID: 11400000, guid: 043000df3e13a4d4996a3c58dc45bd09, type: 2}
 --- !u!114 &1550882119 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7938989742946663761, guid: 1da7723639a3b5449a356e5cfc11572a, type: 3}
@@ -148412,18 +148395,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1548305503}
-        m_TargetAssemblyTypeName: EndMusic, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 40
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1835598301}
         m_TargetAssemblyTypeName: SFX, Assembly-CSharp
         m_MethodName: PlaySound
@@ -148446,6 +148417,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 40
           m_StringArgument: Task_5_End
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1548305503}
+        m_TargetAssemblyTypeName: EndMusic, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 40
+          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1835598300

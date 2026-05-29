@@ -8,8 +8,14 @@ public class EndMusic : MonoBehaviour
     public void Play()
     {
         if(isCool)
-            AudioManager.PlayLooping(coolEndMusic.sfxType, transform, false, true);
+        {
+            if(coolEndMusic != null)
+                AudioManager.PlayLooping(coolEndMusic.sfxType, transform, false, true);
+        }
         else
-            AudioManager.PlayFadeIn(endMusic.sfxType, 40, true);
+        {
+            if(endMusic != null)
+                AudioManager.PlayFadeIn(endMusic.sfxType, 40, true);
+        }
     }
 }
