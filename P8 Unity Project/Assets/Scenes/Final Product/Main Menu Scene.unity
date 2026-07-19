@@ -4423,7 +4423,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48917617}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -30192,6 +30192,8 @@ PlayableDirector:
     value: {fileID: 48917620}
   - key: {fileID: 2531042102578760166, guid: 64ce3eb8ccbfb9a4f9021b1fbd9d741f, type: 2}
     value: {fileID: 1059536865}
+  - key: {fileID: -8750142694133383206, guid: 64ce3eb8ccbfb9a4f9021b1fbd9d741f, type: 2}
+    value: {fileID: 2022785722}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &443479277
@@ -75214,7 +75216,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059536862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -80906,7 +80908,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84802,7 +84804,7 @@ MonoBehaviour:
   m_CustomShadowLayers: 0
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
+  m_SoftShadowQuality: 3
   m_RenderingLayersMask:
     serializedVersion: 0
     m_Bits: 1
@@ -99116,7 +99118,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -103309,7 +103311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448494392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
   m_Name: 
@@ -109835,7 +109837,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
@@ -136850,6 +136852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022785721}
+  - component: {fileID: 2022785722}
   m_Layer: 0
   m_Name: Camera Offset
   m_TagString: Untagged
@@ -136873,6 +136876,28 @@ Transform:
   - {fileID: 1448494393}
   m_Father: {fileID: 982333290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2022785722
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022785720}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2023129010
 GameObject:
   m_ObjectHideFlags: 0
@@ -138299,7 +138324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576419069649307019, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3200420961575240817, guid: f19d563dbddeb9c4585da98e2cbfa764, type: 3}
       propertyPath: m_LocalPosition.x
